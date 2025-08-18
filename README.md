@@ -1,2 +1,2 @@
-# Lab1IngSoftware
-laboratorio 1 Ing. de Software
+# Laboratorio 1 Programación de Aplicaciones
+laboratorio 1 Prog de Aplicaciones
