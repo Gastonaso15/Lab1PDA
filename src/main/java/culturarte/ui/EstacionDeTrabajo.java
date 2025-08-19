@@ -26,3 +26,4 @@ public class EstacionDeTrabajo extends JFrame {
         SwingUtilities.invokeLater(() -> new EstacionDeTrabajo().setVisible(true));
     }
 }
+//
