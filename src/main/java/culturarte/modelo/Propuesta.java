@@ -2,45 +2,79 @@ package culturarte.modelo;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "propuestas")
 public class Propuesta {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    private String nombre;
+
+    @Column(unique = true, nullable = false)
+    private String titulo;
+
     private String descripcion;
-    private LocalDate fechaCreacion;
-    
+    private String lugar;
+    private LocalDate fechaPrevista;
+    private Double precioEntrada;
+    private Double montoNecesario;
+    private LocalDate fechaPublicacion;
+    private String imagenPath;
+
     @ManyToOne
-    @JoinColumn(name = "proponente_nickname")
+    @JoinColumn(name = "categoria_id") // referencia la columna en la tabla propuesta
+    private Categoria categoria;
+
+    @ManyToOne
+    @JoinColumn(name = "proponente_id")
     private Proponente proponente;
-    
-    // Constructores
-    public Propuesta() {}
-    
-    public Propuesta(String nombre, String descripcion, Proponente proponente) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.fechaCreacion = LocalDate.now();
-        this.proponente = proponente;
-    }
-    
+
+    @Enumerated(EnumType.STRING)
+    private EstadoPropuesta estadoActual;
+
+    @OneToMany(mappedBy = "propuesta", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PropuestaEstado> historial = new ArrayList<>();
+
     // Getters y Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
-    
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
-    
+
+    public String getTitulo() { return titulo; }
+    public void setTitulo(String titulo) { this.titulo = titulo; }
+
     public String getDescripcion() { return descripcion; }
     public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
-    
-    public LocalDate getFechaCreacion() { return fechaCreacion; }
-    public void setFechaCreacion(LocalDate fechaCreacion) { this.fechaCreacion = fechaCreacion; }
-    
+
+    public String getLugar() { return lugar; }
+    public void setLugar(String lugar) { this.lugar = lugar; }
+
+    public LocalDate getFechaPrevista() { return fechaPrevista; }
+    public void setFechaPrevista(LocalDate fechaPrevista) { this.fechaPrevista = fechaPrevista; }
+
+    public Double getPrecioEntrada() { return precioEntrada; }
+    public void setPrecioEntrada(Double precioEntrada) { this.precioEntrada = precioEntrada; }
+
+    public Double getMontoNecesario() { return montoNecesario; }
+    public void setMontoNecesario(Double montoNecesario) { this.montoNecesario = montoNecesario; }
+
+    public LocalDate getFechaPublicacion() { return fechaPublicacion; }
+    public void setFechaPublicacion(LocalDate fechaPublicacion) { this.fechaPublicacion = fechaPublicacion; }
+
+    public String getImagenPath() { return imagenPath; }
+    public void setImagenPath(String imagenPath) { this.imagenPath = imagenPath; }
+
+    public Categoria getCategoria() { return categoria; }
+    public void setCategoria(Categoria categoria) { this.categoria = categoria; }
+
     public Proponente getProponente() { return proponente; }
     public void setProponente(Proponente proponente) { this.proponente = proponente; }
+
+    public EstadoPropuesta getEstadoActual() { return estadoActual; }
+    public void setEstadoActual(EstadoPropuesta estadoActual) { this.estadoActual = estadoActual; }
+
+    public List<PropuestaEstado> getHistorial() { return historial; }
+    public void setHistorial(List<PropuestaEstado> historial) { this.historial = historial; }
 }

@@ -4,8 +4,16 @@ import jakarta.persistence.Entity;
 
 @Entity
 public class Colaborador extends Usuario {
-    public Colaborador() {}
-    public Colaborador(String nick, String nombre, String apellido, String correo, java.time.LocalDate nacimiento, String imagen) {
-        super(nick, nombre, apellido, correo, nacimiento, imagen);
+
+    // Constructor vacío necesario para JPA
+    public Colaborador() {
+        super();
     }
+
+    // Constructor con 4 parámetros que llama al constructor de Usuario
+    public Colaborador(String nickname, String nombre, String apellido, String correo) {
+        super(nickname, nombre, apellido, correo);
+    }
+
+    // Por ahora no tiene campos adicionales
 }
