@@ -24,6 +24,8 @@ public class EstacionDeTrabajo extends JFrame {
         JMenu propuestas = new JMenu("Propuestas");
         JMenuItem altaPropuesta = new JMenuItem("Alta de Propuesta");
         propuestas.add(altaPropuesta);
+        JMenuItem consultarPropuesta = new JMenuItem("Consultar Propuesta");
+        propuestas.add(consultarPropuesta);
 
         menu.add(usuarios);
         menu.add(propuestas);
@@ -39,6 +41,11 @@ public class EstacionDeTrabajo extends JFrame {
         // Abrir ventana interna de propuesta
         altaPropuesta.addActionListener(e -> {
             AltaPropuestaInternalFrame frame = new AltaPropuestaInternalFrame();
+            desktop.add(frame);
+            frame.setVisible(true);
+        });
+        consultarPropuesta.addActionListener(e -> {
+            ConsultarPropuestaInternalFrame frame = new ConsultarPropuestaInternalFrame();
             desktop.add(frame);
             frame.setVisible(true);
         });

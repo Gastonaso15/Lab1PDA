@@ -4,6 +4,8 @@ import culturarte.modelo.Propuesta;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import java.util.List;
+
 
 public class PropuestaService {
 
@@ -27,5 +29,13 @@ public class PropuestaService {
         em.persist(propuesta);
         em.getTransaction().commit();
         em.close();
+    }
+
+    public List<Propuesta> obtenerTodasLasPropuestas() {
+        EntityManager em = emf.createEntityManager();
+        List<Propuesta> propuestas = em.createQuery("SELECT p FROM Propuesta p", Propuesta.class)
+                .getResultList();
+        em.close();
+        return propuestas;
     }
 }

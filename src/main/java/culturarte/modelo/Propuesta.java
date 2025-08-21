@@ -22,7 +22,9 @@ public class Propuesta {
     private Double precioEntrada;
     private Double montoNecesario;
     private LocalDate fechaPublicacion;
-    private String imagenPath;
+    @Lob // indica que es un tipo grande de datos (BLOB)
+    @Column(columnDefinition = "LONGBLOB")
+    private byte[] imagen;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id") // referencia la columna en la tabla propuesta
@@ -37,6 +39,9 @@ public class Propuesta {
 
     @OneToMany(mappedBy = "propuesta", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PropuestaEstado> historial = new ArrayList<>();
+
+    @OneToMany(mappedBy = "propuesta", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Colaboracion> colaboraciones = new ArrayList<>();
 
     // Getters y Setters
     public Long getId() { return id; }
@@ -63,8 +68,8 @@ public class Propuesta {
     public LocalDate getFechaPublicacion() { return fechaPublicacion; }
     public void setFechaPublicacion(LocalDate fechaPublicacion) { this.fechaPublicacion = fechaPublicacion; }
 
-    public String getImagenPath() { return imagenPath; }
-    public void setImagenPath(String imagenPath) { this.imagenPath = imagenPath; }
+    public byte[] getImagen() { return imagen; }
+    public void setImagen(byte[] imagen) { this.imagen = imagen; }
 
     public Categoria getCategoria() { return categoria; }
     public void setCategoria(Categoria categoria) { this.categoria = categoria; }
@@ -77,4 +82,12 @@ public class Propuesta {
 
     public List<PropuestaEstado> getHistorial() { return historial; }
     public void setHistorial(List<PropuestaEstado> historial) { this.historial = historial; }
+
+    public List<Colaboracion> getColaboraciones() { return colaboraciones; }
+    public void setColaboraciones(List<Colaboracion> colaboraciones) { this.colaboraciones = colaboraciones; }
+
+    @Override
+    public String toString() {
+        return titulo;
+    }
 }

@@ -7,6 +7,9 @@ import culturarte.modelo.Usuario;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
+
+import java.util.List;
 
 public class UsuarioService {
 
@@ -67,5 +70,13 @@ public class UsuarioService {
         em.persist(usuario);
         em.getTransaction().commit();
         em.close();
+    }
+
+    public List<Proponente> obtenerTodosLosProponentes() {
+        EntityManager em = emf.createEntityManager();
+        TypedQuery<Proponente> query = em.createQuery("SELECT p FROM Proponente p", Proponente.class);
+        List<Proponente> proponentes = query.getResultList();
+        em.close();
+        return proponentes;
     }
 }

@@ -2,10 +2,16 @@ package culturarte.ui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 import culturarte.modelo.Propuesta;
 import culturarte.modelo.Proponente;
 import culturarte.services.PropuestaService;
+import culturarte.services.UsuarioService;
+
 
 public class AltaPropuestaInternalFrame extends JInternalFrame {
 
@@ -20,6 +26,8 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
     private JComboBox<Proponente> cbProponente;
 
     private PropuestaService propuestaService;
+    private UsuarioService usuarioService;
+
 
     public AltaPropuestaInternalFrame() {
         super("Alta de Propuesta", true, true, true, true);
@@ -54,13 +62,33 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
         tfMontoNecesario = new JTextField();
         panel.add(tfMontoNecesario);
 
-        panel.add(new JLabel("Imagen Path:"));
+        panel.add(new JLabel("Imagen:"));
+        JPanel imagenPanel = new JPanel(new BorderLayout(5, 5));
         tfImagenPath = new JTextField();
-        panel.add(tfImagenPath);
+        tfImagenPath.setEditable(false);
+        JButton btnSeleccionarImagen = new JButton("Seleccionar Imagen");
+        imagenPanel.add(tfImagenPath, BorderLayout.CENTER);
+        imagenPanel.add(btnSeleccionarImagen, BorderLayout.EAST);
+        panel.add(imagenPanel);
 
-        // Por simplicidad, asumimos un Proponente fijo o vacío por ahora
+        btnSeleccionarImagen.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+            int resultado = fileChooser.showOpenDialog(this);
+            if (resultado == JFileChooser.APPROVE_OPTION) {
+                tfImagenPath.setText(fileChooser.getSelectedFile().getAbsolutePath());
+            }
+        });
+
         panel.add(new JLabel("Proponente:"));
         cbProponente = new JComboBox<>();
+        usuarioService = new UsuarioService();
+
+        List<Proponente> proponentes = usuarioService.obtenerTodosLosProponentes();
+        for (Proponente p : proponentes) {
+            cbProponente.addItem(p);
+        }
+
         panel.add(cbProponente);
 
         add(panel, BorderLayout.CENTER);
@@ -82,7 +110,6 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                 LocalDate fechaPrevista = LocalDate.parse(tfFechaPrevista.getText().trim());
                 Double precioEntrada = Double.parseDouble(tfPrecioEntrada.getText().trim());
                 Double montoNecesario = Double.parseDouble(tfMontoNecesario.getText().trim());
-                String imagenPath = tfImagenPath.getText().trim();
                 Proponente proponente = (Proponente) cbProponente.getSelectedItem();
 
                 if (titulo.isEmpty() || descripcion.isEmpty() || lugar.isEmpty() || proponente == null) {
@@ -93,6 +120,22 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                     return;
                 }
 
+                // Leer la imagen como bytes
+                byte[] imagenBytes = null;
+                String rutaImagen = tfImagenPath.getText().trim();
+                if (!rutaImagen.isEmpty()) {
+                    File file = new File(rutaImagen);
+                    try (FileInputStream fis = new FileInputStream(file)) {
+                        imagenBytes = fis.readAllBytes();
+                    } catch (IOException ioEx) {
+                        JOptionPane.showMessageDialog(this,
+                                "Error al leer la imagen: " + ioEx.getMessage(),
+                                "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                }
+
                 Propuesta propuesta = new Propuesta();
                 propuesta.setTitulo(titulo);
                 propuesta.setDescripcion(descripcion);
@@ -100,7 +143,7 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                 propuesta.setFechaPrevista(fechaPrevista);
                 propuesta.setPrecioEntrada(precioEntrada);
                 propuesta.setMontoNecesario(montoNecesario);
-                propuesta.setImagenPath(imagenPath);
+                propuesta.setImagen(imagenBytes); // aquí guardamos los bytes
                 propuesta.setProponente(proponente);
 
                 propuestaService.crearPropuesta(propuesta);

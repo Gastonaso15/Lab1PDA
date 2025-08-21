@@ -29,4 +29,9 @@ public class Proponente extends Usuario {
 
     public String getSitioWeb() { return sitioWeb; }
     public void setSitioWeb(String sitioWeb) { this.sitioWeb = sitioWeb; }
+
+    @Override
+    public String toString() {
+        return this.getNickname();
+    }
 }
