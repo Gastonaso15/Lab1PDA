@@ -10,8 +10,8 @@
         <class>culturarte.modelo.Seguimiento</class>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/culturarte"/>
-            <property name="jakarta.persistence.jdbc.user" value="root"/>
-            <property name="jakarta.persistence.jdbc.password" value="7938"/>
+            <property name="jakarta.persistence.jdbc.user" value="culturarte"/>
+            <property name="jakarta.persistence.jdbc.password" value="culturarte123"/>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
