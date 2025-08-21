@@ -12,22 +12,20 @@ public class Propuesta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(unique = true, nullable = false)
     private String titulo;
-
     private String descripcion;
     private String lugar;
     private LocalDate fechaPrevista;
     private Double precioEntrada;
     private Double montoNecesario;
     private LocalDate fechaPublicacion;
-    @Lob // indica que es un tipo grande de datos (BLOB)
+    @Lob
     @Column(columnDefinition = "LONGBLOB")
     private byte[] imagen;
 
     @ManyToOne
-    @JoinColumn(name = "categoria_id") // referencia la columna en la tabla propuesta
+    @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
     @ManyToOne
@@ -42,6 +40,12 @@ public class Propuesta {
 
     @OneToMany(mappedBy = "propuesta", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Colaboracion> colaboraciones = new ArrayList<>();
+
+    // Funciones
+    @Override
+    public String toString() {
+        return titulo;
+    }
 
     // Getters y Setters
     public Long getId() { return id; }
@@ -86,8 +90,4 @@ public class Propuesta {
     public List<Colaboracion> getColaboraciones() { return colaboraciones; }
     public void setColaboraciones(List<Colaboracion> colaboraciones) { this.colaboraciones = colaboraciones; }
 
-    @Override
-    public String toString() {
-        return titulo;
-    }
 }

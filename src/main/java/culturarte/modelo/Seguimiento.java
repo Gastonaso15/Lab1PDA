@@ -9,13 +9,9 @@ public class Seguimiento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    // Usuario que sigo
     @ManyToOne
     @JoinColumn(name = "seguido_id")
     private Usuario seguido;
-
-    // Usuario que me sigue (opcional)
     @ManyToOne
     @JoinColumn(name = "seguidor_id")
     private Usuario seguidor;

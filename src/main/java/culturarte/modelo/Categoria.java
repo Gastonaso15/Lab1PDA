@@ -3,19 +3,16 @@ package culturarte.modelo;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "categorias") // o el nombre de tu tabla en MySQL
+@Table(name = "categorias")
 public class Categoria {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nombre;
 
-    // Constructor vacío necesario para JPA
+    // Constructores
     public Categoria() {}
-
-    // Constructor con parámetros
     public Categoria(String nombre) {
         this.nombre = nombre;
     }

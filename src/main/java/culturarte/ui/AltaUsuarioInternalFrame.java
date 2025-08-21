@@ -15,17 +15,15 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
     private JTextField tfCorreo;
     private JComboBox<String> cbTipoUsuario;
 
-    private UsuarioService usuarioService; // Servicio JPA
+    private UsuarioService usuarioService;
 
     public AltaUsuarioInternalFrame() {
         super("Alta de Usuario", true, true, true, true);
         setSize(400, 300);
         setLayout(new BorderLayout());
 
-        // Inicializar el servicio
         usuarioService = new UsuarioService();
 
-        // Panel central con campos
         JPanel panel = new JPanel(new GridLayout(5, 2, 5, 5));
 
         panel.add(new JLabel("Nickname:"));
@@ -50,7 +48,6 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
 
         add(panel, BorderLayout.CENTER);
 
-        // Panel inferior con botones
         JPanel botones = new JPanel();
         JButton aceptar = new JButton("Aceptar");
         JButton cancelar = new JButton("Cancelar");
@@ -58,10 +55,8 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
         botones.add(cancelar);
         add(botones, BorderLayout.SOUTH);
 
-        // Cancelar cierra el InternalFrame
         cancelar.addActionListener(e -> dispose());
 
-        // Aceptar crea usuario usando constructor con parámetros
         aceptar.addActionListener(e -> {
             String nickname = tfNickname.getText().trim();
             String nombre = tfNombre.getText().trim();
@@ -69,7 +64,6 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
             String correo = tfCorreo.getText().trim();
             String tipo = (String) cbTipoUsuario.getSelectedItem();
 
-            // Validación básica
             if (nickname.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty()) {
                 JOptionPane.showMessageDialog(this,
                         "Todos los campos obligatorios deben completarse",
@@ -78,7 +72,6 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
                 return;
             }
 
-            // Crear usuario con constructor correspondiente
             Usuario usuario;
             if ("Proponente".equals(tipo)) {
                 usuario = new Proponente(nickname, nombre, apellido, correo);
@@ -86,7 +79,6 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
                 usuario = new Colaborador(nickname, nombre, apellido, correo);
             }
 
-            // Persistir con JPA
             try {
                 usuarioService.crearUsuario(usuario);
                 JOptionPane.showMessageDialog(this,
@@ -94,7 +86,6 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
                         "Alta de Usuario",
                         JOptionPane.INFORMATION_MESSAGE);
 
-                // Limpiar campos
                 tfNickname.setText("");
                 tfNombre.setText("");
                 tfApellido.setText("");

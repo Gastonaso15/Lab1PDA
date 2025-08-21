@@ -9,13 +9,10 @@ public class PropuestaEstado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @ManyToOne
     private Propuesta propuesta;
-
     @Enumerated(EnumType.STRING)
     private EstadoPropuesta estado;
-
     private LocalDateTime fechaCambio;
 
     // Getters y Setters

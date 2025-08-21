@@ -120,7 +120,6 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                     return;
                 }
 
-                // Leer la imagen como bytes
                 byte[] imagenBytes = null;
                 String rutaImagen = tfImagenPath.getText().trim();
                 if (!rutaImagen.isEmpty()) {
@@ -143,7 +142,7 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                 propuesta.setFechaPrevista(fechaPrevista);
                 propuesta.setPrecioEntrada(precioEntrada);
                 propuesta.setMontoNecesario(montoNecesario);
-                propuesta.setImagen(imagenBytes); // aquí guardamos los bytes
+                propuesta.setImagen(imagenBytes);
                 propuesta.setProponente(proponente);
 
                 propuestaService.crearPropuesta(propuesta);

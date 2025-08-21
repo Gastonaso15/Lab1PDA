@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class EstacionDeTrabajo extends JFrame {
 
-    private JDesktopPane desktop;
+    private final JDesktopPane desktop;
 
     public EstacionDeTrabajo() {
         setTitle("Culturarte - Estación de Trabajo");
@@ -31,19 +31,18 @@ public class EstacionDeTrabajo extends JFrame {
         menu.add(propuestas);
         setJMenuBar(menu);
 
-        // Abrir ventana interna de usuario
         altaUsuario.addActionListener(e -> {
             AltaUsuarioInternalFrame frame = new AltaUsuarioInternalFrame();
             desktop.add(frame);
             frame.setVisible(true);
         });
 
-        // Abrir ventana interna de propuesta
         altaPropuesta.addActionListener(e -> {
             AltaPropuestaInternalFrame frame = new AltaPropuestaInternalFrame();
             desktop.add(frame);
             frame.setVisible(true);
         });
+
         consultarPropuesta.addActionListener(e -> {
             ConsultarPropuestaInternalFrame frame = new ConsultarPropuestaInternalFrame();
             desktop.add(frame);

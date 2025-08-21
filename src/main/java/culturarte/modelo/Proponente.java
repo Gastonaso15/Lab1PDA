@@ -1,4 +1,3 @@
-// Proponente.java
 package culturarte.modelo;
 
 import jakarta.persistence.Entity;
@@ -10,28 +9,25 @@ public class Proponente extends Usuario {
     private String bio;
     private String sitioWeb;
 
-    // Constructor vacío (necesario para JPA)
+    // Constructores
     public Proponente() {
         super();
     }
-
-    // Constructor con parámetros
     public Proponente(String nickname, String nombre, String apellido, String correo) {
         super(nickname, nombre, apellido, correo);
+    }
+
+    // Funciones
+    @Override
+    public String toString() {
+        return this.getNickname();
     }
 
     // Getters y setters adicionales
     public String getDireccion() { return direccion; }
     public void setDireccion(String direccion) { this.direccion = direccion; }
-
     public String getBio() { return bio; }
     public void setBio(String bio) { this.bio = bio; }
-
     public String getSitioWeb() { return sitioWeb; }
     public void setSitioWeb(String sitioWeb) { this.sitioWeb = sitioWeb; }
-
-    @Override
-    public String toString() {
-        return this.getNickname();
-    }
 }

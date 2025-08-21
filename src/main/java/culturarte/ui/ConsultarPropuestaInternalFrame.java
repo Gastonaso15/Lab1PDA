@@ -29,13 +29,11 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
 
         propuestaService = new PropuestaService();
 
-        // Panel izquierdo: lista de propuestas
         jListPropuestas = new JList<>();
         JScrollPane scrollList = new JScrollPane(jListPropuestas);
         scrollList.setPreferredSize(new Dimension(200, 0));
         add(scrollList, BorderLayout.WEST);
 
-        // Panel derecho: detalles de la propuesta
         JPanel panelDetalles = new JPanel(new GridLayout(8, 2, 5, 5));
 
         panelDetalles.add(new JLabel("Título:"));
@@ -75,7 +73,6 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
 
         cargarPropuestas();
 
-        // Escucha selección de propuesta
         jListPropuestas.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 Propuesta p = jListPropuestas.getSelectedValue();
@@ -102,7 +99,6 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
         lblFechaPrevista.setText(p.getFechaPrevista() != null ? p.getFechaPrevista().toString() : "");
         lblEstado.setText(p.getEstadoActual() != null ? p.getEstadoActual().toString() : "Sin estado");
 
-        // Imagen
         if (p.getImagen() != null) {
             ImageIcon icon = new ImageIcon(p.getImagen());
             Image img = icon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
@@ -111,14 +107,12 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
             lblImagen.setIcon(null);
         }
 
-        // Colaboradores
         String colaboradores = p.getColaboraciones()
                 .stream()
                 .map(c -> c.getColaborador().getNickname())
                 .collect(Collectors.joining(", "));
         lblColaboradores.setText(colaboradores);
 
-        // Monto total
         double montoTotal = p.getColaboraciones()
                 .stream()
                 .mapToDouble(c -> c.getMonto() != null ? c.getMonto() : 0)
