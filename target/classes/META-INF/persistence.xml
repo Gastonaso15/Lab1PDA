@@ -6,8 +6,8 @@
              version="3.1">
 
     <persistence-unit name="culturartePU">
-        <class>culturarte.modelo.Usuario</class>
-        <class>culturarte.modelo.Seguimiento</class>
+        <class>culturarte.logica.modelo.Usuario</class>
+        <class>culturarte.logica.modelo.Seguimiento</class>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/culturarte"/>
             <property name="jakarta.persistence.jdbc.user" value="culturarte"/>
