@@ -1,7 +1,6 @@
 package culturarte.logica.manejador;
 
 import culturarte.persistencia.JPAUtil;
-import culturarte.logica.modelo.Proponente;
 import culturarte.logica.modelo.Usuario;
 
 import jakarta.persistence.EntityManager;

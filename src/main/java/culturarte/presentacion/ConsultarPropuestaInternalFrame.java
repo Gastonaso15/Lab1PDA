@@ -84,7 +84,7 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
     }
 
     private void cargarPropuestas() {
-        List<DTPropuesta> propuestas = PropuestaContr.devolverTodasLasPrpuestas();
+        List<DTPropuesta> propuestas = PropuestaContr.devolverTodasLasPropuestas();
         DefaultListModel<DTPropuesta> modeloLista = new DefaultListModel<>();
         for (DTPropuesta p : propuestas) {
             modeloLista.addElement(p);

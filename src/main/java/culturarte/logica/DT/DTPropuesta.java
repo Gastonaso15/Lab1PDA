@@ -32,6 +32,12 @@ public class DTPropuesta {
         this.setDTProponente(new DTProponente());
     }
 
+    // Funciones
+    @Override
+    public String toString() {
+        return titulo;
+    }
+
     public DTPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista,Double precioEnetrada, Double montoNecesario, byte[] imagen,DTProponente proponente) {
         this.setTitulo(titulo);
         this.setDescripcion(descripcion);

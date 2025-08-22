@@ -5,8 +5,6 @@ import culturarte.logica.manejador.PropuestaManejador;
 import culturarte.logica.manejador.UsuarioManejador;
 import culturarte.logica.modelo.Proponente;
 import culturarte.logica.modelo.Propuesta;
-import culturarte.logica.modelo.Usuario;
-import culturarte.logica.DT.DTProponente;
 import jakarta.persistence.EntityManager;
 
 import java.time.LocalDate;
@@ -28,7 +26,7 @@ public class PropuestaController implements IPropuestaController {
     }
 
     @Override
-    public List<DTPropuesta> devolverTodasLasPrpuestas(){
+    public List<DTPropuesta> devolverTodasLasPropuestas(){
         PropuestaManejador mp = PropuestaManejador.getinstance();
         List<DTPropuesta> props = mp.obtenerTodasLasPropuestas();
         return props;

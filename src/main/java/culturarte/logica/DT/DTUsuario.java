@@ -1,8 +1,5 @@
 package culturarte.logica.DT;
 
-
-import java.util.List;
-
 public class DTUsuario {
     private Long id;
     private String nickname;

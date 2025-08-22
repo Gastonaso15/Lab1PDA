@@ -3,7 +3,6 @@ package culturarte.logica.manejador;
 import culturarte.logica.DT.DTProponente;
 import culturarte.logica.DT.DTPropuesta;
 import culturarte.logica.modelo.Propuesta;
-import culturarte.logica.modelo.Usuario;
 import jakarta.persistence.EntityManager;
 
 import java.util.ArrayList;
@@ -71,7 +70,6 @@ public class PropuestaManejador {
             dt.setPrecioEntrada(p.getPrecioEntrada());
             dt.setMontoNecesario(p.getMontoNecesario());
             dt.setImagen(p.getImagen());
-            dtPropuestas.add(dt);
 
             DTProponente dtProp = new DTProponente();
             dtProp.setNombre(p.getProponente().getNombre());
