@@ -83,15 +83,15 @@ public class UsuarioManejador{
         em.close();
     }*/
 
-    public List<Proponente> obtenerTodosLosProponentes() {
+    public List<String> obtenerNicknameProponentes() {
         EntityManager em = JPAUtil.getEntityManager();
-        TypedQuery<Proponente> query = em.createQuery("SELECT p FROM Proponente p", Proponente.class);
-        List<Proponente> proponentes = query.getResultList();
+        TypedQuery<String> query = em.createQuery("SELECT nickname FROM Proponente p", String.class);
+        List<String> proponentes = query.getResultList();
         em.close();
         return proponentes;
     }
 
-    public Usuario obtenerUsuario(String nickname){
+    public Usuario obtenerUsuarioNick(String nickname){
         EntityManager em = JPAUtil.getEntityManager();
         Usuario usu = null;
         try {
@@ -103,5 +103,19 @@ public class UsuarioManejador{
             em.close();
         }
         return usu;
-}
+    }
+
+    public Usuario obtenerUsuarioCorreo(String correo){
+        EntityManager em = JPAUtil.getEntityManager();
+        Usuario usu = null;
+        try {
+            TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.correo = :correo", Usuario.class).setParameter("correo", correo);
+            usu = query.getSingleResult();
+        } catch (NoResultException e) {
+            usu = null;
+        } finally {
+            em.close();
+        }
+        return usu;
+    }
 }

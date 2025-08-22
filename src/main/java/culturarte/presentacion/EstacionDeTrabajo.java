@@ -4,12 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 
 import culturarte.logica.Fabrica;
+import culturarte.logica.controlador.IPropuestaController;
 import culturarte.logica.controlador.IUsuarioController;
 
 public class EstacionDeTrabajo extends JFrame {
 
     private final JDesktopPane desktop;
     private IUsuarioController ICU;
+    private IPropuestaController ICP;
 
     public EstacionDeTrabajo() {
         setTitle("Culturarte - Estación de Trabajo");
@@ -23,6 +25,7 @@ public class EstacionDeTrabajo extends JFrame {
 
         Fabrica fabrica = Fabrica.getInstance();
         ICU = fabrica.getIUsuarioController();
+        ICP = fabrica.getIPropuestaController();
 
         JMenu usuarios = new JMenu("Usuarios");
         JMenuItem altaUsuario = new JMenuItem("Alta de Usuario");
@@ -43,18 +46,18 @@ public class EstacionDeTrabajo extends JFrame {
             desktop.add(frame);
             frame.setVisible(true);
         });
-/*
+
         altaPropuesta.addActionListener(e -> {
-            AltaPropuestaInternalFrame frame = new AltaPropuestaInternalFrame();
+            AltaPropuestaInternalFrame frame = new AltaPropuestaInternalFrame(ICP,ICU);
             desktop.add(frame);
             frame.setVisible(true);
         });
 
         consultarPropuesta.addActionListener(e -> {
-            ConsultarPropuestaInternalFrame frame = new ConsultarPropuestaInternalFrame();
+            ConsultarPropuestaInternalFrame frame = new ConsultarPropuestaInternalFrame(ICP);
             desktop.add(frame);
             frame.setVisible(true);
-        });*/
+        });
     }
 
     public static void main(String[] args) {

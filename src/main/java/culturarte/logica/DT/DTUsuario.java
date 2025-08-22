@@ -1,6 +1,5 @@
 package culturarte.logica.DT;
 
-import culturarte.logica.modelo.Seguimiento;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ public class DTUsuario {
     private String apellido;
     private String correo;
     private String password;
-    private List<Seguimiento> seguidores;
+    //private List<DTSeguimiento> seguidores;
 
     public DTUsuario() {
         this.setNickname(new String());
@@ -45,7 +44,7 @@ public class DTUsuario {
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
-    public List<Seguimiento> getSeguidores() { return seguidores; }
-    public void setSeguidores(List<Seguimiento> seguidores) { this.seguidores = seguidores; }
+    //public List<Seguimiento> getSeguidores() { return seguidores; }
+    //public void setSeguidores(List<Seguimiento> seguidores) { this.seguidores = seguidores; }
 }
 

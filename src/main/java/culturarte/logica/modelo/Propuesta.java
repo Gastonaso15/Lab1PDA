@@ -1,5 +1,6 @@
 package culturarte.logica.modelo;
 
+import culturarte.logica.DT.DTProponente;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -40,6 +41,18 @@ public class Propuesta {
 
     @OneToMany(mappedBy = "propuesta", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Colaboracion> colaboraciones = new ArrayList<>();
+
+    public Propuesta() {}
+    public Propuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista, Double precioEnetrada, Double montoNecesario, byte[] imagen, Proponente proponente) {
+        this.setTitulo(titulo);
+        this.setDescripcion(descripcion);
+        this.setLugar(lugar);
+        this.setFechaPrevista(fechaPrevista);
+        this.setPrecioEntrada(precioEntrada);
+        this.setMontoNecesario(montoNecesario);
+        this.setImagen(imagen);
+        this.setProponente(proponente);
+    }
 
     // Funciones
     @Override

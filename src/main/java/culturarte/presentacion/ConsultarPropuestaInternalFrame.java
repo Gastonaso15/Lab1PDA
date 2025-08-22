@@ -5,12 +5,12 @@ import java.awt.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import culturarte.logica.modelo.Propuesta;
-import culturarte.logica.manejador.PropuestaService;
+import culturarte.logica.DT.DTPropuesta;
+import culturarte.logica.controlador.IPropuestaController;
 
 public class ConsultarPropuestaInternalFrame extends JInternalFrame {
 
-    private JList<Propuesta> jListPropuestas;
+    private JList<DTPropuesta> jListPropuestas;
     private JLabel lblTitulo;
     private JLabel lblDescripcion;
     private JLabel lblLugar;
@@ -19,15 +19,15 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
     private JLabel lblImagen;
     private JLabel lblColaboradores;
     private JLabel lblMontoTotal;
+    ;
+    private IPropuestaController PropuestaContr;
 
-    private PropuestaService propuestaService;
-
-    public ConsultarPropuestaInternalFrame() {
+    public ConsultarPropuestaInternalFrame(IPropuestaController icp) {
         super("Consultar Propuesta", true, true, true, true);
         setSize(700, 500);
         setLayout(new BorderLayout());
 
-        propuestaService = new PropuestaService();
+        PropuestaContr = icp;
 
         jListPropuestas = new JList<>();
         JScrollPane scrollList = new JScrollPane(jListPropuestas);
@@ -75,7 +75,7 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
 
         jListPropuestas.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
-                Propuesta p = jListPropuestas.getSelectedValue();
+                DTPropuesta p = jListPropuestas.getSelectedValue();
                 if (p != null) {
                     mostrarDetalles(p);
                 }
@@ -84,15 +84,15 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
     }
 
     private void cargarPropuestas() {
-        List<Propuesta> propuestas = propuestaService.obtenerTodasLasPropuestas();
-        DefaultListModel<Propuesta> modeloLista = new DefaultListModel<>();
-        for (Propuesta p : propuestas) {
+        List<DTPropuesta> propuestas = PropuestaContr.devolverTodasLasPrpuestas();
+        DefaultListModel<DTPropuesta> modeloLista = new DefaultListModel<>();
+        for (DTPropuesta p : propuestas) {
             modeloLista.addElement(p);
         }
         jListPropuestas.setModel(modeloLista);
     }
 
-    private void mostrarDetalles(Propuesta p) {
+    private void mostrarDetalles(DTPropuesta p) {
         lblTitulo.setText(p.getTitulo());
         lblDescripcion.setText(p.getDescripcion());
         lblLugar.setText(p.getLugar());

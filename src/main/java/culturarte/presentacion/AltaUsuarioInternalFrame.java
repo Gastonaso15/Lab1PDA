@@ -80,7 +80,7 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
             }*/
 
             try {
-                UsuarioContr.crearUsuario(nickname,nombre,apellido,correo);
+                UsuarioContr.crearUsuario(nickname,nombre,apellido,correo,tipo);
                 JOptionPane.showMessageDialog(this,
                         "Usuario creado correctamente",
                         "Alta de Usuario",

@@ -1,4 +1,4 @@
-/*package culturarte.presentacion;
+package culturarte.presentacion;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,11 +7,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
-import culturarte.logica.modelo.Propuesta;
-import culturarte.logica.modelo.Proponente;
-import culturarte.logica.manejador.PropuestaService;
-import culturarte.logica.manejador.UsuarioManejador;
 
+import culturarte.logica.controlador.IPropuestaController;
+import culturarte.logica.controlador.IUsuarioController;
 
 public class AltaPropuestaInternalFrame extends JInternalFrame {
 
@@ -23,18 +21,20 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
     private JTextField tfMontoNecesario;
     private JTextField tfImagenPath;
 
-    private JComboBox<Proponente> cbProponente;
+    private JComboBox<String> cbProponente;
 
-    private PropuestaService propuestaService;
-    private UsuarioService usuarioService;
+    //private PropuestaManejador propuestaManejador;
+    //private UsuarioManejador usuarioManejador;
+    private IUsuarioController UsuarioContr;
+    private IPropuestaController PropuestaContr;
 
-
-    public AltaPropuestaInternalFrame() {
+    public AltaPropuestaInternalFrame(IPropuestaController icp,IUsuarioController icu) {
         super("Alta de Propuesta", true, true, true, true);
         setSize(500, 400);
         setLayout(new BorderLayout());
 
-        propuestaService = new PropuestaService();
+        //propuestaManejador = new PropuestaManejador();
+        PropuestaContr = icp;
 
         JPanel panel = new JPanel(new GridLayout(8, 2, 5, 5));
 
@@ -82,10 +82,11 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
 
         panel.add(new JLabel("Proponente:"));
         cbProponente = new JComboBox<>();
-        usuarioService = new UsuarioService();
+        //usuarioService = new UsuarioService();
+        UsuarioContr = icu;
 
-        List<Proponente> proponentes = usuarioService.obtenerTodosLosProponentes();
-        for (Proponente p : proponentes) {
+        List<String> proponentes = icu.devolverNicknamesProponentes();
+        for (String p : proponentes) {
             cbProponente.addItem(p);
         }
 
@@ -110,7 +111,7 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                 LocalDate fechaPrevista = LocalDate.parse(tfFechaPrevista.getText().trim());
                 Double precioEntrada = Double.parseDouble(tfPrecioEntrada.getText().trim());
                 Double montoNecesario = Double.parseDouble(tfMontoNecesario.getText().trim());
-                Proponente proponente = (Proponente) cbProponente.getSelectedItem();
+                String proponente = (String) cbProponente.getSelectedItem();
 
                 if (titulo.isEmpty() || descripcion.isEmpty() || lugar.isEmpty() || proponente == null) {
                     JOptionPane.showMessageDialog(this,
@@ -134,7 +135,7 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                         return;
                     }
                 }
-
+                /*
                 Propuesta propuesta = new Propuesta();
                 propuesta.setTitulo(titulo);
                 propuesta.setDescripcion(descripcion);
@@ -146,6 +147,8 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                 propuesta.setProponente(proponente);
 
                 propuestaService.crearPropuesta(propuesta);
+                */
+                PropuestaContr.crearPropuesta(titulo,descripcion,lugar,fechaPrevista,precioEntrada,montoNecesario,imagenBytes,proponente);
 
                 JOptionPane.showMessageDialog(this,
                         "Propuesta creada correctamente",
@@ -171,4 +174,3 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
         });
     }
 }
-*/
