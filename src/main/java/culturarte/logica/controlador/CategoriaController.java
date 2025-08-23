@@ -1,5 +1,6 @@
 package culturarte.logica.controlador;
 
+import culturarte.logica.DT.DTCategoria;
 import culturarte.logica.DT.DTPropuesta;
 import culturarte.logica.manejador.CategoriaManejador;
 import culturarte.logica.manejador.PropuestaManejador;
@@ -43,5 +44,11 @@ public class CategoriaController implements ICategoriaController{
         return mc.obtenerPorNombre(nombre);
     }
 
+    @Override
+    public List<DTCategoria> listarDTCategorias(){
+        CategoriaManejador mc = CategoriaManejador.getinstance();
+        List<DTCategoria> cats = mc.listarDTCategorias();
+        return cats;
+    }
 
 }

@@ -1,11 +1,13 @@
 package culturarte.logica.manejador;
 
+import culturarte.logica.DT.DTCategoria;
 import culturarte.logica.modelo.Categoria;
 import culturarte.persistencia.JPAUtil;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriaManejador {
@@ -53,6 +55,24 @@ public class CategoriaManejador {
             em.close();
         }
         return cat;
+    }
+
+    public List<DTCategoria> listarDTCategorias() {
+        EntityManager em = JPAUtil.getEntityManager();
+        List<Categoria> lista = em.createQuery("SELECT c FROM Categoria c", Categoria.class).getResultList();
+        em.close();
+        List<DTCategoria> listaDT = new ArrayList<>();
+        for (Categoria c : lista) {
+            DTCategoria padre = null;
+            if (c.getCategoriaPadre() != null) {
+                padre = new DTCategoria(c.getCategoriaPadre().getNombre(), null);
+            }
+            listaDT.add(new DTCategoria(
+                    c.getNombre(),
+                    padre
+            ));
+        }
+        return listaDT;
     }
 
 }
