@@ -23,8 +23,6 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
 
     private JComboBox<String> cbProponente;
 
-    //private PropuestaManejador propuestaManejador;
-    //private UsuarioManejador usuarioManejador;
     private IUsuarioController UsuarioContr;
     private IPropuestaController PropuestaContr;
 
@@ -33,7 +31,6 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
         setSize(500, 400);
         setLayout(new BorderLayout());
 
-        //propuestaManejador = new PropuestaManejador();
         PropuestaContr = icp;
 
         JPanel panel = new JPanel(new GridLayout(8, 2, 5, 5));
@@ -82,7 +79,6 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
 
         panel.add(new JLabel("Proponente:"));
         cbProponente = new JComboBox<>();
-        //usuarioService = new UsuarioService();
         UsuarioContr = icu;
 
         List<String> proponentes = icu.devolverNicknamesProponentes();
@@ -135,19 +131,7 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                         return;
                     }
                 }
-                /*
-                Propuesta propuesta = new Propuesta();
-                propuesta.setTitulo(titulo);
-                propuesta.setDescripcion(descripcion);
-                propuesta.setLugar(lugar);
-                propuesta.setFechaPrevista(fechaPrevista);
-                propuesta.setPrecioEntrada(precioEntrada);
-                propuesta.setMontoNecesario(montoNecesario);
-                propuesta.setImagen(imagenBytes);
-                propuesta.setProponente(proponente);
 
-                propuestaService.crearPropuesta(propuesta);
-                */
                 PropuestaContr.crearPropuesta(titulo,descripcion,lugar,fechaPrevista,precioEntrada,montoNecesario,imagenBytes,proponente);
 
                 JOptionPane.showMessageDialog(this,
@@ -155,7 +139,7 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                         "Alta de Propuesta",
                         JOptionPane.INFORMATION_MESSAGE);
 
-                // Limpiar campos
+
                 tfTitulo.setText("");
                 tfDescripcion.setText("");
                 tfLugar.setText("");

@@ -5,13 +5,17 @@ import culturarte.logica.manejador.PropuestaManejador;
 import culturarte.logica.manejador.UsuarioManejador;
 import culturarte.logica.modelo.Proponente;
 import culturarte.logica.modelo.Propuesta;
+import culturarte.persistencia.JPAUtil;
 import jakarta.persistence.EntityManager;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public class PropuestaController implements IPropuestaController {
-    private EntityManager em;
+
+    public PropuestaController() {
+        EntityManager em = JPAUtil.getEntityManager();
+    }
 
     @Override
     public  void crearPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista,Double precioEntrada, Double montoNecesario, byte[] imagen,String proponente) throws Exception {

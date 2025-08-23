@@ -26,7 +26,6 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
 
     private JComboBox<String> cbTipoUsuario;
 
-    //private UsuarioService usuarioService;
     private IUsuarioController UsuarioContr;
 
     public AltaUsuarioInternalFrame(IUsuarioController icu) {
@@ -34,7 +33,6 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
         setSize(400, 300);
         setLayout(new BorderLayout());
 
-        //usuarioService = new UsuarioService();
         UsuarioContr = icu;
 
         JPanel panel = new JPanel(new GridLayout(5, 2, 5, 5));

@@ -1,9 +1,6 @@
 package culturarte.logica;
 
-import culturarte.logica.controlador.IPropuestaController;
-import culturarte.logica.controlador.IUsuarioController;
-import culturarte.logica.controlador.PropuestaController;
-import culturarte.logica.controlador.UsuarioController;
+import culturarte.logica.controlador.*;
 
 public class Fabrica {
 
@@ -19,9 +16,9 @@ public class Fabrica {
         return instancia;
     }
 
-    public IUsuarioController getIUsuarioController() {
-        return new UsuarioController();
-    }
+    public IUsuarioController getIUsuarioController() { return new UsuarioController();}
     public IPropuestaController getIPropuestaController() {return new PropuestaController();}
+    public ICategoriaController getICategoriaController() {return new CategoriaController();}
+
 
 }

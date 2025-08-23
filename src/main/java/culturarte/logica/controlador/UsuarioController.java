@@ -13,7 +13,6 @@ import jakarta.persistence.EntityManager;
 import java.util.List;
 
 public class UsuarioController implements IUsuarioController {
-    private EntityManager em;
 
     public UsuarioController() {
         EntityManager em = JPAUtil.getEntityManager();

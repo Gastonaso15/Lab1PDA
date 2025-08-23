@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import culturarte.logica.Fabrica;
+import culturarte.logica.controlador.ICategoriaController;
 import culturarte.logica.controlador.IPropuestaController;
 import culturarte.logica.controlador.IUsuarioController;
 
@@ -12,6 +13,7 @@ public class EstacionDeTrabajo extends JFrame {
     private final JDesktopPane desktop;
     private IUsuarioController ICU;
     private IPropuestaController ICP;
+    private ICategoriaController ICC;
 
     public EstacionDeTrabajo() {
         setTitle("Culturarte - Estación de Trabajo");
@@ -26,6 +28,7 @@ public class EstacionDeTrabajo extends JFrame {
         Fabrica fabrica = Fabrica.getInstance();
         ICU = fabrica.getIUsuarioController();
         ICP = fabrica.getIPropuestaController();
+        ICC = fabrica.getICategoriaController();
 
         JMenu usuarios = new JMenu("Usuarios");
         JMenuItem altaUsuario = new JMenuItem("Alta de Usuario");
@@ -36,6 +39,8 @@ public class EstacionDeTrabajo extends JFrame {
         propuestas.add(altaPropuesta);
         JMenuItem consultarPropuesta = new JMenuItem("Consultar Propuesta");
         propuestas.add(consultarPropuesta);
+        JMenuItem altaCategoria = new JMenuItem("Alta de Categoria");
+        propuestas.add(altaCategoria);
 
         menu.add(usuarios);
         menu.add(propuestas);
@@ -55,6 +60,12 @@ public class EstacionDeTrabajo extends JFrame {
 
         consultarPropuesta.addActionListener(e -> {
             ConsultarPropuestaInternalFrame frame = new ConsultarPropuestaInternalFrame(ICP);
+            desktop.add(frame);
+            frame.setVisible(true);
+        });
+
+        altaCategoria.addActionListener(e -> {
+            AltaCategoriaInternalFrame frame = new AltaCategoriaInternalFrame(ICC);
             desktop.add(frame);
             frame.setVisible(true);
         });
