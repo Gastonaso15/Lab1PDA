@@ -1,17 +1,21 @@
 package culturarte.logica.DT;
 
 
+import java.time.LocalDate;
+
 public class DTProponente extends DTUsuario {
     private String direccion;
     private String bio;
     private String sitioWeb;
 
     public DTProponente() {
+        super();
         this.setDireccion(new String());
         this.setBio(new String());
         this.setSitioWeb(new String());
     }
-    public DTProponente(String direccion, String bio, String sitioWeb) {
+    public DTProponente(String nickname, String nombre, String apellido, String correo, LocalDate fechaNacimiento, byte [] imagen,String direccion, String bio, String sitioWeb) {
+        super(nickname, nombre, apellido, correo,fechaNacimiento,imagen);
         this.setDireccion(direccion);
         this.setBio(bio);
         this.setSitioWeb(sitioWeb);

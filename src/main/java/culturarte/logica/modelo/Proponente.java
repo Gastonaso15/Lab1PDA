@@ -1,8 +1,12 @@
 package culturarte.logica.modelo;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
+import java.time.LocalDate;
+
 @Entity
+@DiscriminatorValue("Proponente")
 public class Proponente extends Usuario {
 
     private String direccion;
@@ -13,8 +17,11 @@ public class Proponente extends Usuario {
     public Proponente() {
         super();
     }
-    public Proponente(String nickname, String nombre, String apellido, String correo) {
-        super(nickname, nombre, apellido, correo);
+    public Proponente(String nickname, String nombre, String apellido, String correo,byte[] imagen, LocalDate fechaNacimiento, String direccion, String bio, String sitioWeb) {
+        super(nickname, nombre, apellido, correo,imagen,fechaNacimiento);
+        this.direccion = direccion;
+        this.bio = bio;
+        this.sitioWeb = sitioWeb;
     }
 
     // Funciones

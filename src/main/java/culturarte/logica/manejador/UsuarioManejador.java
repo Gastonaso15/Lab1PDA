@@ -14,7 +14,6 @@ public class UsuarioManejador{
     private static UsuarioManejador instancia = null;
     private EntityManager em;
 
-
     public static UsuarioManejador getinstance() {
         if (instancia == null)
             instancia = new UsuarioManejador();
@@ -31,6 +30,7 @@ public class UsuarioManejador{
         }
         catch(Exception e){
             t.rollback();
+            e.printStackTrace();
         }
         em.close();
     }

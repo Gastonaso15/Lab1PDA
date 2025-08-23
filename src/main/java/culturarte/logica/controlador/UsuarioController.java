@@ -1,5 +1,8 @@
 package culturarte.logica.controlador;
 
+import culturarte.logica.DT.DTColaborador;
+import culturarte.logica.DT.DTProponente;
+import culturarte.logica.DT.DTUsuario;
 import culturarte.logica.manejador.UsuarioManejador;
 import culturarte.logica.modelo.Colaborador;
 import culturarte.logica.modelo.Proponente;
@@ -17,18 +20,22 @@ public class UsuarioController implements IUsuarioController {
     }
 
     @Override
-    public void crearUsuario(String nickname, String nombre, String apellido, String correo,String tipo) throws Exception {
+    public void crearUsuario(DTUsuario dtu) throws Exception {
         UsuarioManejador mu = UsuarioManejador.getinstance();
-        Usuario u = mu.obtenerUsuarioNick(nickname);
+        Usuario u = mu.obtenerUsuarioNick(dtu.getNickname());
         if (u != null)
-            throw new Exception("El usuario con el nickname " + nickname + " ya esta registrado");
-        u = mu.obtenerUsuarioCorreo(nickname);
+            throw new Exception("El usuario con el nickname " + dtu.getNickname() + " ya esta registrado");
+        u = mu.obtenerUsuarioCorreo(dtu.getCorreo());
         if (u != null)
-            throw new Exception("El usuario con el correo " + correo + " ya esta registrado");
-        if ("Proponente".equals(tipo)) {
-            u = new Proponente(nickname, nombre, apellido, correo);
+            throw new Exception("El usuario con el correo " + dtu.getCorreo() + " ya esta registrado");
+        if (dtu instanceof DTProponente) {
+            DTProponente dtp = (DTProponente) dtu;
+            u = new Proponente(dtp.getNickname(), dtp.getNombre(), dtp.getApellido(), dtp.getCorreo(), dtp.getImagen(), dtp.getFechaNacimiento(), dtp.getDireccion(), dtp.getBio(), dtp.getSitioWeb());
+        } else if (dtu instanceof DTColaborador) {
+            DTColaborador dtc = (DTColaborador) dtu;
+            u = new Colaborador(dtc.getNickname(), dtc.getNombre(), dtc.getApellido(), dtc.getCorreo(), dtc.getImagen(), dtc.getFechaNacimiento());
         } else {
-            u = new Colaborador(nickname, nombre, apellido, correo);
+            throw new Exception("Tipo de usuario no reconocido");
         }
         mu.addUsuario(u);
     }
