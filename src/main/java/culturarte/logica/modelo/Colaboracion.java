@@ -17,7 +17,7 @@ public class Colaboracion {
     @Enumerated(EnumType.STRING)
     private TipoRetorno tipoRetorno; // ENTRADAS | PORCENTAJE
     private LocalDateTime fechaHora;
-    public enum TipoRetorno { ENTRADAS, PORCENTAJE }
+    //public enum TipoRetorno { ENTRADAS, PORCENTAJE }
 
 
     // Getters y Setters

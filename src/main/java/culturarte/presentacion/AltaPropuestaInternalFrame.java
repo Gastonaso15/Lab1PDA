@@ -1,15 +1,20 @@
 package culturarte.presentacion;
 
 import javax.swing.*;
+import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
+import culturarte.logica.DT.DTCategoria;
+import culturarte.logica.controlador.ICategoriaController;
 import culturarte.logica.controlador.IPropuestaController;
 import culturarte.logica.controlador.IUsuarioController;
+import culturarte.logica.DT.DTTipoRetorno;
 
 public class AltaPropuestaInternalFrame extends JInternalFrame {
 
@@ -20,20 +25,32 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
     private JTextField tfPrecioEntrada;
     private JTextField tfMontoNecesario;
     private JTextField tfImagenPath;
-
+    private JTree treeCategorias;
+    private DefaultMutableTreeNode rootCategorias;
+    private List<JCheckBox> checkBoxesTiposRetorno;
     private JComboBox<String> cbProponente;
 
     private IUsuarioController UsuarioContr;
     private IPropuestaController PropuestaContr;
+    private ICategoriaController CategoriaContr;
 
-    public AltaPropuestaInternalFrame(IPropuestaController icp,IUsuarioController icu) {
+    public AltaPropuestaInternalFrame(IPropuestaController icp,IUsuarioController icu,ICategoriaController icc) {
         super("Alta de Propuesta", true, true, true, true);
         setSize(500, 400);
         setLayout(new BorderLayout());
 
         PropuestaContr = icp;
+        CategoriaContr = icc;
 
-        JPanel panel = new JPanel(new GridLayout(8, 2, 5, 5));
+        JPanel panel = new JPanel(new GridLayout(10, 2, 5, 5));
+
+        rootCategorias = new DefaultMutableTreeNode("Categorías");
+        treeCategorias = new JTree(rootCategorias);
+        treeCategorias.setShowsRootHandles(true);
+        JScrollPane scrollTree = new JScrollPane(treeCategorias);
+
+        List<DTCategoria> categorias = CategoriaContr.listarDTCategorias();
+        CategoriaUIHelper.cargarCategorias(treeCategorias, null, categorias);
 
         panel.add(new JLabel("Título:"));
         tfTitulo = new JTextField();
@@ -88,7 +105,24 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
 
         panel.add(cbProponente);
 
-        add(panel, BorderLayout.CENTER);
+        panel.add(new JLabel("Tipo(s) de Retorno:"));
+        JPanel panelCheckBoxes = new JPanel();
+        panelCheckBoxes.setLayout(new BoxLayout(panelCheckBoxes, BoxLayout.Y_AXIS));
+        checkBoxesTiposRetorno = new ArrayList<>();
+        List<String> tiposRetorno = listarTiposRetorno();
+        for (String tipo : tiposRetorno) {
+            JCheckBox checkBox = new JCheckBox(tipo);
+            checkBoxesTiposRetorno.add(checkBox);
+            panelCheckBoxes.add(checkBox);
+        }
+        JScrollPane scrollTiposRetorno = new JScrollPane(panelCheckBoxes);
+
+        panel.add(scrollTiposRetorno);
+
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scrollTree, panel);
+        splitPane.setDividerLocation(250);
+        add(splitPane, BorderLayout.CENTER);
+
 
         JPanel botones = new JPanel();
         JButton aceptar = new JButton("Aceptar");
@@ -96,6 +130,7 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
         botones.add(aceptar);
         botones.add(cancelar);
         add(botones, BorderLayout.SOUTH);
+
 
         cancelar.addActionListener(e -> dispose());
 
@@ -109,7 +144,18 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                 Double montoNecesario = Double.parseDouble(tfMontoNecesario.getText().trim());
                 String proponente = (String) cbProponente.getSelectedItem();
 
-                if (titulo.isEmpty() || descripcion.isEmpty() || lugar.isEmpty() || proponente == null) {
+                DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) treeCategorias.getLastSelectedPathComponent();
+                String categoria = (selectedNode != null) ? selectedNode.toString() : null;
+
+                List<String> tiposSeleccionados = new ArrayList<>();
+                for (JCheckBox cb : checkBoxesTiposRetorno) {
+                    if (cb.isSelected()) {
+                        tiposSeleccionados.add(cb.getText());
+                    }
+                }
+
+
+                if (titulo.isEmpty() || descripcion.isEmpty() || lugar.isEmpty() || proponente == null || categoria == null) {
                     JOptionPane.showMessageDialog(this,
                             "Completar todos los campos obligatorios",
                             "Error",
@@ -132,7 +178,7 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                     }
                 }
 
-                PropuestaContr.crearPropuesta(titulo,descripcion,lugar,fechaPrevista,precioEntrada,montoNecesario,imagenBytes,proponente);
+                PropuestaContr.crearPropuesta(titulo,descripcion,lugar,fechaPrevista,precioEntrada,montoNecesario,imagenBytes,proponente,categoria,tiposSeleccionados);
 
                 JOptionPane.showMessageDialog(this,
                         "Propuesta creada correctamente",
@@ -156,5 +202,13 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                         JOptionPane.ERROR_MESSAGE);
             }
         });
+    }
+
+    public List<String> listarTiposRetorno() {
+        List<String> lista = new ArrayList<>();
+        for (DTTipoRetorno t : DTTipoRetorno.values()) {
+            lista.add(t.name());
+        }
+        return lista;
     }
 }

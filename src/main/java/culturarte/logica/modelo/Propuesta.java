@@ -24,26 +24,24 @@ public class Propuesta {
     @Lob
     @Column(columnDefinition = "LONGBLOB")
     private byte[] imagen;
-
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
-
     @ManyToOne
     @JoinColumn(name = "proponente_id")
     private Proponente proponente;
-
     @Enumerated(EnumType.STRING)
     private EstadoPropuesta estadoActual;
-
     @OneToMany(mappedBy = "propuesta", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PropuestaEstado> historial = new ArrayList<>();
-
     @OneToMany(mappedBy = "propuesta", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Colaboracion> colaboraciones = new ArrayList<>();
+    @ElementCollection(targetClass = TipoRetorno.class)
+    @Enumerated(EnumType.STRING)
+    private List<TipoRetorno> tiposRetorno = new ArrayList<>();
 
     public Propuesta() {}
-    public Propuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista, Double precioEnetrada, Double montoNecesario, byte[] imagen, Proponente proponente) {
+    public Propuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista, Double precioEntrada, Double montoNecesario, byte[] imagen, Proponente proponente,Categoria categoria, List<TipoRetorno> tiposRetorno) {
         this.setTitulo(titulo);
         this.setDescripcion(descripcion);
         this.setLugar(lugar);
@@ -52,6 +50,11 @@ public class Propuesta {
         this.setMontoNecesario(montoNecesario);
         this.setImagen(imagen);
         this.setProponente(proponente);
+        this.setCategoria(categoria);
+        this.tiposRetorno = tiposRetorno;
+        this.estadoActual = EstadoPropuesta.INGRESADA;
+        PropuestaEstado inicial = new PropuestaEstado(this, EstadoPropuesta.INGRESADA, LocalDate.now());
+        this.historial.add(inicial);
     }
 
     // Funciones
@@ -102,5 +105,8 @@ public class Propuesta {
 
     public List<Colaboracion> getColaboraciones() { return colaboraciones; }
     public void setColaboraciones(List<Colaboracion> colaboraciones) { this.colaboraciones = colaboraciones; }
+
+    public List<TipoRetorno> getTiposRetorno() { return tiposRetorno; }
+    public void setTiposRetorno(List<TipoRetorno> tiposRetorno) { this.tiposRetorno = tiposRetorno; }
 
 }

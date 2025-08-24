@@ -14,7 +14,7 @@ public class DTPropuesta {
     private Double montoNecesario;
     private LocalDate fechaPublicacion;
     private byte[] imagen;
-    //private DTCategoria categoria;
+    private DTCategoria categoria;
     private DTProponente proponente;
     private DTEstadoPropuesta estadoActual;
     //private List<DTPropuestaEstado> historial = new ArrayList<>();

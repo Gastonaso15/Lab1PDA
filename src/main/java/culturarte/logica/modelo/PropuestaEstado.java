@@ -1,6 +1,8 @@
 package culturarte.logica.modelo;
 
 import jakarta.persistence.*;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -13,7 +15,15 @@ public class PropuestaEstado {
     private Propuesta propuesta;
     @Enumerated(EnumType.STRING)
     private EstadoPropuesta estado;
-    private LocalDateTime fechaCambio;
+    private LocalDate fechaCambio;
+
+    public PropuestaEstado() {}
+
+    public PropuestaEstado(Propuesta propuesta, EstadoPropuesta estado, LocalDate fechaCambio) {
+        this.propuesta = propuesta;
+        this.estado = estado;
+        this.fechaCambio = fechaCambio;
+    }
 
     // Getters y Setters
     public Long getId() { return id; }
@@ -22,6 +32,6 @@ public class PropuestaEstado {
     public void setPropuesta(Propuesta propuesta) { this.propuesta = propuesta; }
     public EstadoPropuesta getEstado() { return estado; }
     public void setEstado(EstadoPropuesta estado) { this.estado = estado; }
-    public LocalDateTime getFechaCambio() { return fechaCambio; }
-    public void setFechaCambio(LocalDateTime fechaCambio) { this.fechaCambio = fechaCambio; }
+    public LocalDate getFechaCambio() { return fechaCambio; }
+    public void setFechaCambio(LocalDate fechaCambio) { this.fechaCambio = fechaCambio; }
 }

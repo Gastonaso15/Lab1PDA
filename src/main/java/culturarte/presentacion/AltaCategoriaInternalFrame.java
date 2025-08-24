@@ -55,7 +55,7 @@ public class AltaCategoriaInternalFrame extends JInternalFrame {
 
         btnCerrar.addActionListener(e -> dispose());
 
-        cargarCategorias();
+        recargarCategorias();
 
         btnCrear.addActionListener(e -> {
             String nombre = tfNombre.getText().trim();
@@ -66,22 +66,12 @@ public class AltaCategoriaInternalFrame extends JInternalFrame {
                 return;
             }
 
-            DefaultMutableTreeNode parentNode = buscarNodo(root, padre);
-            if (parentNode == null) {
-                JOptionPane.showMessageDialog(this, "No se encontró la categoría padre", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            DefaultMutableTreeNode nuevoNodo = new DefaultMutableTreeNode(nombre);
-            parentNode.add(nuevoNodo);
-            ((DefaultTreeModel) treeCategorias.getModel()).reload();
-
             try {
                 CategoriaContr.crearCategoria(nombre, padre);
                 JOptionPane.showMessageDialog(this, "Categoría creada correctamente");
                 tfNombre.setText("");
                 actualizarComboPadre();
-                cargarCategorias();
+                recargarCategorias();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -90,49 +80,6 @@ public class AltaCategoriaInternalFrame extends JInternalFrame {
         setVisible(true);
     }
 
-    private void cargarCategorias() {
-        root.removeAllChildren();
-        cbCategoriaPadre.removeAllItems();
-
-        root.setUserObject("Categoría");
-        cbCategoriaPadre.addItem("Categoría");
-
-        try {
-            List<DTCategoria> categorias = CategoriaContr.listarDTCategorias();
-            for (DTCategoria cat : categorias) {
-                DefaultMutableTreeNode parentNode;
-
-                if (cat.getCategoriaPadre() == null || cat.getCategoriaPadre().getNombre() == null || cat.getCategoriaPadre().getNombre().isEmpty()) {
-                    parentNode = root;
-                } else {
-                    parentNode = buscarNodo(root, cat.getCategoriaPadre().getNombre());
-                    if (parentNode == null) parentNode = root;
-                }
-
-                DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(cat.getNombre());
-                parentNode.add(nodo);
-
-                cbCategoriaPadre.addItem(cat.getNombre());
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                    "Error al cargar categorías: " + e.getMessage(),
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-
-        ((DefaultTreeModel) treeCategorias.getModel()).reload();
-    }
-
-    private DefaultMutableTreeNode buscarNodo(DefaultMutableTreeNode nodo, String nombre) {
-        if (nodo.toString().equals(nombre)) return nodo;
-        for (int i = 0; i < nodo.getChildCount(); i++) {
-            DefaultMutableTreeNode child = (DefaultMutableTreeNode) nodo.getChildAt(i);
-            DefaultMutableTreeNode res = buscarNodo(child, nombre);
-            if (res != null) return res;
-        }
-        return null;
-    }
 
     private void actualizarComboPadre() {
         cbCategoriaPadre.removeAllItems();
@@ -143,5 +90,17 @@ public class AltaCategoriaInternalFrame extends JInternalFrame {
         if (!categorias.contains("Categoría")) {
             cbCategoriaPadre.addItem("Categoría");
         }
-}
+    }
+
+    private void recargarCategorias() {
+        try {
+            List<DTCategoria> categorias = CategoriaContr.listarDTCategorias();
+            CategoriaUIHelper.cargarCategorias(treeCategorias, cbCategoriaPadre, categorias);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Error al cargar categorías: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
 }

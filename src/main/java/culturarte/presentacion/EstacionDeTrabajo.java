@@ -53,7 +53,7 @@ public class EstacionDeTrabajo extends JFrame {
         });
 
         altaPropuesta.addActionListener(e -> {
-            AltaPropuestaInternalFrame frame = new AltaPropuestaInternalFrame(ICP,ICU);
+            AltaPropuestaInternalFrame frame = new AltaPropuestaInternalFrame(ICP,ICU,ICC);
             desktop.add(frame);
             frame.setVisible(true);
         });
