@@ -1,3 +1,22 @@
 # Default ignored files
 /shelf/
 /workspace.xml
+# Maven
+target/
+
+# IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Bases de datos / binarios locales
+data/*.db
+assets/users/*
+assets/propuestas/*
+
+# Mantener carpetas vacías
+!assets/users/.gitkeep
+!assets/propuestas/.gitkeep
+!docs/.gitkeep
+!data/.gitkeep
