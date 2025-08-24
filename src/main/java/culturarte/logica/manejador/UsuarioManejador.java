@@ -1,5 +1,7 @@
 package culturarte.logica.manejador;
 
+import culturarte.logica.modelo.Proponente;
+import culturarte.logica.modelo.Propuesta;
 import culturarte.persistencia.JPAUtil;
 import culturarte.logica.modelo.Usuario;
 
@@ -35,53 +37,6 @@ public class UsuarioManejador{
         em.close();
     }
 
-    /*
-    public void crearUsuario(String nickname, String nombre, String apellido, String correo, String tipo) throws Exception {
-        EntityManager em = JPAUtil.getEntityManager();
-        em.getTransaction().begin();
-        Long count = em.createQuery(
-                        "SELECT COUNT(u) FROM Usuario u WHERE u.nickname = :nick OR u.correo = :correo", Long.class)
-                .setParameter("nick", nickname)
-                .setParameter("correo", correo)
-                .getSingleResult();
-        if (count > 0) {
-            em.getTransaction().rollback();
-            em.close();
-            throw new Exception("Ya existe un usuario con ese nickname o correo");
-        }
-        Usuario usuario;
-        if ("Proponente".equals(tipo)) {
-            usuario = new Proponente();
-        } else {
-            usuario = new Colaborador();
-        }
-        usuario.setNickname(nickname);
-        usuario.setNombre(nombre);
-        usuario.setApellido(apellido);
-        usuario.setCorreo(correo);
-        em.persist(usuario);
-        em.getTransaction().commit();
-        em.close();
-    }
-
-    public void crearUsuario(Usuario usuario) throws Exception {
-        EntityManager em = JPAUtil.getEntityManager();
-        em.getTransaction().begin();
-        Long count = em.createQuery(
-                        "SELECT COUNT(u) FROM Usuario u WHERE u.nickname = :nick OR u.correo = :correo", Long.class)
-                .setParameter("nick", usuario.getNickname())
-                .setParameter("correo", usuario.getCorreo())
-                .getSingleResult();
-        if (count > 0) {
-            em.getTransaction().rollback();
-            em.close();
-            throw new Exception("Ya existe un usuario con ese nickname o correo");
-        }
-        em.persist(usuario);
-        em.getTransaction().commit();
-        em.close();
-    }*/
-
     public List<String> obtenerNicknameProponentes() {
         EntityManager em = JPAUtil.getEntityManager();
         TypedQuery<String> query = em.createQuery("SELECT nickname FROM Proponente p", String.class);
@@ -116,5 +71,29 @@ public class UsuarioManejador{
             em.close();
         }
         return usu;
+    }
+
+    public Proponente obtenerProponenteNick(String nickname) {
+        EntityManager em = JPAUtil.getEntityManager();
+        Proponente prop = null;
+        try {
+            TypedQuery<Proponente> query = em.createQuery(
+                    "SELECT DISTINCT p FROM Proponente p " +
+                            "LEFT JOIN FETCH p.propuestas pr " +
+                            "WHERE p.nickname = :nick", Proponente.class
+            );
+            query.setParameter("nick", nickname);
+            prop = query.getSingleResult();
+            for (Propuesta p : prop.getPropuestas()) {
+                p.getTiposRetorno().size();
+                p.getColaboraciones().size();
+            }
+
+        } catch (NoResultException e) {
+            prop = null;
+        } finally {
+            em.close();
+        }
+        return prop;
     }
 }

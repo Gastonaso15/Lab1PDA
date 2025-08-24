@@ -11,5 +11,8 @@ public class DTColaborador extends DTUsuario{
     public DTColaborador(String nickname, String nombre, String apellido, String correo, LocalDate fechaNacimiento, byte [] imagen) {
         super(nickname, nombre, apellido, correo,fechaNacimiento,imagen);
     }
+    public DTColaborador(String nickname) {
+        super(nickname);
+    }
 
 }

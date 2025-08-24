@@ -17,8 +17,9 @@ public class DTPropuesta {
     private DTCategoria categoria;
     private DTProponente proponente;
     private DTEstadoPropuesta estadoActual;
-    //private List<DTPropuestaEstado> historial = new ArrayList<>();
+    private List<DTPropuestaEstado> historial = new ArrayList<>();
     private List<DTColaboracion> colaboraciones = new ArrayList<>();
+    private List<DTTipoRetorno> tiposRetorno = new ArrayList<>();
 
 
     public DTPropuesta() {
@@ -32,13 +33,7 @@ public class DTPropuesta {
         this.setDTProponente(new DTProponente());
     }
 
-    // Funciones
-    @Override
-    public String toString() {
-        return titulo;
-    }
-
-    public DTPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista,Double precioEnetrada, Double montoNecesario, byte[] imagen,DTProponente proponente) {
+    public DTPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista,Double precioEntrada, Double montoNecesario, byte[] imagen,DTProponente proponente) {
         this.setTitulo(titulo);
         this.setDescripcion(descripcion);
         this.setLugar(lugar);
@@ -47,6 +42,26 @@ public class DTPropuesta {
         this.setMontoNecesario(montoNecesario);
         this.setImagen(imagen);
         this.setDTProponente(proponente);
+    }
+
+    public DTPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista, Double precioEntrada, Double montoNecesario, byte[] imagen, DTCategoria categoria, List<DTTipoRetorno> tiposRetorno,DTEstadoPropuesta estadoActual,List<DTColaboracion> colaboraciones) {
+        this.setTitulo(titulo);
+        this.setDescripcion(descripcion);
+        this.setLugar(lugar);
+        this.setFechaPrevista(fechaPrevista);
+        this.setPrecioEntrada(precioEntrada);
+        this.setMontoNecesario(montoNecesario);
+        this.setImagen(imagen);
+        this.setCategoria(categoria);
+        this.tiposRetorno = tiposRetorno;
+        this.estadoActual = estadoActual;
+        this.colaboraciones = colaboraciones;
+    }
+
+    // Funciones
+    @Override
+    public String toString() {
+        return titulo;
     }
 
     // Getters y Setters
@@ -77,8 +92,8 @@ public class DTPropuesta {
     public byte[] getImagen() { return imagen; }
     public void setImagen(byte[] imagen) { this.imagen = imagen; }
 
-    //public Categoria getCategoria() { return categoria; }
-    //public void setCategoria(Categoria categoria) { this.categoria = categoria; }
+    public DTCategoria getCategoria() { return categoria; }
+    public void setCategoria(DTCategoria categoria) { this.categoria = categoria; }
 
     public DTProponente getDTProponente() { return proponente; }
     public void setDTProponente(DTProponente proponente) { this.proponente = proponente; }
@@ -86,10 +101,13 @@ public class DTPropuesta {
     public DTEstadoPropuesta getEstadoActual() { return estadoActual; }
     public void setEstadoActual(DTEstadoPropuesta estadoActual) { this.estadoActual = estadoActual; }
 
-    //public List<PropuestaEstado> getHistorial() { return historial; }
-    //public void setHistorial(List<PropuestaEstado> historial) { this.historial = historial; }
+    public List<DTPropuestaEstado> getHistorial() { return historial; }
+    public void setHistorial(List<DTPropuestaEstado> historial) { this.historial = historial; }
 
     public List<DTColaboracion> getColaboraciones() { return colaboraciones; }
     public void setColaboraciones(List<DTColaboracion> colaboraciones) { this.colaboraciones = colaboraciones; }
+
+    public List<DTTipoRetorno> getTiposRetorno() { return tiposRetorno; }
+    public void setTiposRetorno(List<DTTipoRetorno> tiposRetorno) { this.tiposRetorno = tiposRetorno; }
 
 }

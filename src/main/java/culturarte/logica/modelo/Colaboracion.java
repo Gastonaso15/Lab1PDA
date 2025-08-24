@@ -17,7 +17,15 @@ public class Colaboracion {
     @Enumerated(EnumType.STRING)
     private TipoRetorno tipoRetorno; // ENTRADAS | PORCENTAJE
     private LocalDateTime fechaHora;
-    //public enum TipoRetorno { ENTRADAS, PORCENTAJE }
+
+    public Colaboracion(){}
+    public Colaboracion(Propuesta propuesta, Colaborador colaborador, Double monto, TipoRetorno tipoRetorno, LocalDateTime fechaHora) {
+        this.propuesta = propuesta;
+        this.colaborador = colaborador;
+        this.monto = monto;
+        this.tipoRetorno = tipoRetorno;
+        this.fechaHora = fechaHora;
+    }
 
 
     // Getters y Setters

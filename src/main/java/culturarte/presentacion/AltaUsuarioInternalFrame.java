@@ -30,7 +30,7 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
 
     public AltaUsuarioInternalFrame(IUsuarioController icu) {
         super("Alta de Usuario", true, true, true, true);
-        setSize(400, 300);
+        setSize(1200, 500);
         setLayout(new BorderLayout());
 
         UsuarioContr = icu;

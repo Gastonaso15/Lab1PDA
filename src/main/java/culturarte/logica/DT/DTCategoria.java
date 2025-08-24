@@ -17,6 +17,11 @@ public class DTCategoria {
         this.setNombre(nombre);
         this.setCategoriaPadre(categoriaPadre);
     }
+    public DTCategoria(String nombre, List<DTCategoria> subCategorias, DTCategoria categoriaPadre) {
+        this.setNombre(nombre);
+        this.setCategoriaPadre(categoriaPadre);
+        this.setSubCategorias(subCategorias);
+    }
 
     // Getters y setters
     public Long getId() { return id; }

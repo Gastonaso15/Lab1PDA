@@ -36,7 +36,7 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
 
     public AltaPropuestaInternalFrame(IPropuestaController icp,IUsuarioController icu,ICategoriaController icc) {
         super("Alta de Propuesta", true, true, true, true);
-        setSize(500, 400);
+        setSize(1200, 500);
         setLayout(new BorderLayout());
 
         PropuestaContr = icp;

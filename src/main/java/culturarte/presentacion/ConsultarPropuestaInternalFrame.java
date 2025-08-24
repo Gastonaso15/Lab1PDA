@@ -24,7 +24,7 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
 
     public ConsultarPropuestaInternalFrame(IPropuestaController icp) {
         super("Consultar Propuesta", true, true, true, true);
-        setSize(700, 500);
+        setSize(1200, 500);
         setLayout(new BorderLayout());
 
         PropuestaContr = icp;

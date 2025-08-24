@@ -19,7 +19,7 @@ public class AltaCategoriaInternalFrame extends JInternalFrame {
 
     public AltaCategoriaInternalFrame(ICategoriaController icc) {
         super("Alta de Categoría", true, true, true, true);
-        setSize(400, 300);
+        setSize(1200, 500);
         setLayout(new BorderLayout());
 
         CategoriaContr = icc;

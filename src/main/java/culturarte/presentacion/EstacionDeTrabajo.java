@@ -17,7 +17,7 @@ public class EstacionDeTrabajo extends JFrame {
 
     public EstacionDeTrabajo() {
         setTitle("Culturarte - Estación de Trabajo");
-        setSize(800, 600);
+        setSize(1500, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         desktop = new JDesktopPane();
@@ -33,6 +33,10 @@ public class EstacionDeTrabajo extends JFrame {
         JMenu usuarios = new JMenu("Usuarios");
         JMenuItem altaUsuario = new JMenuItem("Alta de Usuario");
         usuarios.add(altaUsuario);
+        JMenuItem consultaProponente = new JMenuItem("Consultar Perfil de Proponente");
+        usuarios.add(consultaProponente);
+        JMenuItem consultaColaborador = new JMenuItem("Consultar Perfil de Colaborador");
+        usuarios.add(consultaColaborador);
 
         JMenu propuestas = new JMenu("Propuestas");
         JMenuItem altaPropuesta = new JMenuItem("Alta de Propuesta");
@@ -48,6 +52,18 @@ public class EstacionDeTrabajo extends JFrame {
 
         altaUsuario.addActionListener(e -> {
             AltaUsuarioInternalFrame frame = new AltaUsuarioInternalFrame(ICU);
+            desktop.add(frame);
+            frame.setVisible(true);
+        });
+
+        consultaProponente.addActionListener(e -> {
+            ConsultaPerfilProponenteInternalFrame frame = new ConsultaPerfilProponenteInternalFrame(ICU);
+            desktop.add(frame);
+            frame.setVisible(true);
+        });
+
+        consultaColaborador.addActionListener(e -> {
+            ConsultaPerfilColaboradorInternalFrame frame = new ConsultaPerfilColaboradorInternalFrame(ICU);
             desktop.add(frame);
             frame.setVisible(true);
         });
