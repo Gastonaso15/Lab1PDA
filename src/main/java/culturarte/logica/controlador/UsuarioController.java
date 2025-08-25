@@ -126,5 +126,33 @@ public class UsuarioController implements IUsuarioController {
         return dtProp;
     }
 
+    @Override
+    public void seguirUsuario(String nickSeguidor, String nickSeguido) {
+        UsuarioManejador mu = UsuarioManejador.getinstance();
+        Usuario seguidor = mu.obtenerUsuarioNick(nickSeguidor);
+        Usuario seguido = mu.obtenerUsuarioNick(nickSeguido);
+
+        if (seguidor == null || seguido == null) {
+            throw new IllegalArgumentException("Los usuarios no pueden ser nulos.");
+        }
+        if (seguidor.getNickname().equals(seguido.getNickname())) {
+            throw new IllegalArgumentException("Un usuario no puede seguirse a sí mismo.");
+        }
+        if (mu.yaSigue(nickSeguidor, nickSeguido)) {
+            throw new IllegalStateException("El usuario ya sigue a este usuario.");
+        }
+
+        mu.agregarSeguimiento(nickSeguidor, nickSeguido);
+
+    }
+
+    @Override
+    public List<String> devolverNicknamesUsuarios() {
+        UsuarioManejador mu = UsuarioManejador.getinstance();
+        List<String> nicknames = mu.devolverNicksUsuarios();
+        return nicknames;
+    }
+
+
 
 }

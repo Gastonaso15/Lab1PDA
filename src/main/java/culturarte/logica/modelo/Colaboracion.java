@@ -18,6 +18,7 @@ public class Colaboracion {
     private TipoRetorno tipoRetorno; // ENTRADAS | PORCENTAJE
     private LocalDateTime fechaHora;
 
+    // Constructores
     public Colaboracion(){}
     public Colaboracion(Propuesta propuesta, Colaborador colaborador, Double monto, TipoRetorno tipoRetorno, LocalDateTime fechaHora) {
         this.propuesta = propuesta;

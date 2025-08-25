@@ -19,7 +19,7 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
     private JLabel lblImagen;
     private JLabel lblColaboradores;
     private JLabel lblMontoTotal;
-    ;
+
     private IPropuestaController PropuestaContr;
 
     public ConsultarPropuestaInternalFrame(IPropuestaController icp) {

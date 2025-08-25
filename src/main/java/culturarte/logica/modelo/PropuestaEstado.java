@@ -17,6 +17,7 @@ public class PropuestaEstado {
     private EstadoPropuesta estado;
     private LocalDate fechaCambio;
 
+    // Constructores
     public PropuestaEstado() {}
 
     public PropuestaEstado(Propuesta propuesta, EstadoPropuesta estado, LocalDate fechaCambio) {

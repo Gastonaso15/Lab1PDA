@@ -2,6 +2,7 @@ package culturarte.logica.manejador;
 
 import culturarte.logica.modelo.Proponente;
 import culturarte.logica.modelo.Propuesta;
+import culturarte.logica.modelo.Seguimiento;
 import culturarte.persistencia.JPAUtil;
 import culturarte.logica.modelo.Usuario;
 
@@ -95,5 +96,67 @@ public class UsuarioManejador{
             em.close();
         }
         return prop;
+    }
+
+    public List<String> devolverNicksUsuarios() {
+        EntityManager em = JPAUtil.getEntityManager();
+        List<String> nicknames;
+        try {
+            TypedQuery<String> query = em.createQuery("SELECT u.nickname FROM Usuario u", String.class);
+            nicknames = query.getResultList();
+        } finally {
+            em.close();
+        }
+        return nicknames;
+    }
+
+    public void agregarSeguimiento(String nicknameSeguidor, String nicknameSeguido) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        try {
+            tx.begin();
+
+            Usuario seguidor = em.createQuery(
+                            "SELECT u FROM Usuario u WHERE u.nickname = :nick", Usuario.class)
+                    .setParameter("nick", nicknameSeguidor)
+                    .getSingleResult();
+
+            Usuario seguido = em.createQuery(
+                            "SELECT u FROM Usuario u WHERE u.nickname = :nick", Usuario.class)
+                    .setParameter("nick", nicknameSeguido)
+                    .getSingleResult();
+
+            Seguimiento s = new Seguimiento();
+            s.setSeguidor(seguidor);
+            s.setSeguido(seguido);
+
+            seguidor.getSeguidos().add(s);
+            seguido.getSeguidores().add(s);
+
+            em.persist(s);
+
+            tx.commit();
+        } catch (Exception e) {
+            if (tx.isActive()) tx.rollback();
+            throw e;
+        } finally {
+            em.close();
+        }
+    }
+
+    public boolean yaSigue(String nicknameSeguidor, String nicknameSeguido) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            TypedQuery<Long> query = em.createQuery(
+                    "SELECT COUNT(s) FROM Seguimiento s " +
+                            "WHERE s.seguidor.nickname = :seguidor AND s.seguido.nickname = :seguido", Long.class);
+            query.setParameter("seguidor", nicknameSeguidor);
+            query.setParameter("seguido", nicknameSeguido);
+
+            Long count = query.getSingleResult();
+            return count > 0;
+        } finally {
+            em.close();
+        }
     }
 }

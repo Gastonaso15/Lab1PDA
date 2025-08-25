@@ -25,9 +25,11 @@ public class Usuario {
     @Column(columnDefinition = "LONGBLOB")
     private byte[] imagen;
     private LocalDate fechaNacimiento;
-
     @OneToMany(mappedBy = "seguido", cascade = CascadeType.ALL)
     private List<Seguimiento> seguidores;
+    @OneToMany(mappedBy = "seguidor", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Seguimiento> seguidos;
+
 
     // Constructores
     public Usuario() {}
@@ -67,4 +69,7 @@ public class Usuario {
 
     public List<Seguimiento> getSeguidores() { return seguidores; }
     public void setSeguidores(List<Seguimiento> seguidores) { this.seguidores = seguidores; }
+
+    public List<Seguimiento> getSeguidos() { return seguidos; }
+    public void setSeguidos(List<Seguimiento> seguidos) { this.seguidos = seguidos; }
 }

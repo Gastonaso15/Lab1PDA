@@ -16,6 +16,14 @@ public class Seguimiento {
     @JoinColumn(name = "seguidor_id")
     private Usuario seguidor;
 
+    // Constructores
+    public Seguimiento() {}
+
+    public Seguimiento(Usuario seguidor, Usuario seguido) {
+        this.seguidor = seguidor;
+        this.seguido = seguido;
+    }
+
     // Getters y setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

@@ -9,4 +9,6 @@ public interface IUsuarioController {
     public abstract void crearUsuario(DTUsuario dtu) throws Exception;
     public abstract List<String> devolverNicknamesProponentes();
     public abstract DTProponente obtenerProponenteCompleto(String nickname) throws Exception;
+    public abstract void seguirUsuario(String nickSeguidor, String nickSeguido) throws Exception;
+    public abstract List<String> devolverNicknamesUsuarios();
 }

@@ -40,6 +40,7 @@ public class Propuesta {
     @Enumerated(EnumType.STRING)
     private List<TipoRetorno> tiposRetorno = new ArrayList<>();
 
+    // Constructores
     public Propuesta() {}
     public Propuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista, Double precioEntrada, Double montoNecesario, byte[] imagen, Proponente proponente,Categoria categoria, List<TipoRetorno> tiposRetorno) {
         this.setTitulo(titulo);
