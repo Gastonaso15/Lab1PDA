@@ -39,6 +39,8 @@ public class EstacionDeTrabajo extends JFrame {
         usuarios.add(consultaColaborador);
         JMenuItem seguirUsuario = new JMenuItem("Seguir Usuario");
         usuarios.add(seguirUsuario);
+        JMenuItem dejarSeguirUsuario = new JMenuItem("Dejar de Seguir Usuario");
+        usuarios.add(dejarSeguirUsuario);
 
         JMenu propuestas = new JMenu("Propuestas");
         JMenuItem altaPropuesta = new JMenuItem("Alta de Propuesta");
@@ -72,6 +74,12 @@ public class EstacionDeTrabajo extends JFrame {
 
         seguirUsuario.addActionListener(e -> {
             SeguirUsuarioInternalFrame frame = new SeguirUsuarioInternalFrame(ICU);
+            desktop.add(frame);
+            frame.setVisible(true);
+        });
+
+        dejarSeguirUsuario.addActionListener(e -> {
+            DejarSeguirUsuarioInternalFrame frame = new DejarSeguirUsuarioInternalFrame(ICU);
             desktop.add(frame);
             frame.setVisible(true);
         });

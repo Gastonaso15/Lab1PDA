@@ -159,4 +159,49 @@ public class UsuarioManejador{
             em.close();
         }
     }
+
+    public void eliminarSeguimiento(String nicknameSeguidor, String nicknameSeguido) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+
+        try {
+            tx.begin();
+
+            Usuario seguidor = em.createQuery(
+                            "SELECT u FROM Usuario u LEFT JOIN FETCH u.seguidos s LEFT JOIN FETCH s.seguido WHERE u.nickname = :nick", Usuario.class)
+                    .setParameter("nick", nicknameSeguidor)
+                    .getSingleResult();
+
+            Usuario seguido = em.createQuery(
+                            "SELECT u FROM Usuario u LEFT JOIN FETCH u.seguidores s LEFT JOIN FETCH s.seguidor WHERE u.nickname = :nick", Usuario.class)
+                    .setParameter("nick", nicknameSeguido)
+                    .getSingleResult();
+
+            Seguimiento relacion = null;
+            for (Seguimiento s : seguidor.getSeguidos()) {
+                if (s.getSeguido().getId().equals(seguido.getId())) {
+                    relacion = s;
+                    break;
+                }
+            }
+
+            if (relacion != null) {
+                seguidor.getSeguidos().remove(relacion);
+                seguido.getSeguidores().remove(relacion);
+                em.remove(em.contains(relacion) ? relacion : em.merge(relacion));
+            } else {
+                throw new IllegalStateException("El usuario no sigue a este usuario.");
+            }
+
+            em.merge(seguidor);
+            em.merge(seguido);
+
+            tx.commit();
+        } catch (Exception e) {
+            if (tx.isActive()) tx.rollback();
+            throw e;
+        } finally {
+            em.close();
+        }
+    }
 }

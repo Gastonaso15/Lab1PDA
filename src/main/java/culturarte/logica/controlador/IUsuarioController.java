@@ -11,4 +11,5 @@ public interface IUsuarioController {
     public abstract DTProponente obtenerProponenteCompleto(String nickname) throws Exception;
     public abstract void seguirUsuario(String nickSeguidor, String nickSeguido) throws Exception;
     public abstract List<String> devolverNicknamesUsuarios();
+    public abstract void dejarDeSeguirUsuario(String nickSeguidor, String nickSeguido);
 }

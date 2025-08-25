@@ -147,6 +147,23 @@ public class UsuarioController implements IUsuarioController {
     }
 
     @Override
+    public void dejarDeSeguirUsuario(String nickSeguidor, String nickSeguido) {
+        UsuarioManejador mu = UsuarioManejador.getinstance();
+        Usuario seguidor = mu.obtenerUsuarioNick(nickSeguidor);
+        Usuario seguido = mu.obtenerUsuarioNick(nickSeguido);
+
+        if (seguidor == null || seguido == null) {
+            throw new IllegalArgumentException("Los usuarios no pueden ser nulos.");
+        }
+
+        if (seguidor.getId().equals(seguido.getId())) {
+            throw new IllegalArgumentException("Un usuario no puede dejar de seguirse a sí mismo.");
+        }
+
+        mu.eliminarSeguimiento(nickSeguidor, nickSeguido);
+    }
+
+    @Override
     public List<String> devolverNicknamesUsuarios() {
         UsuarioManejador mu = UsuarioManejador.getinstance();
         List<String> nicknames = mu.devolverNicksUsuarios();
