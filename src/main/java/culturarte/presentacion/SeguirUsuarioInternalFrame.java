@@ -55,8 +55,6 @@ public class SeguirUsuarioInternalFrame extends JInternalFrame {
                 return;
             }
 
-
-
             try {
                 UsuarioContr.seguirUsuario(nicknameSeguidor, nicknameSeguido);
                 JOptionPane.showMessageDialog(this,
