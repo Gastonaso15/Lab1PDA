@@ -41,6 +41,7 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
 
         PropuestaContr = icp;
         CategoriaContr = icc;
+        UsuarioContr = icu;
 
         JPanel panel = new JPanel(new GridLayout(10, 2, 5, 5));
 
@@ -96,9 +97,8 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
 
         panel.add(new JLabel("Proponente:"));
         cbProponente = new JComboBox<>();
-        UsuarioContr = icu;
 
-        List<String> proponentes = icu.devolverNicknamesProponentes();
+        List<String> proponentes = UsuarioContr.devolverNicknamesProponentes();
         for (String p : proponentes) {
             cbProponente.addItem(p);
         }

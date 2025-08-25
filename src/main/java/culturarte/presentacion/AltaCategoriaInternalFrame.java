@@ -32,23 +32,19 @@ public class AltaCategoriaInternalFrame extends JInternalFrame {
         JScrollPane scrollTree = new JScrollPane(treeCategorias);
 
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.add(new JLabel("Nombre:"));
+        panel.add(new JLabel("Nombre de Nueva Categoria:"));
         tfNombre = new JTextField();
         panel.add(tfNombre);
 
-        panel.add(new JLabel("Categoría Padre:"));
-        cbCategoriaPadre = new JComboBox<>();
-        actualizarComboPadre();
-        panel.add(cbCategoriaPadre);
+        panel.add(new JLabel("Seleccionar Categoría Padre:"));
 
-        JButton btnCrear = new JButton("Crear Categoría");
-        panel.add(btnCrear);
-
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scrollTree, panel);
+        JSplitPane splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, panel,scrollTree);
         splitPane.setDividerLocation(250);
         add(splitPane, BorderLayout.CENTER);
 
         JPanel botones = new JPanel();
+        JButton btnCrear = new JButton("Crear Categoría");
+        botones.add(btnCrear);
         JButton btnCerrar = new JButton("Cancelar");
         botones.add(btnCerrar);
         add(botones, BorderLayout.SOUTH);
@@ -59,7 +55,8 @@ public class AltaCategoriaInternalFrame extends JInternalFrame {
 
         btnCrear.addActionListener(e -> {
             String nombre = tfNombre.getText().trim();
-            String padre = (String) cbCategoriaPadre.getSelectedItem();
+            DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) treeCategorias.getLastSelectedPathComponent();
+            String padre = (selectedNode != null) ? selectedNode.toString() : null;
 
             if (nombre.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Debe ingresar un nombre", "Error", JOptionPane.ERROR_MESSAGE);
@@ -70,7 +67,6 @@ public class AltaCategoriaInternalFrame extends JInternalFrame {
                 CategoriaContr.crearCategoria(nombre, padre);
                 JOptionPane.showMessageDialog(this, "Categoría creada correctamente");
                 tfNombre.setText("");
-                actualizarComboPadre();
                 recargarCategorias();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -78,18 +74,6 @@ public class AltaCategoriaInternalFrame extends JInternalFrame {
         });
 
         setVisible(true);
-    }
-
-
-    private void actualizarComboPadre() {
-        cbCategoriaPadre.removeAllItems();
-        List<String> categorias = CategoriaContr.listarNombreCategorias();
-        for (String c : categorias) {
-            cbCategoriaPadre.addItem(c);
-        }
-        if (!categorias.contains("Categoría")) {
-            cbCategoriaPadre.addItem("Categoría");
-        }
     }
 
     private void recargarCategorias() {
