@@ -2,6 +2,8 @@ package culturarte.logica.manejador;
 
 import culturarte.logica.DT.DTProponente;
 import culturarte.logica.DT.DTPropuesta;
+import culturarte.logica.DT.DTEstadoPropuesta;
+import culturarte.logica.modelo.EstadoPropuesta;
 import culturarte.logica.modelo.Propuesta;
 import jakarta.persistence.EntityManager;
 
@@ -77,5 +79,40 @@ public class PropuestaManejador {
             em.close();
         }
         return pro;
+    }
+    public List<DTPropuesta> obtenerPropuestasPorEstado(EstadoPropuesta estado) {
+        EntityManager em = JPAUtil.getEntityManager();
+        List<DTPropuesta> dtPropuestas = new ArrayList<>();
+        try {
+            TypedQuery<Propuesta> query = em.createQuery("SELECT p FROM Propuesta p WHERE p.estadoActual = :estado", Propuesta.class);
+            query.setParameter("estado", estado);
+            List<Propuesta> propuestas = query.getResultList();
+
+            for (Propuesta p : propuestas) {
+                DTPropuesta dt = new DTPropuesta();
+                dt.setTitulo(p.getTitulo());
+                dt.setDescripcion(p.getDescripcion());
+                dt.setLugar(p.getLugar());
+                dt.setFechaPrevista(p.getFechaPrevista());
+                dt.setPrecioEntrada(p.getPrecioEntrada());
+                dt.setMontoNecesario(p.getMontoNecesario());
+                dt.setImagen(p.getImagen());
+                dt.setEstadoActual(DTEstadoPropuesta.valueOf(p.getEstadoActual().name()));
+
+                DTProponente dtProp = new DTProponente();
+                dtProp.setNombre(p.getProponente().getNombre());
+                dtProp.setApellido(p.getProponente().getApellido());
+                dtProp.setNickname(p.getProponente().getNickname());
+                dt.setDTProponente(dtProp);
+
+                dtPropuestas.add(dt);
+            }
+        } catch (Exception e) {
+            // Log error if needed
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+        return dtPropuestas;
     }
 }

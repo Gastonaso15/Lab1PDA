@@ -1,12 +1,14 @@
 package culturarte.logica.controlador;
 
 import culturarte.logica.DT.DTCategoria;
+import culturarte.logica.DT.DTEstadoPropuesta;
 import culturarte.logica.DT.DTPropuesta;
 import culturarte.logica.DT.DTTipoRetorno;
 import culturarte.logica.manejador.CategoriaManejador;
 import culturarte.logica.manejador.PropuestaManejador;
 import culturarte.logica.manejador.UsuarioManejador;
 import culturarte.logica.modelo.Categoria;
+import culturarte.logica.modelo.EstadoPropuesta;
 import culturarte.logica.modelo.Proponente;
 import culturarte.logica.modelo.Propuesta;
 import culturarte.logica.modelo.TipoRetorno;
@@ -56,5 +58,12 @@ public class PropuestaController implements IPropuestaController {
         PropuestaManejador mp = PropuestaManejador.getinstance();
         List<DTPropuesta> props = mp.obtenerTodasLasPropuestas();
         return props;
+    }
+
+    @Override
+    public List<DTPropuesta> devolverPropuestasPorEstado(DTEstadoPropuesta estado) {
+        EstadoPropuesta estadoModelo = EstadoPropuesta.valueOf(estado.toString());
+        PropuestaManejador mp = PropuestaManejador.getinstance();
+        return mp.obtenerPropuestasPorEstado(estadoModelo);
     }
 }
