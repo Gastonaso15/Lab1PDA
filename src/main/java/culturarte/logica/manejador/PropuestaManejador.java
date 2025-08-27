@@ -115,4 +115,21 @@ public class PropuestaManejador {
         }
         return dtPropuestas;
     }
+    public void actualizarPropuesta(Propuesta pro) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction t = em.getTransaction();
+        try {
+            t.begin();
+            em.merge(pro);  // sincroniza con la BD
+            t.commit();
+        } catch (Exception e) {
+            if (t.isActive()) {
+                t.rollback();
+            }
+            e.printStackTrace(); // o lanzar excepción hacia arriba
+        } finally {
+            em.close();
+        }
+    }
+
 }

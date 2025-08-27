@@ -66,4 +66,28 @@ public class PropuestaController implements IPropuestaController {
         PropuestaManejador mp = PropuestaManejador.getinstance();
         return mp.obtenerPropuestasPorEstado(estadoModelo);
     }
+    @Override
+    public void modificarPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista,
+                                   Double precioEntrada, Double montoNecesario, LocalDate fechaPublicacion) throws Exception {
+        PropuestaManejador mp = PropuestaManejador.getinstance();
+        Propuesta p = mp.obtenerPropuesta(titulo);
+
+        if (p == null) {
+            throw new Exception("⚠️ La propuesta con el título " + titulo + " no existe.");
+        }
+
+        // actualizar campos (excepto titulo)
+        p.setDescripcion(descripcion);
+        p.setLugar(lugar);
+        p.setFechaPrevista(fechaPrevista);
+        p.setPrecioEntrada(precioEntrada);
+        p.setMontoNecesario(montoNecesario);
+        p.setFechaPublicacion(fechaPublicacion);
+
+        // persistir cambios
+        mp.actualizarPropuesta(p);
+    }
+
+
+
 }

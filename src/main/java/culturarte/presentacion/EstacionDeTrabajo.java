@@ -49,10 +49,20 @@ public class EstacionDeTrabajo extends JFrame {
         propuestas.add(consultarPropuesta);
         JMenuItem altaCategoria = new JMenuItem("Alta de Categoria");
         propuestas.add(altaCategoria);
+        JMenuItem modificarPropuesta = new JMenuItem("Modificar Propuesta");
+        propuestas.add(modificarPropuesta);
+
+        modificarPropuesta.addActionListener(e -> {
+            ModificarDatosPropuestaInternalFrame frame = new ModificarDatosPropuestaInternalFrame(ICP);
+            desktop.add(frame);
+            frame.setVisible(true);
+        });
+
 
         menu.add(usuarios);
         menu.add(propuestas);
         setJMenuBar(menu);
+
 
         altaUsuario.addActionListener(e -> {
             AltaUsuarioInternalFrame frame = new AltaUsuarioInternalFrame(ICU);
@@ -96,8 +106,9 @@ public class EstacionDeTrabajo extends JFrame {
             frame.setVisible(true);
         });
 
-        altaCategoria.addActionListener(e -> {
-            AltaCategoriaInternalFrame frame = new AltaCategoriaInternalFrame(ICC);
+
+        modificarPropuesta.addActionListener(e -> {
+            ModificarDatosPropuestaInternalFrame frame = new ModificarDatosPropuestaInternalFrame(ICP);
             desktop.add(frame);
             frame.setVisible(true);
         });
@@ -106,4 +117,5 @@ public class EstacionDeTrabajo extends JFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new EstacionDeTrabajo().setVisible(true));
     }
+
 }
