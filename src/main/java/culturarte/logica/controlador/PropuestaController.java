@@ -66,12 +66,6 @@ public class PropuestaController implements IPropuestaController {
         PropuestaManejador mp = PropuestaManejador.getinstance();
         return mp.obtenerPropuestasPorEstado(estadoModelo);
     }
-
-    @Override
-    public DTPropuesta obtenerPropuestaPorId(Long id) {
-        PropuestaManejador mp = PropuestaManejador.getinstance();
-        return mp.obtenerPropuestaPorId(id);
-    }
     @Override
     public void modificarPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista,
                                    Double precioEntrada, Double montoNecesario, LocalDate fechaPublicacion) throws Exception {

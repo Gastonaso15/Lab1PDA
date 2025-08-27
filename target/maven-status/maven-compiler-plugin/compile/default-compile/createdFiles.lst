@@ -23,9 +23,7 @@ culturarte/presentacion/ConsultaPerfilProponenteInternalFrame$1.class
 culturarte/logica/DT/DTColaborador.class
 culturarte/presentacion/AltaUsuarioInternalFrame.class
 culturarte/logica/modelo/Colaboracion.class
-culturarte/presentacion/ConsultaPropuestasPorEstadoInternalFrame.class
 culturarte/logica/controlador/CategoriaController.class
-culturarte/test/TestConsultaPropuestasPorEstado.class
 culturarte/logica/DT/DTUsuario.class
 culturarte/logica/DT/DTPropuestaEstado.class
 culturarte/logica/modelo/Usuario.class
@@ -37,7 +35,6 @@ culturarte/logica/controlador/PropuestaController.class
 culturarte/presentacion/ConsultarPropuestaInternalFrame.class
 culturarte/persistencia/JPAUtil.class
 culturarte/logica/modelo/PropuestaEstado.class
-culturarte/presentacion/ConsultaPropuestasPorEstadoInternalFrame$1.class
 culturarte/logica/manejador/UsuarioManejador.class
 culturarte/logica/DT/DTProponente.class
 culturarte/logica/controlador/UsuarioController.class

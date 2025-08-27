@@ -48,16 +48,13 @@ public class PropuestaManejador {
         List<DTPropuesta> dtPropuestas = new ArrayList<>();
         for (Propuesta p : propuestas) {
             DTPropuesta dt = new DTPropuesta();
-            dt.setId(p.getId());
             dt.setTitulo(p.getTitulo());
             dt.setDescripcion(p.getDescripcion());
             dt.setLugar(p.getLugar());
             dt.setFechaPrevista(p.getFechaPrevista());
             dt.setPrecioEntrada(p.getPrecioEntrada());
             dt.setMontoNecesario(p.getMontoNecesario());
-            dt.setFechaPublicacion(p.getFechaPublicacion());
             dt.setImagen(p.getImagen());
-            dt.setEstadoActual(DTEstadoPropuesta.valueOf(p.getEstadoActual().name()));
 
             DTProponente dtProp = new DTProponente();
             dtProp.setNombre(p.getProponente().getNombre());
@@ -93,14 +90,12 @@ public class PropuestaManejador {
 
             for (Propuesta p : propuestas) {
                 DTPropuesta dt = new DTPropuesta();
-                dt.setId(p.getId());
                 dt.setTitulo(p.getTitulo());
                 dt.setDescripcion(p.getDescripcion());
                 dt.setLugar(p.getLugar());
                 dt.setFechaPrevista(p.getFechaPrevista());
                 dt.setPrecioEntrada(p.getPrecioEntrada());
                 dt.setMontoNecesario(p.getMontoNecesario());
-                dt.setFechaPublicacion(p.getFechaPublicacion());
                 dt.setImagen(p.getImagen());
                 dt.setEstadoActual(DTEstadoPropuesta.valueOf(p.getEstadoActual().name()));
 
@@ -135,43 +130,6 @@ public class PropuestaManejador {
         } finally {
             em.close();
         }
-    }
-
-    public DTPropuesta obtenerPropuestaPorId(Long id) {
-        EntityManager em = JPAUtil.getEntityManager();
-        DTPropuesta dt = null;
-        try {
-            TypedQuery<Propuesta> query = em.createQuery("SELECT p FROM Propuesta p WHERE p.id = :id", Propuesta.class);
-            query.setParameter("id", id);
-            Propuesta p = query.getSingleResult();
-            
-            dt = new DTPropuesta();
-            dt.setId(p.getId());
-            dt.setTitulo(p.getTitulo());
-            dt.setDescripcion(p.getDescripcion());
-            dt.setLugar(p.getLugar());
-            dt.setFechaPrevista(p.getFechaPrevista());
-            dt.setPrecioEntrada(p.getPrecioEntrada());
-            dt.setMontoNecesario(p.getMontoNecesario());
-            dt.setFechaPublicacion(p.getFechaPublicacion());
-            dt.setImagen(p.getImagen());
-            dt.setEstadoActual(DTEstadoPropuesta.valueOf(p.getEstadoActual().name()));
-
-            DTProponente dtProp = new DTProponente();
-            dtProp.setNombre(p.getProponente().getNombre());
-            dtProp.setApellido(p.getProponente().getApellido());
-            dtProp.setNickname(p.getProponente().getNickname());
-            dt.setDTProponente(dtProp);
-            
-        } catch (NoResultException e) {
-            dt = null;
-        } catch (Exception e) {
-            e.printStackTrace();
-            dt = null;
-        } finally {
-            em.close();
-        }
-        return dt;
     }
 
 }

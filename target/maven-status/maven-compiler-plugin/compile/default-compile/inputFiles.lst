@@ -4,7 +4,6 @@
 /project/sandbox/user-workspace/src/main/java/culturarte/logica/DT/DTPropuesta.java
 /project/sandbox/user-workspace/src/main/java/culturarte/logica/modelo/Colaboracion.java
 /project/sandbox/user-workspace/src/main/java/culturarte/logica/modelo/PropuestaEstado.java
-/project/sandbox/user-workspace/src/main/java/culturarte/test/TestConsultaPropuestasPorEstado.java
 /project/sandbox/user-workspace/src/main/java/culturarte/presentacion/AltaPropuestaInternalFrame.java
 /project/sandbox/user-workspace/src/main/java/culturarte/logica/modelo/Categoria.java
 /project/sandbox/user-workspace/src/main/java/culturarte/persistencia/JPAUtil.java
@@ -31,7 +30,6 @@
 /project/sandbox/user-workspace/src/main/java/culturarte/logica/DT/DTColaborador.java
 /project/sandbox/user-workspace/src/main/java/culturarte/presentacion/AltaCategoriaInternalFrame.java
 /project/sandbox/user-workspace/src/main/java/culturarte/presentacion/AltaUsuarioInternalFrame.java
-/project/sandbox/user-workspace/src/main/java/culturarte/presentacion/ConsultaPropuestasPorEstadoInternalFrame.java
 /project/sandbox/user-workspace/src/main/java/culturarte/logica/manejador/UsuarioManejador.java
 /project/sandbox/user-workspace/src/main/java/culturarte/presentacion/ConsultaPerfilColaboradorInternalFrame.java
 /project/sandbox/user-workspace/src/main/java/culturarte/logica/manejador/CategoriaManejador.java
