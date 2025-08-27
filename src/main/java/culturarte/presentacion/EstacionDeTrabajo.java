@@ -47,6 +47,8 @@ public class EstacionDeTrabajo extends JFrame {
         propuestas.add(altaPropuesta);
         JMenuItem consultarPropuesta = new JMenuItem("Consultar Propuesta");
         propuestas.add(consultarPropuesta);
+        JMenuItem consultaPropEstado = new JMenuItem("Consulta de Propuestas por Estado");
+        propuestas.add(consultaPropEstado);
         JMenuItem altaCategoria = new JMenuItem("Alta de Categoria");
         propuestas.add(altaCategoria);
         JMenuItem modificarPropuesta = new JMenuItem("Modificar Propuesta");
@@ -106,6 +108,11 @@ public class EstacionDeTrabajo extends JFrame {
             frame.setVisible(true);
         });
 
+        consultaPropEstado.addActionListener(e -> {
+            ConsultaPropuestasPorEstadoInternalFrame frame = new ConsultaPropuestasPorEstadoInternalFrame(ICP);
+            desktop.add(frame);
+            frame.setVisible(true);
+        });
 
         modificarPropuesta.addActionListener(e -> {
             ModificarDatosPropuestaInternalFrame frame = new ModificarDatosPropuestaInternalFrame(ICP);
