@@ -100,6 +100,12 @@ public class EstacionDeTrabajo extends JFrame {
             frame.setVisible(true);
         });
 
+        altaCategoria.addActionListener(e -> {
+            AltaCategoriaInternalFrame frame = new AltaCategoriaInternalFrame(ICC);
+            desktop.add(frame);
+            frame.setVisible(true);
+        });
+
         consultarPropuesta.addActionListener(e -> {
             ConsultarPropuestaInternalFrame frame = new ConsultarPropuestaInternalFrame(ICP);
             desktop.add(frame);
