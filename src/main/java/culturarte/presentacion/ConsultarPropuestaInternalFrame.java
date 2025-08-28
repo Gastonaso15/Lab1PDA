@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import culturarte.logica.DT.DTPropuesta;
+import culturarte.logica.DT.DTTipoRetorno;
 import culturarte.logica.controlador.IPropuestaController;
 
 public class ConsultarPropuestaInternalFrame extends JInternalFrame {
@@ -19,6 +20,12 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
     private JLabel lblImagen;
     private JLabel lblColaboradores;
     private JLabel lblMontoTotal;
+    private JLabel lblPrecioEntrada;
+    private JLabel lblMontoNecesario;
+    private JLabel lblFechaPublicacion;
+    private JLabel lblCategoria;
+    private JLabel lblHistorial;
+    private JLabel lblTiposRetorno;
 
     private IPropuestaController PropuestaContr;
 
@@ -39,35 +46,73 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
         panelDetalles.add(new JLabel("Título:"));
         lblTitulo = new JLabel();
         panelDetalles.add(lblTitulo);
+        estilizarLabelContenido(lblTitulo);
 
         panelDetalles.add(new JLabel("Descripción:"));
         lblDescripcion = new JLabel();
         panelDetalles.add(lblDescripcion);
+        estilizarLabelContenido(lblDescripcion);
 
         panelDetalles.add(new JLabel("Lugar:"));
         lblLugar = new JLabel();
         panelDetalles.add(lblLugar);
+        estilizarLabelContenido(lblLugar);
 
         panelDetalles.add(new JLabel("Fecha Prevista:"));
         lblFechaPrevista = new JLabel();
         panelDetalles.add(lblFechaPrevista);
+        estilizarLabelContenido(lblFechaPrevista);
 
         panelDetalles.add(new JLabel("Estado:"));
         lblEstado = new JLabel();
         panelDetalles.add(lblEstado);
+        estilizarLabelContenido(lblEstado);
 
         panelDetalles.add(new JLabel("Imagen:"));
         lblImagen = new JLabel();
         lblImagen.setPreferredSize(new Dimension(150, 150));
         panelDetalles.add(lblImagen);
+        estilizarLabelContenido(lblImagen);
 
         panelDetalles.add(new JLabel("Colaboradores:"));
         lblColaboradores = new JLabel();
         panelDetalles.add(lblColaboradores);
+        estilizarLabelContenido(lblColaboradores);
 
         panelDetalles.add(new JLabel("Monto total recaudado:"));
         lblMontoTotal = new JLabel();
         panelDetalles.add(lblMontoTotal);
+        estilizarLabelContenido(lblMontoTotal);
+
+        panelDetalles.add(new JLabel("Precio Entrada:"));
+        lblPrecioEntrada = new JLabel();
+        panelDetalles.add(lblPrecioEntrada);
+        estilizarLabelContenido(lblPrecioEntrada);
+
+        panelDetalles.add(new JLabel("Monto Necesario:"));
+        lblMontoNecesario = new JLabel();
+        panelDetalles.add(lblMontoNecesario);
+        estilizarLabelContenido(lblMontoNecesario);
+
+        panelDetalles.add(new JLabel("Fecha Publicación:"));
+        lblFechaPublicacion = new JLabel();
+        panelDetalles.add(lblFechaPublicacion);
+        estilizarLabelContenido(lblFechaPublicacion);
+
+        panelDetalles.add(new JLabel("Categoría:"));
+        lblCategoria = new JLabel();
+        panelDetalles.add(lblCategoria);
+        estilizarLabelContenido(lblCategoria);
+
+        panelDetalles.add(new JLabel("Historial:"));
+        lblHistorial = new JLabel();
+        panelDetalles.add(lblHistorial);
+        estilizarLabelContenido(lblHistorial);
+
+        panelDetalles.add(new JLabel("Tipos de Retorno:"));
+        lblTiposRetorno = new JLabel();
+        panelDetalles.add(lblTiposRetorno);
+        estilizarLabelContenido(lblTiposRetorno);
 
         add(panelDetalles, BorderLayout.CENTER);
 
@@ -98,6 +143,16 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
         lblLugar.setText(p.getLugar());
         lblFechaPrevista.setText(p.getFechaPrevista() != null ? p.getFechaPrevista().toString() : "");
         lblEstado.setText(p.getEstadoActual() != null ? p.getEstadoActual().toString() : "Sin estado");
+        lblPrecioEntrada.setText(p.getPrecioEntrada() != null ? p.getPrecioEntrada().toString() : "");
+        lblMontoNecesario.setText(p.getMontoNecesario() != null ? p.getMontoNecesario().toString() : "");
+        lblFechaPublicacion.setText(p.getFechaPublicacion() != null ? p.getFechaPublicacion().toString() : "");
+        lblCategoria.setText(p.getCategoria() != null ? p.getCategoria().getNombre() : "");
+        lblHistorial.setText(p.getHistorial().stream()
+                .map(h -> h.getEstado().toString() + " (" + h.getFechaCambio() + ")")
+                .collect(Collectors.joining(", ")));
+        lblTiposRetorno.setText(p.getTiposRetorno().stream()
+                .map(DTTipoRetorno::toString)
+                .collect(Collectors.joining(", ")));
 
         if (p.getImagen() != null) {
             ImageIcon icon = new ImageIcon(p.getImagen());
@@ -118,5 +173,12 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
                 .mapToDouble(c -> c.getMonto() != null ? c.getMonto() : 0)
                 .sum();
         lblMontoTotal.setText(String.valueOf(montoTotal));
+    }
+
+    private void estilizarLabelContenido(JLabel label) {
+        label.setOpaque(true);
+        label.setBackground(new Color(200, 230, 250));
+        label.setForeground(Color.BLACK);
+        label.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
     }
 }

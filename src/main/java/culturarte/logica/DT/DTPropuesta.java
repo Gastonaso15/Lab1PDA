@@ -1,5 +1,8 @@
 package culturarte.logica.DT;
 
+import culturarte.logica.modelo.Proponente;
+import culturarte.logica.modelo.PropuestaEstado;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,15 +36,25 @@ public class DTPropuesta {
         this.setDTProponente(new DTProponente());
     }
 
-    public DTPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista,Double precioEntrada, Double montoNecesario, byte[] imagen,DTProponente proponente) {
+    public DTPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista,
+                       Double precioEntrada, Double montoNecesario, LocalDate fechaPublicacion,  byte[] imagen,
+                       DTCategoria categoria,DTProponente proponente,DTEstadoPropuesta estadoActual,
+                       List<DTPropuestaEstado> historial, List<DTColaboracion> colaboraciones,
+                       List<DTTipoRetorno> tiposRetorno) {
         this.setTitulo(titulo);
         this.setDescripcion(descripcion);
         this.setLugar(lugar);
         this.setFechaPrevista(fechaPrevista);
         this.setPrecioEntrada(precioEntrada);
         this.setMontoNecesario(montoNecesario);
+        this.setFechaPublicacion(fechaPublicacion);
         this.setImagen(imagen);
+        this.setCategoria(categoria);
         this.setDTProponente(proponente);
+        this.setEstadoActual(estadoActual);
+        this.setHistorial(historial);
+        this.setColaboraciones(colaboraciones);
+        this.setTiposRetorno(tiposRetorno);
     }
 
     public DTPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista, Double precioEntrada, Double montoNecesario, byte[] imagen, DTCategoria categoria, List<DTTipoRetorno> tiposRetorno,DTEstadoPropuesta estadoActual,List<DTColaboracion> colaboraciones) {

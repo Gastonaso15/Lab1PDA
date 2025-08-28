@@ -16,6 +16,11 @@ public class DTPropuestaEstado {
         this.fechaCambio = fechaCambio;
     }
 
+    public DTPropuestaEstado(DTEstadoPropuesta estado, LocalDate fechaCambio) {
+        this.estado = estado;
+        this.fechaCambio = fechaCambio;
+    }
+
     // Getters y Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

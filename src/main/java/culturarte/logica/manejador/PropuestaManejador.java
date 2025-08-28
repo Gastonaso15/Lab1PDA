@@ -1,10 +1,7 @@
 package culturarte.logica.manejador;
 
-import culturarte.logica.DT.DTProponente;
-import culturarte.logica.DT.DTPropuesta;
-import culturarte.logica.DT.DTEstadoPropuesta;
-import culturarte.logica.modelo.EstadoPropuesta;
-import culturarte.logica.modelo.Propuesta;
+import culturarte.logica.DT.*;
+import culturarte.logica.modelo.*;
 import jakarta.persistence.EntityManager;
 
 import java.util.ArrayList;
@@ -44,9 +41,58 @@ public class PropuestaManejador {
         EntityManager em = JPAUtil.getEntityManager();
         List<Propuesta> propuestas = em.createQuery("SELECT p FROM Propuesta p", Propuesta.class)
                 .getResultList();
+        for (Propuesta p : propuestas) {
+            p.getHistorial().size();
+            p.getColaboraciones().size();
+            p.getTiposRetorno().size();
+        }
         em.close();
         List<DTPropuesta> dtPropuestas = new ArrayList<>();
         for (Propuesta p : propuestas) {
+
+            DTCategoria dtCategoria = null;
+            if (p.getCategoria() != null) {
+                dtCategoria = new DTCategoria(p.getCategoria().getNombre());
+            }
+
+            DTEstadoPropuesta dtEstadoPropuesta = DTEstadoPropuesta.valueOf(p.getEstadoActual().name());
+
+            List<DTPropuestaEstado> historial = new ArrayList<>();
+            if (p.getHistorial() != null) {
+                for (PropuestaEstado pe : p.getHistorial()) {
+                    historial.add(new DTPropuestaEstado(
+                            DTEstadoPropuesta.valueOf(pe.getEstado().name()),
+                            pe.getFechaCambio()
+                    ));
+                }
+            }
+
+            List<DTColaboracion> colaboraciones = new ArrayList<>();
+            if (p.getColaboraciones() != null) {
+                for (Colaboracion c : p.getColaboraciones()) {
+                    DTColaborador dtColab = new DTColaborador(
+                            c.getColaborador().getNickname()
+                    );
+
+                    colaboraciones.add(new DTColaboracion(
+                            dtColab,
+                            c.getMonto()
+                    ));
+                }
+            }
+
+            List<DTTipoRetorno> tiposRetorno = new ArrayList<>();
+            if (p.getTiposRetorno() != null) {
+                for (TipoRetorno t : p.getTiposRetorno()) {
+                    tiposRetorno.add(DTTipoRetorno.valueOf(t.name()));
+                }
+            }
+
+            DTProponente dtProp = new DTProponente();
+            dtProp.setNombre(p.getProponente().getNombre());
+            dtProp.setApellido(p.getProponente().getApellido());
+            dtProp.setNickname(p.getProponente().getNickname());
+
             DTPropuesta dt = new DTPropuesta();
             dt.setTitulo(p.getTitulo());
             dt.setDescripcion(p.getDescripcion());
@@ -54,13 +100,14 @@ public class PropuestaManejador {
             dt.setFechaPrevista(p.getFechaPrevista());
             dt.setPrecioEntrada(p.getPrecioEntrada());
             dt.setMontoNecesario(p.getMontoNecesario());
+            dt.setFechaPublicacion(p.getFechaPublicacion());
             dt.setImagen(p.getImagen());
-
-            DTProponente dtProp = new DTProponente();
-            dtProp.setNombre(p.getProponente().getNombre());
-            dtProp.setApellido(p.getProponente().getApellido());
-            dtProp.setNickname(p.getProponente().getNickname());
+            dt.setCategoria(dtCategoria);
             dt.setDTProponente(dtProp);
+            dt.setEstadoActual(dtEstadoPropuesta);
+            dt.setHistorial(historial);
+            dt.setColaboraciones(colaboraciones);
+            dt.setTiposRetorno(tiposRetorno);
 
             dtPropuestas.add(dt);
         }
