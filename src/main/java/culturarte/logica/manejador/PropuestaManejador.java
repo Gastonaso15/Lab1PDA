@@ -179,4 +179,78 @@ public class PropuestaManejador {
         }
     }
 
+    public void addCategoria(Categoria cat) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction t = em.getTransaction();
+        try{
+            t.begin();
+            em.persist(cat);
+            t.commit();
+        }
+        catch(Exception e){
+            t.rollback();
+            e.printStackTrace();
+        }
+        em.close();
+    }
+
+    public List<String> listarCategorias() {
+        EntityManager em = JPAUtil.getEntityManager();
+        List<String> lista = em.createQuery("SELECT nombre FROM Categoria c", String.class).getResultList();
+        em.close();
+        return lista;
+    }
+
+    public Categoria obtenerPorNombre(String nombre) {
+        EntityManager em = JPAUtil.getEntityManager();
+        Categoria cat = null;
+        try {
+            cat = em.createQuery("SELECT c FROM Categoria c WHERE c.nombre = :nombre", Categoria.class)
+                    .setParameter("nombre", nombre)
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            cat = null;
+        } finally {
+            em.close();
+        }
+        return cat;
+    }
+
+    public List<DTCategoria> listarDTCategorias() {
+        EntityManager em = JPAUtil.getEntityManager();
+        List<Categoria> lista = em.createQuery("SELECT c FROM Categoria c", Categoria.class).getResultList();
+        em.close();
+        List<DTCategoria> listaDT = new ArrayList<>();
+        for (Categoria c : lista) {
+            DTCategoria padre = null;
+            if (c.getCategoriaPadre() != null) {
+                padre = new DTCategoria(c.getCategoriaPadre().getNombre(), null);
+            }
+            listaDT.add(new DTCategoria(
+                    c.getNombre(),
+                    padre
+            ));
+        }
+        return listaDT;
+    }
+
+    public void agregarColaboracion(Colaboracion colaboracion) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+
+        try {
+            tx.begin();
+            em.persist(colaboracion);
+            tx.commit();
+        } catch (Exception e) {
+            if (tx.isActive()) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+            throw e;
+        } finally {
+            em.close();
+        }
+    }
+
 }

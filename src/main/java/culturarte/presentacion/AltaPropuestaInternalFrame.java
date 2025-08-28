@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import culturarte.logica.DT.DTCategoria;
-import culturarte.logica.controlador.ICategoriaController;
 import culturarte.logica.controlador.IPropuestaController;
 import culturarte.logica.controlador.IUsuarioController;
 import culturarte.logica.DT.DTTipoRetorno;
@@ -32,15 +31,13 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
 
     private IUsuarioController UsuarioContr;
     private IPropuestaController PropuestaContr;
-    private ICategoriaController CategoriaContr;
 
-    public AltaPropuestaInternalFrame(IPropuestaController icp,IUsuarioController icu,ICategoriaController icc) {
+    public AltaPropuestaInternalFrame(IPropuestaController icp,IUsuarioController icu) {
         super("Alta de Propuesta", true, true, true, true);
         setSize(1200, 500);
         setLayout(new BorderLayout());
 
         PropuestaContr = icp;
-        CategoriaContr = icc;
         UsuarioContr = icu;
 
         JPanel panel = new JPanel(new GridLayout(10, 2, 5, 5));
@@ -50,7 +47,7 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
         treeCategorias.setShowsRootHandles(true);
         JScrollPane scrollTree = new JScrollPane(treeCategorias);
 
-        List<DTCategoria> categorias = CategoriaContr.listarDTCategorias();
+        List<DTCategoria> categorias = PropuestaContr.listarDTCategorias();
         CategoriaUIHelper.cargarCategorias(treeCategorias, null, categorias);
 
         panel.add(new JLabel("Título:"));

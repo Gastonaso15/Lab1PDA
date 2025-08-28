@@ -14,6 +14,7 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
     private JList<DTPropuesta> jListPropuestas;
     private JLabel lblTitulo;
     private JLabel lblDescripcion;
+    private JLabel lblProponente;
     private JLabel lblLugar;
     private JLabel lblFechaPrevista;
     private JLabel lblEstado;
@@ -41,7 +42,7 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
         scrollList.setPreferredSize(new Dimension(200, 0));
         add(scrollList, BorderLayout.WEST);
 
-        JPanel panelDetalles = new JPanel(new GridLayout(8, 2, 5, 5));
+        JPanel panelDetalles = new JPanel(new GridLayout(5, 3, 5, 5));
 
         panelDetalles.add(new JLabel("Título:"));
         lblTitulo = new JLabel();
@@ -53,6 +54,11 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
         panelDetalles.add(lblDescripcion);
         estilizarLabelContenido(lblDescripcion);
 
+        panelDetalles.add(new JLabel("Proponente:"));
+        lblProponente = new JLabel();
+        panelDetalles.add(lblProponente);
+        estilizarLabelContenido(lblProponente);
+
         panelDetalles.add(new JLabel("Lugar:"));
         lblLugar = new JLabel();
         panelDetalles.add(lblLugar);
@@ -63,16 +69,26 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
         panelDetalles.add(lblFechaPrevista);
         estilizarLabelContenido(lblFechaPrevista);
 
-        panelDetalles.add(new JLabel("Estado:"));
-        lblEstado = new JLabel();
-        panelDetalles.add(lblEstado);
-        estilizarLabelContenido(lblEstado);
+        panelDetalles.add(new JLabel("Precio Entrada:"));
+        lblPrecioEntrada = new JLabel();
+        panelDetalles.add(lblPrecioEntrada);
+        estilizarLabelContenido(lblPrecioEntrada);
 
         panelDetalles.add(new JLabel("Imagen:"));
         lblImagen = new JLabel();
         lblImagen.setPreferredSize(new Dimension(150, 150));
         panelDetalles.add(lblImagen);
         estilizarLabelContenido(lblImagen);
+
+        panelDetalles.add(new JLabel("Categoría:"));
+        lblCategoria = new JLabel();
+        panelDetalles.add(lblCategoria);
+        estilizarLabelContenido(lblCategoria);
+
+        panelDetalles.add(new JLabel("Estado:"));
+        lblEstado = new JLabel();
+        panelDetalles.add(lblEstado);
+        estilizarLabelContenido(lblEstado);
 
         panelDetalles.add(new JLabel("Colaboradores:"));
         lblColaboradores = new JLabel();
@@ -84,11 +100,6 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
         panelDetalles.add(lblMontoTotal);
         estilizarLabelContenido(lblMontoTotal);
 
-        panelDetalles.add(new JLabel("Precio Entrada:"));
-        lblPrecioEntrada = new JLabel();
-        panelDetalles.add(lblPrecioEntrada);
-        estilizarLabelContenido(lblPrecioEntrada);
-
         panelDetalles.add(new JLabel("Monto Necesario:"));
         lblMontoNecesario = new JLabel();
         panelDetalles.add(lblMontoNecesario);
@@ -98,11 +109,6 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
         lblFechaPublicacion = new JLabel();
         panelDetalles.add(lblFechaPublicacion);
         estilizarLabelContenido(lblFechaPublicacion);
-
-        panelDetalles.add(new JLabel("Categoría:"));
-        lblCategoria = new JLabel();
-        panelDetalles.add(lblCategoria);
-        estilizarLabelContenido(lblCategoria);
 
         panelDetalles.add(new JLabel("Historial:"));
         lblHistorial = new JLabel();
@@ -140,6 +146,7 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
     private void mostrarDetalles(DTPropuesta p) {
         lblTitulo.setText(p.getTitulo());
         lblDescripcion.setText(p.getDescripcion());
+        lblProponente.setText(p.getDTProponente().getNombre());
         lblLugar.setText(p.getLugar());
         lblFechaPrevista.setText(p.getFechaPrevista() != null ? p.getFechaPrevista().toString() : "");
         lblEstado.setText(p.getEstadoActual() != null ? p.getEstadoActual().toString() : "Sin estado");

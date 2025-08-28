@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 
 import culturarte.logica.Fabrica;
-import culturarte.logica.controlador.ICategoriaController;
 import culturarte.logica.controlador.IPropuestaController;
 import culturarte.logica.controlador.IUsuarioController;
 
@@ -13,7 +12,6 @@ public class EstacionDeTrabajo extends JFrame {
     private final JDesktopPane desktop;
     private IUsuarioController ICU;
     private IPropuestaController ICP;
-    private ICategoriaController ICC;
 
     public EstacionDeTrabajo() {
         setTitle("Culturarte - Estación de Trabajo");
@@ -28,7 +26,6 @@ public class EstacionDeTrabajo extends JFrame {
         Fabrica fabrica = Fabrica.getInstance();
         ICU = fabrica.getIUsuarioController();
         ICP = fabrica.getIPropuestaController();
-        ICC = fabrica.getICategoriaController();
 
         JMenu usuarios = new JMenu("Usuarios");
         JMenuItem altaUsuario = new JMenuItem("Alta de Usuario");
@@ -49,16 +46,16 @@ public class EstacionDeTrabajo extends JFrame {
         propuestas.add(consultarPropuesta);
         JMenuItem consultaPropEstado = new JMenuItem("Consulta de Propuestas por Estado");
         propuestas.add(consultaPropEstado);
-        JMenuItem altaCategoria = new JMenuItem("Alta de Categoria");
-        propuestas.add(altaCategoria);
         JMenuItem modificarPropuesta = new JMenuItem("Modificar Propuesta");
         propuestas.add(modificarPropuesta);
-
-        modificarPropuesta.addActionListener(e -> {
-            ModificarDatosPropuestaInternalFrame frame = new ModificarDatosPropuestaInternalFrame(ICP);
-            desktop.add(frame);
-            frame.setVisible(true);
-        });
+        JMenuItem altaCategoria = new JMenuItem("Alta de Categoria");
+        propuestas.add(altaCategoria);
+        JMenuItem registrarColaboracion = new JMenuItem("Registrar Colaboracion a Propuesta");
+        propuestas.add(registrarColaboracion);
+        JMenuItem consultarColaboracion = new JMenuItem("Consultar Colaboracion a Propuesta");
+        propuestas.add(consultarColaboracion);
+        JMenuItem cancelarColaboracion = new JMenuItem("Cancelar Colaboracion a Propuesta");
+        propuestas.add(cancelarColaboracion);
 
 
         menu.add(usuarios);
@@ -97,13 +94,7 @@ public class EstacionDeTrabajo extends JFrame {
         });
 
         altaPropuesta.addActionListener(e -> {
-            AltaPropuestaInternalFrame frame = new AltaPropuestaInternalFrame(ICP,ICU,ICC);
-            desktop.add(frame);
-            frame.setVisible(true);
-        });
-
-        altaCategoria.addActionListener(e -> {
-            AltaCategoriaInternalFrame frame = new AltaCategoriaInternalFrame(ICC);
+            AltaPropuestaInternalFrame frame = new AltaPropuestaInternalFrame(ICP,ICU);
             desktop.add(frame);
             frame.setVisible(true);
         });
@@ -120,17 +111,36 @@ public class EstacionDeTrabajo extends JFrame {
             frame.setVisible(true);
         });
 
-        altaCategoria.addActionListener(e -> {
-            AltaCategoriaInternalFrame frame = new AltaCategoriaInternalFrame(ICC);
-            desktop.add(frame);
-            frame.setVisible(true);
-        });
-
         modificarPropuesta.addActionListener(e -> {
             ModificarDatosPropuestaInternalFrame frame = new ModificarDatosPropuestaInternalFrame(ICP);
             desktop.add(frame);
             frame.setVisible(true);
         });
+
+        altaCategoria.addActionListener(e -> {
+            AltaCategoriaInternalFrame frame = new AltaCategoriaInternalFrame(ICP);
+            desktop.add(frame);
+            frame.setVisible(true);
+        });
+
+        registrarColaboracion.addActionListener(e -> {
+            RegistrarColaboracionInternalFrame frame = new RegistrarColaboracionInternalFrame(ICP,ICU);
+            desktop.add(frame);
+            frame.setVisible(true);
+        });
+
+        consultarColaboracion.addActionListener(e -> {
+            ConsultaColaboracionInternalFrame frame = new ConsultaColaboracionInternalFrame(ICP,ICU);
+            desktop.add(frame);
+            frame.setVisible(true);
+        });
+
+        cancelarColaboracion.addActionListener(e -> {
+            CancelarColaboracionInternalFrame frame = new CancelarColaboracionInternalFrame(ICP,ICU);
+            desktop.add(frame);
+            frame.setVisible(true);
+        });
+
     }
 
     public static void main(String[] args) {

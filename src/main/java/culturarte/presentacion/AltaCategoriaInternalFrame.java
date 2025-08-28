@@ -6,7 +6,7 @@ import java.awt.*;
 import java.util.List;
 
 import culturarte.logica.DT.DTCategoria;
-import culturarte.logica.controlador.ICategoriaController;
+import culturarte.logica.controlador.IPropuestaController;
 
 public class AltaCategoriaInternalFrame extends JInternalFrame {
 
@@ -15,14 +15,14 @@ public class AltaCategoriaInternalFrame extends JInternalFrame {
     private JComboBox<String> cbCategoriaPadre;
     private DefaultMutableTreeNode root;
 
-    private ICategoriaController CategoriaContr;
+    private IPropuestaController PropuestaContr;
 
-    public AltaCategoriaInternalFrame(ICategoriaController icc) {
+    public AltaCategoriaInternalFrame(IPropuestaController icp) {
         super("Alta de Categoría", true, true, true, true);
         setSize(1200, 500);
         setLayout(new BorderLayout());
 
-        CategoriaContr = icc;
+        PropuestaContr = icp;
 
         JPanel panel = new JPanel(new GridLayout(5, 2, 10, 10));
 
@@ -64,7 +64,7 @@ public class AltaCategoriaInternalFrame extends JInternalFrame {
             }
 
             try {
-                CategoriaContr.crearCategoria(nombre, padre);
+                PropuestaContr.crearCategoria(nombre, padre);
                 JOptionPane.showMessageDialog(this, "Categoría creada correctamente");
                 tfNombre.setText("");
                 recargarCategorias();
@@ -78,7 +78,7 @@ public class AltaCategoriaInternalFrame extends JInternalFrame {
 
     private void recargarCategorias() {
         try {
-            List<DTCategoria> categorias = CategoriaContr.listarDTCategorias();
+            List<DTCategoria> categorias = PropuestaContr.listarDTCategorias();
             CategoriaUIHelper.cargarCategorias(treeCategorias, cbCategoriaPadre, categorias);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,

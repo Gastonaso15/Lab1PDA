@@ -28,7 +28,7 @@ public class ModificarDatosPropuestaInternalFrame extends JInternalFrame {
         super("Modificar Propuesta", true, true, true, true);
         this.ICP = ICP;
 
-        setSize(600, 400);
+        setSize(1200, 500);
         setLayout(new GridLayout(8, 2, 5, 5));
 
         add(new JLabel("Seleccionar Propuesta:"));
