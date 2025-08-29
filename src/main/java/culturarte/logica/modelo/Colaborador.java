@@ -1,13 +1,16 @@
 package culturarte.logica.modelo;
 
-import jakarta.persistence.DiscriminatorValue;
-import jakarta.persistence.Entity;
-
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.time.LocalDate;
 
 @Entity
 @DiscriminatorValue("Colaborador")
 public class Colaborador extends Usuario {
+
+    @OneToMany(mappedBy = "colaborador", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Colaboracion> colaboraciones = new ArrayList<>();
 
     // Constructores
     public Colaborador() {
@@ -17,5 +20,11 @@ public class Colaborador extends Usuario {
         super(nickname, nombre, apellido, correo,imagen,fechaNacimiento);
     }
 
+    public List<Colaboracion> getColaboraciones() {
+        return colaboraciones;
+    }
 
+    public void setColaboraciones(List<Colaboracion> colaboraciones) {
+        this.colaboraciones = colaboraciones;
+    }
 }

@@ -46,6 +46,42 @@ public class UsuarioManejador{
         return proponentes;
     }
 
+    public List<String> obtenerNicknameColaboradores() {
+        EntityManager em = JPAUtil.getEntityManager();
+        TypedQuery<String> query = em.createQuery("SELECT nickname FROM Colaborador c", String.class);
+        List<String> colaboradores = query.getResultList();
+        em.close();
+        return colaboradores;
+    }
+
+    public culturarte.logica.modelo.Colaborador obtenerColaboradorNick(String nickname) {
+        EntityManager em = JPAUtil.getEntityManager();
+        culturarte.logica.modelo.Colaborador colab = null;
+        try {
+            TypedQuery<culturarte.logica.modelo.Colaborador> query = em.createQuery(
+                    "SELECT DISTINCT c FROM Colaborador c " +
+                            "LEFT JOIN FETCH c.colaboraciones col " +
+                            "LEFT JOIN FETCH col.propuesta pr " +
+                            "LEFT JOIN FETCH pr.proponente " +
+                            "WHERE c.nickname = :nick", culturarte.logica.modelo.Colaborador.class
+            );
+            query.setParameter("nick", nickname);
+            colab = query.getSingleResult();
+
+            // Forzar la carga de las colaboraciones y sus propuestas
+            for (culturarte.logica.modelo.Colaboracion col : colab.getColaboraciones()) {
+                col.getPropuesta().getTitulo(); // Forzar carga
+                col.getPropuesta().getProponente().getNickname(); // Forzar carga del proponente
+            }
+
+        } catch (NoResultException e) {
+            colab = null;
+        } finally {
+            em.close();
+        }
+        return colab;
+    }
+
     public Usuario obtenerUsuarioNick(String nickname){
         EntityManager em = JPAUtil.getEntityManager();
         Usuario usu = null;
