@@ -1,12 +1,24 @@
 package culturarte.presentacion;
 
+// === Imports de Swing y AWT ===
 import javax.swing.*;
 import java.awt.*;
 
+// === Imports de la lógica / controladores ===
 import culturarte.logica.Fabrica;
 import culturarte.logica.controlador.IPropuestaController;
 import culturarte.logica.controlador.IUsuarioController;
 
+/**
+ * Estación de Trabajo (Frame principal) — versión refactorizada y comentada
+ *
+ * Guía visual del archivo:
+ * 1) main: punto de entrada de la app
+ * 2) atributos privados (UI + controladores)
+ * 3) constructor: arma la ventana y delega en métodos privados
+ * 4) métodos privados de construcción (frame, controladores, menús)
+ * 5) helpers para abrir cada InternalFrame
+ */
 public class EstacionDeTrabajo extends JFrame {
     // 1) ENTRANCE POINT (main)
     public static void main(String[] args) {
@@ -18,7 +30,17 @@ public class EstacionDeTrabajo extends JFrame {
     private IUsuarioController ICU;             // Interfaces de la capa de lógica que usa esta pantalla
     private IPropuestaController ICP;
 
+    // 3) CONSTRUCTOR (arma la ventana y delega responsabilidades)
     public EstacionDeTrabajo() {
+        setupFrame(); // --- Configuración base de la ventana (Swing) ---
+        initControllers(); // --- Obtener controladores desde la Fábrica ---
+        setJMenuBar(buildMenuBar());// --- Barra de menú (Usuarios / Propuestas) ---
+        add(desktop, BorderLayout.CENTER);// Agregamos el escritorio al centro del frame
+    }
+
+    // 4) Métodos privados de construcción
+    // Esto es para configurar Swing (título, tamaño, cierre)
+private void setupFrame() {
         setTitle("Culturarte - Estación de Trabajo");
         setSize(1500, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -146,10 +168,8 @@ public class EstacionDeTrabajo extends JFrame {
             frame.setVisible(true);
         });
 
-    }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new EstacionDeTrabajo().setVisible(true));
-    }
+
+
 
 }
