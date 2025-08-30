@@ -8,9 +8,14 @@ import culturarte.logica.controlador.IPropuestaController;
 import culturarte.logica.controlador.IUsuarioController;
 
 public class EstacionDeTrabajo extends JFrame {
+    // 1) ENTRANCE POINT (main)
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new EstacionDeTrabajo().setVisible(true));  // Esto asegura que la UI de Swing se construya en el hilo de eventos
+    }
 
-    private final JDesktopPane desktop;
-    private IUsuarioController ICU;
+    // 2) PRIVATE ATRIBUTES (UI + controladores)
+    private final JDesktopPane desktop;         // Esto es el “escritorio” MDI donde se agregan los JInternalFrame
+    private IUsuarioController ICU;             // Interfaces de la capa de lógica que usa esta pantalla
     private IPropuestaController ICP;
 
     public EstacionDeTrabajo() {
