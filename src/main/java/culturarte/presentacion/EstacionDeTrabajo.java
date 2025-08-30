@@ -20,17 +20,24 @@ import culturarte.logica.controlador.IUsuarioController;
  * 5) helpers para abrir cada InternalFrame
  */
 public class EstacionDeTrabajo extends JFrame {
+
+    // --------------------------------------------------------------------
     // 1) ENTRANCE POINT (main)
+    // --------------------------------------------------------------------
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new EstacionDeTrabajo().setVisible(true));  // Esto asegura que la UI de Swing se construya en el hilo de eventos
     }
 
+    // --------------------------------------------------------------------
     // 2) PRIVATE ATRIBUTES (UI + controladores)
+    // --------------------------------------------------------------------
     private final JDesktopPane desktop;         // Esto es el “escritorio” MDI donde se agregan los JInternalFrame
     private IUsuarioController ICU;             // Interfaces de la capa de lógica que usa esta pantalla
     private IPropuestaController ICP;
 
+    // --------------------------------------------------------------------
     // 3) CONSTRUCTOR (arma la ventana y delega responsabilidades)
+    // --------------------------------------------------------------------
     public EstacionDeTrabajo() {
         setupFrame(); // --- Configuración base de la ventana (Swing) ---
         initControllers(); // --- Obtener controladores desde la Fábrica ---
@@ -38,57 +45,83 @@ public class EstacionDeTrabajo extends JFrame {
         add(desktop, BorderLayout.CENTER);// Agregamos el escritorio al centro del frame
     }
 
+    // --------------------------------------------------------------------
     // 4) Métodos privados de construcción
-    // Esto es para configurar Swing (título, tamaño, cierre)
-private void setupFrame() {
+    // --------------------------------------------------------------------
+    private void setupFrame() { //(Esto es para configurar Swing (título, tamaño, cierre))
         setTitle("Culturarte - Estación de Trabajo");
         setSize(1500, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null); // centrar en pantalla
+    }
 
-        desktop = new JDesktopPane();
-        add(desktop, BorderLayout.CENTER);
-
-        JMenuBar menu = new JMenuBar();
-
+    private void initControllers() {// Esto inicializa las referencias a los controladores de la capa lógica
         Fabrica fabrica = Fabrica.getInstance();
         ICU = fabrica.getIUsuarioController();
         ICP = fabrica.getIPropuestaController();
+    }
 
+    private JMenuBar buildMenuBar() {      // Construye la barra de menú y registra las acciones (listeners) -> retorna un JMenuBar
+        JMenuBar menu = new JMenuBar(); //Creo la barra de "menu"
+        //-------------------------------------------
+        // ---------------- USUARIOS ----------------
+        //-------------------------------------------
+        //Creo menu "Usuarios"
         JMenu usuarios = new JMenu("Usuarios");
+
+        //Creo items para posteriormente agregar al menu "Usuarios"
+
         JMenuItem altaUsuario = new JMenuItem("Alta de Usuario");
-        usuarios.add(altaUsuario);
         JMenuItem consultaProponente = new JMenuItem("Consultar Perfil de Proponente");
-        usuarios.add(consultaProponente);
         JMenuItem consultaColaborador = new JMenuItem("Consultar Perfil de Colaborador");
-        usuarios.add(consultaColaborador);
         JMenuItem seguirUsuario = new JMenuItem("Seguir Usuario");
-        usuarios.add(seguirUsuario);
         JMenuItem dejarSeguirUsuario = new JMenuItem("Dejar de Seguir Usuario");
+
+        //Agrego los items al menu Creoado previamente
+        usuarios.add(altaUsuario);
+        usuarios.add(consultaProponente);
+        usuarios.add(consultaColaborador);
+        usuarios.add(seguirUsuario);
         usuarios.add(dejarSeguirUsuario);
 
+        // Acciones (listeners)
+        altaUsuario.addActionListener(e -> abrirAltaUsuario());
+        //-------------------------------------------
+        // ---------------- PROPUESTAS --------------
+        //-------------------------------------------
+        //Creo el segundo menu "Propuestas"
         JMenu propuestas = new JMenu("Propuestas");
+
+        //Creo items para posteriormente agregar al menu "Propuestas"
         JMenuItem altaPropuesta = new JMenuItem("Alta de Propuesta");
-        propuestas.add(altaPropuesta);
         JMenuItem consultarPropuesta = new JMenuItem("Consultar Propuesta");
-        propuestas.add(consultarPropuesta);
         JMenuItem consultaPropEstado = new JMenuItem("Consulta de Propuestas por Estado");
-        propuestas.add(consultaPropEstado);
         JMenuItem modificarPropuesta = new JMenuItem("Modificar Propuesta");
-        propuestas.add(modificarPropuesta);
         JMenuItem altaCategoria = new JMenuItem("Alta de Categoria");
-        propuestas.add(altaCategoria);
         JMenuItem registrarColaboracion = new JMenuItem("Registrar Colaboracion a Propuesta");
-        propuestas.add(registrarColaboracion);
         JMenuItem consultarColaboracion = new JMenuItem("Consultar Colaboracion a Propuesta");
-        propuestas.add(consultarColaboracion);
         JMenuItem cancelarColaboracion = new JMenuItem("Cancelar Colaboracion a Propuesta");
+
+        //Agrego los items al menu Creoado previamente
+        propuestas.add(altaPropuesta);
+        propuestas.add(consultarPropuesta);
+        propuestas.add(consultaPropEstado);
+        propuestas.add(modificarPropuesta);
+        propuestas.add(altaCategoria);
+        propuestas.add(registrarColaboracion);
+        propuestas.add(consultarColaboracion);
         propuestas.add(cancelarColaboracion);
 
+        // Acciones (listeners) de Propuestas
 
+        // Agregar menús a la barra "menu"
         menu.add(usuarios);
         menu.add(propuestas);
         setJMenuBar(menu);
+        return menu;
+    }
 
+    desktop = new JDesktopPane();
 
         altaUsuario.addActionListener(e -> {
             AltaUsuarioInternalFrame frame = new AltaUsuarioInternalFrame(ICU);

@@ -28,11 +28,14 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
 
     private IUsuarioController UsuarioContr;
 
+    //CONSTRUCTOR
     public AltaUsuarioInternalFrame(IUsuarioController icu) {
         super("Alta de Usuario", true, true, true, true);
+        //Intefaz de SWING
         setSize(1200, 500);
         setLayout(new BorderLayout());
 
+        //Obtengo el controlador
         UsuarioContr = icu;
 
         JPanel panel = new JPanel(new GridLayout(5, 2, 5, 5));
