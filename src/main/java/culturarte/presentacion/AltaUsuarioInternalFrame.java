@@ -35,11 +35,13 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
         setSize(1200, 500);
         setLayout(new BorderLayout());
 
-        //Obtengo el controlador
+        //Paso el controlador que me llega por parametro que me lo genera una fabrica a la funcion para usarla dentro
         UsuarioContr = icu;
 
+        //MAS SWING
+        //Genero paneles
         JPanel panel = new JPanel(new GridLayout(5, 2, 5, 5));
-
+        //Aniado info al panel
         panel.add(new JLabel("Nickname:"));
         tfNickname = new JTextField();
         panel.add(tfNickname);

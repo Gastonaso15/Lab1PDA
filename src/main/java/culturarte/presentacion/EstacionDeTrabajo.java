@@ -39,10 +39,19 @@ public class EstacionDeTrabajo extends JFrame {
     // 3) CONSTRUCTOR (arma la ventana y delega responsabilidades)
     // --------------------------------------------------------------------
     public EstacionDeTrabajo() {
+        this.desktop = new JDesktopPane();
         setupFrame(); // --- Configuración base de la ventana (Swing) ---
         initControllers(); // --- Obtener controladores desde la Fábrica ---
         setJMenuBar(buildMenuBar());// --- Barra de menú (Usuarios / Propuestas) ---
         add(desktop, BorderLayout.CENTER);// Agregamos el escritorio al centro del frame
+        desktop.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
+        /*
+        Eso cambia cómo se arrastran los JInternalFrame dentro del JDesktopPane:
+
+        OUTLINE_DRAG_MODE: mientras arrastrás, se dibuja solo el contorno de la ventana interna. Es súper fluido y no repinta to do el contenido (mejor rendimiento).
+
+        LIVE_DRAG_MODE (valor por defecto): arrastra la ventana completa repintando su contenido en cada pixel que movés. Se ve “más real”, pero consume más.
+         */
     }
 
     // --------------------------------------------------------------------
@@ -63,9 +72,10 @@ public class EstacionDeTrabajo extends JFrame {
 
     private JMenuBar buildMenuBar() {      // Construye la barra de menú y registra las acciones (listeners) -> retorna un JMenuBar
         JMenuBar menu = new JMenuBar(); //Creo la barra de "menu"
-        //-------------------------------------------
+
+
         // ---------------- USUARIOS ----------------
-        //-------------------------------------------
+
         //Creo menu "Usuarios"
         JMenu usuarios = new JMenu("Usuarios");
 
@@ -86,9 +96,15 @@ public class EstacionDeTrabajo extends JFrame {
 
         // Acciones (listeners)
         altaUsuario.addActionListener(e -> abrirAltaUsuario());
-        //-------------------------------------------
+        consultaProponente.addActionListener(e -> abrirConsultaProponente());
+        consultaColaborador.addActionListener(e -> abrirConsultaColaborador());
+        seguirUsuario.addActionListener(e -> abrirSeguirUsuario());
+        dejarSeguirUsuario.addActionListener(e -> abrirDejarSeguirUsuario());
+
+
+
         // ---------------- PROPUESTAS --------------
-        //-------------------------------------------
+
         //Creo el segundo menu "Propuestas"
         JMenu propuestas = new JMenu("Propuestas");
 
@@ -112,97 +128,84 @@ public class EstacionDeTrabajo extends JFrame {
         propuestas.add(consultarColaboracion);
         propuestas.add(cancelarColaboracion);
 
-        // Acciones (listeners) de Propuestas
+        // Acciones (listeners)
+        altaPropuesta.addActionListener(e -> abrirAltaPropuesta());
+        consultarPropuesta.addActionListener(e -> abrirConsultarPropuesta());
+        modificarPropuesta.addActionListener(e -> abrirModificarPropuesta());
 
         // Agregar menús a la barra "menu"
         menu.add(usuarios);
         menu.add(propuestas);
         setJMenuBar(menu);
+
+        //Retorno el JMenu ya configurado
         return menu;
     }
 
-    desktop = new JDesktopPane();
 
-        altaUsuario.addActionListener(e -> {
-            AltaUsuarioInternalFrame frame = new AltaUsuarioInternalFrame(ICU);
-            desktop.add(frame);
-            frame.setVisible(true);
-        });
-
-        consultaProponente.addActionListener(e -> {
-            ConsultaPerfilProponenteInternalFrame frame = new ConsultaPerfilProponenteInternalFrame(ICU);
-            desktop.add(frame);
-            frame.setVisible(true);
-        });
-
-        consultaColaborador.addActionListener(e -> {
-            ConsultaPerfilColaboradorInternalFrame frame = new ConsultaPerfilColaboradorInternalFrame(ICU);
-            desktop.add(frame);
-            frame.setVisible(true);
-        });
-
-        seguirUsuario.addActionListener(e -> {
-            SeguirUsuarioInternalFrame frame = new SeguirUsuarioInternalFrame(ICU);
-            desktop.add(frame);
-            frame.setVisible(true);
-        });
-
-        dejarSeguirUsuario.addActionListener(e -> {
-            DejarSeguirUsuarioInternalFrame frame = new DejarSeguirUsuarioInternalFrame(ICU);
-            desktop.add(frame);
-            frame.setVisible(true);
-        });
-
-        altaPropuesta.addActionListener(e -> {
-            AltaPropuestaInternalFrame frame = new AltaPropuestaInternalFrame(ICP,ICU);
-            desktop.add(frame);
-            frame.setVisible(true);
-        });
-
-        consultarPropuesta.addActionListener(e -> {
-            ConsultarPropuestaInternalFrame frame = new ConsultarPropuestaInternalFrame(ICP);
-            desktop.add(frame);
-            frame.setVisible(true);
-        });
-
-        consultaPropEstado.addActionListener(e -> {
-            ConsultaPropuestasPorEstadoInternalFrame frame = new ConsultaPropuestasPorEstadoInternalFrame(ICP);
-            desktop.add(frame);
-            frame.setVisible(true);
-        });
-
-        modificarPropuesta.addActionListener(e -> {
-            ModificarDatosPropuestaInternalFrame frame = new ModificarDatosPropuestaInternalFrame(ICP);
-            desktop.add(frame);
-            frame.setVisible(true);
-        });
-
-        altaCategoria.addActionListener(e -> {
-            AltaCategoriaInternalFrame frame = new AltaCategoriaInternalFrame(ICP);
-            desktop.add(frame);
-            frame.setVisible(true);
-        });
-
-        registrarColaboracion.addActionListener(e -> {
-            RegistrarColaboracionInternalFrame frame = new RegistrarColaboracionInternalFrame(ICP,ICU);
-            desktop.add(frame);
-            frame.setVisible(true);
-        });
-
-        consultarColaboracion.addActionListener(e -> {
-            ConsultaColaboracionInternalFrame frame = new ConsultaColaboracionInternalFrame(ICP,ICU);
-            desktop.add(frame);
-            frame.setVisible(true);
-        });
-
-        cancelarColaboracion.addActionListener(e -> {
-            CancelarColaboracionInternalFrame frame = new CancelarColaboracionInternalFrame(ICP,ICU);
-            desktop.add(frame);
-            frame.setVisible(true);
-        });
+    //¿NO HAY PROBLEMA CON DEFINIR ESTO DESPUES DEL private JMenuBar buildMenuBar() { que los llama?
 
 
+    // Metodo común para agregar y mostrar un InternalFrame en el desktop
+    private void abrir(JInternalFrame frame) {
+        desktop.add(frame);
+        frame.setVisible(true);
+        //Prevencion para que no explote
+        try {
+            frame.setSelected(true); // foco al abrir
+        } catch (java.beans.PropertyVetoException ignored) {}
+    }
+    // 5) Helpers — abrir cada InternalFrame
+    private void abrirAltaUsuario() {
+        AltaUsuarioInternalFrame frame = new AltaUsuarioInternalFrame(ICU);
+        abrir(frame);
+    }
+
+
+    private void abrirConsultaProponente() {
+        ConsultaPerfilProponenteInternalFrame frame = new ConsultaPerfilProponenteInternalFrame(ICU);
+        abrir(frame);
+    }
+
+
+    private void abrirConsultaColaborador() {
+        ConsultaPerfilColaboradorInternalFrame frame = new ConsultaPerfilColaboradorInternalFrame(ICU);
+        abrir(frame);
+    }
+
+
+    private void abrirSeguirUsuario() {
+        SeguirUsuarioInternalFrame frame = new SeguirUsuarioInternalFrame(ICU);
+        abrir(frame);
+    }
+
+
+    private void abrirDejarSeguirUsuario() {
+        DejarSeguirUsuarioInternalFrame frame = new DejarSeguirUsuarioInternalFrame(ICU);
+        abrir(frame);
+    }
+
+
+    private void abrirAltaPropuesta() {
+        AltaPropuestaInternalFrame frame = new AltaPropuestaInternalFrame(ICP, ICU);
+        abrir(frame);
+    }
+
+
+    private void abrirConsultarPropuesta() {
+        ConsultarPropuestaInternalFrame frame = new ConsultarPropuestaInternalFrame(ICP);
+        abrir(frame);
+    }
+
+
+    private void abrirModificarPropuesta() {
+        ModificarDatosPropuestaInternalFrame frame = new ModificarDatosPropuestaInternalFrame(ICP);
+        abrir(frame);
+    }
 
 
 
 }
+
+
+
