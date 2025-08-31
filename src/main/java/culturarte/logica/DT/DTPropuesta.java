@@ -1,8 +1,5 @@
 package culturarte.logica.DT;
 
-import culturarte.logica.modelo.Proponente;
-import culturarte.logica.modelo.PropuestaEstado;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +21,7 @@ public class DTPropuesta {
     private List<DTColaboracion> colaboraciones = new ArrayList<>();
     private List<DTTipoRetorno> tiposRetorno = new ArrayList<>();
 
-
+    // Constructores
     public DTPropuesta() {
         this.setTitulo(new String());
         this.setDescripcion(new String());

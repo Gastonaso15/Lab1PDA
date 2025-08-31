@@ -9,6 +9,7 @@ public class DTCategoria {
     private List<DTCategoria> subCategorias = new ArrayList<>();
     private DTCategoria categoriaPadre;
 
+    // Constructores
     public DTCategoria() {
         this.setNombre(new String());
         this.setCategoriaPadre(null);

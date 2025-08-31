@@ -20,7 +20,7 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
     private JTextField tfTitulo;
     private JTextField tfDescripcion;
     private JTextField tfLugar;
-    private JTextField tfFechaPrevista; // formato yyyy-MM-dd
+    private JTextField tfFechaPrevista;
     private JTextField tfPrecioEntrada;
     private JTextField tfMontoNecesario;
     private JTextField tfImagenPath;

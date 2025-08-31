@@ -65,11 +65,11 @@ public class UsuarioManejador{
             query.setParameter("nick", nickname);
             colab = query.getSingleResult();
 
-            // Forzar la carga de las colaboraciones y sus propuestas
             for (Colaboracion col : colab.getColaboraciones()) {
-                col.getPropuesta().getTitulo(); // Forzar carga
-                col.getPropuesta().getProponente().getNickname();// Forzar carga del proponente
+                col.getPropuesta().getTitulo();
+                col.getPropuesta().getProponente().getNickname();
                 col.getPropuesta().getTiposRetorno().size();
+                col.getPropuesta().getColaboraciones().size();
             }
 
         } catch (NoResultException e) {

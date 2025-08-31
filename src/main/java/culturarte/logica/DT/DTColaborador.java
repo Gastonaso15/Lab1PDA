@@ -6,6 +6,10 @@ import java.util.List;
 public class DTColaborador extends DTUsuario{
     private List<DTColaboracion> colaboraciones;
 
+    // Constructores
+    public DTColaborador(String nickname) {
+        super(nickname);
+    }
     public DTColaborador() {
         super();
     }
@@ -19,13 +23,10 @@ public class DTColaborador extends DTUsuario{
         this.colaboraciones = colaboraciones;
     }
 
-    public DTColaborador(String nickname) {
-        super(nickname);
-    }
+    // Getters y Setters
     public List<DTColaboracion> getColaboraciones() {
         return colaboraciones;
     }
-
     public void setColaboraciones(List<DTColaboracion> colaboraciones) {
         this.colaboraciones = colaboraciones;
     }

@@ -13,6 +13,7 @@ public class DTUsuario {
     private byte[] imagen;
     private LocalDate fechaNacimiento;
 
+    // Constructores
     public DTUsuario() {
         this.setNickname(new String());
         this.setNombre(new String());

@@ -3,7 +3,6 @@ package culturarte.logica.modelo;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 public class PropuestaEstado {

@@ -136,6 +136,49 @@ public class PropuestaManejador {
             List<Propuesta> propuestas = query.getResultList();
 
             for (Propuesta p : propuestas) {
+                DTCategoria dtCategoria = null;
+                if (p.getCategoria() != null) {
+                    dtCategoria = new DTCategoria(p.getCategoria().getNombre());
+                }
+
+                DTEstadoPropuesta dtEstadoPropuesta = DTEstadoPropuesta.valueOf(p.getEstadoActual().name());
+
+                List<DTPropuestaEstado> historial = new ArrayList<>();
+                if (p.getHistorial() != null) {
+                    for (PropuestaEstado pe : p.getHistorial()) {
+                        historial.add(new DTPropuestaEstado(
+                                DTEstadoPropuesta.valueOf(pe.getEstado().name()),
+                                pe.getFechaCambio()
+                        ));
+                    }
+                }
+
+                List<DTColaboracion> colaboraciones = new ArrayList<>();
+                if (p.getColaboraciones() != null) {
+                    for (Colaboracion c : p.getColaboraciones()) {
+                        DTColaborador dtColab = new DTColaborador(
+                                c.getColaborador().getNickname()
+                        );
+
+                        colaboraciones.add(new DTColaboracion(
+                                dtColab,
+                                c.getMonto()
+                        ));
+                    }
+                }
+
+                List<DTTipoRetorno> tiposRetorno = new ArrayList<>();
+                if (p.getTiposRetorno() != null) {
+                    for (TipoRetorno t : p.getTiposRetorno()) {
+                        tiposRetorno.add(DTTipoRetorno.valueOf(t.name()));
+                    }
+                }
+
+                DTProponente dtProp = new DTProponente();
+                dtProp.setNombre(p.getProponente().getNombre());
+                dtProp.setApellido(p.getProponente().getApellido());
+                dtProp.setNickname(p.getProponente().getNickname());
+
                 DTPropuesta dt = new DTPropuesta();
                 dt.setTitulo(p.getTitulo());
                 dt.setDescripcion(p.getDescripcion());
@@ -143,19 +186,18 @@ public class PropuestaManejador {
                 dt.setFechaPrevista(p.getFechaPrevista());
                 dt.setPrecioEntrada(p.getPrecioEntrada());
                 dt.setMontoNecesario(p.getMontoNecesario());
+                dt.setFechaPublicacion(p.getFechaPublicacion());
                 dt.setImagen(p.getImagen());
-                dt.setEstadoActual(DTEstadoPropuesta.valueOf(p.getEstadoActual().name()));
-
-                DTProponente dtProp = new DTProponente();
-                dtProp.setNombre(p.getProponente().getNombre());
-                dtProp.setApellido(p.getProponente().getApellido());
-                dtProp.setNickname(p.getProponente().getNickname());
+                dt.setCategoria(dtCategoria);
                 dt.setDTProponente(dtProp);
+                dt.setEstadoActual(dtEstadoPropuesta);
+                dt.setHistorial(historial);
+                dt.setColaboraciones(colaboraciones);
+                dt.setTiposRetorno(tiposRetorno);
 
                 dtPropuestas.add(dt);
             }
         } catch (Exception e) {
-            // Log error if needed
             e.printStackTrace();
         } finally {
             em.close();
@@ -167,13 +209,13 @@ public class PropuestaManejador {
         EntityTransaction t = em.getTransaction();
         try {
             t.begin();
-            em.merge(pro);  // sincroniza con la BD
+            em.merge(pro);
             t.commit();
         } catch (Exception e) {
             if (t.isActive()) {
                 t.rollback();
             }
-            e.printStackTrace(); // o lanzar excepción hacia arriba
+            e.printStackTrace();
         } finally {
             em.close();
         }

@@ -8,6 +8,7 @@ public class DTPropuestaEstado {
     private DTEstadoPropuesta estado;
     private LocalDate fechaCambio;
 
+    // Constructores
     public DTPropuestaEstado() {}
 
     public DTPropuestaEstado(DTPropuesta propuesta, DTEstadoPropuesta estado, LocalDate fechaCambio) {

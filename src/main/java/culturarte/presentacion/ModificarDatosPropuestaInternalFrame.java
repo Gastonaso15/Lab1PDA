@@ -112,13 +112,10 @@ public class ModificarDatosPropuestaInternalFrame extends JInternalFrame {
         botones.add(btnGuardar);
         add(botones, BorderLayout.SOUTH);
 
-        // Cargar propuestas en el combo
         cargarPropuestas();
 
-        // Listener para mostrar los datos de la propuesta seleccionada
         cbPropuestas.addActionListener(e -> cargarDatosPropuesta());
 
-        // Listener para guardar cambios
         btnGuardar.addActionListener(e -> guardarCambios());
     }
 
@@ -214,7 +211,7 @@ public class ModificarDatosPropuestaInternalFrame extends JInternalFrame {
             );
 
             JOptionPane.showMessageDialog(this, "Propuesta modificada correctamente.");
-            cargarPropuestas(); // refresca la lista
+            cargarPropuestas();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Error al modificar propuesta: " + ex.getMessage());
         }

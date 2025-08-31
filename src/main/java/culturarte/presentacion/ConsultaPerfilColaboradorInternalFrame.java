@@ -31,7 +31,6 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
 
         UsuarioContr = icu;
 
-        // Panel izquierdo - Lista de colaboradores
         JPanel panelIzquierdo = new JPanel(new BorderLayout());
         List<String> nicknames = icu.devolverNicknamesColaboradores();
         listColaboradores = new JList<>(nicknames.toArray(new String[0]));
@@ -39,13 +38,10 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
         panelIzquierdo.add(new JLabel("Colaboradores:"), BorderLayout.NORTH);
         panelIzquierdo.add(scrollColaboradores, BorderLayout.CENTER);
 
-        // Panel derecho - Información del colaborador
         JPanel panelDerecho = new JPanel(new BorderLayout());
 
-        // Panel de información personal
         JPanel panelInfo = new JPanel(new GridLayout(1, 3, 10, 0));
 
-        // Columna 1 - Información básica
         JPanel col1 = new JPanel();
         col1.setLayout(new BoxLayout(col1, BoxLayout.Y_AXIS));
         lblNickname = new JLabel("Nickname: ");
@@ -57,13 +53,11 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
         col1.add(lblApellido);
         col1.add(lblFechaNacimiento);
 
-        // Columna 2 - Información adicional
         JPanel col2 = new JPanel();
         col2.setLayout(new BoxLayout(col2, BoxLayout.Y_AXIS));
         lblCorreo = new JLabel("Correo: ");
         col2.add(lblCorreo);
 
-        // Columna 3 - Imagen
         JPanel col3 = new JPanel();
         col3.setLayout(new BoxLayout(col3, BoxLayout.Y_AXIS));
         lblImagen = new JLabel();
@@ -71,7 +65,6 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
         lblImagen.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         col3.add(lblImagen);
 
-        // Configurar fuente para los labels
         Font fontInfo = new Font("Times New Roman", Font.PLAIN, 20);
         setFontToLabels(fontInfo, lblNickname, lblNombre, lblApellido, lblFechaNacimiento, lblCorreo);
 
@@ -79,7 +72,6 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
         panelInfo.add(col1);
         panelInfo.add(col2);
 
-        // Panel de propuestas colaboradas
         panelPropuestas = new JPanel();
         panelPropuestas.setLayout(new BoxLayout(panelPropuestas, BoxLayout.Y_AXIS));
         JScrollPane scrollPropuestas = new JScrollPane(panelPropuestas);
@@ -88,12 +80,10 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
         panelDerecho.add(panelInfo, BorderLayout.NORTH);
         panelDerecho.add(scrollPropuestas, BorderLayout.CENTER);
 
-        // Configurar split pane
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelIzquierdo, panelDerecho);
         splitPane.setDividerLocation(200);
         add(splitPane, BorderLayout.CENTER);
 
-        // Listener para selección de colaborador
         listColaboradores.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 String nickname = listColaboradores.getSelectedValue();
@@ -108,14 +98,12 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
         try {
             DTColaborador colaborador = UsuarioContr.obtenerColaboradorCompleto(nickname);
 
-            // Actualizar información personal
             lblNickname.setText("Nickname: " + colaborador.getNickname());
             lblNombre.setText("Nombre: " + colaborador.getNombre());
             lblApellido.setText("Apellido: " + colaborador.getApellido());
             lblCorreo.setText("Correo: " + colaborador.getCorreo());
             lblFechaNacimiento.setText("Fecha de Nacimiento: " + colaborador.getFechaNacimiento());
 
-            // Mostrar imagen si existe
             if (colaborador.getImagen() != null) {
                 ImageIcon icon = new ImageIcon(colaborador.getImagen());
                 Image img = icon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
@@ -124,7 +112,6 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
                 lblImagen.setIcon(null);
             }
 
-            // Limpiar y actualizar panel de propuestas
             panelPropuestas.removeAll();
 
             if (colaborador.getColaboraciones() != null && !colaborador.getColaboraciones().isEmpty()) {
@@ -132,7 +119,7 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
                     DTPropuesta propuesta = colaboracion.getPropuesta();
 
                     if (propuesta.getEstadoActual() == DTEstadoPropuesta.INGRESADA) {
-                        continue; // No mostrar propuestas ingresadas
+                        continue;
                     }
 
                     JPanel pPanel = new JPanel();
@@ -144,7 +131,6 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
                             TitledBorder.TOP
                     ));
 
-                    // Configurar color de fondo según el estado
                     switch(propuesta.getEstadoActual()) {
                         case PUBLICADA -> pPanel.setBackground(new Color(144, 238, 144));
                         case EN_FINANCIACION -> pPanel.setBackground(new Color(255, 255, 102));
@@ -153,7 +139,6 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
                         case NO_FINANCIADA -> pPanel.setBackground(new Color(211, 211, 211));
                     }
 
-                    // Calcular dinero total recaudado para esta propuesta
                     double dineroRecaudado = 0;
                     if (propuesta.getColaboraciones() != null) {
                         for (DTColaboracion c : propuesta.getColaboraciones()) {
@@ -161,7 +146,6 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
                         }
                     }
 
-                    // Información de la propuesta
                     pPanel.add(new JLabel("Título: " + propuesta.getTitulo()));
                     pPanel.add(new JLabel("Proponente: " + (propuesta.getDTProponente() != null ?
                             propuesta.getDTProponente().getNickname() : "N/A")));

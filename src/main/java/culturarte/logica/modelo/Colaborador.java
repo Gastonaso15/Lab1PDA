@@ -20,10 +20,10 @@ public class Colaborador extends Usuario {
         super(nickname, nombre, apellido, correo,imagen,fechaNacimiento);
     }
 
+    // Getters y Setters
     public List<Colaboracion> getColaboraciones() {
         return colaboraciones;
     }
-
     public void setColaboraciones(List<Colaboracion> colaboraciones) {
         this.colaboraciones = colaboraciones;
     }

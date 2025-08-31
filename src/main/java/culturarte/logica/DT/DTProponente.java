@@ -10,6 +10,7 @@ public class DTProponente extends DTUsuario {
     private String sitioWeb;
     private List<DTPropuesta> propuestas = new ArrayList<>();
 
+    // Constructores
     public DTProponente() {
         super();
         this.setDireccion(new String());

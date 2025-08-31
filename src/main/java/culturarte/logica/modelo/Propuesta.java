@@ -63,6 +63,16 @@ public class Propuesta {
             return titulo;
         }
 
+        public void modificarDatos(String descripcion, String lugar, LocalDate fechaPrevista,
+                               Double precioEntrada, Double montoNecesario, LocalDate fechaPublicacion) {
+        this.descripcion = descripcion;
+        this.lugar = lugar;
+        this.fechaPrevista = fechaPrevista;
+        this.precioEntrada = precioEntrada;
+        this.montoNecesario = montoNecesario;
+        this.fechaPublicacion = fechaPublicacion;
+        }
+
         // Getters y Setters
         public Long getId() { return id; }
         public void setId(Long id) { this.id = id; }
@@ -108,16 +118,5 @@ public class Propuesta {
 
         public List<TipoRetorno> getTiposRetorno() { return tiposRetorno; }
         public void setTiposRetorno(List<TipoRetorno> tiposRetorno) { this.tiposRetorno = tiposRetorno; }
-
-    public void modificarDatos(String descripcion, String lugar, LocalDate fechaPrevista,
-                               Double precioEntrada, Double montoNecesario, LocalDate fechaPublicacion) {
-        this.descripcion = descripcion;
-        this.lugar = lugar;
-        this.fechaPrevista = fechaPrevista;
-        this.precioEntrada = precioEntrada;
-        this.montoNecesario = montoNecesario;
-        this.fechaPublicacion = fechaPublicacion;
-    }
-
 
 }

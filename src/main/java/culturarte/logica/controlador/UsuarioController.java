@@ -194,7 +194,6 @@ public class UsuarioController implements IUsuarioController {
         List<DTColaboracion> dtColaboraciones = new ArrayList<>();
         for (Colaboracion c : colab.getColaboraciones()) {
 
-            // Crear DTPropuesta con información básica
             Propuesta prop = c.getPropuesta();
             DTCategoria dtCategoria = null;
             if (prop.getCategoria() != null) {
@@ -225,7 +224,6 @@ public class UsuarioController implements IUsuarioController {
                 dtEstadoActual = DTEstadoPropuesta.valueOf(prop.getEstadoActual().name());
             }
 
-            // Crear DTProponente básico
             DTProponente dtProponente = new DTProponente(
                     prop.getProponente().getNickname(),
                     prop.getProponente().getNombre(),
@@ -236,8 +234,24 @@ public class UsuarioController implements IUsuarioController {
                     prop.getProponente().getDireccion(),
                     prop.getProponente().getBio(),
                     prop.getProponente().getSitioWeb(),
-                    new ArrayList<>() // Lista vacía de propuestas para evitar recursión
+                    new ArrayList<>()
             );
+
+            List<DTColaboracion> dtColabsPropuesta = new ArrayList<>();
+            for (Colaboracion colabProp : prop.getColaboraciones()) {
+                DTTipoRetorno tipo = colabProp.getTipoRetorno() != null
+                        ? DTTipoRetorno.valueOf(colabProp.getTipoRetorno().name())
+                        : null;
+
+                DTColaboracion dtColabProp = new DTColaboracion(
+                        null,
+                        new DTColaborador(colabProp.getColaborador().getNickname()),
+                        colabProp.getMonto(),
+                        tipo,
+                        colabProp.getFechaHora()
+                );
+                dtColabsPropuesta.add(dtColabProp);
+            }
 
             DTPropuesta dtPropuesta = new DTPropuesta(
                     prop.getTitulo(),
@@ -250,7 +264,7 @@ public class UsuarioController implements IUsuarioController {
                     dtCategoria,
                     dtTiposRetorno,
                     dtEstadoActual,
-                    new ArrayList<>() // Lista vacía para evitar recursión
+                    dtColabsPropuesta
             );
             dtPropuesta.setDTProponente(dtProponente);
 
@@ -261,7 +275,7 @@ public class UsuarioController implements IUsuarioController {
 
             DTColaboracion dtColaboracion = new DTColaboracion(
                     dtPropuesta,
-                    new DTColaborador(nickname), // Solo nickname para evitar recursión
+                    new DTColaborador(nickname),
                     c.getMonto(),
                     dtTipoRetorno,
                     c.getFechaHora()

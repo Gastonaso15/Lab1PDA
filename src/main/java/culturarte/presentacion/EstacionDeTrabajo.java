@@ -219,12 +219,12 @@ public class EstacionDeTrabajo extends JFrame {
     }
 
     private void abrirRegistrarColaboracion() {
-        RegistrarColaboracionInternalFrame frame = new RegistrarColaboracionInternalFrame(ICP,ICU);
+        RegistrarColaboracionInternalFrame frame = new RegistrarColaboracionInternalFrame(ICP);
         abrir(frame);
     }
 
     private void abrirConsultarColaboracion() {
-        ConsultaColaboracionInternalFrame frame = new ConsultaColaboracionInternalFrame(ICP,ICU);
+        ConsultaColaboracionInternalFrame frame = new ConsultaColaboracionInternalFrame(ICU);
         abrir(frame);
     }
 

@@ -3,7 +3,6 @@ package culturarte.presentacion;
 import culturarte.logica.DT.DTPropuesta;
 import culturarte.logica.DT.DTTipoRetorno;
 import culturarte.logica.controlador.IPropuestaController;
-import culturarte.logica.controlador.IUsuarioController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +11,6 @@ import java.util.List;
 public class RegistrarColaboracionInternalFrame extends JInternalFrame {
 
     private IPropuestaController PropuestaContr;
-    private IUsuarioController UsuarioContr;
 
     private JList<DTPropuesta> jListPropuestas;
     private JTextField txtColaborador;
@@ -26,16 +24,16 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
     private JLabel lblMontoNecesario;
     private JLabel lblProponente;
     private JLabel lblEstado;
+    private JLabel lblMontoTotal;
+    private JLabel lblCategoria;
 
-    public RegistrarColaboracionInternalFrame(IPropuestaController icp, IUsuarioController icu) {
+    public RegistrarColaboracionInternalFrame(IPropuestaController icp) {
         super("Registrar Colaboración a Propuesta", true, true, true, true);
         setSize(1200, 500);
         setLayout(new BorderLayout());
 
         PropuestaContr = icp;
-        UsuarioContr = icu;
 
-        // Panel izquierdo - Lista de propuestas
         JPanel panelIzquierdo = new JPanel(new BorderLayout());
         List<DTPropuesta> propuestas = PropuestaContr.devolverTodasLasPropuestas();
         jListPropuestas = new JList<>(propuestas.toArray(new DTPropuesta[0]));
@@ -43,10 +41,8 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
         panelIzquierdo.add(new JLabel("Propuestas:"), BorderLayout.NORTH);
         panelIzquierdo.add(scrollPropuestas, BorderLayout.CENTER);
 
-        // Panel derecho
         JPanel panelDerecho = new JPanel(new BorderLayout());
 
-        // Panel de información de la propuesta
         JPanel panelInfo = new JPanel(new GridLayout(1, 2, 10, 0));
 
         JPanel col1 = new JPanel();
@@ -55,30 +51,33 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
         lblDescripcion = new JLabel("Descripción: ");
         lblLugar = new JLabel("Lugar: ");
         lblFechaPrevista = new JLabel("Fecha Prevista: ");
+        lblCategoria = new JLabel("Categoria: ");
         col1.add(lblTitulo);
         col1.add(lblDescripcion);
         col1.add(lblLugar);
         col1.add(lblFechaPrevista);
+        col1.add(lblCategoria);
 
         JPanel col2 = new JPanel();
         col2.setLayout(new BoxLayout(col2, BoxLayout.Y_AXIS));
         lblPrecioEntrada = new JLabel("Precio Entrada: ");
         lblMontoNecesario = new JLabel("Monto Necesario: ");
+        lblMontoTotal = new JLabel("Monto Recaudado: ");
         lblProponente = new JLabel("Proponente: ");
         lblEstado = new JLabel("Estado: ");
         col2.add(lblPrecioEntrada);
         col2.add(lblMontoNecesario);
+        col2.add(lblMontoTotal);
         col2.add(lblProponente);
         col2.add(lblEstado);
 
         Font fontInfo = new Font("Times New Roman", Font.PLAIN, 16);
         setFontToLabels(fontInfo, lblTitulo, lblDescripcion, lblLugar, lblFechaPrevista,
-                lblPrecioEntrada, lblMontoNecesario, lblProponente, lblEstado);
+                lblPrecioEntrada, lblMontoNecesario, lblProponente, lblEstado,lblCategoria,lblMontoTotal);
 
         panelInfo.add(col1);
         panelInfo.add(col2);
 
-        // Panel de formulario
         JPanel panelFormulario = new JPanel(new GridLayout(4, 2, 5, 5));
 
         panelFormulario.add(new JLabel("Colaborador (nickname):"));
@@ -90,13 +89,12 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
         panelFormulario.add(txtMonto);
 
         panelFormulario.add(new JLabel("Tipo Retorno:"));
-        comboRetorno = new JComboBox<>(DTTipoRetorno.values());
+        comboRetorno = new JComboBox<>();
         panelFormulario.add(comboRetorno);
 
         panelDerecho.add(panelInfo, BorderLayout.NORTH);
         panelDerecho.add(panelFormulario, BorderLayout.CENTER);
 
-        // Panel de botones
         JPanel panelBotones = new JPanel();
         JButton btnRegistrar = new JButton("Registrar");
         JButton btnCancelar = new JButton("Cancelar");
@@ -108,7 +106,6 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
         splitPane.setDividerLocation(300);
         add(splitPane, BorderLayout.CENTER);
 
-        // Configurar renderer para la lista
         jListPropuestas.setCellRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
@@ -122,7 +119,6 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
             }
         });
 
-        // Listener para selección de propuesta
         jListPropuestas.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 DTPropuesta propuesta = jListPropuestas.getSelectedValue();
@@ -132,7 +128,6 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
             }
         });
 
-        // Listener para botón registrar
         btnRegistrar.addActionListener(e -> {
             try {
                 DTPropuesta propuestaSeleccionada = jListPropuestas.getSelectedValue();
@@ -144,6 +139,12 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
                 String nickname = txtColaborador.getText().trim();
                 if (nickname.isEmpty()) {
                     JOptionPane.showMessageDialog(this, "Debe ingresar el nickname del colaborador.");
+                    return;
+                }
+
+                if (propuestaSeleccionada.getColaboraciones().stream().anyMatch(c -> c.getColaborador() != null && nickname.equalsIgnoreCase(c.getColaborador().getNickname()))) {
+                    JOptionPane.showMessageDialog(this,
+                            "El colaborador '" + nickname + "' ya ha colaborado con esta propuesta.");
                     return;
                 }
 
@@ -176,7 +177,6 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
 
                 JOptionPane.showMessageDialog(this, "Colaboración registrada con éxito");
 
-                // Limpiar formulario
                 txtColaborador.setText("");
                 txtMonto.setText("");
                 comboRetorno.setSelectedIndex(0);
@@ -188,7 +188,6 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
             }
         });
 
-        // Listener para botón cancelar
         btnCancelar.addActionListener(e -> dispose());
     }
 
@@ -202,6 +201,8 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
         lblFechaPrevista.setText("Fecha Prevista: " + propuesta.getFechaPrevista());
         lblPrecioEntrada.setText("Precio Entrada: $" + propuesta.getPrecioEntrada());
         lblMontoNecesario.setText("Monto Necesario: $" + propuesta.getMontoNecesario());
+        lblMontoTotal.setText("Monto Recaudado: $" + propuesta.getColaboraciones().stream().mapToDouble(c -> c.getMonto() != null ? c.getMonto() : 0).sum());
+        lblCategoria.setText("Categoria: " + propuesta.getCategoria().getNombre());
 
         String proponenteInfo = (propuesta.getDTProponente() != null) ?
                 propuesta.getDTProponente().getNickname() : "N/A";
@@ -210,6 +211,13 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
         String estadoInfo = (propuesta.getEstadoActual() != null) ?
                 propuesta.getEstadoActual().toString() : "N/A";
         lblEstado.setText("Estado: " + estadoInfo);
+
+        comboRetorno.removeAllItems();
+        if (propuesta.getTiposRetorno() != null) {
+            for (DTTipoRetorno tipo : propuesta.getTiposRetorno()) {
+                comboRetorno.addItem(tipo);
+            }
+        }
     }
 
     private void limpiarDetalles() {
@@ -221,6 +229,9 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
         lblMontoNecesario.setText("Monto Necesario: ");
         lblProponente.setText("Proponente: ");
         lblEstado.setText("Estado: ");
+        lblCategoria.setText("Categoria: ");
+        lblMontoTotal.setText("Monto Recaudado: ");
+        comboRetorno.removeAllItems();
     }
 
     private void setFontToLabels(Font font, JLabel... labels) {

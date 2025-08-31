@@ -84,7 +84,6 @@ public class PropuestaController implements IPropuestaController {
             }
         }
 
-        // actualizar campos (excepto titulo)
         p.setDescripcion(descripcion);
         p.setLugar(lugar);
         p.setFechaPrevista(fechaPrevista);
@@ -94,7 +93,6 @@ public class PropuestaController implements IPropuestaController {
         p.setImagen(imagen);
         p.setTiposRetorno(tipos);
 
-        // persistir cambios
         mp.actualizarPropuesta(p);
     }
 

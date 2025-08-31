@@ -1,9 +1,5 @@
 package culturarte.logica.DT;
 
-import culturarte.logica.modelo.Colaborador;
-import culturarte.logica.modelo.Propuesta;
-import culturarte.logica.modelo.TipoRetorno;
-
 import java.time.LocalDateTime;
 
 public class DTColaboracion{
@@ -11,9 +7,10 @@ public class DTColaboracion{
     private DTPropuesta propuesta;
     private DTColaborador colaborador;
     private Double monto;
-    private DTTipoRetorno tipoRetorno; // ENTRADAS | PORCENTAJE
+    private DTTipoRetorno tipoRetorno;
     private LocalDateTime fechaHora;
 
+    // Constructores
     public DTColaboracion(){}
     public DTColaboracion(DTPropuesta propuesta, DTColaborador colaborador, Double monto, DTTipoRetorno tipoRetorno, LocalDateTime fechaHora) {
         this.propuesta = propuesta;

@@ -2,13 +2,10 @@ package culturarte.presentacion;
 
 import culturarte.logica.DT.DTColaboracion;
 import culturarte.logica.DT.DTColaborador;
-import culturarte.logica.DT.DTEstadoPropuesta;
 import culturarte.logica.DT.DTPropuesta;
-import culturarte.logica.controlador.IPropuestaController;
 import culturarte.logica.controlador.IUsuarioController;
 
 import javax.swing.*;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,15 +14,12 @@ import java.util.List;
 
 public class ConsultaColaboracionInternalFrame extends JInternalFrame {
 
-    private IPropuestaController PropuestaContr;
     private IUsuarioController UsuarioContr;
 
-    // Componentes UI
     private JComboBox<String> comboColaboradores;
     private JList<String> listColaboraciones;
     private DefaultListModel<String> modelColaboraciones;
 
-    // Panel de detalles de la colaboración seleccionada
     private JLabel lblPropuestaTitulo;
     private JLabel lblProponenteNick;
     private JLabel lblColaboradorNick;
@@ -36,15 +30,13 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
     private JLabel lblMontoNecesario;
     private JLabel lblTotalRecaudado;
 
-    // Datos actuales
     private DTColaborador colaboradorActual;
 
-    public ConsultaColaboracionInternalFrame(IPropuestaController icp, IUsuarioController icu) {
+    public ConsultaColaboracionInternalFrame(IUsuarioController icu) {
         super("Consultar Colaboración a Propuesta", true, true, true, true);
         setSize(1200, 600);
         setLayout(new BorderLayout());
 
-        PropuestaContr = icp;
         UsuarioContr = icu;
 
         inicializarComponentes();
@@ -54,16 +46,13 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
     }
 
     private void inicializarComponentes() {
-        // ComboBox para seleccionar colaborador
         comboColaboradores = new JComboBox<>();
         comboColaboradores.setPreferredSize(new Dimension(200, 30));
 
-        // Lista para mostrar colaboraciones
         modelColaboraciones = new DefaultListModel<>();
         listColaboraciones = new JList<>(modelColaboraciones);
         listColaboraciones.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        // Labels para mostrar detalles de la colaboración
         lblPropuestaTitulo = new JLabel("Título: ");
         lblProponenteNick = new JLabel("Proponente: ");
         lblColaboradorNick = new JLabel("Colaborador: ");
@@ -74,7 +63,6 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
         lblMontoNecesario = new JLabel("Monto Necesario: ");
         lblTotalRecaudado = new JLabel("Total Recaudado: ");
 
-        // Configurar fuente para los labels
         Font fontInfo = new Font("Times New Roman", Font.PLAIN, 14);
         setFontToLabels(fontInfo, lblPropuestaTitulo, lblProponenteNick, lblColaboradorNick,
                 lblMonto, lblTipoRetorno, lblFechaHora, lblEstadoPropuesta,
@@ -82,13 +70,11 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
     }
 
     private void configurarLayout() {
-        // Panel superior - Selección de colaborador
         JPanel panelSuperior = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panelSuperior.setBorder(BorderFactory.createTitledBorder("Seleccionar Colaborador"));
         panelSuperior.add(new JLabel("Colaborador: "));
         panelSuperior.add(comboColaboradores);
 
-        // Panel izquierdo - Lista de colaboraciones
         JPanel panelIzquierdo = new JPanel(new BorderLayout());
         panelIzquierdo.setBorder(BorderFactory.createTitledBorder("Colaboraciones Realizadas"));
         panelIzquierdo.setPreferredSize(new Dimension(400, 400));
@@ -96,7 +82,6 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
         JScrollPane scrollColaboraciones = new JScrollPane(listColaboraciones);
         panelIzquierdo.add(scrollColaboraciones, BorderLayout.CENTER);
 
-        // Panel derecho - Detalles de la colaboración
         JPanel panelDerecho = new JPanel(new BorderLayout());
         panelDerecho.setBorder(BorderFactory.createTitledBorder("Detalles de la Colaboración"));
 
@@ -115,18 +100,15 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
 
         panelDerecho.add(panelDetalles, BorderLayout.NORTH);
 
-        // Panel central - Dividir izquierdo y derecho
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelIzquierdo, panelDerecho);
         splitPane.setDividerLocation(400);
         splitPane.setResizeWeight(0.4);
 
-        // Agregar al frame principal
         add(panelSuperior, BorderLayout.NORTH);
         add(splitPane, BorderLayout.CENTER);
     }
 
     private void configurarEventos() {
-        // Evento para cambio de colaborador
         comboColaboradores.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -137,7 +119,6 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
             }
         });
 
-        // Evento para selección de colaboración en la lista
         listColaboraciones.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 int index = listColaboraciones.getSelectedIndex();
@@ -151,7 +132,7 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
     private void cargarColaboradores() {
         try {
             comboColaboradores.removeAllItems();
-            comboColaboradores.addItem(""); // Opción vacía
+            comboColaboradores.addItem("");
 
             List<String> nicknames = UsuarioContr.devolverNicknamesColaboradores();
             for (String nickname : nicknames) {
@@ -167,11 +148,9 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
 
     private void cargarColaboracionesDelColaborador(String nickname) {
         try {
-            // Limpiar lista anterior
             modelColaboraciones.clear();
             limpiarDetalles();
 
-            // Obtener información completa del colaborador
             colaboradorActual = UsuarioContr.obtenerColaboradorCompleto(nickname);
 
             if (colaboradorActual.getColaboraciones() != null && !colaboradorActual.getColaboraciones().isEmpty()) {
@@ -184,7 +163,6 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
                     index++;
                 }
 
-                // Mostrar información del colaborador en el panel de detalles
                 lblColaboradorNick.setText("Colaborador: " + colaboradorActual.getNickname() +
                         " (" + colaboradorActual.getNombre() + " " + colaboradorActual.getApellido() + ")");
 
@@ -212,7 +190,6 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
             DTColaboracion colaboracion = colaboradorActual.getColaboraciones().get(index);
             DTPropuesta propuesta = colaboracion.getPropuesta();
 
-            // Mostrar detalles de la colaboración
             lblPropuestaTitulo.setText("Título: " + propuesta.getTitulo());
             lblProponenteNick.setText("Proponente: " +
                     (propuesta.getDTProponente() != null ? propuesta.getDTProponente().getNickname() : "N/A"));
@@ -221,7 +198,6 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
             lblTipoRetorno.setText("Tipo de Retorno: " +
                     (colaboracion.getTipoRetorno() != null ? colaboracion.getTipoRetorno().toString() : "N/A"));
 
-            // Formatear fecha y hora
             if (colaboracion.getFechaHora() != null) {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
                 lblFechaHora.setText("Fecha y Hora: " + colaboracion.getFechaHora().format(formatter));
@@ -232,7 +208,6 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
             lblEstadoPropuesta.setText("Estado Propuesta: " + propuesta.getEstadoActual());
             lblMontoNecesario.setText("Monto Necesario: $" + String.format("%.2f", propuesta.getMontoNecesario()));
 
-            // Calcular total recaudado para esta propuesta
             double totalRecaudado = 0;
             if (propuesta.getColaboraciones() != null) {
                 for (DTColaboracion c : propuesta.getColaboraciones()) {
