@@ -10,19 +10,20 @@ services:
       MYSQL_PASSWORD: culturarte123
       MYSQL_ROOT_PASSWORD: rootpassword
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - db_data:/var/lib/mysql
+
 
   app:
     build: .
     container_name: culturarte_app
+    environment:
+      DISPLAY: $DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
     depends_on:
       - db
-    environment:
-      - JAVA_OPTS=-Xmx512m
-    ports:
-      - "8080:8080"
 
 volumes:
   db_data:
