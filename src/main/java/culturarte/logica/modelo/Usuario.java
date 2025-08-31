@@ -29,6 +29,10 @@ public class Usuario {
     private List<Seguimiento> seguidores;
     @OneToMany(mappedBy = "seguidor", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Seguimiento> seguidos;
+    @ManyToMany
+    @JoinTable
+    private List<Propuesta> propuestasFavoritas;
+
 
 
     // Constructores
@@ -72,4 +76,7 @@ public class Usuario {
 
     public List<Seguimiento> getSeguidos() { return seguidos; }
     public void setSeguidos(List<Seguimiento> seguidos) { this.seguidos = seguidos; }
+
+    public List<Propuesta> getPropuestasFavoritas() { return propuestasFavoritas; }
+    public void setPropuestasFavoritas(List<Propuesta> propuestasFavoritas) {  this.propuestasFavoritas = propuestasFavoritas; }
 }

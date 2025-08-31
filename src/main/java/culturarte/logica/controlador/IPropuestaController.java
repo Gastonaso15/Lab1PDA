@@ -14,7 +14,8 @@ public interface IPropuestaController {
     public abstract List<DTPropuesta> devolverPropuestasPorEstado(DTEstadoPropuesta estado);
     public abstract void modificarPropuesta(String titulo, String nuevaDescripcion, String nuevoLugar,
                                             LocalDate nuevaFechaPrevista, Double nuevoPrecioEntrada,
-                                            Double nuevoMontoNecesario, LocalDate nuevaFechaPublicacion) throws Exception;
+                                            Double nuevoMontoNecesario,
+                                            byte[] imagen, List<String> listaTipos, String categoria) throws Exception;
     public abstract List<String> listarNombreCategorias();
     public abstract void crearCategoria(String nombre, String padre) throws Exception;
     public abstract Categoria obtenerCategoriaPorNombre(String nombre);

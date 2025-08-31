@@ -1,10 +1,7 @@
 package culturarte.logica.manejador;
 
-import culturarte.logica.modelo.Proponente;
-import culturarte.logica.modelo.Propuesta;
-import culturarte.logica.modelo.Seguimiento;
+import culturarte.logica.modelo.*;
 import culturarte.persistencia.JPAUtil;
-import culturarte.logica.modelo.Usuario;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
@@ -54,24 +51,25 @@ public class UsuarioManejador{
         return colaboradores;
     }
 
-    public culturarte.logica.modelo.Colaborador obtenerColaboradorNick(String nickname) {
+    public Colaborador obtenerColaboradorNick(String nickname) {
         EntityManager em = JPAUtil.getEntityManager();
-        culturarte.logica.modelo.Colaborador colab = null;
+        Colaborador colab = null;
         try {
-            TypedQuery<culturarte.logica.modelo.Colaborador> query = em.createQuery(
+            TypedQuery<Colaborador> query = em.createQuery(
                     "SELECT DISTINCT c FROM Colaborador c " +
                             "LEFT JOIN FETCH c.colaboraciones col " +
                             "LEFT JOIN FETCH col.propuesta pr " +
                             "LEFT JOIN FETCH pr.proponente " +
-                            "WHERE c.nickname = :nick", culturarte.logica.modelo.Colaborador.class
+                            "WHERE c.nickname = :nick", Colaborador.class
             );
             query.setParameter("nick", nickname);
             colab = query.getSingleResult();
 
             // Forzar la carga de las colaboraciones y sus propuestas
-            for (culturarte.logica.modelo.Colaboracion col : colab.getColaboraciones()) {
+            for (Colaboracion col : colab.getColaboraciones()) {
                 col.getPropuesta().getTitulo(); // Forzar carga
-                col.getPropuesta().getProponente().getNickname(); // Forzar carga del proponente
+                col.getPropuesta().getProponente().getNickname();// Forzar carga del proponente
+                col.getPropuesta().getTiposRetorno().size();
             }
 
         } catch (NoResultException e) {

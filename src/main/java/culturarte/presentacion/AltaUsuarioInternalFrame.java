@@ -58,11 +58,11 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
         tfCorreo = new JTextField();
         panel.add(tfCorreo);
 
-        panel.add(new JLabel("Fecha de Nacimiento (yyyy-MM-dd):"));
+        panel.add(new JLabel("Fecha de Nacimiento (yyyy-mm-dd):"));
         tfFechaNacimiento = new JTextField();
         panel.add(tfFechaNacimiento);
 
-        panel.add(new JLabel("Imagen:"));
+        panel.add(new JLabel("Imagen (Opcional):"));
         JPanel imagenPanel = new JPanel(new BorderLayout(5, 5));
         tfImagen = new JTextField();
         tfImagen.setEditable(false);
@@ -91,14 +91,14 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
         panel.add(lblDireccion);
         panel.add(tfDireccion);
 
-        JLabel lblBiografia = new JLabel("Biografía:");
+        JLabel lblBiografia = new JLabel("Biografía (Opcional):");
         tfBiografia = new JTextField();
         lblBiografia.setVisible(false);
         tfBiografia.setVisible(false);
         panel.add(lblBiografia);
         panel.add(tfBiografia);
 
-        JLabel lblSitioWeb = new JLabel("Sitio Web:");
+        JLabel lblSitioWeb = new JLabel("Sitio Web (Opcional):");
         tfSitioWeb = new JTextField();
         lblSitioWeb.setVisible(false);
         tfSitioWeb.setVisible(false);

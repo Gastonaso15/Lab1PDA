@@ -62,7 +62,7 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
         tfLugar = new JTextField();
         panel.add(tfLugar);
 
-        panel.add(new JLabel("Fecha Prevista (yyyy-MM-dd):"));
+        panel.add(new JLabel("Fecha Prevista (yyyy-mm-dd):"));
         tfFechaPrevista = new JTextField();
         panel.add(tfFechaPrevista);
 
@@ -74,7 +74,7 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
         tfMontoNecesario = new JTextField();
         panel.add(tfMontoNecesario);
 
-        panel.add(new JLabel("Imagen:"));
+        panel.add(new JLabel("Imagen (Opcional):"));
         JPanel imagenPanel = new JPanel(new BorderLayout(5, 5));
         tfImagenPath = new JTextField();
         tfImagenPath.setEditable(false);
@@ -113,7 +113,6 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
             panelCheckBoxes.add(checkBox);
         }
         JScrollPane scrollTiposRetorno = new JScrollPane(panelCheckBoxes);
-
         panel.add(scrollTiposRetorno);
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scrollTree, panel);
@@ -151,8 +150,10 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                     }
                 }
 
-
-                if (titulo.isEmpty() || descripcion.isEmpty() || lugar.isEmpty() || proponente == null || categoria == null) {
+                if (titulo.isEmpty() || descripcion.isEmpty() || lugar.isEmpty() ||
+                        tfFechaPrevista.getText().isEmpty() || tfPrecioEntrada.getText().isEmpty() ||
+                        tfMontoNecesario.getText().isEmpty() || proponente == null || categoria == null ||
+                        tiposSeleccionados.isEmpty()) {
                     JOptionPane.showMessageDialog(this,
                             "Completar todos los campos obligatorios",
                             "Error",

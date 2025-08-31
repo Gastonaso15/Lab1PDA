@@ -15,7 +15,7 @@ public class Colaboracion {
     private Colaborador colaborador;
     private Double monto;
     @Enumerated(EnumType.STRING)
-    private TipoRetorno tipoRetorno; // ENTRADAS | PORCENTAJE
+    private TipoRetorno tipoRetorno;
     private LocalDateTime fechaHora;
 
     // Constructores

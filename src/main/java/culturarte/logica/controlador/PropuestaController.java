@@ -61,12 +61,27 @@ public class PropuestaController implements IPropuestaController {
     }
     @Override
     public void modificarPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista,
-                                   Double precioEntrada, Double montoNecesario, LocalDate fechaPublicacion) throws Exception {
+                                   Double precioEntrada, Double montoNecesario,
+                                   byte[] imagen, List<String> listaTipos, String categoria) throws Exception {
         PropuestaManejador mp = PropuestaManejador.getinstance();
         Propuesta p = mp.obtenerPropuesta(titulo);
 
         if (p == null) {
             throw new Exception("⚠️ La propuesta con el título " + titulo + " no existe.");
+        }
+
+        Categoria Cat = mp.obtenerPorNombre(categoria);
+        if (Cat == null) {
+            throw new Exception("La categoría " + categoria + " no existe");
+        }
+
+        List<TipoRetorno> tipos = new ArrayList<>();
+        for (String t : listaTipos) {
+            try {
+                tipos.add(TipoRetorno.valueOf(t));
+            } catch (IllegalArgumentException e) {
+                throw new Exception("Tipo de retorno inválido: " + t);
+            }
         }
 
         // actualizar campos (excepto titulo)
@@ -75,7 +90,9 @@ public class PropuestaController implements IPropuestaController {
         p.setFechaPrevista(fechaPrevista);
         p.setPrecioEntrada(precioEntrada);
         p.setMontoNecesario(montoNecesario);
-        p.setFechaPublicacion(fechaPublicacion);
+        p.setCategoria(Cat);
+        p.setImagen(imagen);
+        p.setTiposRetorno(tipos);
 
         // persistir cambios
         mp.actualizarPropuesta(p);

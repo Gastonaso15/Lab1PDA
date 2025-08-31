@@ -40,7 +40,7 @@ public class CategoriaUIHelper {
         ((DefaultTreeModel) tree.getModel()).reload();
     }
 
-    private static DefaultMutableTreeNode buscarNodo(DefaultMutableTreeNode root, String nombre) {
+    public static DefaultMutableTreeNode buscarNodo(DefaultMutableTreeNode root, String nombre) {
         Enumeration<TreeNode> enumeration = root.depthFirstEnumeration();
         while (enumeration.hasMoreElements()) {
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) enumeration.nextElement();

@@ -131,7 +131,12 @@ public class EstacionDeTrabajo extends JFrame {
         // Acciones (listeners)
         altaPropuesta.addActionListener(e -> abrirAltaPropuesta());
         consultarPropuesta.addActionListener(e -> abrirConsultarPropuesta());
+        consultaPropEstado.addActionListener(e->abrirConsultaPropEstado());
         modificarPropuesta.addActionListener(e -> abrirModificarPropuesta());
+        altaCategoria.addActionListener(e->abrirAltaCategoria());
+        registrarColaboracion.addActionListener(e->abrirRegistrarColaboracion());
+        consultarColaboracion.addActionListener(e->abrirConsultarColaboracion());
+        cancelarColaboracion.addActionListener(e->abrirCancelarColaboracion());
 
         // Agregar menús a la barra "menu"
         menu.add(usuarios);
@@ -197,9 +202,34 @@ public class EstacionDeTrabajo extends JFrame {
         abrir(frame);
     }
 
+    private void abrirConsultaPropEstado() {
+        ConsultaPropuestasPorEstadoInternalFrame frame = new ConsultaPropuestasPorEstadoInternalFrame(ICP);
+        abrir(frame);
+    }
+
 
     private void abrirModificarPropuesta() {
         ModificarDatosPropuestaInternalFrame frame = new ModificarDatosPropuestaInternalFrame(ICP);
+        abrir(frame);
+    }
+
+    private void abrirAltaCategoria() {
+        AltaCategoriaInternalFrame frame = new AltaCategoriaInternalFrame(ICP);
+        abrir(frame);
+    }
+
+    private void abrirRegistrarColaboracion() {
+        RegistrarColaboracionInternalFrame frame = new RegistrarColaboracionInternalFrame(ICP,ICU);
+        abrir(frame);
+    }
+
+    private void abrirConsultarColaboracion() {
+        ConsultaColaboracionInternalFrame frame = new ConsultaColaboracionInternalFrame(ICP,ICU);
+        abrir(frame);
+    }
+
+    private void abrirCancelarColaboracion() {
+        CancelarColaboracionInternalFrame frame = new CancelarColaboracionInternalFrame(ICP,ICU);
         abrir(frame);
     }
 
