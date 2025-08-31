@@ -23,6 +23,14 @@ public class DTColaboracion{
         this.colaborador = colaborador;
         this.monto = monto;
     }
+    public DTColaboracion(Long id,DTPropuesta propuesta, DTColaborador colaborador, Double monto, DTTipoRetorno tipoRetorno, LocalDateTime fechaHora) {
+        this.id=id;
+        this.propuesta = propuesta;
+        this.colaborador = colaborador;
+        this.monto = monto;
+        this.tipoRetorno = tipoRetorno;
+        this.fechaHora = fechaHora;
+    }
 
 
     // Getters y Setters

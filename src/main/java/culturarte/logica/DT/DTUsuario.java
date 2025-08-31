@@ -35,6 +35,12 @@ public class DTUsuario {
         setNickname(nickname);
     }
 
+    public DTUsuario(String nickname, String nombre, String apellido) {
+        this.setNickname(nickname);
+        this.setNombre(nombre);
+        this.setApellido(apellido);
+    }
+
     // Getters y setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }

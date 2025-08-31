@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import culturarte.persistencia.JPAUtil;
 import jakarta.persistence.EntityTransaction;
@@ -293,6 +294,76 @@ public class PropuestaManejador {
         } finally {
             em.close();
         }
+    }
+
+    public void cancelarColaboracion(Long idColaboracion) throws Exception {
+        EntityManager em = JPAUtil.getEntityManager();
+
+        try {
+            em.getTransaction().begin();
+
+            Colaboracion colab = em.find(Colaboracion.class, idColaboracion);
+            if (colab == null) {
+                throw new Exception("No existe la colaboración con id " + idColaboracion);
+            }
+
+            em.remove(colab);
+            em.getTransaction().commit();
+
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            throw e;
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<DTColaboracion> getColaboraciones() {
+        EntityManager em = JPAUtil.getEntityManager();
+        List<Colaboracion> colabs = em.createQuery("SELECT c FROM Colaboracion c", Colaboracion.class)
+                .getResultList();
+
+        for (Colaboracion c : colabs) {
+            c.getPropuesta().getColaboraciones().size();
+        }
+
+        em.close();
+
+        List<DTColaboracion> dtColaboraciones = colabs.stream().map(c -> {
+
+            List<DTColaboracion> dtColabsPropuesta = c.getPropuesta().getColaboraciones().stream()
+                    .map(col -> new DTColaboracion(
+                            new DTColaborador(col.getColaborador().getNickname()),
+                            col.getMonto()
+                    ))
+                    .toList();
+
+            DTEstadoPropuesta dtEstadoPropuesta = DTEstadoPropuesta.valueOf(c.getPropuesta().getEstadoActual().name());
+            DTPropuesta dtPropuesta = new DTPropuesta(
+                    c.getPropuesta().getTitulo(),
+                    c.getPropuesta().getMontoNecesario(),
+                    c.getPropuesta().getProponente() != null ? new DTProponente(c.getPropuesta().getProponente().getNickname(), c.getPropuesta().getProponente().getNombre(), c.getPropuesta().getProponente().getApellido()) : null,
+                    dtEstadoPropuesta,
+                    dtColabsPropuesta
+            );
+
+            DTColaborador dtColaborador = new DTColaborador(
+                    c.getColaborador().getNickname()
+            );
+
+            DTTipoRetorno dtTipoRetorno = DTTipoRetorno.valueOf(c.getTipoRetorno().name());
+            return new DTColaboracion(
+                    c.getId(),
+                    dtPropuesta,
+                    dtColaborador,
+                    c.getMonto(),
+                    dtTipoRetorno,
+                    c.getFechaHora()
+            );
+
+        }).collect(Collectors.toList());
+
+        return dtColaboraciones;
     }
 
 }

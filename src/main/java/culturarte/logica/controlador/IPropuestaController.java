@@ -1,6 +1,7 @@
 package culturarte.logica.controlador;
 
 import culturarte.logica.DT.DTCategoria;
+import culturarte.logica.DT.DTColaboracion;
 import culturarte.logica.DT.DTPropuesta;
 import culturarte.logica.DT.DTEstadoPropuesta;
 import culturarte.logica.modelo.Categoria;
@@ -24,4 +25,6 @@ public interface IPropuestaController {
     public abstract List<DTCategoria> listarDTCategorias();
     public abstract void registrarColaboracion(String tituloPropuesta, String nicknameColaborador, Double monto,
                                                String tipoRetorno) throws Exception;
+    public abstract void cancelarColaboracion(Long idColaboracion) throws Exception;
+    public abstract List<DTColaboracion> obtenerTodasLasColaboraciones();
 }

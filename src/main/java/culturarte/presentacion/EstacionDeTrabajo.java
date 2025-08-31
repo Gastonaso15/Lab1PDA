@@ -229,7 +229,7 @@ public class EstacionDeTrabajo extends JFrame {
     }
 
     private void abrirCancelarColaboracion() {
-        CancelarColaboracionInternalFrame frame = new CancelarColaboracionInternalFrame(ICP,ICU);
+        CancelarColaboracionInternalFrame frame = new CancelarColaboracionInternalFrame(ICP);
         abrir(frame);
     }
 

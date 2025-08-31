@@ -1,6 +1,7 @@
 package culturarte.logica.controlador;
 
 import culturarte.logica.DT.DTCategoria;
+import culturarte.logica.DT.DTColaboracion;
 import culturarte.logica.DT.DTEstadoPropuesta;
 import culturarte.logica.DT.DTPropuesta;
 import culturarte.logica.manejador.PropuestaManejador;
@@ -164,5 +165,14 @@ public class PropuestaController implements IPropuestaController {
         pm.agregarColaboracion(colaboracion);
     }
 
+    public List<DTColaboracion> obtenerTodasLasColaboraciones() {
+        PropuestaManejador pm = PropuestaManejador.getinstance();
+        List<DTColaboracion> colabs = pm.getColaboraciones();
+        return colabs;
+    }
 
+    public void cancelarColaboracion(Long idColaboracion) throws Exception {
+        PropuestaManejador pm = PropuestaManejador.getinstance();
+        pm.cancelarColaboracion(idColaboracion);
+    }
 }

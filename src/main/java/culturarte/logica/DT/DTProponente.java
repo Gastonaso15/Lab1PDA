@@ -31,6 +31,10 @@ public class DTProponente extends DTUsuario {
         this.setPropuestas(propuestas);
     }
 
+    public DTProponente(String nickname, String nombre, String apellido) {
+        super(nickname, nombre, apellido);
+    }
+
     // Getters y setters adicionales
     public String getDireccion() { return direccion; }
     public void setDireccion(String direccion) { this.direccion = direccion; }

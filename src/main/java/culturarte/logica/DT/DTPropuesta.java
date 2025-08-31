@@ -1,5 +1,7 @@
 package culturarte.logica.DT;
 
+import org.hibernate.engine.jdbc.connections.spi.DataSourceBasedMultiTenantConnectionProviderImpl;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +68,14 @@ public class DTPropuesta {
         this.tiposRetorno = tiposRetorno;
         this.estadoActual = estadoActual;
         this.colaboraciones = colaboraciones;
+    }
+
+    public DTPropuesta(String titulo,Double montoNecesario, DTProponente proponente, DTEstadoPropuesta estado, List<DTColaboracion> colaboraciones) {
+        this.setTitulo(titulo);
+        this.setMontoNecesario(montoNecesario);
+        this.setDTProponente(proponente);
+        this.setEstadoActual(estado);
+        this.setColaboraciones(colaboraciones);
     }
 
     // Funciones
