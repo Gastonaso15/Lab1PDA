@@ -1,6 +1,7 @@
 package culturarte.logica.controlador;
 
 import culturarte.logica.DT.*;
+import culturarte.logica.manejador.PropuestaManejador;
 import culturarte.logica.manejador.UsuarioManejador;
 import culturarte.logica.modelo.*;
 import culturarte.persistencia.JPAUtil;
@@ -272,5 +273,6 @@ public class UsuarioController implements IUsuarioController {
         DTColaborador dtColab = new DTColaborador(nickname, nombre, apellido, correo, fechaNacimiento, imagen, dtColaboraciones);
         return dtColab;
     }
+
 
 }

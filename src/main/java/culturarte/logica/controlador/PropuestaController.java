@@ -1,8 +1,6 @@
 package culturarte.logica.controlador;
 
-import culturarte.logica.DT.DTCategoria;
-import culturarte.logica.DT.DTEstadoPropuesta;
-import culturarte.logica.DT.DTPropuesta;
+import culturarte.logica.DT.*;
 import culturarte.logica.manejador.PropuestaManejador;
 import culturarte.logica.manejador.UsuarioManejador;
 import culturarte.logica.modelo.*;
@@ -148,6 +146,47 @@ public class PropuestaController implements IPropuestaController {
 
         pm.agregarColaboracion(colaboracion);
     }
+    @Override
+    public List<DTColaboracion> getListaTodasLasColaboraciones() {
+        //Tengo todas las propuestas
+        List<DTPropuesta> listaPropuestas = this.devolverTodasLasPropuestas();
+        //tengo que recorrer todas las propuestas y mostrar todas las colaboraciones asociadsa
 
+        List<DTColaboracion> listaColaboraciones_externa = new ArrayList<>();
+        List<DTColaboracion> listaColaboraciones_interna;
+        for(DTPropuesta p : listaPropuestas) {   //recorro las propuestas
+            //por cada propuesta tengo una lista de colaboraciones
+            if (p != null) {
+                listaColaboraciones_interna = p.getColaboraciones();     //extraigo la colaboracion de cada una
+                for (DTColaboracion col : listaColaboraciones_interna) {
+                    if (col != null) {
+                        listaColaboraciones_externa.add(col);       //recorro la lista interna para agregarla a la lista externa
+                    }
+                }
+            }
+        }
+        return listaColaboraciones_externa;
+    }
+
+
+    @Override
+    public boolean cancelarColaboracionAPropuesta() {
+        boolean cancelado = false;
+        /*
+        boolean confirmacion = false;
+        //obentengo todas las colaboraciones
+        List<DTColaboracion> listaColaboraciones = this.getListaTodasLasColaboraciones(); //Tengo que mostrar por pantalla la lista
+        System.out.println("Elija la que desea eliminar");
+        //DTColaboracion colaboracion = ?;   //Tengo que ver como la solicito
+        //Tengo que ver como la consigo
+        System.out.println("Confirma Eliminacion?");
+        if (confirmacion) {
+            listaColaboraciones.remove(colaboracion);
+            cancelado = true;
+        }
+        */
+        return  cancelado;
+    }
 
 }
+

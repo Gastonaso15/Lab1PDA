@@ -3,6 +3,7 @@ package culturarte.logica.controlador;
 import culturarte.logica.DT.DTColaborador;
 import culturarte.logica.DT.DTProponente;
 import culturarte.logica.DT.DTUsuario;
+import culturarte.logica.modelo.Propuesta;
 
 import java.util.List;
 
@@ -15,4 +16,5 @@ public interface IUsuarioController {
     public abstract void seguirUsuario(String nickSeguidor, String nickSeguido) throws Exception;
     public abstract List<String> devolverNicknamesUsuarios();
     public abstract void dejarDeSeguirUsuario(String nickSeguidor, String nickSeguido);
+
 }

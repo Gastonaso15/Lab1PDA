@@ -14,6 +14,8 @@ import culturarte.logica.controlador.IUsuarioController;
 
 public class AltaUsuarioInternalFrame extends JInternalFrame {
 
+    //SWING CONFIGURATION
+        //JTEXT FIEDLS THATH GO INSIDE TEH JINTERNAL FRAME
     private JTextField tfNickname;
     private JTextField tfNombre;
     private JTextField tfApellido;
@@ -24,9 +26,10 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
     private JTextField tfBiografia;
     private JTextField tfSitioWeb;
 
+        //
     private JComboBox<String> cbTipoUsuario;
-
-    private IUsuarioController UsuarioContr;
+        //Atributos de la clase AltaUsuarioInternalFrame
+    private IUsuarioController UsuarioContr;    //Acá voy a guardar el IUsuarioController que me genere la fabrica
 
     //CONSTRUCTOR
     public AltaUsuarioInternalFrame(IUsuarioController icu) {

@@ -62,6 +62,15 @@ public class EstacionDeTrabajo extends JFrame {
         setSize(1500, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // centrar en pantalla
+        desktop.setOpaque(true); // por si el L&F lo deja transparente
+        desktop.setBackground(new java.awt.Color(100, 140, 212)); // celestito
+        /*
+        Faltan detalles que no me dio el tiempo y por eso no lo dejo puesto todavia
+        JLabel fondo = new JLabel(new ImageIcon("ruta/imagen.png"));
+        fondo.setBounds(0, 0, fondo.getIcon().getIconWidth(), fondo.getIcon().getIconHeight());
+        desktop.add(fondo, JLayeredPane.FRAME_CONTENT_LAYER); // capa de fondo
+        */
+
     }
 
     private void initControllers() {// Esto inicializa las referencias a los controladores de la capa lógica
