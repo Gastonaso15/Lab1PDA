@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: culturarte_db
+    environment:
+      MYSQL_DATABASE: culturarte
+      MYSQL_USER: culturarte
+      MYSQL_PASSWORD: culturarte123
+      MYSQL_ROOT_PASSWORD: rootpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  app:
+    build: .
+    container_name: culturarte_app
+    depends_on:
+      - db
+    environment:
+      - JAVA_OPTS=-Xmx512m
+    ports:
+      - "8080:8080"
+
+volumes:
+  db_data:
