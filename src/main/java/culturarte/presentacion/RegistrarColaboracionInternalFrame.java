@@ -183,6 +183,9 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
                 jListPropuestas.clearSelection();
                 limpiarDetalles();
 
+                List<DTPropuesta> propuestasActualizadas = PropuestaContr.devolverTodasLasPropuestas();
+                jListPropuestas.setListData(propuestasActualizadas.toArray(new DTPropuesta[0]));
+
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
             }
