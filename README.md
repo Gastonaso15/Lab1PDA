@@ -1,7 +1,7 @@
 # Laboratorio 1 Programación de Aplicaciones
 
 ---
-## Trabando en el IDE
+## Trabajndo en el IDE
 
 Antes de ejecutar el programa, entrar a mysql y pegar:
 
