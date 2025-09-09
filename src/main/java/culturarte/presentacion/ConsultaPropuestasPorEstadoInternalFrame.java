@@ -2,6 +2,7 @@ package culturarte.presentacion;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +21,7 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
     private JLabel lblLugar;
     private JLabel lblFechaPrevista;
     private JLabel lblEstado;
-    private JLabel lblImagen;
+    private ImagenUIHelper.ImagenPanel lblImagen;
     private JTextArea txtColaboradores;
     private JLabel lblMontoTotal;
 
@@ -100,7 +101,7 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
         estilizarLabelContenido(lblPrecioEntrada);
 
         panelDetalles.add(new JLabel("Imagen:"));
-        lblImagen = new JLabel();
+        lblImagen = new ImagenUIHelper.ImagenPanel();
         lblImagen.setPreferredSize(new Dimension(150, 150));
         panelDetalles.add(lblImagen);
         estilizarLabelContenido(lblImagen);
@@ -223,13 +224,7 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
         lblFechaPrevista.setText(p.getFechaPrevista() != null ? p.getFechaPrevista().toString() : "");
         lblEstado.setText(p.getEstadoActual() != null ? p.getEstadoActual().toString() : "Sin estado");
 
-        if (p.getImagen() != null) {
-            ImageIcon icon = new ImageIcon(p.getImagen());
-            Image img = icon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
-            lblImagen.setIcon(new ImageIcon(img));
-        } else {
-            lblImagen.setIcon(null);
-        }
+        lblImagen.setImagen(p.getImagen());
 
         String colaboradores = p.getColaboraciones()
                 .stream()
@@ -262,7 +257,7 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
         lblLugar.setText("");
         lblFechaPrevista.setText("");
         lblEstado.setText("");
-        lblImagen.setIcon(null);
+        lblImagen.setImagen(null);
         txtColaboradores.setText("");
         lblMontoTotal.setText("");
 

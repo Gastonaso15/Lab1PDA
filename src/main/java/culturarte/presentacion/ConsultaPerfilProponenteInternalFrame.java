@@ -9,6 +9,7 @@ import culturarte.logica.controlador.IUsuarioController;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.io.File;
 import java.util.List;
 
 
@@ -24,7 +25,7 @@ public class ConsultaPerfilProponenteInternalFrame extends JInternalFrame {
     private JLabel lblDireccion;
     private JTextArea txtBiografia;
     private JLabel lblWeb;
-    private JLabel lblImagen;
+    private ImagenUIHelper.ImagenPanel lblImagen;
     private JPanel panelPropuestas;
 
     public ConsultaPerfilProponenteInternalFrame(IUsuarioController icu) {
@@ -78,7 +79,7 @@ public class ConsultaPerfilProponenteInternalFrame extends JInternalFrame {
 
         JPanel col3 = new JPanel();
         col3.setLayout(new BoxLayout(col3, BoxLayout.Y_AXIS));
-        lblImagen = new JLabel();
+        lblImagen = new ImagenUIHelper.ImagenPanel();
         lblImagen.setPreferredSize(new Dimension(150, 150));
         lblImagen.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         col3.add(lblImagen);
@@ -126,13 +127,7 @@ public class ConsultaPerfilProponenteInternalFrame extends JInternalFrame {
             txtBiografia.setText("Biografía: " + (proponente.getBio() != null ? proponente.getBio() : ""));
             lblWeb.setText("Sitio Web: " + (proponente.getSitioWeb() != null ? proponente.getSitioWeb() : ""));
 
-            if (proponente.getImagen() != null) {
-                ImageIcon icon = new ImageIcon(proponente.getImagen());
-                Image img = icon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
-                lblImagen.setIcon(new ImageIcon(img));
-            } else {
-                lblImagen.setIcon(null);
-            }
+            lblImagen.setImagen(proponente.getImagen());
 
             panelPropuestas.removeAll();
             for (DTPropuesta p : proponente.getPropuestas()) {

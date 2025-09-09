@@ -9,6 +9,7 @@ import culturarte.logica.controlador.IUsuarioController;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.io.File;
 import java.util.List;
 
 public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
@@ -20,7 +21,7 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
     private JLabel lblApellido;
     private JLabel lblCorreo;
     private JLabel lblFechaNacimiento;
-    private JLabel lblImagen;
+    private ImagenUIHelper.ImagenPanel lblImagen;
     private JPanel panelPropuestas;
 
 
@@ -60,7 +61,7 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
 
         JPanel col3 = new JPanel();
         col3.setLayout(new BoxLayout(col3, BoxLayout.Y_AXIS));
-        lblImagen = new JLabel();
+        lblImagen = new ImagenUIHelper.ImagenPanel();
         lblImagen.setPreferredSize(new Dimension(150, 150));
         lblImagen.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         col3.add(lblImagen);
@@ -104,13 +105,7 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
             lblCorreo.setText("Correo: " + colaborador.getCorreo());
             lblFechaNacimiento.setText("Fecha de Nacimiento: " + colaborador.getFechaNacimiento());
 
-            if (colaborador.getImagen() != null) {
-                ImageIcon icon = new ImageIcon(colaborador.getImagen());
-                Image img = icon.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
-                lblImagen.setIcon(new ImageIcon(img));
-            } else {
-                lblImagen.setIcon(null);
-            }
+            lblImagen.setImagen(colaborador.getImagen());
 
             panelPropuestas.removeAll();
 
@@ -177,5 +172,24 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
         for (JLabel lbl : labels) {
             lbl.setFont(font);
         }
+    }
+
+    private ImageIcon crearIconoEscalado(String rutaImagen, int anchoMax, int altoMax) {
+        File archivo = new File(rutaImagen);
+        if (!archivo.exists()) return null;
+
+        ImageIcon icon = new ImageIcon(rutaImagen);
+        Image img = icon.getImage();
+
+        int ancho = icon.getIconWidth();
+        int alto = icon.getIconHeight();
+
+        double ratio = Math.min((double) anchoMax / ancho, (double) altoMax / alto);
+
+        int nuevoAncho = (int) (ancho * ratio);
+        int nuevoAlto = (int) (alto * ratio);
+
+        Image imgEscalada = img.getScaledInstance(nuevoAncho, nuevoAlto, Image.SCALE_SMOOTH);
+        return new ImageIcon(imgEscalada);
     }
 }
