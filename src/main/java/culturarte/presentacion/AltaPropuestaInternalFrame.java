@@ -6,9 +6,12 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import culturarte.logica.DT.DTCategoria;
 import culturarte.logica.controlador.IPropuestaController;
@@ -161,22 +164,35 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                     return;
                 }
 
-                byte[] imagenBytes = null;
-                String rutaImagen = tfImagenPath.getText().trim();
-                if (!rutaImagen.isEmpty()) {
-                    File file = new File(rutaImagen);
-                    try (FileInputStream fis = new FileInputStream(file)) {
-                        imagenBytes = fis.readAllBytes();
+                String rutaFinal = null;
+                String rutaSeleccionada = tfImagenPath.getText().trim();
+
+                if (!rutaSeleccionada.isEmpty()) {
+                    try {
+                        File carpeta = new File("uploads/propuestas/");
+                        if (!carpeta.exists()) {
+                            carpeta.mkdirs();
+                        }
+
+                        String nombreArchivo = UUID.randomUUID() + "_" + new File(rutaSeleccionada).getName();
+                        File destino = new File(carpeta, nombreArchivo);
+
+                        Files.copy(new File(rutaSeleccionada).toPath(),
+                                destino.toPath(),
+                                StandardCopyOption.REPLACE_EXISTING);
+
+                        rutaFinal = destino.getAbsolutePath();
+
                     } catch (IOException ioEx) {
                         JOptionPane.showMessageDialog(this,
-                                "Error al leer la imagen: " + ioEx.getMessage(),
+                                "Error al guardar la imagen: " + ioEx.getMessage(),
                                 "Error",
                                 JOptionPane.ERROR_MESSAGE);
                         return;
                     }
                 }
 
-                PropuestaContr.crearPropuesta(titulo,descripcion,lugar,fechaPrevista,precioEntrada,montoNecesario,imagenBytes,proponente,categoria,tiposSeleccionados);
+                PropuestaContr.crearPropuesta(titulo,descripcion,lugar,fechaPrevista,precioEntrada,montoNecesario,rutaFinal,proponente,categoria,tiposSeleccionados);
 
                 JOptionPane.showMessageDialog(this,
                         "Propuesta creada correctamente",

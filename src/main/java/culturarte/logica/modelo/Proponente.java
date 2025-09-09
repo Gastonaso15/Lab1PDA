@@ -20,7 +20,7 @@ public class Proponente extends Usuario {
     public Proponente() {
         super();
     }
-    public Proponente(String nickname, String nombre, String apellido, String correo,byte[] imagen, LocalDate fechaNacimiento, String direccion, String bio, String sitioWeb) {
+    public Proponente(String nickname, String nombre, String apellido, String correo,String imagen, LocalDate fechaNacimiento, String direccion, String bio, String sitioWeb) {
         super(nickname, nombre, apellido, correo,imagen,fechaNacimiento);
         this.direccion = direccion;
         this.bio = bio;

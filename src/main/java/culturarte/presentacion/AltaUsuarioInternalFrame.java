@@ -5,7 +5,10 @@ import java.awt.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
+import java.util.UUID;
 
 import culturarte.logica.DT.DTColaborador;
 import culturarte.logica.DT.DTProponente;
@@ -28,20 +31,14 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
 
     private IUsuarioController UsuarioContr;
 
-    //CONSTRUCTOR
     public AltaUsuarioInternalFrame(IUsuarioController icu) {
         super("Alta de Usuario", true, true, true, true);
-        //Intefaz de SWING
         setSize(1200, 500);
         setLayout(new BorderLayout());
 
-        //Paso el controlador que me llega por parametro que me lo genera una fabrica a la funcion para usarla dentro
         UsuarioContr = icu;
 
-        //MAS SWING
-        //Genero paneles
         JPanel panel = new JPanel(new GridLayout(5, 2, 5, 5));
-        //Aniado info al panel
         panel.add(new JLabel("Nickname:"));
         tfNickname = new JTextField();
         panel.add(tfNickname);
@@ -139,13 +136,22 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
             String tipo = (String) cbTipoUsuario.getSelectedItem();
             byte[] imagenBytes = null;
             String rutaImagen = tfImagen.getText().trim();
+            String rutaFinal = null;
             if (!rutaImagen.isEmpty()) {
-                File file = new File(rutaImagen);
-                try (FileInputStream fis = new FileInputStream(file)) {
-                    imagenBytes = fis.readAllBytes();
+                try {
+                    File carpeta = new File("uploads/usuarios/");
+                    if (!carpeta.exists()) {
+                        carpeta.mkdirs();
+                    }
+                    String nombreArchivo = UUID.randomUUID() + "_" + new File(rutaImagen).getName();
+                    File destino = new File(carpeta, nombreArchivo);
+
+                    Files.copy(new File(rutaImagen).toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                    rutaFinal = destino.getAbsolutePath();
                 } catch (IOException ioEx) {
                     JOptionPane.showMessageDialog(this,
-                            "Error al leer la imagen: " + ioEx.getMessage(),
+                            "Error al guardar la imagen: " + ioEx.getMessage(),
                             "Error",
                             JOptionPane.ERROR_MESSAGE);
                     return;
@@ -176,9 +182,9 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
             if ("Proponente".equals(tipo)) {
                 String bio = tfBiografia.getText().trim();
                 String sitioWeb = tfSitioWeb.getText().trim();
-                usuario = new DTProponente(nickname, nombre, apellido, correo,fechaNacimiento,imagenBytes,direccion,bio,sitioWeb);
+                usuario = new DTProponente(nickname, nombre, apellido, correo,fechaNacimiento,rutaFinal,direccion,bio,sitioWeb);
             } else {
-                usuario = new DTColaborador(nickname, nombre, apellido, correo,fechaNacimiento,imagenBytes);
+                usuario = new DTColaborador(nickname, nombre, apellido, correo,fechaNacimiento,rutaFinal);
             }
 
             try {

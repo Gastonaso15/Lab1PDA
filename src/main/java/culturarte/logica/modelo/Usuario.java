@@ -21,9 +21,7 @@ public class Usuario {
     @Column(unique = true, nullable = false)
     private String correo;
     private String password;
-    @Lob
-    @Column(columnDefinition = "LONGBLOB")
-    private byte[] imagen;
+    private String imagen;
     private LocalDate fechaNacimiento;
     @OneToMany(mappedBy = "seguido", cascade = CascadeType.ALL)
     private List<Seguimiento> seguidores;
@@ -37,7 +35,7 @@ public class Usuario {
 
     // Constructores
     public Usuario() {}
-    public Usuario(String nickname, String nombre, String apellido, String correo,byte[] imagen,LocalDate fechaNacimiento) {
+    public Usuario(String nickname, String nombre, String apellido, String correo,String imagen,LocalDate fechaNacimiento) {
         this.nickname = nickname;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -65,8 +63,8 @@ public class Usuario {
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
 
-    public byte[] getImagen() { return imagen; }
-    public void setImagen(byte[] imagen) { this.imagen = imagen; }
+    public String getImagen() { return imagen; }
+    public void setImagen(String imagen) { this.imagen = imagen; }
 
     public LocalDate getFechaNacimiento() { return fechaNacimiento; }
     public void setFechaNacimiento(LocalDate fechaNacimiento) { this.fechaNacimiento= fechaNacimiento;}

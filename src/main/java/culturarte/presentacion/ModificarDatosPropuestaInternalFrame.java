@@ -141,11 +141,12 @@ public class ModificarDatosPropuestaInternalFrame extends JInternalFrame {
             tfPrecioEntrada.setText(p.getPrecioEntrada() != null ? p.getPrecioEntrada().toString() : "");
             tfMontoNecesario.setText(p.getMontoNecesario() != null ? p.getMontoNecesario().toString() : "");
 
-            if (p.getImagen() != null && p.getImagen().length > 0) {
-                tfImagen.setText("Imagen cargada");
+            if (p.getImagen() != null && !p.getImagen().isEmpty()) {
+                tfImagen.setText(p.getImagen());
             } else {
                 tfImagen.setText("");
             }
+
 
             for (JCheckBox cb : checkBoxesTiposRetorno) {
                 cb.setSelected(false);
@@ -179,13 +180,10 @@ public class ModificarDatosPropuestaInternalFrame extends JInternalFrame {
             Double precioEntrada = Double.parseDouble(tfPrecioEntrada.getText());
             Double montoNecesario = Double.parseDouble(tfMontoNecesario.getText());
 
-            byte[] imagenBytes = p.getImagen();
-            String rutaImagen = tfImagen.getText();
-            if (!rutaImagen.isEmpty() && !rutaImagen.equals("Imagen cargada")) {
-                File file = new File(rutaImagen);
-                try (FileInputStream fis = new FileInputStream(file)) {
-                    imagenBytes = fis.readAllBytes();
-                }
+            String imagenBytes = p.getImagen();
+            String nuevaRuta = tfImagen.getText();
+            if (!nuevaRuta.isEmpty() && !nuevaRuta.equals("Imagen cargada")) {
+                imagenBytes = nuevaRuta;
             }
 
             List<String> tiposSeleccionados = new ArrayList<>();

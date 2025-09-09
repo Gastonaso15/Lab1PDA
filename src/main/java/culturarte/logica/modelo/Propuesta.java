@@ -20,9 +20,7 @@ public class Propuesta {
         private Double precioEntrada;
         private Double montoNecesario;
         private LocalDate fechaPublicacion;
-        @Lob
-        @Column(columnDefinition = "LONGBLOB")
-        private byte[] imagen;
+        private String imagen;
         @ManyToOne
         @JoinColumn(name = "categoria_id")
         private Categoria categoria;
@@ -41,7 +39,7 @@ public class Propuesta {
 
         // Constructores
         public Propuesta() {}
-        public Propuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista, Double precioEntrada, Double montoNecesario, byte[] imagen, Proponente proponente,Categoria categoria, List<TipoRetorno> tiposRetorno) {
+        public Propuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista, Double precioEntrada, Double montoNecesario, String imagen, Proponente proponente,Categoria categoria, List<TipoRetorno> tiposRetorno) {
             this.setTitulo(titulo);
             this.setDescripcion(descripcion);
             this.setLugar(lugar);
@@ -98,8 +96,8 @@ public class Propuesta {
         public LocalDate getFechaPublicacion() { return fechaPublicacion; }
         public void setFechaPublicacion(LocalDate fechaPublicacion) { this.fechaPublicacion = fechaPublicacion; }
 
-        public byte[] getImagen() { return imagen; }
-        public void setImagen(byte[] imagen) { this.imagen = imagen; }
+        public String getImagen() { return imagen; }
+        public void setImagen(String imagen) { this.imagen = imagen; }
 
         public Categoria getCategoria() { return categoria; }
         public void setCategoria(Categoria categoria) { this.categoria = categoria; }

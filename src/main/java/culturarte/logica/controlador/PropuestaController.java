@@ -21,7 +21,7 @@ public class PropuestaController implements IPropuestaController {
     }
 
     @Override
-    public  void crearPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista, Double precioEntrada, Double montoNecesario, byte[] imagen, String proponente, String categoria, List<String> listaTipos) throws Exception {
+    public  void crearPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista, Double precioEntrada, Double montoNecesario, String imagen, String proponente, String categoria, List<String> listaTipos) throws Exception {
         PropuestaManejador mp = PropuestaManejador.getinstance();
         Propuesta p = mp.obtenerPropuesta(titulo);
         if (p != null)
@@ -63,7 +63,7 @@ public class PropuestaController implements IPropuestaController {
     @Override
     public void modificarPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista,
                                    Double precioEntrada, Double montoNecesario,
-                                   byte[] imagen, List<String> listaTipos, String categoria) throws Exception {
+                                   String imagen, List<String> listaTipos, String categoria) throws Exception {
         PropuestaManejador mp = PropuestaManejador.getinstance();
         Propuesta p = mp.obtenerPropuesta(titulo);
 

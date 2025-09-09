@@ -11,14 +11,14 @@ import java.util.List;
 
 public interface IPropuestaController {
     public abstract void crearPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista,
-                                        Double precioEntrada, Double montoNecesario, byte[] imagen,
+                                        Double precioEntrada, Double montoNecesario, String imagen,
                                         String proponente,String categoria, List<String> listaTipos) throws Exception;
     public abstract List<DTPropuesta> devolverTodasLasPropuestas();
     public abstract List<DTPropuesta> devolverPropuestasPorEstado(DTEstadoPropuesta estado);
     public abstract void modificarPropuesta(String titulo, String nuevaDescripcion, String nuevoLugar,
                                             LocalDate nuevaFechaPrevista, Double nuevoPrecioEntrada,
                                             Double nuevoMontoNecesario,
-                                            byte[] imagen, List<String> listaTipos, String categoria) throws Exception;
+                                            String imagen, List<String> listaTipos, String categoria) throws Exception;
     public abstract List<String> listarNombreCategorias();
     public abstract void crearCategoria(String nombre, String padre) throws Exception;
     public abstract Categoria obtenerCategoriaPorNombre(String nombre);

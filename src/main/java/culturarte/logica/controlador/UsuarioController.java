@@ -60,7 +60,7 @@ public class UsuarioController implements IUsuarioController {
         String direccion = prop.getDireccion();
         String biografia = prop.getBio();
         String sitioWeb = prop.getSitioWeb();
-        byte[] imagen = prop.getImagen();
+        String imagen = prop.getImagen();
 
         List<DTPropuesta> dtPropuestas = new ArrayList<>();
         for (Propuesta p : prop.getPropuestas()) {
@@ -189,7 +189,7 @@ public class UsuarioController implements IUsuarioController {
         String apellido = colab.getApellido();
         String correo = colab.getCorreo();
         LocalDate fechaNacimiento = colab.getFechaNacimiento();
-        byte[] imagen = colab.getImagen();
+        String imagen = colab.getImagen();
 
         List<DTColaboracion> dtColaboraciones = new ArrayList<>();
         for (Colaboracion c : colab.getColaboraciones()) {

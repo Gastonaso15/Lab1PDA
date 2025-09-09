@@ -15,7 +15,7 @@ public class DTPropuesta {
     private Double precioEntrada;
     private Double montoNecesario;
     private LocalDate fechaPublicacion;
-    private byte[] imagen;
+    private String imagen;
     private DTCategoria categoria;
     private DTProponente proponente;
     private DTEstadoPropuesta estadoActual;
@@ -31,12 +31,12 @@ public class DTPropuesta {
         this.setFechaPrevista(null);
         this.setPrecioEntrada(0.0);
         this.setMontoNecesario(0.0);
-        this.setImagen(new byte[0]);
+        this.setImagen(new String());
         this.setDTProponente(new DTProponente());
     }
 
     public DTPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista,
-                       Double precioEntrada, Double montoNecesario, LocalDate fechaPublicacion,  byte[] imagen,
+                       Double precioEntrada, Double montoNecesario, LocalDate fechaPublicacion,  String imagen,
                        DTCategoria categoria,DTProponente proponente,DTEstadoPropuesta estadoActual,
                        List<DTPropuestaEstado> historial, List<DTColaboracion> colaboraciones,
                        List<DTTipoRetorno> tiposRetorno) {
@@ -56,7 +56,7 @@ public class DTPropuesta {
         this.setTiposRetorno(tiposRetorno);
     }
 
-    public DTPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista, Double precioEntrada, Double montoNecesario, byte[] imagen, DTCategoria categoria, List<DTTipoRetorno> tiposRetorno,DTEstadoPropuesta estadoActual,List<DTColaboracion> colaboraciones) {
+    public DTPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista, Double precioEntrada, Double montoNecesario, String imagen, DTCategoria categoria, List<DTTipoRetorno> tiposRetorno,DTEstadoPropuesta estadoActual,List<DTColaboracion> colaboraciones) {
         this.setTitulo(titulo);
         this.setDescripcion(descripcion);
         this.setLugar(lugar);
@@ -109,8 +109,8 @@ public class DTPropuesta {
     public LocalDate getFechaPublicacion() { return fechaPublicacion; }
     public void setFechaPublicacion(LocalDate fechaPublicacion) { this.fechaPublicacion = fechaPublicacion; }
 
-    public byte[] getImagen() { return imagen; }
-    public void setImagen(byte[] imagen) { this.imagen = imagen; }
+    public String getImagen() { return imagen; }
+    public void setImagen(String imagen) { this.imagen = imagen; }
 
     public DTCategoria getCategoria() { return categoria; }
     public void setCategoria(DTCategoria categoria) { this.categoria = categoria; }

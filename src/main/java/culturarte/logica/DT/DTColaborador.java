@@ -14,11 +14,11 @@ public class DTColaborador extends DTUsuario{
         super();
     }
 
-    public DTColaborador(String nickname, String nombre, String apellido, String correo, LocalDate fechaNacimiento, byte [] imagen) {
+    public DTColaborador(String nickname, String nombre, String apellido, String correo, LocalDate fechaNacimiento, String imagen) {
         super(nickname, nombre, apellido, correo,fechaNacimiento,imagen);
     }
 
-    public DTColaborador(String nickname, String nombre, String apellido, String correo, LocalDate fechaNacimiento, byte [] imagen, List<DTColaboracion> colaboraciones) {
+    public DTColaborador(String nickname, String nombre, String apellido, String correo, LocalDate fechaNacimiento, String imagen, List<DTColaboracion> colaboraciones) {
         super(nickname, nombre, apellido, correo,fechaNacimiento,imagen);
         this.colaboraciones = colaboraciones;
     }
