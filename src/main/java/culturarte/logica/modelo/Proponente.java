@@ -11,6 +11,7 @@ import java.util.List;
 public class Proponente extends Usuario {
 
     private String direccion;
+    @Column(length = 2000)
     private String bio;
     private String sitioWeb;
     @OneToMany(mappedBy = "proponente", cascade = CascadeType.ALL, orphanRemoval = true)

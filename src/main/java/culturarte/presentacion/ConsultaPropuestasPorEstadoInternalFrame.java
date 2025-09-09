@@ -16,12 +16,12 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
     private JButton btnConsultar;
     private JList<DTPropuesta> jListPropuestas;
     private JLabel lblTitulo;
-    private JLabel lblDescripcion;
+    private JTextArea txtDescripcion;
     private JLabel lblLugar;
     private JLabel lblFechaPrevista;
     private JLabel lblEstado;
     private JLabel lblImagen;
-    private JLabel lblColaboradores;
+    private JTextArea txtColaboradores;
     private JLabel lblMontoTotal;
 
     private JLabel lblProponente;
@@ -29,7 +29,7 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
     private JLabel lblCategoria;
     private JLabel lblMontoNecesario;
     private JLabel lblFechaPublicacion;
-    private JLabel lblHistorial;
+    private JTextArea txtHistorial;
     private JLabel lblTiposRetorno;
 
 
@@ -67,9 +67,17 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
         estilizarLabelContenido(lblTitulo);
 
         panelDetalles.add(new JLabel("Descripción:"));
-        lblDescripcion = new JLabel();
-        panelDetalles.add(lblDescripcion);
-        estilizarLabelContenido(lblDescripcion);
+        txtDescripcion = new JTextArea();
+        txtDescripcion.setLineWrap(true);
+        txtDescripcion.setWrapStyleWord(true);
+        txtDescripcion.setEditable(false);
+        txtDescripcion.setRows(5);
+        txtDescripcion.setFont(txtDescripcion.getFont().deriveFont(Font.BOLD));
+        JScrollPane scrollDesc = new JScrollPane(txtDescripcion);
+        scrollDesc.setBorder(BorderFactory.createEmptyBorder());
+        scrollDesc.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panelDetalles.add(scrollDesc);
+        estilizarLabelContenido(txtDescripcion);
 
         panelDetalles.add(new JLabel("Proponente:"));
         lblProponente = new JLabel();
@@ -108,9 +116,17 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
         estilizarLabelContenido(lblEstado);
 
         panelDetalles.add(new JLabel("Colaboradores:"));
-        lblColaboradores = new JLabel();
-        panelDetalles.add(lblColaboradores);
-        estilizarLabelContenido(lblColaboradores);
+        txtColaboradores = new JTextArea();
+        txtColaboradores.setLineWrap(true);
+        txtColaboradores.setWrapStyleWord(true);
+        txtColaboradores.setEditable(false);
+        txtColaboradores.setRows(5);
+        txtColaboradores.setFont(txtColaboradores.getFont().deriveFont(Font.BOLD));
+        JScrollPane scrollColab = new JScrollPane(txtColaboradores);
+        scrollColab.setBorder(BorderFactory.createEmptyBorder());
+        scrollColab.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panelDetalles.add(scrollColab);
+        estilizarLabelContenido(txtColaboradores);
 
         panelDetalles.add(new JLabel("Monto total recaudado:"));
         lblMontoTotal = new JLabel();
@@ -128,9 +144,18 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
         estilizarLabelContenido(lblFechaPublicacion);
 
         panelDetalles.add(new JLabel("Historial:"));
-        lblHistorial = new JLabel();
-        panelDetalles.add(lblHistorial);
-        estilizarLabelContenido(lblHistorial);
+        txtHistorial = new JTextArea();
+        txtHistorial.setLineWrap(true);
+        txtHistorial.setWrapStyleWord(true);
+        txtHistorial.setEditable(false);
+        txtHistorial.setRows(5);
+        txtHistorial.setFont(txtHistorial.getFont().deriveFont(Font.BOLD));
+        txtHistorial.setAlignmentX(Component.CENTER_ALIGNMENT);
+        JScrollPane scrollHist = new JScrollPane(txtHistorial);
+        scrollHist.setBorder(BorderFactory.createEmptyBorder());
+        scrollHist.setAlignmentX(Component.LEFT_ALIGNMENT);
+        panelDetalles.add(scrollHist);
+        estilizarLabelContenido(txtHistorial);
 
         panelDetalles.add(new JLabel("Tipos de Retorno:"));
         lblTiposRetorno = new JLabel();
@@ -193,7 +218,7 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
 
     private void mostrarDetalles(DTPropuesta p) {
         lblTitulo.setText(p.getTitulo());
-        lblDescripcion.setText(p.getDescripcion());
+        txtDescripcion.setText(p.getDescripcion());
         lblLugar.setText(p.getLugar());
         lblFechaPrevista.setText(p.getFechaPrevista() != null ? p.getFechaPrevista().toString() : "");
         lblEstado.setText(p.getEstadoActual() != null ? p.getEstadoActual().toString() : "Sin estado");
@@ -210,7 +235,7 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
                 .stream()
                 .map(c -> c.getColaborador().getNickname())
                 .collect(Collectors.joining(", "));
-        lblColaboradores.setText(colaboradores);
+        txtColaboradores.setText(colaboradores);
 
         double montoTotal = p.getColaboraciones()
                 .stream()
@@ -218,7 +243,7 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
                 .sum();
         lblMontoTotal.setText(String.valueOf(montoTotal));
 
-        lblHistorial.setText(p.getHistorial().stream()
+        txtHistorial.setText(p.getHistorial().stream()
                 .map(h -> h.getEstado().toString() + " (" + h.getFechaCambio() + ")")
                 .collect(Collectors.joining(", ")));
         lblTiposRetorno.setText(p.getTiposRetorno().stream()
@@ -233,12 +258,12 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
 
     private void limpiarDetalles() {
         lblTitulo.setText("");
-        lblDescripcion.setText("");
+        txtDescripcion.setText("");
         lblLugar.setText("");
         lblFechaPrevista.setText("");
         lblEstado.setText("");
         lblImagen.setIcon(null);
-        lblColaboradores.setText("");
+        txtColaboradores.setText("");
         lblMontoTotal.setText("");
 
         lblCategoria.setText("");
@@ -246,14 +271,14 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
         lblProponente.setText("");
         lblMontoNecesario.setText("");
         lblFechaPublicacion.setText("");
-        lblHistorial.setText("");
+        txtHistorial.setText("");
         lblTiposRetorno.setText("");
     }
 
-    private void estilizarLabelContenido(JLabel label) {
-        label.setOpaque(true);
-        label.setBackground(new Color(200, 230, 250));
-        label.setForeground(Color.BLACK);
-        label.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
+    private void estilizarLabelContenido(JComponent comp) {
+        comp.setOpaque(true);
+        comp.setBackground(new Color(200, 230, 250));
+        comp.setForeground(Color.BLACK);
+        comp.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));
     }
 }

@@ -14,6 +14,7 @@ public class Propuesta {
         private Long id;
         @Column(unique = true, nullable = false)
         private String titulo;
+        @Column(length = 2000)
         private String descripcion;
         private String lugar;
         private LocalDate fechaPrevista;

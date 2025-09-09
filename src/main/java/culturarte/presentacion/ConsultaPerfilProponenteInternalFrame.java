@@ -22,7 +22,7 @@ public class ConsultaPerfilProponenteInternalFrame extends JInternalFrame {
     private JLabel lblCorreo;
     private JLabel lblFechaNacimiento;
     private JLabel lblDireccion;
-    private JLabel lblBiografia;
+    private JTextArea txtBiografia;
     private JLabel lblWeb;
     private JLabel lblImagen;
     private JPanel panelPropuestas;
@@ -61,11 +61,20 @@ public class ConsultaPerfilProponenteInternalFrame extends JInternalFrame {
         lblCorreo = new JLabel("Correo: ");
         lblDireccion = new JLabel("Dirección: ");
         lblWeb = new JLabel("Sitio Web: ");
-        lblBiografia = new JLabel("Biografía: ");
+        txtBiografia = new JTextArea();
+        txtBiografia.setLineWrap(true);
+        txtBiografia.setWrapStyleWord(true);
+        txtBiografia.setEditable(false);
+        txtBiografia.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        txtBiografia.setBackground(col2.getBackground());
+        txtBiografia.setRows(5);
+        JScrollPane scrollBio = new JScrollPane(txtBiografia);
+        scrollBio.setBorder(BorderFactory.createEmptyBorder());
+        scrollBio.setAlignmentX(Component.LEFT_ALIGNMENT);
         col2.add(lblCorreo);
         col2.add(lblDireccion);
         col2.add(lblWeb);
-        col2.add(lblBiografia);
+        col2.add(scrollBio);
 
         JPanel col3 = new JPanel();
         col3.setLayout(new BoxLayout(col3, BoxLayout.Y_AXIS));
@@ -76,7 +85,7 @@ public class ConsultaPerfilProponenteInternalFrame extends JInternalFrame {
 
         Font fontInfo = new Font("Times New Roman", Font.PLAIN, 20);
         setFontToLabels(fontInfo, lblNickname, lblNombre, lblApellido, lblFechaNacimiento,
-                lblCorreo, lblDireccion, lblWeb, lblBiografia);
+                lblCorreo, lblDireccion, lblWeb);
 
 
         panelInfo.add(col3);
@@ -114,8 +123,8 @@ public class ConsultaPerfilProponenteInternalFrame extends JInternalFrame {
             lblCorreo.setText("Correo: " + proponente.getCorreo());
             lblFechaNacimiento.setText("Fecha de Nacimiento: " + proponente.getFechaNacimiento());
             lblDireccion.setText("Direccion: " + proponente.getDireccion());
-            lblBiografia.setText("Biografía: " + proponente.getBio());
-            lblWeb.setText("Sitio Web: " + proponente.getSitioWeb());
+            txtBiografia.setText("Biografía: " + (proponente.getBio() != null ? proponente.getBio() : ""));
+            lblWeb.setText("Sitio Web: " + (proponente.getSitioWeb() != null ? proponente.getSitioWeb() : ""));
 
             if (proponente.getImagen() != null) {
                 ImageIcon icon = new ImageIcon(proponente.getImagen());
@@ -157,7 +166,7 @@ public class ConsultaPerfilProponenteInternalFrame extends JInternalFrame {
                     if (colaboradoresStr.length() > 0) {
                         colaboradoresStr.append(", ");
                     }
-                    colaboradoresStr.append(c.getColaborador().getNombre());
+                    colaboradoresStr.append(c.getColaborador().getNickname());
                 }
 
                 pPanel.add(new JLabel("Titulo: " + p.getTitulo()));
