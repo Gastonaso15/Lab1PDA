@@ -1,24 +1,24 @@
 package culturarte.presentacion;
 
-import culturarte.logica.controlador.IUsuarioController;
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+import culturarte.logica.controlador.IUsuarioController;
+
 public class DejarSeguirUsuarioInternalFrame extends JInternalFrame {
 
-    private IUsuarioController UsuarioContr;
-
-    private JComboBox<String> cbSeguidor;
-    private JComboBox<String> cbSeguido;
+    private final IUsuarioController usuarioController;
+    private final JComboBox<String> cbSeguidor;
+    private final JComboBox<String> cbSeguido;
 
     public DejarSeguirUsuarioInternalFrame(IUsuarioController icu) {
+
         super("Seguir Usuario", true, true, true, true);
         setSize(1200, 500);
         setLayout(new BorderLayout());
 
-        UsuarioContr = icu;
+        usuarioController = icu;
 
         JPanel panel = new JPanel(new GridLayout(5, 2, 5, 5));
 
@@ -56,7 +56,7 @@ public class DejarSeguirUsuarioInternalFrame extends JInternalFrame {
             }
 
             try {
-                UsuarioContr.dejarDeSeguirUsuario(nicknameSeguidor, nicknameSeguido);
+                usuarioController.dejarDeSeguirUsuario(nicknameSeguidor, nicknameSeguido);
                 JOptionPane.showMessageDialog(this,
                         nicknameSeguidor + " dejó de seguir a " + nicknameSeguido,
                         "Dejar de Seguir Usuario",
@@ -73,8 +73,10 @@ public class DejarSeguirUsuarioInternalFrame extends JInternalFrame {
     }
 
     private void cargarUsuarios(JComboBox<String> combo) {
+
         combo.removeAllItems();
-        List<String> usuarios = UsuarioContr.devolverNicknamesUsuarios();
+        List<String> usuarios = usuarioController.devolverNicknamesUsuarios();
+
         if (usuarios != null) {
             for (String u : usuarios) {
                 combo.addItem(u);

@@ -13,9 +13,9 @@ public class DTProponente extends DTUsuario {
     // Constructores
     public DTProponente() {
         super();
-        this.setDireccion(new String());
-        this.setBio(new String());
-        this.setSitioWeb(new String());
+        this.setDireccion("");
+        this.setBio("");
+        this.setSitioWeb("");
     }
     public DTProponente(String nickname, String nombre, String apellido, String correo, LocalDate fechaNacimiento, String imagen,String direccion, String bio, String sitioWeb) {
         super(nickname, nombre, apellido, correo,fechaNacimiento,imagen);

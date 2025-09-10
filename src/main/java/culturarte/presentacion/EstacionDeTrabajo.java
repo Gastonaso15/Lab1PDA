@@ -1,70 +1,41 @@
 package culturarte.presentacion;
 
-// === Imports de Swing y AWT ===
 import javax.swing.*;
 import java.awt.*;
 
-// === Imports de la lógica / controladores ===
 import culturarte.logica.Fabrica;
 import culturarte.logica.controlador.IPropuestaController;
 import culturarte.logica.controlador.IUsuarioController;
 
-/**
- * Estación de Trabajo (Frame principal) — versión refactorizada y comentada
- *
- * Guía visual del archivo:
- * 1) main: punto de entrada de la app
- * 2) atributos privados (UI + controladores)
- * 3) constructor: arma la ventana y delega en métodos privados
- * 4) métodos privados de construcción (frame, controladores, menús)
- * 5) helpers para abrir cada InternalFrame
- */
+
 public class EstacionDeTrabajo extends JFrame {
 
-    // --------------------------------------------------------------------
-    // 1) ENTRANCE POINT (main)
-    // --------------------------------------------------------------------
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new EstacionDeTrabajo().setVisible(true));  // Esto asegura que la UI de Swing se construya en el hilo de eventos
     }
 
-    // --------------------------------------------------------------------
-    // 2) PRIVATE ATRIBUTES (UI + controladores)
-    // --------------------------------------------------------------------
-    private final JDesktopPane desktop;         // Esto es el “escritorio” MDI donde se agregan los JInternalFrame
-    private IUsuarioController ICU;             // Interfaces de la capa de lógica que usa esta pantalla
+    private final JDesktopPane desktop;
+    private IUsuarioController ICU;
     private IPropuestaController ICP;
 
-    // --------------------------------------------------------------------
-    // 3) CONSTRUCTOR (arma la ventana y delega responsabilidades)
-    // --------------------------------------------------------------------
     public EstacionDeTrabajo() {
         this.desktop = new JDesktopPane();
-        setupFrame(); // --- Configuración base de la ventana (Swing) ---
-        initControllers(); // --- Obtener controladores desde la Fábrica ---
-        setJMenuBar(buildMenuBar());// --- Barra de menú (Usuarios / Propuestas) ---
-        add(desktop, BorderLayout.CENTER);// Agregamos el escritorio al centro del frame
+        setupFrame();
+        initControllers();
+        setJMenuBar(buildMenuBar());
+        add(desktop, BorderLayout.CENTER);
         desktop.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
-        /*
-        Eso cambia cómo se arrastran los JInternalFrame dentro del JDesktopPane:
 
-        OUTLINE_DRAG_MODE: mientras arrastrás, se dibuja solo el contorno de la ventana interna. Es súper fluido y no repinta to do el contenido (mejor rendimiento).
-
-        LIVE_DRAG_MODE (valor por defecto): arrastra la ventana completa repintando su contenido en cada pixel que movés. Se ve “más real”, pero consume más.
-         */
     }
 
-    // --------------------------------------------------------------------
-    // 4) Métodos privados de construcción
-    // --------------------------------------------------------------------
-    private void setupFrame() { //(Esto es para configurar Swing (título, tamaño, cierre))
+    private void setupFrame() {
         setTitle("Culturarte - Estación de Trabajo");
         setSize(1500, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // centrar en pantalla
     }
 
-    private void initControllers() {// Esto inicializa las referencias a los controladores de la capa lógica
+    private void initControllers() {
         Fabrica fabrica = Fabrica.getInstance();
         ICU = fabrica.getIUsuarioController();
         ICP = fabrica.getIPropuestaController();

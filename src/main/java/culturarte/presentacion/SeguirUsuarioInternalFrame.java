@@ -8,10 +8,10 @@ import java.util.List;
 
 public class SeguirUsuarioInternalFrame extends JInternalFrame {
 
-    private IUsuarioController UsuarioContr;
+    private final IUsuarioController UsuarioContr;
 
-    private JComboBox<String> cbSeguidor;
-    private JComboBox<String> cbSeguido;
+    private final JComboBox<String> cbSeguidor;
+    private final JComboBox<String> cbSeguido;
 
     public SeguirUsuarioInternalFrame(IUsuarioController icu) {
         super("Seguir Usuario", true, true, true, true);

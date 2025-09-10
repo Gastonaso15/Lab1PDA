@@ -47,9 +47,7 @@ public class DTColaboracion{
     public void setMonto(Double monto) { this.monto = monto; }
 
     public DTTipoRetorno getTipoRetorno() { return tipoRetorno; }
-    public void setTipoRetorno(DTTipoRetorno tipoRetorno) { this.tipoRetorno = tipoRetorno; }
 
     public LocalDateTime getFechaHora() { return fechaHora; }
-    public void setFechaHora(LocalDateTime fechaHora) { this.fechaHora = fechaHora; }
 
 }

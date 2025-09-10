@@ -2,7 +2,6 @@ package culturarte.presentacion;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,31 +11,31 @@ import culturarte.logica.controlador.IPropuestaController;
 
 public class ConsultarPropuestaInternalFrame extends JInternalFrame {
 
-    private JList<DTPropuesta> jListPropuestas;
-    private JLabel lblTitulo;
-    private JTextArea txtDescripcion;
-    private JLabel lblProponente;
-    private JLabel lblLugar;
-    private JLabel lblFechaPrevista;
-    private JLabel lblEstado;
-    private ImagenUIHelper.ImagenPanel lblImagen;
-    private JTextArea txtColaboradores;
-    private JLabel lblMontoTotal;
-    private JLabel lblPrecioEntrada;
-    private JLabel lblMontoNecesario;
-    private JLabel lblFechaPublicacion;
-    private JLabel lblCategoria;
-    private JTextArea txtHistorial;
-    private JLabel lblTiposRetorno;
 
-    private IPropuestaController PropuestaContr;
+    private final IPropuestaController propuestaController;
 
+    private final JList<DTPropuesta> jListPropuestas;
+    private final JLabel lblTitulo;
+    private final JTextArea txtDescripcion;
+    private final JLabel lblProponente;
+    private final JLabel lblLugar;
+    private final JLabel lblFechaPrevista;
+    private final JLabel lblEstado;
+    private final ImagenUIHelper.ImagenPanel lblImagen;
+    private final JTextArea txtColaboradores;
+    private final JLabel lblMontoTotal;
+    private final JLabel lblPrecioEntrada;
+    private final JLabel lblMontoNecesario;
+    private final JLabel lblFechaPublicacion;
+    private final JLabel lblCategoria;
+    private final JTextArea txtHistorial;
+    private final JLabel lblTiposRetorno;
     public ConsultarPropuestaInternalFrame(IPropuestaController icp) {
         super("Consultar Propuesta", true, true, true, true);
         setSize(1200, 500);
         setLayout(new BorderLayout());
 
-        PropuestaContr = icp;
+        propuestaController = icp;
 
         jListPropuestas = new JList<>();
         JScrollPane scrollList = new JScrollPane(jListPropuestas);
@@ -161,7 +160,7 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
     }
 
     private void cargarPropuestas() {
-        List<DTPropuesta> propuestas = PropuestaContr.devolverTodasLasPropuestas();
+        List<DTPropuesta> propuestas = propuestaController.devolverTodasLasPropuestas();
         DefaultListModel<DTPropuesta> modeloLista = new DefaultListModel<>();
         for (DTPropuesta p : propuestas) {
             modeloLista.addElement(p);

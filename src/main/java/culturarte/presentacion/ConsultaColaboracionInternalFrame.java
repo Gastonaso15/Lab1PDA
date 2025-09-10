@@ -4,17 +4,14 @@ import culturarte.logica.DT.DTColaboracion;
 import culturarte.logica.DT.DTColaborador;
 import culturarte.logica.DT.DTPropuesta;
 import culturarte.logica.controlador.IUsuarioController;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ConsultaColaboracionInternalFrame extends JInternalFrame {
 
-    private IUsuarioController UsuarioContr;
+    private final IUsuarioController usuarioController;
 
     private JComboBox<String> comboColaboradores;
     private JList<String> listColaboraciones;
@@ -37,7 +34,7 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
         setSize(1200, 600);
         setLayout(new BorderLayout());
 
-        UsuarioContr = icu;
+        this.usuarioController = icu;
 
         inicializarComponentes();
         configurarLayout();
@@ -64,7 +61,8 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
         lblTotalRecaudado = new JLabel("Total Recaudado: ");
 
         Font fontInfo = new Font("Times New Roman", Font.PLAIN, 14);
-        setFontToLabels(fontInfo, lblPropuestaTitulo, lblProponenteNick, lblColaboradorNick,
+        // Reemplazamos método local por UIHelper
+        UIHelper.setFontToLabels(fontInfo, lblPropuestaTitulo, lblProponenteNick, lblColaboradorNick,
                 lblMonto, lblTipoRetorno, lblFechaHora, lblEstadoPropuesta,
                 lblMontoNecesario, lblTotalRecaudado);
     }
@@ -78,25 +76,16 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
         JPanel panelIzquierdo = new JPanel(new BorderLayout());
         panelIzquierdo.setBorder(BorderFactory.createTitledBorder("Colaboraciones Realizadas"));
         panelIzquierdo.setPreferredSize(new Dimension(400, 400));
-
-        JScrollPane scrollColaboraciones = new JScrollPane(listColaboraciones);
-        panelIzquierdo.add(scrollColaboraciones, BorderLayout.CENTER);
+        panelIzquierdo.add(new JScrollPane(listColaboraciones), BorderLayout.CENTER);
 
         JPanel panelDerecho = new JPanel(new BorderLayout());
         panelDerecho.setBorder(BorderFactory.createTitledBorder("Detalles de la Colaboración"));
 
         JPanel panelDetalles = new JPanel(new GridLayout(9, 1, 5, 5));
         panelDetalles.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-
-        panelDetalles.add(lblPropuestaTitulo);
-        panelDetalles.add(lblProponenteNick);
-        panelDetalles.add(lblColaboradorNick);
-        panelDetalles.add(lblMonto);
-        panelDetalles.add(lblTipoRetorno);
-        panelDetalles.add(lblFechaHora);
-        panelDetalles.add(lblEstadoPropuesta);
-        panelDetalles.add(lblMontoNecesario);
-        panelDetalles.add(lblTotalRecaudado);
+        UIHelper.agregarLabels(panelDetalles, lblPropuestaTitulo, lblProponenteNick, lblColaboradorNick,
+                lblMonto, lblTipoRetorno, lblFechaHora, lblEstadoPropuesta,
+                lblMontoNecesario, lblTotalRecaudado);
 
         panelDerecho.add(panelDetalles, BorderLayout.NORTH);
 
@@ -109,13 +98,10 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
     }
 
     private void configurarEventos() {
-        comboColaboradores.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String nickname = (String) comboColaboradores.getSelectedItem();
-                if (nickname != null && !nickname.isEmpty()) {
-                    cargarColaboracionesDelColaborador(nickname);
-                }
+        comboColaboradores.addActionListener(e -> {
+            String nickname = (String) comboColaboradores.getSelectedItem();
+            if (nickname != null && !nickname.isEmpty()) {
+                cargarColaboracionesDelColaborador(nickname);
             }
         });
 
@@ -134,7 +120,7 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
             comboColaboradores.removeAllItems();
             comboColaboradores.addItem("");
 
-            List<String> nicknames = UsuarioContr.devolverNicknamesColaboradores();
+            List<String> nicknames = usuarioController.devolverNicknamesColaboradores();
             for (String nickname : nicknames) {
                 comboColaboradores.addItem(nickname);
             }
@@ -151,7 +137,7 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
             modelColaboraciones.clear();
             limpiarDetalles();
 
-            colaboradorActual = UsuarioContr.obtenerColaboradorCompleto(nickname);
+            colaboradorActual = usuarioController.obtenerColaboradorCompleto(nickname);
 
             if (colaboradorActual.getColaboraciones() != null && !colaboradorActual.getColaboraciones().isEmpty()) {
                 int index = 1;
@@ -233,11 +219,5 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
         lblEstadoPropuesta.setText("Estado Propuesta: ");
         lblMontoNecesario.setText("Monto Necesario: ");
         lblTotalRecaudado.setText("Total Recaudado: ");
-    }
-
-    private void setFontToLabels(Font font, JLabel... labels) {
-        for (JLabel lbl : labels) {
-            lbl.setFont(font);
-        }
     }
 }

@@ -10,32 +10,32 @@ import java.util.List;
 
 public class RegistrarColaboracionInternalFrame extends JInternalFrame {
 
-    private IPropuestaController PropuestaContr;
+    private final IPropuestaController propuestaController;
 
-    private JList<DTPropuesta> jListPropuestas;
-    private JTextField txtColaborador;
-    private JTextField txtMonto;
-    private JComboBox<DTTipoRetorno> comboRetorno;
-    private JLabel lblTitulo;
-    private JLabel lblDescripcion;
-    private JLabel lblLugar;
-    private JLabel lblFechaPrevista;
-    private JLabel lblPrecioEntrada;
-    private JLabel lblMontoNecesario;
-    private JLabel lblProponente;
-    private JLabel lblEstado;
-    private JLabel lblMontoTotal;
-    private JLabel lblCategoria;
+    private final JList<DTPropuesta> jListPropuestas;
+    private final JTextField txtColaborador;
+    private final JTextField txtMonto;
+    private final JComboBox<DTTipoRetorno> comboRetorno;
+    private final JLabel lblTitulo;
+    private final JLabel lblDescripcion;
+    private final JLabel lblLugar;
+    private final JLabel lblFechaPrevista;
+    private final JLabel lblPrecioEntrada;
+    private final JLabel lblMontoNecesario;
+    private final JLabel lblProponente;
+    private final JLabel lblEstado;
+    private final JLabel lblMontoTotal;
+    private final JLabel lblCategoria;
 
     public RegistrarColaboracionInternalFrame(IPropuestaController icp) {
         super("Registrar Colaboración a Propuesta", true, true, true, true);
         setSize(1200, 500);
         setLayout(new BorderLayout());
 
-        PropuestaContr = icp;
+        propuestaController = icp;
 
         JPanel panelIzquierdo = new JPanel(new BorderLayout());
-        List<DTPropuesta> propuestas = PropuestaContr.devolverTodasLasPropuestas();
+        List<DTPropuesta> propuestas = propuestaController.devolverTodasLasPropuestas();
         jListPropuestas = new JList<>(propuestas.toArray(new DTPropuesta[0]));
         JScrollPane scrollPropuestas = new JScrollPane(jListPropuestas);
         panelIzquierdo.add(new JLabel("Propuestas:"), BorderLayout.NORTH);
@@ -154,7 +154,7 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
                     return;
                 }
 
-                Double monto;
+                double monto;
                 try {
                     monto = Double.parseDouble(montoTexto);
                     if (monto <= 0) {
@@ -168,12 +168,13 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
 
                 DTTipoRetorno tipoRetorno = (DTTipoRetorno) comboRetorno.getSelectedItem();
 
-                PropuestaContr.registrarColaboracion(
+                propuestaController.registrarColaboracion(
                         propuestaSeleccionada.getTitulo(),
                         nickname,
                         monto,
-                        tipoRetorno.toString()
+                        tipoRetorno != null ? tipoRetorno.toString() : ""
                 );
+
 
                 JOptionPane.showMessageDialog(this, "Colaboración registrada con éxito");
 
@@ -183,7 +184,7 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
                 jListPropuestas.clearSelection();
                 limpiarDetalles();
 
-                List<DTPropuesta> propuestasActualizadas = PropuestaContr.devolverTodasLasPropuestas();
+                List<DTPropuesta> propuestasActualizadas = propuestaController.devolverTodasLasPropuestas();
                 jListPropuestas.setListData(propuestasActualizadas.toArray(new DTPropuesta[0]));
 
             } catch (Exception ex) {

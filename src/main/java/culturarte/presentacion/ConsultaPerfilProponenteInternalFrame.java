@@ -9,56 +9,58 @@ import culturarte.logica.controlador.IUsuarioController;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.io.File;
 import java.util.List;
-
 
 public class ConsultaPerfilProponenteInternalFrame extends JInternalFrame {
 
-    private IUsuarioController UsuarioContr;
-    private JList<String> listProponentes;
-    private JLabel lblNickname;
-    private JLabel lblNombre;
-    private JLabel lblApellido;
-    private JLabel lblCorreo;
-    private JLabel lblFechaNacimiento;
-    private JLabel lblDireccion;
-    private JTextArea txtBiografia;
-    private JLabel lblWeb;
-    private ImagenUIHelper.ImagenPanel lblImagen;
-    private JPanel panelPropuestas;
+    private final IUsuarioController usuarioController;
+    private final JList<String> listProponentes;
+    private final JLabel lblNickname;
+    private final JLabel lblNombre;
+    private final JLabel lblApellido;
+    private final JLabel lblCorreo;
+    private final JLabel lblFechaNacimiento;
+    private final JLabel lblDireccion;
+    private final JTextArea txtBiografia;
+    private final JLabel lblWeb;
+    private final ImagenUIHelper.ImagenPanel lblImagen;
+    private final JPanel panelPropuestas;
 
-    public ConsultaPerfilProponenteInternalFrame(IUsuarioController icu) {
+    public ConsultaPerfilProponenteInternalFrame(IUsuarioController usuarioController) {
         super("Consultar Perfil de Proponente", true, true, true, true);
         setSize(1200, 500);
         setLayout(new BorderLayout());
 
-        UsuarioContr = icu;
+        this.usuarioController = usuarioController;
 
+        // Panel izquierdo: lista de proponentes
         JPanel panelIzquierdo = new JPanel(new BorderLayout());
-        List<String> nicknames = icu.devolverNicknamesProponentes();
+        List<String> nicknames = usuarioController.devolverNicknamesProponentes();
         listProponentes = new JList<>(nicknames.toArray(new String[0]));
         JScrollPane scrollProponentes = new JScrollPane(listProponentes);
         panelIzquierdo.add(new JLabel("Proponentes:"), BorderLayout.NORTH);
         panelIzquierdo.add(scrollProponentes, BorderLayout.CENTER);
 
+        // Panel derecho: información y propuestas
         JPanel panelDerecho = new JPanel(new BorderLayout());
 
-        JPanel panelInfo = new JPanel(new GridLayout(1,3,10,0));
+        JPanel panelInfo = new JPanel(new GridLayout(1, 3, 10, 0));
 
+        // Columna 1: Imagen
         JPanel col1 = new JPanel();
         col1.setLayout(new BoxLayout(col1, BoxLayout.Y_AXIS));
+        lblImagen = new ImagenUIHelper.ImagenPanel();
+        lblImagen.setPreferredSize(new Dimension(150, 150));
+        lblImagen.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        col1.add(lblImagen);
+
+        // Columna 2: Datos personales
+        JPanel col2 = new JPanel();
+        col2.setLayout(new BoxLayout(col2, BoxLayout.Y_AXIS));
         lblNickname = new JLabel("Nickname: ");
         lblNombre = new JLabel("Nombre: ");
         lblApellido = new JLabel("Apellido: ");
         lblFechaNacimiento = new JLabel("Fecha de nacimiento: ");
-        col1.add(lblNickname);
-        col1.add(lblNombre);
-        col1.add(lblApellido);
-        col1.add(lblFechaNacimiento);
-
-        JPanel col2 = new JPanel();
-        col2.setLayout(new BoxLayout(col2, BoxLayout.Y_AXIS));
         lblCorreo = new JLabel("Correo: ");
         lblDireccion = new JLabel("Dirección: ");
         lblWeb = new JLabel("Sitio Web: ");
@@ -72,27 +74,24 @@ public class ConsultaPerfilProponenteInternalFrame extends JInternalFrame {
         JScrollPane scrollBio = new JScrollPane(txtBiografia);
         scrollBio.setBorder(BorderFactory.createEmptyBorder());
         scrollBio.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        col2.add(lblNickname);
+        col2.add(lblNombre);
+        col2.add(lblApellido);
+        col2.add(lblFechaNacimiento);
         col2.add(lblCorreo);
         col2.add(lblDireccion);
         col2.add(lblWeb);
         col2.add(scrollBio);
 
-        JPanel col3 = new JPanel();
-        col3.setLayout(new BoxLayout(col3, BoxLayout.Y_AXIS));
-        lblImagen = new ImagenUIHelper.ImagenPanel();
-        lblImagen.setPreferredSize(new Dimension(150, 150));
-        lblImagen.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        col3.add(lblImagen);
+        panelInfo.add(col1);
+        panelInfo.add(col2);
 
         Font fontInfo = new Font("Times New Roman", Font.PLAIN, 20);
         setFontToLabels(fontInfo, lblNickname, lblNombre, lblApellido, lblFechaNacimiento,
                 lblCorreo, lblDireccion, lblWeb);
 
-
-        panelInfo.add(col3);
-        panelInfo.add(col1);
-        panelInfo.add(col2);
-
+        // Panel de propuestas
         panelPropuestas = new JPanel();
         panelPropuestas.setLayout(new BoxLayout(panelPropuestas, BoxLayout.Y_AXIS));
         JScrollPane scrollPropuestas = new JScrollPane(panelPropuestas);
@@ -101,90 +100,89 @@ public class ConsultaPerfilProponenteInternalFrame extends JInternalFrame {
         panelDerecho.add(panelInfo, BorderLayout.NORTH);
         panelDerecho.add(scrollPropuestas, BorderLayout.CENTER);
 
+        // Split pane
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelIzquierdo, panelDerecho);
         splitPane.setDividerLocation(200);
         add(splitPane, BorderLayout.CENTER);
 
+        // Listener de selección
         listProponentes.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 String nickname = listProponentes.getSelectedValue();
-                if (nickname != null) {
-                    mostrarProponente(nickname);
-                }
+                if (nickname != null) mostrarProponente(nickname);
             }
         });
     }
 
     private void mostrarProponente(String nickname) {
         try {
-            DTProponente proponente = UsuarioContr.obtenerProponenteCompleto(nickname);
+            DTProponente proponente = usuarioController.obtenerProponenteCompleto(nickname);
+
             lblNickname.setText("Nickname: " + proponente.getNickname());
             lblNombre.setText("Nombre: " + proponente.getNombre());
             lblApellido.setText("Apellido: " + proponente.getApellido());
             lblCorreo.setText("Correo: " + proponente.getCorreo());
             lblFechaNacimiento.setText("Fecha de Nacimiento: " + proponente.getFechaNacimiento());
-            lblDireccion.setText("Direccion: " + proponente.getDireccion());
-            txtBiografia.setText("Biografía: " + (proponente.getBio() != null ? proponente.getBio() : ""));
+            lblDireccion.setText("Dirección: " + proponente.getDireccion());
             lblWeb.setText("Sitio Web: " + (proponente.getSitioWeb() != null ? proponente.getSitioWeb() : ""));
-
+            txtBiografia.setText("Biografía: " + (proponente.getBio() != null ? proponente.getBio() : ""));
             lblImagen.setImagen(proponente.getImagen());
 
             panelPropuestas.removeAll();
-            for (DTPropuesta p : proponente.getPropuestas()) {
 
-                if (p.getEstadoActual() == DTEstadoPropuesta.INGRESADA) {
-                    continue;
-                }
+            if (proponente.getPropuestas() != null && !proponente.getPropuestas().isEmpty()) {
+                for (DTPropuesta propuesta : proponente.getPropuestas()) {
+                    if (propuesta.getEstadoActual() == DTEstadoPropuesta.INGRESADA) continue;
 
-                JPanel pPanel = new JPanel();
-                pPanel.setLayout(new BoxLayout(pPanel, BoxLayout.Y_AXIS));
-                pPanel.setBorder(BorderFactory.createTitledBorder(
-                        BorderFactory.createLineBorder(Color.BLACK),
-                        p.getTitulo() + " - " + p.getEstadoActual(),
-                        TitledBorder.LEFT,
-                        TitledBorder.TOP
-                ));
+                    JPanel pPanel = new JPanel();
+                    pPanel.setLayout(new BoxLayout(pPanel, BoxLayout.Y_AXIS));
+                    pPanel.setBorder(BorderFactory.createTitledBorder(
+                            BorderFactory.createLineBorder(Color.BLACK),
+                            propuesta.getTitulo() + " - " + propuesta.getEstadoActual(),
+                            TitledBorder.LEFT,
+                            TitledBorder.TOP
+                    ));
 
-                switch(p.getEstadoActual()) {
-                    //case INGRESADA -> pPanel.setBackground(new Color(238, 10, 238));
-                    case PUBLICADA -> pPanel.setBackground(new Color(144, 238, 144));
-                    case EN_FINANCIACION -> pPanel.setBackground(new Color(255, 255, 102));
-                    case CANCELADA -> pPanel.setBackground(new Color(255, 102, 102));
-                    case FINANCIADA -> pPanel.setBackground(new Color(102, 178, 255));
-                    case NO_FINANCIADA -> pPanel.setBackground(new Color(211, 211, 211));
-                }
-
-                double dineroRecaudado = 0;
-                StringBuilder colaboradoresStr = new StringBuilder();
-                for (DTColaboracion c : p.getColaboraciones()) {
-                    dineroRecaudado += c.getMonto();
-                    if (colaboradoresStr.length() > 0) {
-                        colaboradoresStr.append(", ");
+                    switch (propuesta.getEstadoActual()) {
+                        case PUBLICADA -> pPanel.setBackground(new Color(144, 238, 144));
+                        case EN_FINANCIACION -> pPanel.setBackground(new Color(255, 255, 102));
+                        case CANCELADA -> pPanel.setBackground(new Color(255, 102, 102));
+                        case FINANCIADA -> pPanel.setBackground(new Color(102, 178, 255));
+                        case NO_FINANCIADA -> pPanel.setBackground(new Color(211, 211, 211));
                     }
-                    colaboradoresStr.append(c.getColaborador().getNickname());
+
+                    double dineroRecaudado = 0;
+                    StringBuilder colaboradoresStr = new StringBuilder();
+                    for (DTColaboracion c : propuesta.getColaboraciones()) {
+                        dineroRecaudado += c.getMonto();
+                        if (!colaboradoresStr.isEmpty()) {
+                            colaboradoresStr.append(", ");
+                        }
+                        colaboradoresStr.append(c.getColaborador().getNickname());
+                    }
+
+
+                    pPanel.add(new JLabel("Título: " + propuesta.getTitulo()));
+                    pPanel.add(new JLabel("Fecha Prevista: " + propuesta.getFechaPrevista()));
+                    pPanel.add(new JLabel("Monto Necesario: " + propuesta.getMontoNecesario()));
+                    pPanel.add(new JLabel("Dinero Recaudado: " + dineroRecaudado));
+                    pPanel.add(new JLabel("Colaboradores: " + colaboradoresStr));
+
+                    panelPropuestas.add(pPanel);
+                    panelPropuestas.add(Box.createRigidArea(new Dimension(0, 5)));
                 }
-
-                pPanel.add(new JLabel("Titulo: " + p.getTitulo()));
-                pPanel.add(new JLabel("Fecha Prevista: " + p.getFechaPrevista()));
-                pPanel.add(new JLabel("Monto Necesario: " + p.getMontoNecesario()));
-                pPanel.add(new JLabel("Dinero recaudado: " + dineroRecaudado));
-                pPanel.add(new JLabel("Colaboradores: " + colaboradoresStr.toString()));
-
-                panelPropuestas.add(pPanel);
-                panelPropuestas.add(Box.createRigidArea(new Dimension(0,5)));
             }
 
             panelPropuestas.revalidate();
             panelPropuestas.repaint();
 
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error al mostrar proponente: " + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al mostrar proponente: " + ex.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
     private void setFontToLabels(Font font, JLabel... labels) {
-        for (JLabel lbl : labels) {
-            lbl.setFont(font);
-        }
+        for (JLabel lbl : labels) lbl.setFont(font);
     }
 }

@@ -3,8 +3,6 @@ package culturarte.presentacion;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
-import java.io.File;
-import java.io.FileInputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,20 +14,20 @@ import culturarte.logica.controlador.IPropuestaController;
 
 public class ModificarDatosPropuestaInternalFrame extends JInternalFrame {
 
-    private IPropuestaController ICP;
+    private final IPropuestaController ICP;
 
-    private JComboBox<String> cbPropuestas;
-    private JTextField tfDescripcion;
-    private JTextField tfLugar;
-    private JTextField tfFechaPrevista;
-    private JTextField tfPrecioEntrada;
-    private JTextField tfMontoNecesario;
-    private JTextField tfImagen;
-    private List<JCheckBox> checkBoxesTiposRetorno;
-    private JTree treeCategorias;
-    private DefaultMutableTreeNode rootCategorias;
+    private final JComboBox<String> cbPropuestas;
+    private final JTextField tfDescripcion;
+    private final JTextField tfLugar;
+    private final JTextField tfFechaPrevista;
+    private final JTextField tfPrecioEntrada;
+    private final JTextField tfMontoNecesario;
+    private final JTextField tfImagen;
+    private final List<JCheckBox> checkBoxesTiposRetorno;
+    private final JTree treeCategorias;
+    private final DefaultMutableTreeNode rootCategorias;
 
-    private JButton btnGuardar;
+    private final JButton btnGuardar;
 
     private List<DTPropuesta> listaPropuestas;
 

@@ -6,17 +6,9 @@ public class DTPropuestaEstado {
     private Long id;
     private DTPropuesta propuesta;
     private DTEstadoPropuesta estado;
-    private LocalDate fechaCambio;
+    private final LocalDate fechaCambio;
 
     // Constructores
-    public DTPropuestaEstado() {}
-
-    public DTPropuestaEstado(DTPropuesta propuesta, DTEstadoPropuesta estado, LocalDate fechaCambio) {
-        this.propuesta = propuesta;
-        this.estado = estado;
-        this.fechaCambio = fechaCambio;
-    }
-
     public DTPropuestaEstado(DTEstadoPropuesta estado, LocalDate fechaCambio) {
         this.estado = estado;
         this.fechaCambio = fechaCambio;
@@ -30,5 +22,4 @@ public class DTPropuestaEstado {
     public DTEstadoPropuesta getEstado() { return estado; }
     public void setEstado(DTEstadoPropuesta estado) { this.estado = estado; }
     public LocalDate getFechaCambio() { return fechaCambio; }
-    public void setFechaCambio(LocalDate fechaCambio) { this.fechaCambio = fechaCambio; }
 }
