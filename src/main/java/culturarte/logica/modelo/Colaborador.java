@@ -7,6 +7,7 @@ import java.time.LocalDate;
 
 @Entity
 @DiscriminatorValue("Colaborador")
+@Table(name = "colaboradores")
 public class Colaborador extends Usuario {
 
     @OneToMany(mappedBy = "colaborador", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

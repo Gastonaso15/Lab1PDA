@@ -43,13 +43,13 @@ INSERT INTO `categorias` VALUES (1,'Teatro',NULL),(2,'Teatro Dramático',1),(3,'
 UNLOCK TABLES;
 
 --
--- Table structure for table `colaboracion`
+-- Table structure for table `colaboraciones`
 --
 
-DROP TABLE IF EXISTS `colaboracion`;
+DROP TABLE IF EXISTS `colaboraciones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `colaboracion` (
+CREATE TABLE `colaboraciones` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `fechaHora` datetime(6) DEFAULT NULL,
   `monto` double DEFAULT NULL,
@@ -57,72 +57,72 @@ CREATE TABLE `colaboracion` (
   `colaborador_id` bigint DEFAULT NULL,
   `propuesta_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FKa6hm3jrc9p7yhs5s2mnxhu0xp` (`colaborador_id`),
-  KEY `FKi4x1d0g6alg6ye71j80tdi556` (`propuesta_id`),
-  CONSTRAINT `FKa6hm3jrc9p7yhs5s2mnxhu0xp` FOREIGN KEY (`colaborador_id`) REFERENCES `colaborador` (`id`),
-  CONSTRAINT `FKi4x1d0g6alg6ye71j80tdi556` FOREIGN KEY (`propuesta_id`) REFERENCES `propuestas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  KEY `FK15ttm68todwj4f5byy5jb1rv6` (`colaborador_id`),
+  KEY `FK86t6j8njj8j8dk78ebjxyrah` (`propuesta_id`),
+  CONSTRAINT `FK15ttm68todwj4f5byy5jb1rv6` FOREIGN KEY (`colaborador_id`) REFERENCES `colaboradores` (`id`),
+  CONSTRAINT `FK86t6j8njj8j8dk78ebjxyrah` FOREIGN KEY (`propuesta_id`) REFERENCES `propuestas` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `colaboracion`
+-- Dumping data for table `colaboraciones`
 --
 
-LOCK TABLES `colaboracion` WRITE;
-/*!40000 ALTER TABLE `colaboracion` DISABLE KEYS */;
-INSERT INTO `colaboracion` VALUES (18,'2017-05-20 14:30:00.000000',50000,'PORCENTAJE_GANANCIAS',12,1),(19,'2017-05-24 17:25:00.000000',50000,'PORCENTAJE_GANANCIAS',10,1),(20,'2017-05-30 18:30:00.000000',50000,'PORCENTAJE_GANANCIAS',16,1),(21,'2017-06-30 14:25:00.000000',200000,'PORCENTAJE_GANANCIAS',11,2),(22,'2017-07-01 18:05:00.000000',500,'ENTRADAS_GRATIS',20,2),(23,'2017-07-07 17:45:00.000000',600,'ENTRADAS_GRATIS',18,2),(24,'2017-07-10 14:35:00.000000',50000,'PORCENTAJE_GANANCIAS',12,2),(25,'2017-07-15 09:45:00.000000',50000,'PORCENTAJE_GANANCIAS',13,2),(26,'2017-08-01 07:40:00.000000',200000,'PORCENTAJE_GANANCIAS',11,3),(27,'2017-08-03 09:25:00.000000',80000,'PORCENTAJE_GANANCIAS',13,3),(28,'2017-08-05 16:50:00.000000',50000,'ENTRADAS_GRATIS',14,4),(29,'2017-08-10 15:50:00.000000',120000,'PORCENTAJE_GANANCIAS',12,4),(30,'2017-08-15 19:30:00.000000',120000,'ENTRADAS_GRATIS',15,4),(31,'2017-08-13 04:58:00.000000',100000,'PORCENTAJE_GANANCIAS',13,5),(32,'2017-08-14 11:25:00.000000',200000,'PORCENTAJE_GANANCIAS',11,5),(33,'2017-08-15 04:48:00.000000',30000,'ENTRADAS_GRATIS',15,6),(34,'2017-08-17 15:30:00.000000',150000,'PORCENTAJE_GANANCIAS',11,6);
-/*!40000 ALTER TABLE `colaboracion` ENABLE KEYS */;
+LOCK TABLES `colaboraciones` WRITE;
+/*!40000 ALTER TABLE `colaboraciones` DISABLE KEYS */;
+INSERT INTO `colaboraciones` VALUES (1,'2017-05-20 14:30:00.000000',50000,'PORCENTAJE_GANANCIAS',12,1),(2,'2017-05-24 17:25:00.000000',50000,'PORCENTAJE_GANANCIAS',10,1),(3,'2017-05-30 18:30:00.000000',50000,'PORCENTAJE_GANANCIAS',16,1),(4,'2017-06-30 14:25:00.000000',200000,'PORCENTAJE_GANANCIAS',11,2),(5,'2017-07-01 18:05:00.000000',500,'ENTRADAS_GRATIS',20,2),(6,'2017-07-07 17:45:00.000000',600,'ENTRADAS_GRATIS',18,2),(7,'2017-07-10 14:35:00.000000',50000,'PORCENTAJE_GANANCIAS',12,2),(8,'2017-07-15 09:45:00.000000',50000,'PORCENTAJE_GANANCIAS',13,2),(9,'2017-08-01 07:40:00.000000',200000,'PORCENTAJE_GANANCIAS',11,3),(10,'2017-08-03 09:25:00.000000',80000,'PORCENTAJE_GANANCIAS',13,3),(11,'2017-08-05 16:50:00.000000',50000,'ENTRADAS_GRATIS',14,4),(12,'2017-08-10 15:50:00.000000',120000,'PORCENTAJE_GANANCIAS',12,4),(13,'2017-08-15 19:30:00.000000',120000,'ENTRADAS_GRATIS',15,4),(14,'2017-08-13 04:58:00.000000',100000,'PORCENTAJE_GANANCIAS',13,5),(15,'2017-08-14 11:25:00.000000',200000,'PORCENTAJE_GANANCIAS',11,5),(16,'2017-08-15 04:48:00.000000',30000,'ENTRADAS_GRATIS',15,6),(17,'2017-08-17 15:30:00.000000',150000,'PORCENTAJE_GANANCIAS',11,6);
+/*!40000 ALTER TABLE `colaboraciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `colaborador`
+-- Table structure for table `colaboradores`
 --
 
-DROP TABLE IF EXISTS `colaborador`;
+DROP TABLE IF EXISTS `colaboradores`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `colaborador` (
+CREATE TABLE `colaboradores` (
   `id` bigint NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `FKr3pgi6hfv64f3xa6lsxlnlo0t` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`)
+  CONSTRAINT `FK87fqsiu87up9li4t798j0d41i` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `colaborador`
+-- Dumping data for table `colaboradores`
 --
 
-LOCK TABLES `colaborador` WRITE;
-/*!40000 ALTER TABLE `colaborador` DISABLE KEYS */;
-INSERT INTO `colaborador` VALUES (10),(11),(12),(13),(14),(15),(16),(17),(18),(19),(20);
-/*!40000 ALTER TABLE `colaborador` ENABLE KEYS */;
+LOCK TABLES `colaboradores` WRITE;
+/*!40000 ALTER TABLE `colaboradores` DISABLE KEYS */;
+INSERT INTO `colaboradores` VALUES (10),(11),(12),(13),(14),(15),(16),(17),(18),(19),(20);
+/*!40000 ALTER TABLE `colaboradores` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Table structure for table `proponente`
+-- Table structure for table `proponentes`
 --
 
-DROP TABLE IF EXISTS `proponente`;
+DROP TABLE IF EXISTS `proponentes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `proponente` (
+CREATE TABLE `proponentes` (
   `bio` varchar(2000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `direccion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sitioWeb` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `id` bigint NOT NULL,
   PRIMARY KEY (`id`),
-  CONSTRAINT `FKdvydvoe2hkxcjvw3w9riwj4xo` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`)
+  CONSTRAINT `FKnnskygcfx4pnhrw762b0it9hy` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `proponente`
+-- Dumping data for table `proponentes`
 --
 
-LOCK TABLES `proponente` WRITE;
-/*!40000 ALTER TABLE `proponente` DISABLE KEYS */;
-INSERT INTO `proponente` VALUES ('Horacio Rubino Torres nace el 25 de febrero de 1962, es conductor, actor y libretista. Debuta en 1982 en carnaval en Los \"Klaper\'s\", donde estuvo cuatro años, actuando y libretando. Luego para \"Gaby\'s\" (6 años), escribió en categoría revistas y humoristas y desde el comienzo y hasta el presente en su propio conjunto Momosapiens.','18 de Julio 1234','https://twitter.com/horacionubino',1),('Martín Buscaglia (Montevideo, 1972) es un artista, músico, compositor y productor uruguayo. Tanto con su banda (\"Los Bochamakers\") como en su formato \"Hombre orquesta\", o solo con su guitarra, ha recorrido el mundo tocando entre otros países en España, Estados Unidos, Inglaterra, Francia, Australia, Brasil, Colombia, Argentina, Chile, Paraguay, México y Uruguay. (Actualmente los Bochamakers son Matías Rada, Martín Ibarburu, Mateo Moreno, Herman Klang) Paralelamente, tiene proyectos a dúo con el español Kiko Veneno, la cubana Yusa, el argentino Lisandro Aristimutho, su compatriota Antolin, y a trío junto a los brasileiros Os Mulheres Negras.','Colonia 4321','http://www.martinbuscaglia.com/',2),('En 1972 ingresó a la Escuela de Arte Dramático del teatro El Galpón. Participó en más de treinta obras teatrales y varios largomarcajes. Integró el elenco estable de Radioteatro del Sodre, y en 2006 fue asesor de su Consejo Directivo. Como actor recibió un múltiplos reconocimientos: cuatro premios Florencio, premio al mejor actor extranjero del Festival de Miami y premio Melpr Actor de Cine 2008. Durante varios períodos fue directivo del teatro El Galpón y dirigente de la Sociedad Uruguaya de Actores (SUA); integró también la Federación Uruguaya de Teatros Independientes (FUTI). Formó parte del equipo de gestión de la refacción de los teatros La Máscara, Astral y El Galpón, y del equipo de gestión en la construcción del teatro De la Candela y de la sala Atahualpa de El Galpón.','Graí. Flores 5645',NULL,3),('Tabaré Cardozo (Montevideo, 24 de julio de 1971) es un cantante, compositor y murguista uruguayo; conocido por su participación en la murga Agarrate Catalina, conjunto que fundó junto a su hermano Yamando y Carlos Tanco en el año 2001.','Santiago Rivas 1212','https://www.facebook.com/Tabar%C3%A9-Cardozo-55179094281/?ref=br_rs',4),('Nace en el año 1947 en el convenillo \"Medio Mundo\" ubicado en pleno Barrio Sur. Es heredero parcialmente- junto al resto de sus hermanos- de la Comparsa \"Morenada\" (inactiva desde el fallecimiento de Juan Ángel Silva), en 1999 forma su propia Comparsa de negros y lubolos \"Cuareim 1080\". Director responsable, compositor y cantante de la misma.','Br. Artigas 4567','https://www.facebook.com/C1080?ref=br_rs',5),(NULL,'Benito Blanco 4321',NULL,6),(NULL,'Emilio Frugoni 1138 Ap. 02','http://www.electocine.com',7),(NULL,'Paraguay 1423',NULL,8),('Queremos ser vistos y reconocidos como una organización: referente en divulgación científica con un fuerte espíritu didáctico y divertido, a través de acciones coordinadas con otros divulgadores científicos, que permitan establecer puentes de comunicación. Impulsora en la generación de espacios de democratización y apropiación social del conocimiento científico.','8 de Octubre 1429','https://bardocientifico.com/',9);
-/*!40000 ALTER TABLE `proponente` ENABLE KEYS */;
+LOCK TABLES `proponentes` WRITE;
+/*!40000 ALTER TABLE `proponentes` DISABLE KEYS */;
+INSERT INTO `proponentes` VALUES ('Horacio Rubino Torres nace el 25 de febrero de 1962, es conductor, actor y libretista. Debuta en 1982 en carnaval en Los \"Klaper\'s\", donde estuvo cuatro años, actuando y libretando. Luego para \"Gaby\'s\" (6 años), escribió en categoría revistas y humoristas y desde el comienzo y hasta el presente en su propio conjunto Momosapiens.','18 de Julio 1234','https://twitter.com/horacionubino',1),('Martín Buscaglia (Montevideo, 1972) es un artista, músico, compositor y productor uruguayo. Tanto con su banda (\"Los Bochamakers\") como en su formato \"Hombre orquesta\", o solo con su guitarra, ha recorrido el mundo tocando entre otros países en España, Estados Unidos, Inglaterra, Francia, Australia, Brasil, Colombia, Argentina, Chile, Paraguay, México y Uruguay.','Colonia 4321','http://www.martinbuscaglia.com/',2),('En 1972 ingresó a la Escuela de Arte Dramático del teatro El Galpón. Participó en más de treinta obras teatrales y varios largomarcajes. Integró el elenco estable de Radioteatro del Sodre, y en 2006 fue asesor de su Consejo Directivo. Como actor recibió un múltiplos reconocimientos: cuatro premios Florencio, premio al mejor actor extranjero del Festival de Miami y premio Melpr Actor de Cine 2008.','Graí. Flores 5645',NULL,3),('Tabaré Cardozo (Montevideo, 24 de julio de 1971) es un cantante, compositor y murguista uruguayo; conocido por su participación en la murga Agarrate Catalina, conjunto que fundó junto a su hermano Yamando y Carlos Tanco en el año 2001.','Santiago Rivas 1212','https://www.facebook.com/Tabar%C3%A9-Cardozo-55179094281/?ref=br_rs',4),('Nace en el año 1947 en el convenillo \"Medio Mundo\" ubicado en pleno Barrio Sur. Es heredero parcialmente- junto al resto de sus hermanos- de la Comparsa \"Morenada\" (inactiva desde el fallecimiento de Juan Ángel Silva), en 1999 forma su propia Comparsa de negros y lubolos \"Cuareim 1080\". Director responsable, compositor y cantante de la misma.','Br. Artigas 4567','https://www.facebook.com/C1080?ref=br_rs',5),(NULL,'Benito Blanco 4321',NULL,6),(NULL,'Emilio Frugoni 1138 Ap. 02','http://www.electocine.com',7),(NULL,'Paraguay 1423',NULL,8),('Queremos ser vistos y reconocidos como una organización: referente en divulgación científica con un fuerte espíritu didáctico y divertido, a través de acciones coordinadas con otros divulgadores científicos, que permitan establecer puentes de comunicación. Impulsora en la generación de espacios de democratización y apropiación social del conocimiento científico.','8 de Octubre 1429','https://bardocientifico.com/',9);
+/*!40000 ALTER TABLE `proponentes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -151,34 +151,6 @@ INSERT INTO `propuesta_tiposretorno` VALUES (1,'PORCENTAJE_GANANCIAS'),(2,'ENTRA
 UNLOCK TABLES;
 
 --
--- Table structure for table `propuestaestado`
---
-
-DROP TABLE IF EXISTS `propuestaestado`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `propuestaestado` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `estado` enum('INGRESADA','PUBLICADA','EN_FINANCIACION','FINANCIADA','NO_FINANCIADA','CANCELADA') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `fechaCambio` date DEFAULT NULL,
-  `propuesta_id` bigint DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FKlec3dnm880enuwthnsc72fxj7` (`propuesta_id`),
-  CONSTRAINT `FKlec3dnm880enuwthnsc72fxj7` FOREIGN KEY (`propuesta_id`) REFERENCES `propuestas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `propuestaestado`
---
-
-LOCK TABLES `propuestaestado` WRITE;
-/*!40000 ALTER TABLE `propuestaestado` DISABLE KEYS */;
-INSERT INTO `propuestaestado` VALUES (1,'INGRESADA','2017-05-15',1),(2,'PUBLICADA','2017-05-17',1),(3,'EN_FINANCIACION','2017-05-20',1),(4,'FINANCIADA','2017-05-30',1),(5,'CANCELADA','2017-06-15',1),(6,'INGRESADA','2017-06-18',2),(7,'PUBLICADA','2017-06-20',2),(8,'EN_FINANCIACION','2017-06-30',2),(9,'FINANCIADA','2017-07-15',2),(10,'INGRESADA','2017-07-26',3),(11,'PUBLICADA','2017-07-31',3),(12,'EN_FINANCIACION','2017-08-01',3),(13,'INGRESADA','2017-07-30',4),(14,'PUBLICADA','2017-08-01',4),(15,'EN_FINANCIACION','2017-08-05',4),(16,'INGRESADA','2017-08-04',5),(17,'PUBLICADA','2017-08-10',5),(18,'EN_FINANCIACION','2017-08-13',5),(19,'INGRESADA','2017-08-06',6),(20,'PUBLICADA','2017-08-12',6),(21,'EN_FINANCIACION','2017-08-15',6),(22,'INGRESADA','2017-08-18',7),(23,'PUBLICADA','2017-08-20',7),(24,'INGRESADA','2017-08-23',8);
-/*!40000 ALTER TABLE `propuestaestado` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `propuestas`
 --
 
@@ -201,9 +173,9 @@ CREATE TABLE `propuestas` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_e1rcyx6bt2uedriyoa782j9w` (`titulo`),
   KEY `FK1f3wa9igj38ja2f97sydimtoe` (`categoria_id`),
-  KEY `FK1466kxt2u3p1prtqyovlkdwmw` (`proponente_id`),
-  CONSTRAINT `FK1466kxt2u3p1prtqyovlkdwmw` FOREIGN KEY (`proponente_id`) REFERENCES `proponente` (`id`),
-  CONSTRAINT `FK1f3wa9igj38ja2f97sydimtoe` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`)
+  KEY `FKe2xv8bhc6yjkloshpgok38qjo` (`proponente_id`),
+  CONSTRAINT `FK1f3wa9igj38ja2f97sydimtoe` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`),
+  CONSTRAINT `FKe2xv8bhc6yjkloshpgok38qjo` FOREIGN KEY (`proponente_id`) REFERENCES `proponentes` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -213,8 +185,36 @@ CREATE TABLE `propuestas` (
 
 LOCK TABLES `propuestas` WRITE;
 /*!40000 ALTER TABLE `propuestas` DISABLE KEYS */;
-INSERT INTO `propuestas` VALUES (1,'El 16 de Diciembre a la hora 20 se proyectará la película \"Clever\", en el Jardín Botánico (Av. 19 de Abril 1181) en el marco de las actividades realizadas por el ciclo Cultural al Aire Libre. El largometraje uruguayo de ficción Clever es dirigido por Federico Borgia y Guillermo Madeiro. Es apto para mayores de 15 años.','CANCELADA','2017-12-16','2017-05-17',NULL,'Jardín Botánico',150000,200,'Cine en el Botánico',11,7),(2,'MOMOSAPIENS presenta \"Religiosamente\". Mediante dos parodias y un hilo conductor que aborda la temática de la religión Momosapiens, mediante el humor y la reflexión, hilvana una historia que muestra al hombre inmerso en el tema religioso. El libreto está escrito utilizando diferentes lenguajes de humor, dando una visión satírica y reflexiva desde distintos puntos de vista, logrando mediante situaciones patódicas narrar una propuesta pública de arte carnavalero.','FINANCIADA','2017-10-07','2017-06-20','uploads/propuestas/Imagen2.jpg','Teatro de Verano',300000,300,'Religiosamente',19,1),(3,'El Pimiento Indomable, formación compuesta por KiNo Veneno y el uruguayo Martín Buscaglia, presentará este 19 de Octubre, su primer trabajo. Bajo un título homónimo al del grupo, es un disco que según los propios protagonistas \"no se parece al de ninguno de los dos por separado. Entre los títulos que se podrán escuchar se encuentran \"Nadador salvador\", \"América es más grande\", \"Pescátic Enroscado\" o \"La reina del placer\".','EN_FINANCIACION','2017-10-19','2017-07-31','uploads/propuestas/Imagen3.jpg','Teatro Solís',400000,400,'El Pimiento Indomable',9,2),(4,'La edición 2017 del Pilsen Rock se celebrará el 21 de Octubre en la Rural del Prado y contará con la participación de más de 15 bandas nacionales. Quienes no puedan trasladarse al lugar, tendrán la posibilidad de disfrutar los shows a través de Internet, así como entrevistas en vivo a los músicos una de finalizados los conciertos.','EN_FINANCIACION','2017-10-21','2017-08-01',NULL,'Rural de Prado',900000,1000,'Pilsen Rock',8,8),(5,'Romeo y Julieta de Kenneth MacMillan, uno de los ballets favoritos del director artístico Julio Bocca, se presentará nuevamente el 5 de Noviembre en el Auditorio Nacional del Sodre. Basada en la obra homónima de William Shakespeare, Romeo y Julieta es considerada la coreografía maestra del MacMillan. La producción de vestuario y escenografía se realizó en los Talleres del Auditorio Adela Reta, sobre los diseños originales.','EN_FINANCIACION','2017-11-05','2017-08-10','uploads/propuestas/Imagen5.jpg','Auditorio Nacional del Sodre',750000,800,'Romeo y Julieta',14,6),(6,'La Cataluña presenta el espectáculo \"Un Dia de Julio\" en Landia. Un hombre misterioso y solitario vive encerrado entre las cuatro paredes de su casa. Interna, con sus cortes extravagantes, cambiar el mundo exterior que le resulta inhabitable. Un día de Julio sucederá algo que cambiará su vida y la de su entorno para siempre.','EN_FINANCIACION','2017-11-16','2017-08-12',NULL,'Landia',300000,650,'Un día de Julio',17,4),(7,'Vuelve unas de las producciones de El Galpón más aclamadas de los últimos tiempos. Esta obra se ha presentado en Miami, Nueva York, Washington, México, Guadalajara, Río de Janeiro y La Habana. En nuestro país, El Lazarillo de Tormes fue nominado en los rubros mejor espectáculo y mejor dirección a los Premios Florencio 1995, obteniendo su protagonista Héctor Guido el Florencio a Mejor actor de ese año.','PUBLICADA','2017-12-03','2017-08-20',NULL,'Teatro el Galpón',175000,350,'El Lazarillo de Tormes',2,3),(8,'El 10 de Diciembre se presentará Bardo Científico en la FING. El humor puede ser usado como una herramienta importante para el aprendizaje y la democratización de la ciencia, los monólogos científicos son una forma didáctica de apropiación del conocimiento científico y contribuyen a que el público aprenda ciencia de forma amena. Los invitamos a pasar un rato divertido, en un espacio en el cual aprenderán cosas de la ciencia que los sorprenderán. ¡Los esperamos!','INGRESADA','2017-12-10',NULL,NULL,'Anfiteatro Edificio \"José Luis Massera\"',100000,200,'Bardo en la FING',5,9);
+INSERT INTO `propuestas` VALUES (1,'El 16 de Diciembre a la hora 20 se proyectará la película \"Clever\", en el Jardín Botánico (Av. 19 de Abril 1181) en el marco de las actividades realizadas por el ciclo Cultural al Aire Libre. El largometraje uruguayo de ficción Clever es dirigido por Federico Borgia y Guillermo Madeiro. Es apto para mayores de 15 años.','CANCELADA','2017-09-16','2017-05-17',NULL,'Jardín Botánico',150000,200,'Cine en el Botánico',11,7),(2,'MOMOSAPIENS presenta \"Religiosamente\". Mediante dos parodias y un hilo conductor que aborda la temática de la religión Momosapiens, mediante el humor y la reflexión, hilvana una historia que muestra al hombre inmerso en el tema religioso. El libreto está escrito utilizando diferentes lenguajes de humor, dando una visión satírica y reflexiva desde distintos puntos de vista, logrando mediante situaciones patódicas narrar una propuesta pública de arte carnavalero.','FINANCIADA','2017-10-07','2017-06-20','uploads/propuestas/Imagen1.jpg','Teatro de Verano',300000,300,'Religiosamente',19,1),(3,'El Pimiento Indomable, formación compuesta por KiNo Veneno y el uruguayo Martín Buscaglia, presentará este 19 de Octubre, su primer trabajo. Bajo un título homónimo al del grupo, es un disco que según los propios protagonistas \"no se parece al de ninguno de los dos por separado. Entre los títulos que se podrán escuchar se encuentran \"Nadador salvador\", \"América es más grande\", \"Pescátic Enroscado\" o \"La reina del placer\".','EN_FINANCIACION','2017-10-19','2017-07-31','uploads/propuestas/Imagen2.jpg','Teatro Solís',400000,400,'El Pimiento Indomable',9,2),(4,'La edición 2017 del Pilsen Rock se celebrará el 21 de Octubre en la Rural del Prado y contará con la participación de más de 15 bandas nacionales. Quienes no puedan trasladarse al lugar, tendrán la posibilidad de disfrutar los shows a través de Internet, así como entrevistas en vivo a los músicos una de finalizados los conciertos.','EN_FINANCIACION','2017-10-21','2017-08-01','uploads/propuestas/Imagen3.jpg','Rural de Prado',900000,1000,'Pilsen Rock',8,8),(5,'Romeo y Julieta de Kenneth MacMillan, uno de los ballets favoritos del director artístico Julio Bocca, se presentará nuevamente el 5 de Noviembre en el Auditorio Nacional del Sodre. Basada en la obra homónima de William Shakespeare, Romeo y Julieta es considerada la coreografía maestra del MacMillan. La producción de vestuario y escenografía se realizó en los Talleres del Auditorio Adela Reta, sobre los diseños originales.','EN_FINANCIACION','2017-11-05','2017-08-10','uploads/propuestas/Imagen4.jpg','Auditorio Nacional del Sodre',750000,800,'Romeo y Julieta',14,6),(6,'La Cataluña presenta el espectáculo \"Un Dia de Julio\" en Landia. Un hombre misterioso y solitario vive encerrado entre las cuatro paredes de su casa. Interna, con sus cortes extravagantes, cambiar el mundo exterior que le resulta inhabitable. Un día de Julio sucederá algo que cambiará su vida y la de su entorno para siempre.','EN_FINANCIACION','2017-11-16','2017-08-12','uploads/propuestas/Imagen5.jpg','Landia',300000,650,'Un día de Julio',17,4),(7,'Vuelve unas de las producciones de El Galpón más aclamadas de los últimos tiempos. Esta obra se ha presentado en Miami, Nueva York, Washington, México, Guadalajara, Río de Janeiro y La Habana. En nuestro país, El Lazarillo de Tormes fue nominado en los rubros mejor espectáculo y mejor dirección a los Premios Florencio 1995, obteniendo su protagonista Héctor Guido el Florencio a Mejor actor de ese año.','PUBLICADA','2017-12-03','2017-08-20',NULL,'Teatro el Galpón',175000,350,'El Lazarillo de Tormes',2,3),(8,'El 10 de Diciembre se presentará Bardo Científico en la FING. El humor puede ser usado como una herramienta importante para el aprendizaje y la democratización de la ciencia, los monólogos científicos son una forma didáctica de apropiación del conocimiento científico y contribuyen a que el público aprenda ciencia de forma amena. Los invitamos a pasar un rato divertido, en un espacio en el cual aprenderán cosas de la ciencia que los sorprenderán. ¡Los esperamos!','INGRESADA','2017-12-10',NULL,NULL,'Anfiteatro Edificio \"José Luis Massera\"',100000,200,'Bardo en la FING',5,9);
 /*!40000 ALTER TABLE `propuestas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `propuestas_estados`
+--
+
+DROP TABLE IF EXISTS `propuestas_estados`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `propuestas_estados` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `estado` enum('INGRESADA','PUBLICADA','EN_FINANCIACION','FINANCIADA','NO_FINANCIADA','CANCELADA') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `fechaCambio` date DEFAULT NULL,
+  `propuesta_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK8cvkjv9ola40nsqd0qe6txh1y` (`propuesta_id`),
+  CONSTRAINT `FK8cvkjv9ola40nsqd0qe6txh1y` FOREIGN KEY (`propuesta_id`) REFERENCES `propuestas` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `propuestas_estados`
+--
+
+LOCK TABLES `propuestas_estados` WRITE;
+/*!40000 ALTER TABLE `propuestas_estados` DISABLE KEYS */;
+INSERT INTO `propuestas_estados` VALUES (1,'INGRESADA','2017-05-15',1),(2,'PUBLICADA','2017-05-17',1),(3,'EN_FINANCIACION','2017-05-20',1),(4,'FINANCIADA','2017-05-30',1),(5,'CANCELADA','2017-06-15',1),(6,'INGRESADA','2017-06-18',2),(7,'PUBLICADA','2017-06-20',2),(8,'EN_FINANCIACION','2017-06-30',2),(9,'FINANCIADA','2017-07-15',2),(10,'INGRESADA','2017-07-26',3),(11,'PUBLICADA','2017-07-31',3),(12,'EN_FINANCIACION','2017-08-01',3),(13,'INGRESADA','2017-07-30',4),(14,'PUBLICADA','2017-08-01',4),(15,'EN_FINANCIACION','2017-08-05',4),(16,'INGRESADA','2017-08-04',5),(17,'PUBLICADA','2017-08-10',5),(18,'EN_FINANCIACION','2017-08-13',5),(19,'INGRESADA','2017-08-06',6),(20,'PUBLICADA','2017-08-12',6),(21,'EN_FINANCIACION','2017-08-15',6),(22,'INGRESADA','2017-08-18',7),(23,'PUBLICADA','2017-08-20',7),(24,'INGRESADA','2017-08-23',8);
+/*!40000 ALTER TABLE `propuestas_estados` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -233,7 +233,7 @@ CREATE TABLE `seguimientos` (
   KEY `FKe3hco1dfe8nspo78oxk25kug1` (`seguidor_id`),
   CONSTRAINT `FKb5qfn7w373khd24c4799k9d4j` FOREIGN KEY (`seguido_id`) REFERENCES `usuarios` (`id`),
   CONSTRAINT `FKe3hco1dfe8nspo78oxk25kug1` FOREIGN KEY (`seguidor_id`) REFERENCES `usuarios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=227 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -242,7 +242,7 @@ CREATE TABLE `seguimientos` (
 
 LOCK TABLES `seguimientos` WRITE;
 /*!40000 ALTER TABLE `seguimientos` DISABLE KEYS */;
-INSERT INTO `seguimientos` VALUES (1,2,1),(2,3,1),(3,4,1),(4,5,1),(5,6,1),(6,1,2),(7,3,2),(8,4,2),(9,5,2),(10,1,3),(11,2,3),(12,4,3),(13,5,3),(14,1,4),(15,2,4),(16,3,4),(17,1,5),(18,2,5),(19,3,5),(20,1,6),(21,2,6),(22,3,6),(23,8,7),(24,9,7),(25,1,8),(26,2,8),(27,1,9),(28,2,9),(29,3,9),(30,11,10),(31,12,10),(32,13,10),(33,10,11),(34,12,11),(35,13,11),(36,10,12),(37,11,12),(38,13,12),(39,10,13),(40,11,13),(41,12,13),(42,15,14),(43,14,15),(44,17,16),(45,18,16),(46,16,17),(47,18,17),(48,16,18),(49,17,18),(50,20,19),(51,19,20);
+INSERT INTO `seguimientos` VALUES (183,3,1),(184,7,1),(185,9,1),(186,4,2),(187,5,2),(188,8,2),(189,2,3),(190,6,3),(191,1,4),(192,5,4),(193,1,5),(194,2,6),(195,7,6),(196,3,7),(197,9,7),(198,13,8),(199,1,9),(200,16,9),(201,3,10),(202,6,10),(203,7,10),(204,5,11),(205,6,11),(206,8,11),(207,1,12),(208,4,12),(209,5,12),(210,2,13),(211,6,13),(212,7,13),(213,15,14),(214,14,15),(215,7,16),(216,9,16),(217,4,17),(218,5,17),(219,8,17),(220,3,18),(221,14,18),(222,7,19),(223,15,19),(224,6,20),(225,8,20),(226,13,20);
 /*!40000 ALTER TABLE `seguimientos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -275,7 +275,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES ('proponente',1,'Rubino','horacio.rubino@guambia.com.uy','1962-02-25','uploads/usuarios/ImagenUP1.jpg','hrubino','Horacio','password1'),('proponente',2,'Buscaglia','Martin.bus@agadu.org.uy','1972-06-14','uploads/usuarios/ImagenUP2.jpg','mbusca','Martín','password2'),('proponente',3,'Guido','hector.gui@elgalpon.org.uy','1954-01-07',NULL,'hectorg','Héctor','password3'),('proponente',4,'Cardozo','tabare.car@agadu.org.uy','1971-07-24',NULL,'tabarec','Tabaré','password4'),('proponente',5,'Silva','Cachila.sil@c1080.org.uy','1947-01-01',NULL,'cachilas','Waldemar \"Cachila\"','password5'),('proponente',6,'Bocca','juliolocca@sodre.com.uy','1967-03-16',NULL,'juliolo','Julio','password6'),('proponente',7,'Parodi','diego@efectocine.com','1975-01-01','uploads/usuarios/ImagenUP7.jpg','diegop','Diego','password7'),('proponente',8,'Herrera','kairoher@pisemock.com.uy','1840-04-25',NULL,'kairolo','Kairo','password8'),('proponente',9,'Bardo','losbardo@bardocientifico.com','1980-10-31',NULL,'losBardo','Los','password9'),('colaborador',10,'Henderson','Robin.h@tinglesa.com.uy','1940-08-03','uploads/usuarios/ImagenUC3.jpg','robin','Robin','password10'),('colaborador',11,'Tinelli','mareclot@ideasdelsur.com.ar','1960-04-01','uploads/usuarios/ImagenUC4.jpg','mareclot','Marcelo','password11'),('colaborador',12,'Novick','edgardo@novick.com.uy','1952-07-17','uploads/usuarios/ImagenUC5.jpg','novick','Edgardo','password12'),('colaborador',13,'Puglia','puglia@alpanpan.com.uy','1950-01-28',NULL,'sergiop','Sergio','password13'),('colaborador',14,'Recoba','chino@trico.org.uy','1976-03-17',NULL,'chino','Alvaro','password14'),('colaborador',15,'Pacheco','eltony@manya.org.uy','1955-02-14',NULL,'tonyp','Antonio','password15'),('colaborador',16,'Jodal','jodal@artech.com.uy','1960-08-09',NULL,'nicoj','Nicolás','password16'),('colaborador',17,'Perez','juanp@elpueblo.com','1970-01-01',NULL,'juanP','Juan','password17'),('colaborador',18,'Gómez','menganog@elpueblo.com','1982-02-02',NULL,'Mengano','Mengano','password18'),('colaborador',19,'López','pere@elpueblo.com','1985-03-03',NULL,'Perengano','Perengano','password19'),('colaborador',20,'Jacinta','jacinta@elpueblo.com','1990-04-04',NULL,'Tiajaci','Tía','password20');
+INSERT INTO `usuarios` VALUES ('Proponente',1,'Rubino','horacio.rubino@guambia.com.uy','1962-02-25','uploads/usuarios/ImagenUP1.jpg','hrubino','Horacio',NULL),('Proponente',2,'Buscaglia','Martin.bus@agadu.org.uy','1972-06-14','uploads/usuarios/ImagenUP2.jpg','mbusca','Martín',NULL),('Proponente',3,'Guido','hector.gui@elgalpon.org.uy','1954-01-07','uploads/usuarios/ImagenUP5.jpg','hectorg','Héctor',NULL),('Proponente',4,'Cardozo','tabare.car@agadu.org.uy','1971-07-24','uploads/usuarios/ImagenUP3.jpg','tabarec','Tabaré',NULL),('Proponente',5,'Silva','Cachila.sil@c1080.org.uy','1947-01-01','uploads/usuarios/ImagenUP4.jpg','cachilas','Waldemar \"Cachila\"',NULL),('Proponente',6,'Bocca','juliolocca@sodre.com.uy','1967-03-16',NULL,'juliolo','Julio',NULL),('Proponente',7,'Parodi','diego@efectocine.com','1975-01-01',NULL,'diegop','Diego',NULL),('Proponente',8,'Herrera','kairoher@pisemock.com.uy','1840-04-25','uploads/usuarios/ImagenUP6.jpg','kairolo','Kairo',NULL),('Proponente',9,'Bardo','losbardo@bardocientifico.com','1980-10-31','uploads/usuarios/ImagenUP7.jpg','losBardo','Los',NULL),('Colaborador',10,'Henderson','Robin.h@tinglesa.com.uy','1940-08-03',NULL,'robin','Robin',NULL),('Colaborador',11,'Tinelli','mareclot@ideasdelsur.com.ar','1960-04-01','uploads/usuarios/ImagenUC1.jpg','mareclot','Marcelo',NULL),('Colaborador',12,'Novick','edgardo@novick.com.uy','1952-07-17','uploads/usuarios/ImagenUC2.jpg','novick','Edgardo',NULL),('Colaborador',13,'Puglia','puglia@alpanpan.com.uy','1950-01-28','uploads/usuarios/ImagenUC3.jpg','sergiop','Sergio',NULL),('Colaborador',14,'Recoba','chino@trico.org.uy','1976-03-17',NULL,'chino','Alvaro',NULL),('Colaborador',15,'Pacheco','eltony@manya.org.uy','1955-02-14','uploads/usuarios/ImagenUC4.jpg','tonyp','Antonio',NULL),('Colaborador',16,'Jodal','jodal@artech.com.uy','1960-08-09','uploads/usuarios/ImagenUC5.jpg','nicoj','Nicolás',NULL),('Colaborador',17,'Perez','juanp@elpueblo.com','1970-01-01',NULL,'juanP','Juan',NULL),('Colaborador',18,'Gómez','menganog@elpueblo.com','1982-02-02',NULL,'Mengano','Mengano',NULL),('Colaborador',19,'López','pere@elpueblo.com','1985-03-03',NULL,'Perengano','Perengano',NULL),('Colaborador',20,'Jacinta','jacinta@elpueblo.com','1990-04-04',NULL,'Tiajaci','Tía',NULL);
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -314,4 +314,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-09-09  5:37:50
+-- Dump completed on 2025-09-10  7:40:40

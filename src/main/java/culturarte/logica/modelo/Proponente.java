@@ -8,6 +8,7 @@ import java.util.List;
 
 @Entity
 @DiscriminatorValue("Proponente")
+@Table(name = "proponentes")
 public class Proponente extends Usuario {
 
     private String direccion;
