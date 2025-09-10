@@ -11,9 +11,6 @@ import culturarte.logica.controlador.IPropuestaController;
 
 public class ConsultarPropuestaInternalFrame extends JInternalFrame {
 
-
-    private final IPropuestaController propuestaController;
-
     private final JList<DTPropuesta> jListPropuestas;
     private final JLabel lblTitulo;
     private final JTextArea txtDescripcion;
@@ -30,12 +27,15 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
     private final JLabel lblCategoria;
     private final JTextArea txtHistorial;
     private final JLabel lblTiposRetorno;
+
+    private final IPropuestaController PropuestaContr;
+
     public ConsultarPropuestaInternalFrame(IPropuestaController icp) {
         super("Consultar Propuesta", true, true, true, true);
         setSize(1200, 500);
         setLayout(new BorderLayout());
 
-        propuestaController = icp;
+        PropuestaContr = icp;
 
         jListPropuestas = new JList<>();
         JScrollPane scrollList = new JScrollPane(jListPropuestas);
@@ -160,7 +160,7 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
     }
 
     private void cargarPropuestas() {
-        List<DTPropuesta> propuestas = propuestaController.devolverTodasLasPropuestas();
+        List<DTPropuesta> propuestas = PropuestaContr.devolverTodasLasPropuestas();
         DefaultListModel<DTPropuesta> modeloLista = new DefaultListModel<>();
         for (DTPropuesta p : propuestas) {
             modeloLista.addElement(p);

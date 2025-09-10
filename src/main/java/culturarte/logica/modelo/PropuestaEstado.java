@@ -28,11 +28,12 @@ public class PropuestaEstado {
 
     // Getters y Setters
     public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
     public Propuesta getPropuesta() { return propuesta; }
-    public void setPropuesta(Propuesta propuesta) { this.propuesta = propuesta; }
     public EstadoPropuesta getEstado() { return estado; }
-    public void setEstado(EstadoPropuesta estado) { this.estado = estado; }
     public LocalDate getFechaCambio() { return fechaCambio; }
+
+    public void setId(Long id) { this.id = id; }
+    public void setPropuesta(Propuesta propuesta) { this.propuesta = propuesta; }
+    public void setEstado(EstadoPropuesta estado) { this.estado = estado; }
     public void setFechaCambio(LocalDate fechaCambio) { this.fechaCambio = fechaCambio; }
 }

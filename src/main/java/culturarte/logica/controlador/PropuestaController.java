@@ -8,6 +8,7 @@ import culturarte.logica.manejador.PropuestaManejador;
 import culturarte.logica.manejador.UsuarioManejador;
 import culturarte.logica.modelo.*;
 import culturarte.persistencia.JPAUtil;
+import jakarta.persistence.EntityManager;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.List;
 public class PropuestaController implements IPropuestaController {
 
     public PropuestaController() {
-        JPAUtil.getEntityManager();
+        EntityManager em = JPAUtil.getEntityManager();
     }
 
     @Override
@@ -49,7 +50,8 @@ public class PropuestaController implements IPropuestaController {
     @Override
     public List<DTPropuesta> devolverTodasLasPropuestas(){
         PropuestaManejador mp = PropuestaManejador.getinstance();
-        return mp.obtenerTodasLasPropuestas();
+        List<DTPropuesta> props = mp.obtenerTodasLasPropuestas();
+        return props;
     }
 
     @Override
@@ -96,6 +98,13 @@ public class PropuestaController implements IPropuestaController {
     }
 
     @Override
+    public List<String> listarNombreCategorias(){
+        PropuestaManejador mc = PropuestaManejador.getinstance();
+        List<String> cats = mc.listarCategorias();
+        return cats;
+    }
+
+    @Override
     public void crearCategoria(String nombre, String padre) throws Exception {
         PropuestaManejador mc = PropuestaManejador.getinstance();
         Categoria catPadre = mc.obtenerPorNombre(padre);
@@ -110,9 +119,16 @@ public class PropuestaController implements IPropuestaController {
     }
 
     @Override
+    public Categoria obtenerCategoriaPorNombre(String nombre) {
+        PropuestaManejador mc = PropuestaManejador.getinstance();
+        return mc.obtenerPorNombre(nombre);
+    }
+
+    @Override
     public List<DTCategoria> listarDTCategorias(){
         PropuestaManejador mc = PropuestaManejador.getinstance();
-        return mc.listarDTCategorias();
+        List<DTCategoria> cats = mc.listarDTCategorias();
+        return cats;
     }
 
     @Override
@@ -126,9 +142,10 @@ public class PropuestaController implements IPropuestaController {
         }
 
         Usuario usu = um.obtenerUsuarioNick(nicknameColaborador);
-        if (!(usu instanceof Colaborador colaborador)) {
+        if (!(usu instanceof Colaborador)) {
             throw new Exception("El usuario " + nicknameColaborador + " no es un colaborador válido.");
         }
+        Colaborador colaborador = (Colaborador) usu;
 
         TipoRetorno retorno;
         try {
@@ -150,7 +167,8 @@ public class PropuestaController implements IPropuestaController {
 
     public List<DTColaboracion> obtenerTodasLasColaboraciones() {
         PropuestaManejador pm = PropuestaManejador.getinstance();
-        return pm.getColaboraciones();
+        List<DTColaboracion> colabs = pm.getColaboraciones();
+        return colabs;
     }
 
     public void cancelarColaboracion(Long idColaboracion) throws Exception {

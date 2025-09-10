@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "propuestas")
+
 public class Propuesta {
 
         @Id
@@ -74,48 +75,35 @@ public class Propuesta {
 
         // Getters y Setters
         public Long getId() { return id; }
-        public void setId(Long id) { this.id = id; }
-
         public String getTitulo() { return titulo; }
-        public void setTitulo(String titulo) { this.titulo = titulo; }
-
         public String getDescripcion() { return descripcion; }
-        public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
-
         public String getLugar() { return lugar; }
-        public void setLugar(String lugar) { this.lugar = lugar; }
-
-        public LocalDate getFechaPrevista() { return fechaPrevista; }
-        public void setFechaPrevista(LocalDate fechaPrevista) { this.fechaPrevista = fechaPrevista; }
-
         public Double getPrecioEntrada() { return precioEntrada; }
-        public void setPrecioEntrada(Double precioEntrada) { this.precioEntrada = precioEntrada; }
-
+        public LocalDate getFechaPrevista() { return fechaPrevista; }
         public Double getMontoNecesario() { return montoNecesario; }
-        public void setMontoNecesario(Double montoNecesario) { this.montoNecesario = montoNecesario; }
-
         public LocalDate getFechaPublicacion() { return fechaPublicacion; }
-        public void setFechaPublicacion(LocalDate fechaPublicacion) { this.fechaPublicacion = fechaPublicacion; }
-
         public String getImagen() { return imagen; }
-        public void setImagen(String imagen) { this.imagen = imagen; }
-
         public Categoria getCategoria() { return categoria; }
-        public void setCategoria(Categoria categoria) { this.categoria = categoria; }
-
         public Proponente getProponente() { return proponente; }
-        public void setProponente(Proponente proponente) { this.proponente = proponente; }
-
         public EstadoPropuesta getEstadoActual() { return estadoActual; }
-        public void setEstadoActual(EstadoPropuesta estadoActual) { this.estadoActual = estadoActual; }
-
-        public List<PropuestaEstado> getHistorial() { return historial; }
-        public void setHistorial(List<PropuestaEstado> historial) { this.historial = historial; }
-
         public List<Colaboracion> getColaboraciones() { return colaboraciones; }
-        public void setColaboraciones(List<Colaboracion> colaboraciones) { this.colaboraciones = colaboraciones; }
-
+        public List<PropuestaEstado> getHistorial() { return historial; }
         public List<TipoRetorno> getTiposRetorno() { return tiposRetorno; }
+
+        public void setId(Long id) { this.id = id; }
+        public void setTitulo(String titulo) { this.titulo = titulo; }
+        public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
+        public void setLugar(String lugar) { this.lugar = lugar; }
+        public void setFechaPrevista(LocalDate fechaPrevista) { this.fechaPrevista = fechaPrevista; }
+        public void setPrecioEntrada(Double precioEntrada) { this.precioEntrada = precioEntrada; }
+        public void setMontoNecesario(Double montoNecesario) { this.montoNecesario = montoNecesario; }
+        public void setFechaPublicacion(LocalDate fechaPublicacion) { this.fechaPublicacion = fechaPublicacion; }
+        public void setImagen(String imagen) { this.imagen = imagen; }
+        public void setCategoria(Categoria categoria) { this.categoria = categoria; }
+        public void setProponente(Proponente proponente) { this.proponente = proponente; }
+        public void setEstadoActual(EstadoPropuesta estadoActual) { this.estadoActual = estadoActual; }
+        public void setHistorial(List<PropuestaEstado> historial) { this.historial = historial; }
+        public void setColaboraciones(List<Colaboracion> colaboraciones) { this.colaboraciones = colaboraciones; }
         public void setTiposRetorno(List<TipoRetorno> tiposRetorno) { this.tiposRetorno = tiposRetorno; }
 
 }

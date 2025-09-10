@@ -10,8 +10,6 @@ import java.util.List;
 
 public class RegistrarColaboracionInternalFrame extends JInternalFrame {
 
-    private final IPropuestaController propuestaController;
-
     private final JList<DTPropuesta> jListPropuestas;
     private final JTextField txtColaborador;
     private final JTextField txtMonto;
@@ -27,15 +25,17 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
     private final JLabel lblMontoTotal;
     private final JLabel lblCategoria;
 
+    private final IPropuestaController PropuestaContr;
+
     public RegistrarColaboracionInternalFrame(IPropuestaController icp) {
         super("Registrar Colaboración a Propuesta", true, true, true, true);
         setSize(1200, 500);
         setLayout(new BorderLayout());
 
-        propuestaController = icp;
+        PropuestaContr = icp;
 
         JPanel panelIzquierdo = new JPanel(new BorderLayout());
-        List<DTPropuesta> propuestas = propuestaController.devolverTodasLasPropuestas();
+        List<DTPropuesta> propuestas = PropuestaContr.devolverTodasLasPropuestas();
         jListPropuestas = new JList<>(propuestas.toArray(new DTPropuesta[0]));
         JScrollPane scrollPropuestas = new JScrollPane(jListPropuestas);
         panelIzquierdo.add(new JLabel("Propuestas:"), BorderLayout.NORTH);
@@ -154,7 +154,7 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
                     return;
                 }
 
-                double monto;
+                Double monto;
                 try {
                     monto = Double.parseDouble(montoTexto);
                     if (monto <= 0) {
@@ -168,13 +168,12 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
 
                 DTTipoRetorno tipoRetorno = (DTTipoRetorno) comboRetorno.getSelectedItem();
 
-                propuestaController.registrarColaboracion(
+                PropuestaContr.registrarColaboracion(
                         propuestaSeleccionada.getTitulo(),
                         nickname,
                         monto,
-                        tipoRetorno != null ? tipoRetorno.toString() : ""
+                        tipoRetorno.toString()
                 );
-
 
                 JOptionPane.showMessageDialog(this, "Colaboración registrada con éxito");
 
@@ -184,7 +183,7 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
                 jListPropuestas.clearSelection();
                 limpiarDetalles();
 
-                List<DTPropuesta> propuestasActualizadas = propuestaController.devolverTodasLasPropuestas();
+                List<DTPropuesta> propuestasActualizadas = PropuestaContr.devolverTodasLasPropuestas();
                 jListPropuestas.setListData(propuestasActualizadas.toArray(new DTPropuesta[0]));
 
             } catch (Exception ex) {

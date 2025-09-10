@@ -10,6 +10,10 @@ public class DTCategoria {
     private DTCategoria categoriaPadre;
 
     // Constructores
+    public DTCategoria() {
+        this.setNombre(new String());
+        this.setCategoriaPadre(null);
+    }
     public DTCategoria(String nombre, DTCategoria categoriaPadre) {
         this.setNombre(nombre);
         this.setCategoriaPadre(categoriaPadre);
@@ -31,6 +35,7 @@ public class DTCategoria {
     public String getNombre() { return nombre; }
     public void setNombre(String nombre) { this.nombre = nombre; }
 
+    public List<DTCategoria> getSubCategorias() { return subCategorias; }
     public void setSubCategorias(List<DTCategoria> subCategorias){ this.subCategorias = subCategorias; }
 
     public DTCategoria getCategoriaPadre() { return categoriaPadre; }

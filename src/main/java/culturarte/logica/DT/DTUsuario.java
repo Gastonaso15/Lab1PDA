@@ -8,18 +8,19 @@ public class DTUsuario {
     private String nombre;
     private String apellido;
     private String correo;
+    private String password;
     //private List<DTSeguimiento> seguidores;
     private String imagen;
     private LocalDate fechaNacimiento;
 
     // Constructores
     public DTUsuario() {
-        this.setNickname("");
-        this.setNombre("");
-        this.setApellido("");
-        this.setCorreo("");
+        this.setNickname(new String());
+        this.setNombre(new String());
+        this.setApellido(new String());
+        this.setCorreo(new String());
         this.setFechaNacimiento(null);
-        this.setImagen("");
+        this.setImagen(new String());
     }
     public DTUsuario(String nickname, String nombre, String apellido, String correo,LocalDate fechaNacimiento,String imagen) {
         this.setNickname(nickname);
@@ -56,11 +57,16 @@ public class DTUsuario {
     public String getCorreo() { return correo; }
     public void setCorreo(String correo) { this.correo = correo; }
 
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+
     public String getImagen() { return imagen; }
     public void setImagen(String imagen) { this.imagen = imagen; }
 
     public LocalDate getFechaNacimiento() { return fechaNacimiento; }
     public void setFechaNacimiento(LocalDate fechaNacimiento) { this.fechaNacimiento= fechaNacimiento;}
 
+    //public List<Seguimiento> getSeguidores() { return seguidores; }
+    //public void setSeguidores(List<Seguimiento> seguidores) { this.seguidores = seguidores; }
 }
 

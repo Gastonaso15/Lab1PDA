@@ -13,9 +13,9 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 
-
 public class PropuestaManejador {
     private static PropuestaManejador instancia = null;
+    private EntityManager em;
 
     public static PropuestaManejador getinstance() {
         if (instancia == null)
@@ -114,9 +114,9 @@ public class PropuestaManejador {
         return dtPropuestas;
     }
 
-    public Propuesta obtenerPropuesta(String titulo) {
+    public Propuesta obtenerPropuesta(String titulo) throws Exception {
         EntityManager em = JPAUtil.getEntityManager();
-        Propuesta pro;
+        Propuesta pro = null;
         try {
             TypedQuery<Propuesta> query = em.createQuery("SELECT p FROM Propuesta p WHERE p.titulo = :titulo", Propuesta.class).setParameter("titulo", titulo);
             pro = query.getSingleResult();
@@ -236,9 +236,16 @@ public class PropuestaManejador {
         em.close();
     }
 
+    public List<String> listarCategorias() {
+        EntityManager em = JPAUtil.getEntityManager();
+        List<String> lista = em.createQuery("SELECT nombre FROM Categoria c", String.class).getResultList();
+        em.close();
+        return lista;
+    }
+
     public Categoria obtenerPorNombre(String nombre) {
         EntityManager em = JPAUtil.getEntityManager();
-        Categoria cat;
+        Categoria cat = null;
         try {
             cat = em.createQuery("SELECT c FROM Categoria c WHERE c.nombre = :nombre", Categoria.class)
                     .setParameter("nombre", nombre)
@@ -357,5 +364,4 @@ public class PropuestaManejador {
 
         return dtColaboraciones;
     }
-
 }

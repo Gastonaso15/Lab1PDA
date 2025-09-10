@@ -4,6 +4,7 @@ import culturarte.logica.DT.*;
 import culturarte.logica.manejador.UsuarioManejador;
 import culturarte.logica.modelo.*;
 import culturarte.persistencia.JPAUtil;
+import jakarta.persistence.EntityManager;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ import java.util.List;
 public class UsuarioController implements IUsuarioController {
 
     public UsuarioController() {
-        JPAUtil.getEntityManager();
+        EntityManager em = JPAUtil.getEntityManager();
     }
 
     @Override
@@ -24,9 +25,11 @@ public class UsuarioController implements IUsuarioController {
         u = mu.obtenerUsuarioCorreo(dtu.getCorreo());
         if (u != null)
             throw new Exception("El usuario con el correo " + dtu.getCorreo() + " ya esta registrado");
-        if (dtu instanceof DTProponente dtp) {
+        if (dtu instanceof DTProponente) {
+            DTProponente dtp = (DTProponente) dtu;
             u = new Proponente(dtp.getNickname(), dtp.getNombre(), dtp.getApellido(), dtp.getCorreo(), dtp.getImagen(), dtp.getFechaNacimiento(), dtp.getDireccion(), dtp.getBio(), dtp.getSitioWeb());
-        } else if (dtu instanceof DTColaborador dtc) {
+        } else if (dtu instanceof DTColaborador) {
+            DTColaborador dtc = (DTColaborador) dtu;
             u = new Colaborador(dtc.getNickname(), dtc.getNombre(), dtc.getApellido(), dtc.getCorreo(), dtc.getImagen(), dtc.getFechaNacimiento());
         } else {
             throw new Exception("Tipo de usuario no reconocido");
@@ -37,7 +40,8 @@ public class UsuarioController implements IUsuarioController {
     @Override
     public List<String> devolverNicknamesProponentes(){
         UsuarioManejador mu = UsuarioManejador.getinstance();
-        return mu.obtenerNicknameProponentes();
+        List<String> props = mu.obtenerNicknameProponentes();
+        return props;
     }
 
     @Override
@@ -117,8 +121,9 @@ public class UsuarioController implements IUsuarioController {
             );
             dtPropuestas.add(dtp);
         }
+        DTProponente dtProp = new DTProponente(nickname,nombre, apellido,correo,fechaNacimiento, imagen, direccion, biografia, sitioWeb, dtPropuestas);
 
-        return new DTProponente(nickname,nombre, apellido,correo,fechaNacimiento, imagen, direccion, biografia, sitioWeb, dtPropuestas);
+        return dtProp;
     }
 
     @Override
@@ -161,12 +166,14 @@ public class UsuarioController implements IUsuarioController {
     @Override
     public List<String> devolverNicknamesUsuarios() {
         UsuarioManejador mu = UsuarioManejador.getinstance();
-        return mu.devolverNicksUsuarios();
+        List<String> nicknames = mu.devolverNicksUsuarios();
+        return nicknames;
     }
     @Override
     public List<String> devolverNicknamesColaboradores() {
         UsuarioManejador mu = UsuarioManejador.getinstance();
-        return mu.obtenerNicknameColaboradores();
+        List<String> colaboradores = mu.obtenerNicknameColaboradores();
+        return colaboradores;
     }
 
     @Override
@@ -276,7 +283,8 @@ public class UsuarioController implements IUsuarioController {
             dtColaboraciones.add(dtColaboracion);
         }
 
-        return new DTColaborador(nickname, nombre, apellido, correo, fechaNacimiento, imagen, dtColaboraciones);
+        DTColaborador dtColab = new DTColaborador(nickname, nombre, apellido, correo, fechaNacimiento, imagen, dtColaboraciones);
+        return dtColab;
     }
 
 }

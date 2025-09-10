@@ -12,6 +12,7 @@ import java.util.List;
 
 public class UsuarioManejador{
     private static UsuarioManejador instancia = null;
+    private EntityManager em;
 
     public static UsuarioManejador getinstance() {
         if (instancia == null)
@@ -52,7 +53,7 @@ public class UsuarioManejador{
 
     public Colaborador obtenerColaboradorNick(String nickname) {
         EntityManager em = JPAUtil.getEntityManager();
-        Colaborador colab;
+        Colaborador colab = null;
         try {
             TypedQuery<Colaborador> query = em.createQuery(
                     "SELECT DISTINCT c FROM Colaborador c " +
@@ -81,7 +82,7 @@ public class UsuarioManejador{
 
     public Usuario obtenerUsuarioNick(String nickname){
         EntityManager em = JPAUtil.getEntityManager();
-        Usuario usu;
+        Usuario usu = null;
         try {
             TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nick", Usuario.class).setParameter("nick", nickname);
             usu = query.getSingleResult();
@@ -95,7 +96,7 @@ public class UsuarioManejador{
 
     public Usuario obtenerUsuarioCorreo(String correo){
         EntityManager em = JPAUtil.getEntityManager();
-        Usuario usu;
+        Usuario usu = null;
         try {
             TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.correo = :correo", Usuario.class).setParameter("correo", correo);
             usu = query.getSingleResult();
@@ -109,7 +110,7 @@ public class UsuarioManejador{
 
     public Proponente obtenerProponenteNick(String nickname) {
         EntityManager em = JPAUtil.getEntityManager();
-        Proponente prop;
+        Proponente prop = null;
         try {
             TypedQuery<Proponente> query = em.createQuery(
                     "SELECT DISTINCT p FROM Proponente p " +

@@ -28,14 +28,12 @@ public class Categoria {
 
     // Getters y setters
     public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
     public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
-
     public List<Categoria> getSubCategorias() { return subCategorias; }
-    public void setSubCategorias(List<Categoria> subCategorias){ this.subCategorias = subCategorias; }
-
     public Categoria getCategoriaPadre() { return categoriaPadre; }
+
+    public void setId(Long id) { this.id = id; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setSubCategorias(List<Categoria> subCategorias){ this.subCategorias = subCategorias; }
     public void setCategoriaPadre(Categoria categoriaPadre) { this.categoriaPadre = categoriaPadre; }
 }

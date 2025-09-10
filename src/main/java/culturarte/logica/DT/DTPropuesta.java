@@ -1,5 +1,7 @@
 package culturarte.logica.DT;
 
+import org.hibernate.engine.jdbc.connections.spi.DataSourceBasedMultiTenantConnectionProviderImpl;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +25,13 @@ public class DTPropuesta {
 
     // Constructores
     public DTPropuesta() {
-        this.setTitulo("");
-        this.setDescripcion("");
-        this.setLugar("");
+        this.setTitulo(new String());
+        this.setDescripcion(new String());
+        this.setLugar(new String());
         this.setFechaPrevista(null);
         this.setPrecioEntrada(0.0);
         this.setMontoNecesario(0.0);
-        this.setImagen("");
+        this.setImagen(new String());
         this.setDTProponente(new DTProponente());
     }
 

@@ -25,7 +25,7 @@ public class ModificarDatosPropuestaInternalFrame extends JInternalFrame {
     private final JTextField tfImagen;
     private final List<JCheckBox> checkBoxesTiposRetorno;
     private final JTree treeCategorias;
-    private final DefaultMutableTreeNode rootCategorias;
+    private final  DefaultMutableTreeNode rootCategorias;
 
     private final JButton btnGuardar;
 

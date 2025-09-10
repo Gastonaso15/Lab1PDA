@@ -7,11 +7,10 @@ import culturarte.logica.Fabrica;
 import culturarte.logica.controlador.IPropuestaController;
 import culturarte.logica.controlador.IUsuarioController;
 
-
 public class EstacionDeTrabajo extends JFrame {
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new EstacionDeTrabajo().setVisible(true));  // Esto asegura que la UI de Swing se construya en el hilo de eventos
+        SwingUtilities.invokeLater(() -> new EstacionDeTrabajo().setVisible(true));
     }
 
     private final JDesktopPane desktop;
@@ -24,15 +23,13 @@ public class EstacionDeTrabajo extends JFrame {
         initControllers();
         setJMenuBar(buildMenuBar());
         add(desktop, BorderLayout.CENTER);
-        desktop.setDragMode(JDesktopPane.OUTLINE_DRAG_MODE);
-
     }
 
     private void setupFrame() {
         setTitle("Culturarte - Estación de Trabajo");
         setSize(1500, 800);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // centrar en pantalla
+        setLocationRelativeTo(null);
     }
 
     private void initControllers() {
@@ -41,16 +38,10 @@ public class EstacionDeTrabajo extends JFrame {
         ICP = fabrica.getIPropuestaController();
     }
 
-    private JMenuBar buildMenuBar() {      // Construye la barra de menú y registra las acciones (listeners) -> retorna un JMenuBar
-        JMenuBar menu = new JMenuBar(); //Creo la barra de "menu"
+    private JMenuBar buildMenuBar() {
+        JMenuBar menu = new JMenuBar();
 
-
-        // ---------------- USUARIOS ----------------
-
-        //Creo menu "Usuarios"
         JMenu usuarios = new JMenu("Usuarios");
-
-        //Creo items para posteriormente agregar al menu "Usuarios"
 
         JMenuItem altaUsuario = new JMenuItem("Alta de Usuario");
         JMenuItem consultaProponente = new JMenuItem("Consultar Perfil de Proponente");
@@ -58,28 +49,20 @@ public class EstacionDeTrabajo extends JFrame {
         JMenuItem seguirUsuario = new JMenuItem("Seguir Usuario");
         JMenuItem dejarSeguirUsuario = new JMenuItem("Dejar de Seguir Usuario");
 
-        //Agrego los items al menu Creoado previamente
         usuarios.add(altaUsuario);
         usuarios.add(consultaProponente);
         usuarios.add(consultaColaborador);
         usuarios.add(seguirUsuario);
         usuarios.add(dejarSeguirUsuario);
 
-        // Acciones (listeners)
         altaUsuario.addActionListener(e -> abrirAltaUsuario());
         consultaProponente.addActionListener(e -> abrirConsultaProponente());
         consultaColaborador.addActionListener(e -> abrirConsultaColaborador());
         seguirUsuario.addActionListener(e -> abrirSeguirUsuario());
         dejarSeguirUsuario.addActionListener(e -> abrirDejarSeguirUsuario());
 
-
-
-        // ---------------- PROPUESTAS --------------
-
-        //Creo el segundo menu "Propuestas"
         JMenu propuestas = new JMenu("Propuestas");
 
-        //Creo items para posteriormente agregar al menu "Propuestas"
         JMenuItem altaPropuesta = new JMenuItem("Alta de Propuesta");
         JMenuItem consultarPropuesta = new JMenuItem("Consultar Propuesta");
         JMenuItem consultaPropEstado = new JMenuItem("Consulta de Propuestas por Estado");
@@ -89,7 +72,6 @@ public class EstacionDeTrabajo extends JFrame {
         JMenuItem consultarColaboracion = new JMenuItem("Consultar Colaboracion a Propuesta");
         JMenuItem cancelarColaboracion = new JMenuItem("Cancelar Colaboracion a Propuesta");
 
-        //Agrego los items al menu Creoado previamente
         propuestas.add(altaPropuesta);
         propuestas.add(consultarPropuesta);
         propuestas.add(consultaPropEstado);
@@ -99,7 +81,6 @@ public class EstacionDeTrabajo extends JFrame {
         propuestas.add(consultarColaboracion);
         propuestas.add(cancelarColaboracion);
 
-        // Acciones (listeners)
         altaPropuesta.addActionListener(e -> abrirAltaPropuesta());
         consultarPropuesta.addActionListener(e -> abrirConsultarPropuesta());
         consultaPropEstado.addActionListener(e->abrirConsultaPropEstado());

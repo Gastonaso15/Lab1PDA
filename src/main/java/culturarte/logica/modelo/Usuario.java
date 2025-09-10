@@ -46,35 +46,26 @@ public class Usuario {
 
     // Getters y setters
     public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-
     public String getNickname() { return nickname; }
-    public void setNickname(String nickname) { this.nickname = nickname; }
-
     public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
-
     public String getApellido() { return apellido; }
-    public void setApellido(String apellido) { this.apellido = apellido; }
-
     public String getCorreo() { return correo; }
-    public void setCorreo(String correo) { this.correo = correo; }
-
     public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
-
     public String getImagen() { return imagen; }
-    public void setImagen(String imagen) { this.imagen = imagen; }
-
     public LocalDate getFechaNacimiento() { return fechaNacimiento; }
-    public void setFechaNacimiento(LocalDate fechaNacimiento) { this.fechaNacimiento= fechaNacimiento;}
-
     public List<Seguimiento> getSeguidores() { return seguidores; }
-    public void setSeguidores(List<Seguimiento> seguidores) { this.seguidores = seguidores; }
-
     public List<Seguimiento> getSeguidos() { return seguidos; }
-    public void setSeguidos(List<Seguimiento> seguidos) { this.seguidos = seguidos; }
-
     public List<Propuesta> getPropuestasFavoritas() { return propuestasFavoritas; }
+
+    public void setId(Long id) { this.id = id; }
+    public void setNickname(String nickname) { this.nickname = nickname; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setApellido(String apellido) { this.apellido = apellido; }
+    public void setCorreo(String correo) { this.correo = correo; }
+    public void setPassword(String password) { this.password = password; }
+    public void setImagen(String imagen) { this.imagen = imagen; }
+    public void setFechaNacimiento(LocalDate fechaNacimiento) { this.fechaNacimiento= fechaNacimiento;}
+    public void setSeguidores(List<Seguimiento> seguidores) { this.seguidores = seguidores; }
+    public void setSeguidos(List<Seguimiento> seguidos) { this.seguidos = seguidos; }
     public void setPropuestasFavoritas(List<Propuesta> propuestasFavoritas) {  this.propuestasFavoritas = propuestasFavoritas; }
 }

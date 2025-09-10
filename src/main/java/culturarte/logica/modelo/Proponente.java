@@ -37,11 +37,12 @@ public class Proponente extends Usuario {
 
     // Getters y setters adicionales
     public String getDireccion() { return direccion; }
-    public void setDireccion(String direccion) { this.direccion = direccion; }
     public String getBio() { return bio; }
-    public void setBio(String bio) { this.bio = bio; }
     public String getSitioWeb() { return sitioWeb; }
-    public void setSitioWeb(String sitioWeb) { this.sitioWeb = sitioWeb; }
     public List<Propuesta> getPropuestas() { return propuestas; }
+
+    public void setDireccion(String direccion) { this.direccion = direccion; }
+    public void setBio(String bio) { this.bio = bio; }
+    public void setSitioWeb(String sitioWeb) { this.sitioWeb = sitioWeb; }
     public void setPropuestas(List<Propuesta> propuestas) { this.propuestas = propuestas; }
 }
