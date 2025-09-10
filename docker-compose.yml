@@ -12,7 +12,8 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - db_data:/var/lib/mysql
+      - ./docker/RespaldoCulturarte.sql:/docker-entrypoint-initdb.d/RespaldoCulturarte.sql:ro
+      - ./docker/db_data:/var/lib/mysql
 
 
   app:
@@ -20,6 +21,7 @@ services:
     container_name: culturarte_app
     environment:
       DISPLAY: $DISPLAY
+      DOCKER: "true"
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
     depends_on:
