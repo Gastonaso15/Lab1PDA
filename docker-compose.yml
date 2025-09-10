@@ -24,6 +24,7 @@ services:
       DOCKER: "true"
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./uploads:/app/uploads:ro
     depends_on:
       - db
 
