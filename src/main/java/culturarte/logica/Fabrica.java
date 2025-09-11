@@ -1,6 +1,6 @@
 package culturarte.logica;
 
-import culturarte.logica.controlador.*;
+import culturarte.logica.controladores.*;
 
 public class Fabrica {
 
