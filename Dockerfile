@@ -19,6 +19,6 @@ RUN apt-get update && apt-get install -y \
     libxi6 \
  && rm -rf /var/lib/apt/lists/*
 
-COPY --from=build /app/target/culturarte-app-1.0.0-jar-with-dependencies.jar app.jar
+COPY --from=build /app/target/culturarte-app-1.0.0.jar app.jar
 
-CMD ["java", "-jar", "app.jar"]
+CMD ["java", "--enable-preview", "-cp", "app.jar", "culturarte.presentacion.EstacionDeTrabajo"]

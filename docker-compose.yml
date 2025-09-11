@@ -12,7 +12,7 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - ./docker/RespaldoCulturarte.sql:/docker-entrypoint-initdb.d/RespaldoCulturarte.sql:ro
+      - ./docker/init:/docker-entrypoint-initdb.d:ro
       - ./docker/db_data:/var/lib/mysql
 
 

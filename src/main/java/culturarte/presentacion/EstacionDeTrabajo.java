@@ -10,7 +10,7 @@ import culturarte.presentacion.internalFrames.*;
 
 public class EstacionDeTrabajo extends JFrame {
 
-    static void main() {
+    public static void main(String[] args){
         SwingUtilities.invokeLater(() -> new EstacionDeTrabajo().setVisible(true));
     }
 
