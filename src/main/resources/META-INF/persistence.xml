@@ -6,47 +6,43 @@
              version="3.1">
 
     <persistence-unit name="culturartePU">
-        <class>culturarte.logica.modelo.Categoria</class>
-        <class>culturarte.logica.modelo.Colaboracion</class>
-        <class>culturarte.logica.modelo.Colaborador</class>
-        <class>culturarte.logica.modelo.EstadoPropuesta</class>
-        <class>culturarte.logica.modelo.Proponente</class>
-        <class>culturarte.logica.modelo.Propuesta</class>
-        <class>culturarte.logica.modelo.PropuestaEstado</class>
-        <class>culturarte.logica.modelo.Seguimiento</class>
-        <class>culturarte.logica.modelo.TipoRetorno</class>
-        <class>culturarte.logica.modelo.Usuario</class>
+        <class>culturarte.logica.modelos.Categoria</class>
+        <class>culturarte.logica.modelos.Colaboracion</class>
+        <class>culturarte.logica.modelos.Colaborador</class>
+        <class>culturarte.logica.modelos.EstadoPropuesta</class>
+        <class>culturarte.logica.modelos.Proponente</class>
+        <class>culturarte.logica.modelos.Propuesta</class>
+        <class>culturarte.logica.modelos.PropuestaEstado</class>
+        <class>culturarte.logica.modelos.Seguimiento</class>
+        <class>culturarte.logica.modelos.TipoRetorno</class>
+        <class>culturarte.logica.modelos.Usuario</class>
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/culturarte"/>
             <property name="jakarta.persistence.jdbc.user" value="culturarte"/>
             <property name="jakarta.persistence.jdbc.password" value="culturarte123"/>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
-            <property name="hibernate.physical_naming_strategy" value="org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl"/>
-            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
         </properties>
     </persistence-unit>
 
     <persistence-unit name="culturartePU-docker">
-        <class>culturarte.logica.modelo.Categoria</class>
-        <class>culturarte.logica.modelo.Colaboracion</class>
-        <class>culturarte.logica.modelo.Colaborador</class>
-        <class>culturarte.logica.modelo.EstadoPropuesta</class>
-        <class>culturarte.logica.modelo.Proponente</class>
-        <class>culturarte.logica.modelo.Propuesta</class>
-        <class>culturarte.logica.modelo.PropuestaEstado</class>
-        <class>culturarte.logica.modelo.Seguimiento</class>
-        <class>culturarte.logica.modelo.TipoRetorno</class>
-        <class>culturarte.logica.modelo.Usuario</class>
+        <class>culturarte.logica.modelos.Categoria</class>
+        <class>culturarte.logica.modelos.Colaboracion</class>
+        <class>culturarte.logica.modelos.Colaborador</class>
+        <class>culturarte.logica.modelos.EstadoPropuesta</class>
+        <class>culturarte.logica.modelos.Proponente</class>
+        <class>culturarte.logica.modelos.Propuesta</class>
+        <class>culturarte.logica.modelos.PropuestaEstado</class>
+        <class>culturarte.logica.modelos.Seguimiento</class>
+        <class>culturarte.logica.modelos.TipoRetorno</class>
+        <class>culturarte.logica.modelos.Usuario</class>
         <properties>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://db:3306/culturarte"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://culturarte_db:3306/culturarte"/>
             <property name="jakarta.persistence.jdbc.user" value="culturarte"/>
             <property name="jakarta.persistence.jdbc.password" value="culturarte123"/>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
-            <property name="hibernate.physical_naming_strategy" value="org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl"/>
-            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
         </properties>
     </persistence-unit>

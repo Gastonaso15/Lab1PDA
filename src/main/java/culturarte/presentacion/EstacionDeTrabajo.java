@@ -4,12 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 
 import culturarte.logica.Fabrica;
-import culturarte.logica.controlador.IPropuestaController;
-import culturarte.logica.controlador.IUsuarioController;
+import culturarte.logica.controladores.IPropuestaController;
+import culturarte.logica.controladores.IUsuarioController;
+import culturarte.presentacion.internalFrames.*;
 
 public class EstacionDeTrabajo extends JFrame {
 
-    public static void main(String[] args) {
+    static void main() {
         SwingUtilities.invokeLater(() -> new EstacionDeTrabajo().setVisible(true));
     }
 
@@ -55,11 +56,11 @@ public class EstacionDeTrabajo extends JFrame {
         usuarios.add(seguirUsuario);
         usuarios.add(dejarSeguirUsuario);
 
-        altaUsuario.addActionListener(e -> abrirAltaUsuario());
-        consultaProponente.addActionListener(e -> abrirConsultaProponente());
-        consultaColaborador.addActionListener(e -> abrirConsultaColaborador());
-        seguirUsuario.addActionListener(e -> abrirSeguirUsuario());
-        dejarSeguirUsuario.addActionListener(e -> abrirDejarSeguirUsuario());
+        altaUsuario.addActionListener(_ -> abrirAltaUsuario());
+        consultaProponente.addActionListener(_ -> abrirConsultaProponente());
+        consultaColaborador.addActionListener(_ -> abrirConsultaColaborador());
+        seguirUsuario.addActionListener(_ -> abrirSeguirUsuario());
+        dejarSeguirUsuario.addActionListener(_ -> abrirDejarSeguirUsuario());
 
         JMenu propuestas = new JMenu("Propuestas");
 
@@ -81,38 +82,30 @@ public class EstacionDeTrabajo extends JFrame {
         propuestas.add(consultarColaboracion);
         propuestas.add(cancelarColaboracion);
 
-        altaPropuesta.addActionListener(e -> abrirAltaPropuesta());
-        consultarPropuesta.addActionListener(e -> abrirConsultarPropuesta());
-        consultaPropEstado.addActionListener(e->abrirConsultaPropEstado());
-        modificarPropuesta.addActionListener(e -> abrirModificarPropuesta());
-        altaCategoria.addActionListener(e->abrirAltaCategoria());
-        registrarColaboracion.addActionListener(e->abrirRegistrarColaboracion());
-        consultarColaboracion.addActionListener(e->abrirConsultarColaboracion());
-        cancelarColaboracion.addActionListener(e->abrirCancelarColaboracion());
+        altaPropuesta.addActionListener(_ -> abrirAltaPropuesta());
+        consultarPropuesta.addActionListener(_ -> abrirConsultarPropuesta());
+        consultaPropEstado.addActionListener(_ ->abrirConsultaPropEstado());
+        modificarPropuesta.addActionListener(_ -> abrirModificarPropuesta());
+        altaCategoria.addActionListener(_ ->abrirAltaCategoria());
+        registrarColaboracion.addActionListener(_ ->abrirRegistrarColaboracion());
+        consultarColaboracion.addActionListener(_ ->abrirConsultarColaboracion());
+        cancelarColaboracion.addActionListener(_ ->abrirCancelarColaboracion());
 
-        // Agregar menús a la barra "menu"
         menu.add(usuarios);
         menu.add(propuestas);
         setJMenuBar(menu);
 
-        //Retorno el JMenu ya configurado
         return menu;
     }
 
-
-    //¿NO HAY PROBLEMA CON DEFINIR ESTO DESPUES DEL private JMenuBar buildMenuBar() { que los llama?
-
-
-    // Metodo común para agregar y mostrar un InternalFrame en el desktop
     private void abrir(JInternalFrame frame) {
         desktop.add(frame);
         frame.setVisible(true);
-        //Prevencion para que no explote
         try {
             frame.setSelected(true); // foco al abrir
         } catch (java.beans.PropertyVetoException ignored) {}
     }
-    // 5) Helpers — abrir cada InternalFrame
+
     private void abrirAltaUsuario() {
         AltaUsuarioInternalFrame frame = new AltaUsuarioInternalFrame(ICU);
         abrir(frame);
@@ -185,9 +178,4 @@ public class EstacionDeTrabajo extends JFrame {
         abrir(frame);
     }
 
-
-
 }
-
-
-

@@ -1,13 +1,13 @@
 package culturarte.logica;
 
-import culturarte.logica.controlador.*;
+import culturarte.logica.controladores.*;
 
 public class Fabrica {
 
     private static Fabrica instancia;
 
     private Fabrica() {
-    };
+    }
 
     public static Fabrica getInstance() {
         if (instancia == null) {

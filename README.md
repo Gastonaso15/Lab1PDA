@@ -12,16 +12,6 @@ FLUSH PRIVILEGES;
 ---
 ## Instalar en PC de la universidad
 
-### Paso 1
-En persistence.xml, cambiar la linea:
-
-* property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/culturarte"/
-
-por:
-
-* property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://db:3306/culturarte"/
-
-### Paso 2
 Entrar a la terminal, ir a la carpeta del proyecto (cd ruta/del/proyecto) y ejecutar:
 * xhost +local:docker
 
