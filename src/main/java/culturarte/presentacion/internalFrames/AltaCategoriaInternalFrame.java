@@ -50,11 +50,11 @@ public class AltaCategoriaInternalFrame extends JInternalFrame {
         botones.add(btnCerrar);
         add(botones, BorderLayout.SOUTH);
 
-        btnCerrar.addActionListener(e -> dispose());
+        btnCerrar.addActionListener(_ -> dispose());
 
         recargarCategorias();
 
-        btnCrear.addActionListener(e -> {
+        btnCrear.addActionListener(_ -> {
             String nombre = tfNombre.getText().trim();
             DefaultMutableTreeNode selectedNode = (DefaultMutableTreeNode) treeCategorias.getLastSelectedPathComponent();
             String padre = (selectedNode != null) ? selectedNode.toString() : null;

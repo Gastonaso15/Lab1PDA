@@ -33,9 +33,131 @@ public class UsuarioController implements IUsuarioController {
     }
 
     @Override
+    public List<String> devolverNicknamesUsuarios() {
+        UsuarioManejador mu = UsuarioManejador.getInstance();
+        return mu.obtenerNicknamesUsuarios();
+    }
+
+    @Override
     public List<String> devolverNicknamesProponentes(){
         UsuarioManejador mu = UsuarioManejador.getInstance();
         return mu.obtenerNicknamesProponentes();
+    }
+
+    @Override
+    public List<String> devolverNicknamesColaboradores() {
+        UsuarioManejador mu = UsuarioManejador.getInstance();
+        return mu.obtenerNicknamesColaboradores();
+    }
+
+    @Override
+    public DTColaborador devolverColaboradorPorNickname(String nickname) throws Exception {
+        UsuarioManejador um = UsuarioManejador.getInstance();
+        Colaborador colab = um.obtenerColaboradorPorNickname(nickname);
+
+        if (colab == null) {
+            throw new Exception("El colaborador " + nickname + " no existe");
+        }
+
+        String nombre = colab.getNombre();
+        String apellido = colab.getApellido();
+        String correo = colab.getCorreo();
+        LocalDate fechaNacimiento = colab.getFechaNacimiento();
+        String imagen = colab.getImagen();
+
+        List<DTColaboracion> dtColaboraciones = new ArrayList<>();
+        for (Colaboracion c : colab.getColaboraciones()) {
+
+            Propuesta prop = c.getPropuesta();
+            DTCategoria dtCategoria = null;
+            if (prop.getCategoria() != null) {
+                DTCategoria dtCategoriaPadre = null;
+                if (prop.getCategoria().getCategoriaPadre() != null) {
+                    dtCategoriaPadre = new DTCategoria(
+                            prop.getCategoria().getCategoriaPadre().getNombre(),
+                            new ArrayList<>(),
+                            null
+                    );
+                }
+                dtCategoria = new DTCategoria(
+                        prop.getCategoria().getNombre(),
+                        new ArrayList<>(),
+                        dtCategoriaPadre
+                );
+            }
+
+            List<DTTipoRetorno> dtTiposRetorno = new ArrayList<>();
+            if (prop.getTiposRetorno() != null) {
+                for (TipoRetorno tr : prop.getTiposRetorno()) {
+                    dtTiposRetorno.add(DTTipoRetorno.valueOf(tr.name()));
+                }
+            }
+
+            DTEstadoPropuesta dtEstadoActual = null;
+            if (prop.getEstadoActual() != null) {
+                dtEstadoActual = DTEstadoPropuesta.valueOf(prop.getEstadoActual().name());
+            }
+
+            DTProponente dtProponente = new DTProponente(
+                    prop.getProponente().getNickname(),
+                    prop.getProponente().getNombre(),
+                    prop.getProponente().getApellido(),
+                    prop.getProponente().getCorreo(),
+                    prop.getProponente().getFechaNacimiento(),
+                    prop.getProponente().getImagen(),
+                    prop.getProponente().getDireccion(),
+                    prop.getProponente().getBio(),
+                    prop.getProponente().getSitioWeb(),
+                    new ArrayList<>()
+            );
+
+            List<DTColaboracion> dtColabsPropuesta = new ArrayList<>();
+            for (Colaboracion colabProp : prop.getColaboraciones()) {
+                DTTipoRetorno tipo = colabProp.getTipoRetorno() != null
+                        ? DTTipoRetorno.valueOf(colabProp.getTipoRetorno().name())
+                        : null;
+
+                DTColaboracion dtColabProp = new DTColaboracion(
+                        null,
+                        new DTColaborador(colabProp.getColaborador().getNickname()),
+                        colabProp.getMonto(),
+                        tipo,
+                        colabProp.getFechaHora()
+                );
+                dtColabsPropuesta.add(dtColabProp);
+            }
+
+            DTPropuesta dtPropuesta = new DTPropuesta(
+                    prop.getTitulo(),
+                    prop.getDescripcion(),
+                    prop.getLugar(),
+                    prop.getFechaPrevista(),
+                    prop.getPrecioEntrada(),
+                    prop.getMontoNecesario(),
+                    prop.getImagen(),
+                    dtCategoria,
+                    dtTiposRetorno,
+                    dtEstadoActual,
+                    dtColabsPropuesta
+            );
+            dtPropuesta.setDTProponente(dtProponente);
+
+            DTTipoRetorno dtTipoRetorno = null;
+            if (c.getTipoRetorno() != null) {
+                dtTipoRetorno = DTTipoRetorno.valueOf(c.getTipoRetorno().name());
+            }
+
+            DTColaboracion dtColaboracion = new DTColaboracion(
+                    dtPropuesta,
+                    new DTColaborador(nickname),
+                    c.getMonto(),
+                    dtTipoRetorno,
+                    c.getFechaHora()
+            );
+            dtColaboraciones.add(dtColaboracion);
+        }
+
+        return new DTColaborador(nickname, nombre, apellido, correo, fechaNacimiento, imagen, dtColaboraciones);
     }
 
     @Override
@@ -154,127 +276,6 @@ public class UsuarioController implements IUsuarioController {
         }
 
         mu.eliminarSeguimiento(nickSeguidor, nickSeguido);
-    }
-
-    @Override
-    public List<String> devolverNicknamesUsuarios() {
-        UsuarioManejador mu = UsuarioManejador.getInstance();
-        return mu.obtenerNicknamesUsuarios();
-    }
-    @Override
-    public List<String> devolverNicknamesColaboradores() {
-        UsuarioManejador mu = UsuarioManejador.getInstance();
-        return mu.obtenerNicknamesColaboradores();
-    }
-
-    @Override
-    public DTColaborador devolverColaboradorPorNickname(String nickname) throws Exception {
-        UsuarioManejador um = UsuarioManejador.getInstance();
-        Colaborador colab = um.obtenerColaboradorPorNickname(nickname);
-
-        if (colab == null) {
-            throw new Exception("El colaborador " + nickname + " no existe");
-        }
-
-        String nombre = colab.getNombre();
-        String apellido = colab.getApellido();
-        String correo = colab.getCorreo();
-        LocalDate fechaNacimiento = colab.getFechaNacimiento();
-        String imagen = colab.getImagen();
-
-        List<DTColaboracion> dtColaboraciones = new ArrayList<>();
-        for (Colaboracion c : colab.getColaboraciones()) {
-
-            Propuesta prop = c.getPropuesta();
-            DTCategoria dtCategoria = null;
-            if (prop.getCategoria() != null) {
-                DTCategoria dtCategoriaPadre = null;
-                if (prop.getCategoria().getCategoriaPadre() != null) {
-                    dtCategoriaPadre = new DTCategoria(
-                            prop.getCategoria().getCategoriaPadre().getNombre(),
-                            new ArrayList<>(),
-                            null
-                    );
-                }
-                dtCategoria = new DTCategoria(
-                        prop.getCategoria().getNombre(),
-                        new ArrayList<>(),
-                        dtCategoriaPadre
-                );
-            }
-
-            List<DTTipoRetorno> dtTiposRetorno = new ArrayList<>();
-            if (prop.getTiposRetorno() != null) {
-                for (TipoRetorno tr : prop.getTiposRetorno()) {
-                    dtTiposRetorno.add(DTTipoRetorno.valueOf(tr.name()));
-                }
-            }
-
-            DTEstadoPropuesta dtEstadoActual = null;
-            if (prop.getEstadoActual() != null) {
-                dtEstadoActual = DTEstadoPropuesta.valueOf(prop.getEstadoActual().name());
-            }
-
-            DTProponente dtProponente = new DTProponente(
-                    prop.getProponente().getNickname(),
-                    prop.getProponente().getNombre(),
-                    prop.getProponente().getApellido(),
-                    prop.getProponente().getCorreo(),
-                    prop.getProponente().getFechaNacimiento(),
-                    prop.getProponente().getImagen(),
-                    prop.getProponente().getDireccion(),
-                    prop.getProponente().getBio(),
-                    prop.getProponente().getSitioWeb(),
-                    new ArrayList<>()
-            );
-
-            List<DTColaboracion> dtColabsPropuesta = new ArrayList<>();
-            for (Colaboracion colabProp : prop.getColaboraciones()) {
-                DTTipoRetorno tipo = colabProp.getTipoRetorno() != null
-                        ? DTTipoRetorno.valueOf(colabProp.getTipoRetorno().name())
-                        : null;
-
-                DTColaboracion dtColabProp = new DTColaboracion(
-                        null,
-                        new DTColaborador(colabProp.getColaborador().getNickname()),
-                        colabProp.getMonto(),
-                        tipo,
-                        colabProp.getFechaHora()
-                );
-                dtColabsPropuesta.add(dtColabProp);
-            }
-
-            DTPropuesta dtPropuesta = new DTPropuesta(
-                    prop.getTitulo(),
-                    prop.getDescripcion(),
-                    prop.getLugar(),
-                    prop.getFechaPrevista(),
-                    prop.getPrecioEntrada(),
-                    prop.getMontoNecesario(),
-                    prop.getImagen(),
-                    dtCategoria,
-                    dtTiposRetorno,
-                    dtEstadoActual,
-                    dtColabsPropuesta
-            );
-            dtPropuesta.setDTProponente(dtProponente);
-
-            DTTipoRetorno dtTipoRetorno = null;
-            if (c.getTipoRetorno() != null) {
-                dtTipoRetorno = DTTipoRetorno.valueOf(c.getTipoRetorno().name());
-            }
-
-            DTColaboracion dtColaboracion = new DTColaboracion(
-                    dtPropuesta,
-                    new DTColaborador(nickname),
-                    c.getMonto(),
-                    dtTipoRetorno,
-                    c.getFechaHora()
-            );
-            dtColaboraciones.add(dtColaboracion);
-        }
-
-        return new DTColaborador(nickname, nombre, apellido, correo, fechaNacimiento, imagen, dtColaboraciones);
     }
 
 }

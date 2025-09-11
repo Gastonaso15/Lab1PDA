@@ -36,6 +36,20 @@ public class PropuestaManejador {
         }
     }
 
+    public Propuesta obtenerPropuestaPorTitulo(String titulo) {
+        EntityManager em = JPAUtil.getEntityManager();
+        Propuesta pro;
+        try {
+            TypedQuery<Propuesta> query = em.createQuery("SELECT p FROM Propuesta p WHERE p.titulo = :titulo", Propuesta.class).setParameter("titulo", titulo);
+            pro = query.getSingleResult();
+        } catch (NoResultException e) {
+            pro = null;
+        } finally {
+            em.close();
+        }
+        return pro;
+    }
+
     public List<DTPropuesta> obtenerTodasLasPropuestas() {
         EntityManager em = JPAUtil.getEntityManager();
         List<Propuesta> propuestas = em.createQuery("SELECT p FROM Propuesta p", Propuesta.class)
@@ -111,20 +125,6 @@ public class PropuestaManejador {
             dtPropuestas.add(dt);
         }
         return dtPropuestas;
-    }
-
-    public Propuesta obtenerPropuestaPorTitulo(String titulo) {
-        EntityManager em = JPAUtil.getEntityManager();
-        Propuesta pro;
-        try {
-            TypedQuery<Propuesta> query = em.createQuery("SELECT p FROM Propuesta p WHERE p.titulo = :titulo", Propuesta.class).setParameter("titulo", titulo);
-            pro = query.getSingleResult();
-        } catch (NoResultException e) {
-            pro = null;
-        } finally {
-            em.close();
-        }
-        return pro;
     }
 
     public List<DTPropuesta> obtenerPropuestasPorEstado(EstadoPropuesta estado) {

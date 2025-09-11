@@ -60,6 +60,58 @@ public class UsuarioManejador{
         return colaboradores;
     }
 
+    public Usuario obtenerUsuarioPorCorreo(String correo){
+        EntityManager em = JPAUtil.getEntityManager();
+        Usuario usu;
+        try {
+            TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.correo = :correo", Usuario.class).setParameter("correo", correo);
+            usu = query.getSingleResult();
+        } catch (NoResultException e) {
+            usu = null;
+        } finally {
+            em.close();
+        }
+        return usu;
+    }
+
+    public Usuario obtenerUsuarioPorNickname(String nickname){
+        EntityManager em = JPAUtil.getEntityManager();
+        Usuario usu;
+        try {
+            TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nick", Usuario.class).setParameter("nick", nickname);
+            usu = query.getSingleResult();
+        } catch (NoResultException e) {
+            usu = null;
+        } finally {
+            em.close();
+        }
+        return usu;
+    }
+
+    public Proponente obtenerProponentePorNickname(String nickname) {
+        EntityManager em = JPAUtil.getEntityManager();
+        Proponente prop;
+        try {
+            TypedQuery<Proponente> query = em.createQuery(
+                    "SELECT DISTINCT p FROM Proponente p " +
+                            "LEFT JOIN FETCH p.propuestas pr " +
+                            "WHERE p.nickname = :nick", Proponente.class
+            );
+            query.setParameter("nick", nickname);
+            prop = query.getSingleResult();
+            for (Propuesta p : prop.getPropuestas()) {
+                p.getTiposRetorno().size();
+                p.getColaboraciones().size();
+            }
+
+        } catch (NoResultException e) {
+            prop = null;
+        } finally {
+            em.close();
+        }
+        return prop;
+    }
+
     public Colaborador obtenerColaboradorPorNickname(String nickname) {
         EntityManager em = JPAUtil.getEntityManager();
         Colaborador colab;
@@ -87,58 +139,6 @@ public class UsuarioManejador{
             em.close();
         }
         return colab;
-    }
-
-    public Proponente obtenerProponentePorNickname(String nickname) {
-        EntityManager em = JPAUtil.getEntityManager();
-        Proponente prop;
-        try {
-            TypedQuery<Proponente> query = em.createQuery(
-                    "SELECT DISTINCT p FROM Proponente p " +
-                            "LEFT JOIN FETCH p.propuestas pr " +
-                            "WHERE p.nickname = :nick", Proponente.class
-            );
-            query.setParameter("nick", nickname);
-            prop = query.getSingleResult();
-            for (Propuesta p : prop.getPropuestas()) {
-                p.getTiposRetorno().size();
-                p.getColaboraciones().size();
-            }
-
-        } catch (NoResultException e) {
-            prop = null;
-        } finally {
-            em.close();
-        }
-        return prop;
-    }
-
-    public Usuario obtenerUsuarioPorNickname(String nickname){
-        EntityManager em = JPAUtil.getEntityManager();
-        Usuario usu;
-        try {
-            TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nick", Usuario.class).setParameter("nick", nickname);
-            usu = query.getSingleResult();
-        } catch (NoResultException e) {
-            usu = null;
-        } finally {
-            em.close();
-        }
-        return usu;
-    }
-
-    public Usuario obtenerUsuarioPorCorreo(String correo){
-        EntityManager em = JPAUtil.getEntityManager();
-        Usuario usu;
-        try {
-            TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.correo = :correo", Usuario.class).setParameter("correo", correo);
-            usu = query.getSingleResult();
-        } catch (NoResultException e) {
-            usu = null;
-        } finally {
-            em.close();
-        }
-        return usu;
     }
 
     public void persistirSeguimiento(String nicknameSeguidor, String nicknameSeguido) {
