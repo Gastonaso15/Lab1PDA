@@ -36,6 +36,10 @@ public class Propuesta {
         private List<Colaboracion> colaboraciones = new ArrayList<>();
         @ElementCollection(targetClass = TipoRetorno.class)
         @Enumerated(EnumType.STRING)
+        @CollectionTable(
+            name = "propuesta_tiposretorno",
+            joinColumns = @JoinColumn(name = "propuesta_id")
+        )
         private List<TipoRetorno> tiposRetorno = new ArrayList<>();
 
         // Constructores
