@@ -129,7 +129,7 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
             }
         });
 
-        btnRegistrar.addActionListener(_ -> {
+        btnRegistrar.addActionListener(e -> {
             try {
                 DTPropuesta propuestaSeleccionada = jListPropuestas.getSelectedValue();
                 if (propuestaSeleccionada == null) {
@@ -196,7 +196,7 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
             }
         });
 
-        btnCancelar.addActionListener(_ -> dispose());
+        btnCancelar.addActionListener(e -> dispose());
     }
 
     private void mostrarDetallesPropuesta(DTPropuesta propuesta) {

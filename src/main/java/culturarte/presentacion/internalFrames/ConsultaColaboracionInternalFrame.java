@@ -107,7 +107,7 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
     }
 
     private void configurarEventos() {
-        comboColaboradores.addActionListener(_ -> {
+        comboColaboradores.addActionListener(e -> {
             String nickname = (String) comboColaboradores.getSelectedItem();
             if (nickname != null && !nickname.isEmpty()) {
                 cargarColaboracionesDelColaborador(nickname);

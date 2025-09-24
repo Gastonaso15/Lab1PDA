@@ -59,9 +59,9 @@ public class DejarSeguirUsuarioInternalFrame extends JInternalFrame {
         botones.add(cancelar);
         add(botones, BorderLayout.SOUTH);
 
-        cancelar.addActionListener(_ -> dispose());
+        cancelar.addActionListener(e -> dispose());
 
-        aceptar.addActionListener(_ -> {
+        aceptar.addActionListener(e -> {
             String nicknameSeguidor = (String) cbSeguidor.getSelectedItem();
             String nicknameSeguido = (String) cbSeguido.getSelectedItem();
 

@@ -88,7 +88,7 @@ public class CancelarColaboracionInternalFrame extends JInternalFrame {
 
         add(splitPane, BorderLayout.CENTER);
 
-        btnCancelar.addActionListener(_ -> {
+        btnCancelar.addActionListener(e -> {
             if (colaboracionSeleccionada == null) {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar una colaboración para cancelar.");
                 return;

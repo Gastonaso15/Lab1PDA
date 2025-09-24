@@ -77,7 +77,7 @@ public class ModificarDatosPropuestaInternalFrame extends JInternalFrame {
         imagenPanel.add(tfImagen, BorderLayout.CENTER);
         imagenPanel.add(btnSeleccionarImagen, BorderLayout.EAST);
         panel.add(imagenPanel);
-        btnSeleccionarImagen.addActionListener(_ -> {
+        btnSeleccionarImagen.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             int resultado = fileChooser.showOpenDialog(this);
@@ -110,9 +110,9 @@ public class ModificarDatosPropuestaInternalFrame extends JInternalFrame {
 
         cargarPropuestas();
 
-        cbPropuestas.addActionListener(_ -> cargarDatosPropuesta());
+        cbPropuestas.addActionListener(e -> cargarDatosPropuesta());
 
-        btnGuardar.addActionListener(_ -> guardarCambios());
+        btnGuardar.addActionListener(e -> guardarCambios());
     }
 
     private void cargarPropuestas() {

@@ -56,11 +56,11 @@ public class EstacionDeTrabajo extends JFrame {
         usuarios.add(seguirUsuario);
         usuarios.add(dejarSeguirUsuario);
 
-        altaUsuario.addActionListener(_ -> abrirAltaUsuario());
-        consultaProponente.addActionListener(_ -> abrirConsultaProponente());
-        consultaColaborador.addActionListener(_ -> abrirConsultaColaborador());
-        seguirUsuario.addActionListener(_ -> abrirSeguirUsuario());
-        dejarSeguirUsuario.addActionListener(_ -> abrirDejarSeguirUsuario());
+        altaUsuario.addActionListener(e -> abrirAltaUsuario());
+        consultaProponente.addActionListener(e -> abrirConsultaProponente());
+        consultaColaborador.addActionListener(e -> abrirConsultaColaborador());
+        seguirUsuario.addActionListener(e -> abrirSeguirUsuario());
+        dejarSeguirUsuario.addActionListener(e -> abrirDejarSeguirUsuario());
 
         JMenu propuestas = new JMenu("Propuestas");
 
@@ -82,14 +82,14 @@ public class EstacionDeTrabajo extends JFrame {
         propuestas.add(consultarColaboracion);
         propuestas.add(cancelarColaboracion);
 
-        altaPropuesta.addActionListener(_ -> abrirAltaPropuesta());
-        consultarPropuesta.addActionListener(_ -> abrirConsultarPropuesta());
-        consultaPropEstado.addActionListener(_ ->abrirConsultaPropEstado());
-        modificarPropuesta.addActionListener(_ -> abrirModificarPropuesta());
-        altaCategoria.addActionListener(_ ->abrirAltaCategoria());
-        registrarColaboracion.addActionListener(_ ->abrirRegistrarColaboracion());
-        consultarColaboracion.addActionListener(_ ->abrirConsultarColaboracion());
-        cancelarColaboracion.addActionListener(_ ->abrirCancelarColaboracion());
+        altaPropuesta.addActionListener(e -> abrirAltaPropuesta());
+        consultarPropuesta.addActionListener(e -> abrirConsultarPropuesta());
+        consultaPropEstado.addActionListener(e ->abrirConsultaPropEstado());
+        modificarPropuesta.addActionListener(e -> abrirModificarPropuesta());
+        altaCategoria.addActionListener(e ->abrirAltaCategoria());
+        registrarColaboracion.addActionListener(e ->abrirRegistrarColaboracion());
+        consultarColaboracion.addActionListener(e ->abrirConsultarColaboracion());
+        cancelarColaboracion.addActionListener(e ->abrirCancelarColaboracion());
 
         menu.add(usuarios);
         menu.add(propuestas);

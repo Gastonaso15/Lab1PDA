@@ -184,28 +184,28 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
         lblFechaPublicacion.setText(p.getFechaPublicacion() != null ? p.getFechaPublicacion().toString() : "");
         lblCategoria.setText(p.getCategoria() != null ? p.getCategoria().getNombre() : "");
 
-        String historialStr = "";
+        StringBuilder historialStr = new StringBuilder();
         for (DTPropuestaEstado h : p.getHistorial()) {
-            if (!historialStr.isEmpty()) historialStr += ", ";
-            historialStr += h.getEstado().toString() + " (" + h.getFechaCambio() + ")";
+            if (!historialStr.isEmpty()) historialStr.append(", ");
+            historialStr.append(h.getEstado().toString()).append(" (").append(h.getFechaCambio()).append(")");
         }
-        txtHistorial.setText(historialStr);
+        txtHistorial.setText(historialStr.toString());
 
-        String tiposRetornoStr = "";
+        StringBuilder tiposRetornoStr = new StringBuilder();
         for (DTTipoRetorno t : p.getTiposRetorno()) {
-            if (!tiposRetornoStr.isEmpty()) tiposRetornoStr += ", ";
-            tiposRetornoStr += t.toString();
+            if (!tiposRetornoStr.isEmpty()) tiposRetornoStr.append(", ");
+            tiposRetornoStr.append(t.toString());
         }
-        lblTiposRetorno.setText(tiposRetornoStr);
+        lblTiposRetorno.setText(tiposRetornoStr.toString());
 
         lblImagen.setImagen(p.getImagen());
 
-        String colaboradoresStr = "";
+        StringBuilder colaboradoresStr = new StringBuilder();
         for (DTColaboracion c : p.getColaboraciones()) {
-            if (!colaboradoresStr.isEmpty()) colaboradoresStr += ", ";
-            colaboradoresStr += c.getColaborador().getNickname();
+            if (!colaboradoresStr.isEmpty()) colaboradoresStr.append(", ");
+            colaboradoresStr.append(c.getColaborador().getNickname());
         }
-        txtColaboradores.setText(colaboradoresStr);
+        txtColaboradores.setText(colaboradoresStr.toString());
 
         double montoTotal = 0;
         for (DTColaboracion c : p.getColaboraciones()) {

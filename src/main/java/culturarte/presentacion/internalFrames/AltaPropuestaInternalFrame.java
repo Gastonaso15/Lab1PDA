@@ -83,7 +83,7 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
         imagenPanel.add(btnSeleccionarImagen, BorderLayout.EAST);
         panel.add(imagenPanel);
 
-        btnSeleccionarImagen.addActionListener(_ -> {
+        btnSeleccionarImagen.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             int resultado = fileChooser.showOpenDialog(this);
@@ -128,9 +128,9 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
         add(botones, BorderLayout.SOUTH);
 
 
-        cancelar.addActionListener(_ -> dispose());
+        cancelar.addActionListener(e -> dispose());
 
-        aceptar.addActionListener(_ -> {
+        aceptar.addActionListener(e -> {
             try {
                 String titulo = tfTitulo.getText().trim();
                 String descripcion = tfDescripcion.getText().trim();

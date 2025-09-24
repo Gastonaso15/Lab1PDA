@@ -160,7 +160,7 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
 
         add(panelDetalles, BorderLayout.CENTER);
 
-        btnConsultar.addActionListener(_ -> consultarPropuestasPorEstado());
+        btnConsultar.addActionListener(e -> consultarPropuestasPorEstado());
 
         jListPropuestas.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
@@ -223,12 +223,12 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
 
         lblImagen.setImagen(p.getImagen());
 
-        String colaboradoresStr = "";
+        StringBuilder colaboradoresStr = new StringBuilder();
         for (DTColaboracion c : p.getColaboraciones()) {
-            if (!colaboradoresStr.isEmpty()) colaboradoresStr += ", ";
-            colaboradoresStr += c.getColaborador().getNickname();
+            if (!colaboradoresStr.isEmpty()) colaboradoresStr.append(", ");
+            colaboradoresStr.append(c.getColaborador().getNickname());
         }
-        txtColaboradores.setText(colaboradoresStr);
+        txtColaboradores.setText(colaboradoresStr.toString());
 
         double montoTotal = 0;
         for (DTColaboracion c : p.getColaboraciones()) {
@@ -236,19 +236,19 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
         }
         lblMontoTotal.setText(String.valueOf(montoTotal));
 
-        String historialStr = "";
+        StringBuilder historialStr = new StringBuilder();
         for (DTPropuestaEstado h : p.getHistorial()) {
-            if (!historialStr.isEmpty()) historialStr += ", ";
-            historialStr += h.getEstado().toString() + " (" + h.getFechaCambio() + ")";
+            if (!historialStr.isEmpty()) historialStr.append(", ");
+            historialStr.append(h.getEstado().toString()).append(" (").append(h.getFechaCambio()).append(")");
         }
-        txtHistorial.setText(historialStr);
+        txtHistorial.setText(historialStr.toString());
 
-        String tiposRetornoStr = "";
+        StringBuilder tiposRetornoStr = new StringBuilder();
         for (DTTipoRetorno t : p.getTiposRetorno()) {
-            if (!tiposRetornoStr.isEmpty()) tiposRetornoStr += ", ";
-            tiposRetornoStr += t.toString();
+            if (!tiposRetornoStr.isEmpty()) tiposRetornoStr.append(", ");
+            tiposRetornoStr.append(t.toString());
         }
-        lblTiposRetorno.setText(tiposRetornoStr);
+        lblTiposRetorno.setText(tiposRetornoStr.toString());
         lblPrecioEntrada.setText(p.getPrecioEntrada() != null ? p.getPrecioEntrada().toString() : "");
         lblMontoNecesario.setText(p.getMontoNecesario() != null ? p.getMontoNecesario().toString() : "");
         lblFechaPublicacion.setText(p.getFechaPublicacion() != null ? p.getFechaPublicacion().toString() : "");

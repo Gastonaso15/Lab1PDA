@@ -67,7 +67,7 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
         imagenPanel.add(btnSeleccionarImagen, BorderLayout.EAST);
         panel.add(imagenPanel);
 
-        btnSeleccionarImagen.addActionListener(_ -> {
+        btnSeleccionarImagen.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             int resultado = fileChooser.showOpenDialog(this);
@@ -101,7 +101,7 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
         panel.add(lblSitioWeb);
         panel.add(tfSitioWeb);
 
-        cbTipoUsuario.addActionListener(_ -> {
+        cbTipoUsuario.addActionListener(e -> {
             boolean esProponente = "Proponente".equals(cbTipoUsuario.getSelectedItem());
 
             lblDireccion.setVisible(esProponente);
@@ -124,9 +124,9 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
         botones.add(cancelar);
         add(botones, BorderLayout.SOUTH);
 
-        cancelar.addActionListener(_ -> dispose());
+        cancelar.addActionListener(e -> dispose());
 
-        aceptar.addActionListener(_ -> {
+        aceptar.addActionListener(e -> {
             String nickname = tfNickname.getText().trim();
             String nombre = tfNombre.getText().trim();
             String apellido = tfApellido.getText().trim();
