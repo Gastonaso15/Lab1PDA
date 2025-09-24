@@ -1,5 +1,6 @@
 package culturarte.presentacion.internalFrames;
 
+import culturarte.logica.DTs.DTColaboracion;
 import culturarte.logica.DTs.DTPropuesta;
 import culturarte.logica.DTs.DTTipoRetorno;
 import culturarte.logica.controladores.IPropuestaController;
@@ -142,10 +143,14 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
                     return;
                 }
 
-                if (propuestaSeleccionada.getColaboraciones().stream().anyMatch(c -> c.getColaborador() != null && nickname.equalsIgnoreCase(c.getColaborador().getNickname()))) {
-                    JOptionPane.showMessageDialog(this,
-                            "El colaborador '" + nickname + "' ya ha colaborado con esta propuesta.");
-                    return;
+                if (propuestaSeleccionada.getColaboraciones() != null) {
+                    for (DTColaboracion c : propuestaSeleccionada.getColaboraciones()) {
+                        if (c.getColaborador() != null && nickname.equalsIgnoreCase(c.getColaborador().getNickname())) {
+                            JOptionPane.showMessageDialog(this,
+                                    "El colaborador '" + nickname + "' ya ha colaborado con esta propuesta.");
+                            return;
+                        }
+                    }
                 }
 
                 String montoTexto = txtMonto.getText().trim();
@@ -204,7 +209,17 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
         lblFechaPrevista.setText("Fecha Prevista: " + propuesta.getFechaPrevista());
         lblPrecioEntrada.setText("Precio Entrada: $" + propuesta.getPrecioEntrada());
         lblMontoNecesario.setText("Monto Necesario: $" + propuesta.getMontoNecesario());
-        lblMontoTotal.setText("Monto Recaudado: $" + propuesta.getColaboraciones().stream().mapToDouble(c -> c.getMonto() != null ? c.getMonto() : 0).sum());
+
+        double montoTotal = 0;
+        if (propuesta.getColaboraciones() != null) {
+            for (DTColaboracion c : propuesta.getColaboraciones()) {
+                if (c.getMonto() != null) {
+                    montoTotal += c.getMonto();
+                }
+            }
+        }
+        lblMontoTotal.setText("Monto Recaudado: $" + montoTotal);
+
         lblCategoria.setText("Categoria: " + propuesta.getCategoria().getNombre());
 
         String proponenteInfo = (propuesta.getDTProponente() != null) ?

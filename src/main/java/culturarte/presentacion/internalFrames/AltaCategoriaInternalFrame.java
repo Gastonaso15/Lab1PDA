@@ -16,7 +16,6 @@ public class AltaCategoriaInternalFrame extends JInternalFrame {
 
     private final IPropuestaController PropuestaContr;
 
-    private JComboBox<String> cbCategoriaPadre;
 
     public AltaCategoriaInternalFrame(IPropuestaController icp) {
         super("Alta de Categoría", true, true, true, true);
@@ -80,7 +79,7 @@ public class AltaCategoriaInternalFrame extends JInternalFrame {
     private void recargarCategorias() {
         try {
             List<DTCategoria> categorias = PropuestaContr.devolverTodasLasCategorias();
-            CategoriaUIHelper.cargarCategorias(treeCategorias, cbCategoriaPadre, categorias);
+            CategoriaUIHelper.cargarCategorias(treeCategorias, categorias);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,
                     "Error al cargar categorías: " + e.getMessage(),

@@ -3,9 +3,10 @@ package culturarte.presentacion.internalFrames;
 import javax.swing.*;
 import java.awt.*;
 import java.util.List;
-import java.util.stream.Collectors;
 
+import culturarte.logica.DTs.DTColaboracion;
 import culturarte.logica.DTs.DTPropuesta;
+import culturarte.logica.DTs.DTPropuestaEstado;
 import culturarte.logica.DTs.DTTipoRetorno;
 import culturarte.logica.controladores.IPropuestaController;
 import culturarte.presentacion.helpers.ImagenUIHelper;
@@ -164,7 +165,9 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
         List<DTPropuesta> propuestas = PropuestaContr.devolverTodasLasPropuestas();
         DefaultListModel<DTPropuesta> modeloLista = new DefaultListModel<>();
         for (DTPropuesta p : propuestas) {
-            modeloLista.addElement(p);
+            if (p.getEstadoActual() != null && !p.getEstadoActual().toString().equals("INGRESADA")) {
+                modeloLista.addElement(p);
+            }
         }
         jListPropuestas.setModel(modeloLista);
     }
@@ -180,25 +183,34 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
         lblMontoNecesario.setText(p.getMontoNecesario() != null ? p.getMontoNecesario().toString() : "");
         lblFechaPublicacion.setText(p.getFechaPublicacion() != null ? p.getFechaPublicacion().toString() : "");
         lblCategoria.setText(p.getCategoria() != null ? p.getCategoria().getNombre() : "");
-        txtHistorial.setText(p.getHistorial().stream()
-                .map(h -> h.getEstado().toString() + " (" + h.getFechaCambio() + ")")
-                .collect(Collectors.joining(", ")));
-        lblTiposRetorno.setText(p.getTiposRetorno().stream()
-                .map(DTTipoRetorno::toString)
-                .collect(Collectors.joining(", ")));
+
+        String historialStr = "";
+        for (DTPropuestaEstado h : p.getHistorial()) {
+            if (!historialStr.isEmpty()) historialStr += ", ";
+            historialStr += h.getEstado().toString() + " (" + h.getFechaCambio() + ")";
+        }
+        txtHistorial.setText(historialStr);
+
+        String tiposRetornoStr = "";
+        for (DTTipoRetorno t : p.getTiposRetorno()) {
+            if (!tiposRetornoStr.isEmpty()) tiposRetornoStr += ", ";
+            tiposRetornoStr += t.toString();
+        }
+        lblTiposRetorno.setText(tiposRetornoStr);
 
         lblImagen.setImagen(p.getImagen());
 
-        String colaboradores = p.getColaboraciones()
-                .stream()
-                .map(c -> c.getColaborador().getNickname())
-                .collect(Collectors.joining(", "));
-        txtColaboradores.setText(colaboradores);
+        String colaboradoresStr = "";
+        for (DTColaboracion c : p.getColaboraciones()) {
+            if (!colaboradoresStr.isEmpty()) colaboradoresStr += ", ";
+            colaboradoresStr += c.getColaborador().getNickname();
+        }
+        txtColaboradores.setText(colaboradoresStr);
 
-        double montoTotal = p.getColaboraciones()
-                .stream()
-                .mapToDouble(c -> c.getMonto() != null ? c.getMonto() : 0)
-                .sum();
+        double montoTotal = 0;
+        for (DTColaboracion c : p.getColaboraciones()) {
+            if (c.getMonto() != null) montoTotal += c.getMonto();
+        }
         lblMontoTotal.setText(String.valueOf(montoTotal));
     }
 

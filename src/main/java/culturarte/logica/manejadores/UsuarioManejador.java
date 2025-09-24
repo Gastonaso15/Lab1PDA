@@ -191,6 +191,20 @@ public class UsuarioManejador{
         }
     }
 
+    public List<String> obtenerUsuariosSeguidos(String nicknameSeguidor) {
+        EntityManager em = JPAUtil.getEntityManager();
+        List<String> usuariosSeguidos;
+        try {
+            TypedQuery<String> query = em.createQuery("SELECT s.seguido.nickname FROM Seguimiento s WHERE s.seguidor.nickname = :nick", String.class);
+            query.setParameter("nick", nicknameSeguidor);
+            usuariosSeguidos = query.getResultList();
+        } finally {
+            em.close();
+        }
+        return usuariosSeguidos;
+    }
+
+
     public void eliminarSeguimiento(String nicknameSeguidor, String nicknameSeguido) {
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction t = em.getTransaction();

@@ -102,7 +102,7 @@ public class EstacionDeTrabajo extends JFrame {
         desktop.add(frame);
         frame.setVisible(true);
         try {
-            frame.setSelected(true); // foco al abrir
+            frame.setSelected(true);
         } catch (java.beans.PropertyVetoException ignored) {}
     }
 

@@ -14,5 +14,6 @@ public interface IUsuarioController {
     DTProponente devolverProponentePorNickname(String nickname) throws Exception;
     DTColaborador devolverColaboradorPorNickname(String nickname) throws Exception;
     void seguirUsuario(String nickSeguidor, String nickSeguido) throws Exception;
+    List<String> devolverUsuariosSeguidos(String nicknameSeguidor);
     void dejarDeSeguirUsuario(String nickSeguidor, String nickSeguido);
 }

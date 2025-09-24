@@ -11,13 +11,8 @@ import java.util.List;
 
 public class CategoriaUIHelper {
 
-    public static void cargarCategorias(JTree tree, JComboBox<String> combo, List<DTCategoria> categorias) {
+    public static void cargarCategorias(JTree tree, List<DTCategoria> categorias) {
         DefaultMutableTreeNode root = new DefaultMutableTreeNode("Categoría");
-
-        if (combo != null) {
-            combo.removeAllItems();
-            combo.addItem("Categoría");
-        }
 
         for (DTCategoria cat : categorias) {
             DefaultMutableTreeNode parentNode;
@@ -30,10 +25,6 @@ public class CategoriaUIHelper {
 
             DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(cat.getNombre());
             parentNode.add(nodo);
-
-            if (combo != null) {
-                combo.addItem(cat.getNombre());
-            }
         }
 
         ((DefaultTreeModel) tree.getModel()).setRoot(root);

@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import culturarte.persistencia.JPAUtil;
 
@@ -318,16 +317,19 @@ public class PropuestaManejador {
 
         em.close();
 
-        List<DTColaboracion> dtColaboraciones = colabs.stream().map(c -> {
 
-            List<DTColaboracion> dtColabsPropuesta = c.getPropuesta().getColaboraciones().stream()
-                    .map(col -> new DTColaboracion(
-                            new DTColaborador(col.getColaborador().getNickname()),
-                            col.getMonto()
-                    ))
-                    .toList();
+        List<DTColaboracion> dtColaboraciones = new ArrayList<>();
+
+        for (Colaboracion c : colabs) {
+
+            List<DTColaboracion> dtColabsPropuesta = new ArrayList<>();
+            for (Colaboracion col : c.getPropuesta().getColaboraciones()) {
+                DTColaborador dtColab = new DTColaborador(col.getColaborador().getNickname());
+                dtColabsPropuesta.add(new DTColaboracion(dtColab, col.getMonto()));
+            }
 
             DTEstadoPropuesta dtEstadoPropuesta = DTEstadoPropuesta.valueOf(c.getPropuesta().getEstadoActual().name());
+
             DTPropuesta dtPropuesta = new DTPropuesta(
                     c.getPropuesta().getTitulo(),
                     c.getPropuesta().getMontoNecesario(),
@@ -336,21 +338,19 @@ public class PropuestaManejador {
                     dtColabsPropuesta
             );
 
-            DTColaborador dtColaborador = new DTColaborador(
-                    c.getColaborador().getNickname()
-            );
-
+            DTColaborador dtColaborador = new DTColaborador(c.getColaborador().getNickname());
             DTTipoRetorno dtTipoRetorno = DTTipoRetorno.valueOf(c.getTipoRetorno().name());
-            return new DTColaboracion(
+
+            dtColaboraciones.add(new DTColaboracion(
                     c.getId(),
                     dtPropuesta,
                     dtColaborador,
                     c.getMonto(),
                     dtTipoRetorno,
                     c.getFechaHora()
-            );
+            ));
 
-        }).collect(Collectors.toList());
+        };
 
         return dtColaboraciones;
     }

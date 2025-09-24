@@ -43,7 +43,7 @@ public class ModificarDatosPropuestaInternalFrame extends JInternalFrame {
         JScrollPane scrollTree = new JScrollPane(treeCategorias);
 
         List<DTCategoria> categorias = ICP.devolverTodasLasCategorias();
-        CategoriaUIHelper.cargarCategorias(treeCategorias, null, categorias);
+        CategoriaUIHelper.cargarCategorias(treeCategorias, categorias);
 
         panel.add(new JLabel("Seleccionar Propuesta:"));
         cbPropuestas = new JComboBox<>();
@@ -99,8 +99,8 @@ public class ModificarDatosPropuestaInternalFrame extends JInternalFrame {
         JScrollPane scrollTiposRetorno = new JScrollPane(panelCheckBoxes);
         panel.add(scrollTiposRetorno);
 
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scrollTree, panel);
-        splitPane.setDividerLocation(250);
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT,panel, scrollTree);
+        splitPane.setDividerLocation(750);
         add(splitPane, BorderLayout.CENTER);
 
         JPanel botones = new JPanel();

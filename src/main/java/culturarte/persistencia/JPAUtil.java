@@ -15,8 +15,8 @@ public class JPAUtil {
             PERSISTENCE_UNIT = "culturartePU";
         }
     }
-    public static final EntityManagerFactory emf =
-            Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
+
+    public static final EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);
 
     public static EntityManager getEntityManager() {
         return emf.createEntityManager();

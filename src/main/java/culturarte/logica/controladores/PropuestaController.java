@@ -56,6 +56,7 @@ public class PropuestaController implements IPropuestaController {
         PropuestaManejador mp = PropuestaManejador.getInstance();
         return mp.obtenerPropuestasPorEstado(estadoModelo);
     }
+
     @Override
     public void modificarPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista,
                                    Double precioEntrada, Double montoNecesario,

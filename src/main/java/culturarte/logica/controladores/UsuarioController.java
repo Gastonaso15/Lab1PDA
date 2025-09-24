@@ -262,6 +262,12 @@ public class UsuarioController implements IUsuarioController {
     }
 
     @Override
+    public List<String> devolverUsuariosSeguidos(String nicknameSeguidor) {
+        UsuarioManejador mu = UsuarioManejador.getInstance();
+        return mu.obtenerUsuariosSeguidos(nicknameSeguidor);
+    }
+
+    @Override
     public void dejarDeSeguirUsuario(String nickSeguidor, String nickSeguido) {
         UsuarioManejador mu = UsuarioManejador.getInstance();
         Usuario seguidor = mu.obtenerUsuarioPorNickname(nickSeguidor);

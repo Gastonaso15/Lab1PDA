@@ -15,7 +15,7 @@ public class DejarSeguirUsuarioInternalFrame extends JInternalFrame {
     private final JComboBox<String> cbSeguido;
 
     public DejarSeguirUsuarioInternalFrame(IUsuarioController icu) {
-        super("Seguir Usuario", true, true, true, true);
+        super("Dejar de Seguir Usuario", true, true, true, true);
         setSize(1000, 500);
         setLayout(new BorderLayout());
 
@@ -25,13 +25,30 @@ public class DejarSeguirUsuarioInternalFrame extends JInternalFrame {
 
         panel.add(new JLabel("Usuario que sigue:"));
         cbSeguidor = new JComboBox<>();
-        cargarUsuarios(cbSeguidor);
+        cargarUsuarios(cbSeguidor, icu.devolverNicknamesUsuarios());
         panel.add(cbSeguidor);
 
         panel.add(new JLabel("Usuario a dejar de seguir:"));
         cbSeguido = new JComboBox<>();
-        cargarUsuarios(cbSeguido);
+        cbSeguido.setEnabled(false);
         panel.add(cbSeguido);
+
+        cbSeguidor.addActionListener(e -> {
+            String nicknameSeguidor = (String) cbSeguidor.getSelectedItem();
+            if (nicknameSeguidor != null) {
+                List<String> usuariosSeguidos = icu.devolverUsuariosSeguidos(nicknameSeguidor);
+                if (usuariosSeguidos == null || usuariosSeguidos.isEmpty()) {
+                    cbSeguido.removeAllItems();
+                    cbSeguido.addItem("El usuario no sigue a nadie");
+                    cbSeguido.setEnabled(false);
+                } else {
+                    cargarUsuarios(cbSeguido, usuariosSeguidos);
+                    cbSeguido.setEnabled(true);
+                }
+            } else {
+                cbSeguido.removeAllItems();
+            }
+        });
 
         add(panel, BorderLayout.CENTER);
 
@@ -73,9 +90,8 @@ public class DejarSeguirUsuarioInternalFrame extends JInternalFrame {
         });
     }
 
-    private void cargarUsuarios(JComboBox<String> combo) {
+    private void cargarUsuarios(JComboBox<String> combo, List<String> usuarios) {
         combo.removeAllItems();
-        List<String> usuarios = UsuarioContr.devolverNicknamesUsuarios();
         if (usuarios != null) {
             for (String u : usuarios) {
                 combo.addItem(u);

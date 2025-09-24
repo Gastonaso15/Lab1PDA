@@ -48,7 +48,7 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
         JScrollPane scrollTree = new JScrollPane(treeCategorias);
 
         List<DTCategoria> categorias = PropuestaContr.devolverTodasLasCategorias();
-        CategoriaUIHelper.cargarCategorias(treeCategorias, null, categorias);
+        CategoriaUIHelper.cargarCategorias(treeCategorias, categorias);
 
         panel.add(new JLabel("Título:"));
         tfTitulo = new JTextField();
