@@ -12,8 +12,30 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - ./docker/init:/docker-entrypoint-initdb.d:ro
-      - ./docker/db_data:/var/lib/mysql
+      - db_data:/var/lib/mysql
+      - ./docker/init-db:/docker-entrypoint-initdb.d:ro
+
+
+
+    healthcheck: #Esto hace que phpMyAdmin no intente conectarse hasta que db esté healthy. Mucho más fiable que “levantar y cruzar los dedos”.
+      test: [ "CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -uroot -p$MYSQL_ROOT_PASSWORD || exit 1" ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  phpmyadmin:
+    image: phpmyadmin:5.2.1
+    container_name: culturarte_pma
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      UPLOAD_LIMIT: 128M
+    ports:
+      - "8081:80"
 
 
   app:

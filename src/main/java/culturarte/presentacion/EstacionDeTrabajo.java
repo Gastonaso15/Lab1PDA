@@ -25,12 +25,25 @@ public class EstacionDeTrabajo extends JFrame {
         setJMenuBar(buildMenuBar());
         add(desktop, BorderLayout.CENTER);
     }
-
     private void setupFrame() {
         setTitle("Culturarte - Estación de Trabajo");
-        setSize(1500, 800);
+        setSize(1000, 700);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+
+        desktop.setOpaque(true);
+        desktop.setBackground(new java.awt.Color(100, 140, 212));
+
+        // --- fondo desde resources: src/main/resources/SwingImages/fondo.png ---
+        java.net.URL url = EstacionDeTrabajo.class.getResource("/SwingImages/fondo.png");
+        if (url != null) {
+            ImageIcon icon = new ImageIcon(url);
+            JLabel fondo = new JLabel(icon);
+            fondo.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight());
+            desktop.add(fondo, JLayeredPane.FRAME_CONTENT_LAYER);
+        } else {
+            System.out.println("No encontré /img/fondo.png");
+        }
     }
 
     private void initControllers() {
