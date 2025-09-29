@@ -1,0 +1,245 @@
+openapi: 3.0.3
+info:
+  title: API PDA - LabP.D.A.
+  description: API REST para la gestión de Propuestas y Colaboraciones en la aplicación PDA.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/api
+    description: Servidor local de desarrollo
+security:
+  - BearerAuth: []
+paths:
+  /propuestas:
+    get:
+      summary: Lista todas las propuestas
+      responses:
+        "200":
+          description: Lista de propuestas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Propuesta"
+      security:
+        - BearerAuth: []
+    post:
+      summary: Crea una nueva propuesta
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Propuesta"
+        required: true
+      responses:
+        "201":
+          description: Propuesta creada
+      security:
+        - BearerAuth: []
+  /propuestas/{id}:
+    get:
+      summary: Obtiene una propuesta por ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Propuesta encontrada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Propuesta"
+        "404":
+          description: Propuesta no encontrada
+      security:
+        - BearerAuth: []
+    put:
+      summary: Actualiza una propuesta existente
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Propuesta"
+        required: true
+      responses:
+        "200":
+          description: Propuesta actualizada
+        "404":
+          description: Propuesta no encontrada
+      security:
+        - BearerAuth: []
+    delete:
+      summary: Elimina una propuesta
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Propuesta eliminada
+        "404":
+          description: Propuesta no encontrada
+      security:
+        - BearerAuth: []
+  /colaboraciones:
+    get:
+      summary: Lista todas las colaboraciones
+      responses:
+        "200":
+          description: Lista de colaboraciones
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Colaboracion"
+      security:
+        - BearerAuth: []
+    post:
+      summary: Crea una nueva colaboración
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Colaboracion"
+        required: true
+      responses:
+        "201":
+          description: Colaboración creada
+      security:
+        - BearerAuth: []
+  /colaboraciones/total:
+    get:
+      summary: Obtiene el total de aportes registrados
+      responses:
+        "200":
+          description: Total de aportes
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200"
+      security:
+        - BearerAuth: []
+components:
+  schemas:
+    Propuesta:
+      required:
+        - titulo
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        titulo:
+          type: string
+        descripcion:
+          type: string
+        lugar:
+          type: string
+        fechaPrevista:
+          type: string
+          format: date
+        precioEntrada:
+          type: number
+          format: double
+        montoNecesario:
+          type: number
+          format: double
+        fechaPublicacion:
+          type: string
+          format: date
+        imagen:
+          type: string
+          format: uri
+        categoria:
+          $ref: "#/components/schemas/Propuesta_categoria"
+        proponente:
+          $ref: "#/components/schemas/Propuesta_categoria"
+        estadoActual:
+          type: string
+          enum:
+            - INGRESADA
+            - PUBLICADA
+            - EN_FINANCIACION
+            - FINANCIADA
+            - NO_FINANCIADA
+            - CANCELADA
+        historial:
+          type: array
+          items:
+            $ref: "#/components/schemas/PropuestaEstado"
+        tiposRetorno:
+          type: array
+          items:
+            $ref: "#/components/schemas/TipoRetorno"
+    Colaboracion:
+      required:
+        - colaborador
+        - monto
+        - propuesta
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        propuesta:
+          $ref: "#/components/schemas/Propuesta"
+        colaborador:
+          $ref: "#/components/schemas/Propuesta_categoria"
+        monto:
+          type: number
+          format: double
+        tipoRetorno:
+          $ref: "#/components/schemas/TipoRetorno"
+        fechaHora:
+          type: string
+          format: date-time
+    TipoRetorno:
+      type: string
+      enum:
+        - ENTRADAS_GRATIS
+        - PORCENTAJE_GANANCIAS
+    PropuestaEstado:
+      type: object
+      properties:
+        fechaCambio:
+          type: string
+          format: date-time
+        estado:
+          type: string
+          enum:
+            - INGRESADA
+            - PUBLICADA
+            - EN_FINANCIACION
+            - FINANCIADA
+            - NO_FINANCIADA
+            - CANCELADA
+    inline_response_200:
+      type: object
+      properties:
+        total:
+          type: number
+          format: double
+    Propuesta_categoria:
+      type: object
+      properties:
+        id:
+          type: integer
+        nombre:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
