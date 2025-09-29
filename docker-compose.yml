@@ -6,9 +6,7 @@ services:
     container_name: culturarte_db
     environment:
       MYSQL_DATABASE: culturarte
-      MYSQL_USER: culturarte
-      MYSQL_PASSWORD: culturarte123
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: password
     ports:
       - "3307:3306"
     volumes:

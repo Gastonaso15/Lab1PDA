@@ -1,17 +1,8 @@
-
-FROM maven:3.9.4-eclipse-temurin-21 AS build
-
-WORKDIR /app
-
-COPY pom.xml .
-COPY src ./src
-
-RUN mvn clean package -DskipTests
-
 FROM eclipse-temurin:21-jdk
 
 WORKDIR /app
 
+# Librerías necesarias para Swing/AWT
 RUN apt-get update && apt-get install -y \
     libxext6 \
     libxrender1 \
@@ -19,6 +10,12 @@ RUN apt-get update && apt-get install -y \
     libxi6 \
  && rm -rf /var/lib/apt/lists/*
 
-COPY --from=build /app/target/culturarte-app-1.0.0.jar app.jar
+# Copiamos el JAR ya compilado
+COPY target/culturarte-app-1.0.0-jar-with-dependencies.jar app.jar
 
-CMD ["java", "--enable-preview", "-cp", "app.jar", "culturarte.presentacion.EstacionDeTrabajo"]
+# Script de inicio
+COPY start.sh /app/start.sh
+RUN chmod +x /app/start.sh
+
+CMD ["/app/start.sh"]
+
