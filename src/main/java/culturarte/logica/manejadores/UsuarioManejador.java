@@ -249,4 +249,15 @@ public class UsuarioManejador{
             em.close();
         }
     }
+
+    public Usuario obtenerUsuarioPorId(Long id) {
+        EntityManager em = JPAUtil.getEntityManager();
+        Usuario usu;
+        try {
+            usu = em.find(Usuario.class, id);
+        } finally {
+            em.close();
+        }
+        return usu;
+    }
 }

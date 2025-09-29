@@ -355,4 +355,26 @@ public class PropuestaManejador {
         return dtColaboraciones;
     }
 
+    public Propuesta obtenerPropuestaPorId(Long id) {
+        EntityManager em = JPAUtil.getEntityManager();
+        Propuesta pro;
+        try {
+            pro = em.find(Propuesta.class, id);
+        } finally {
+            em.close();
+        }
+        return pro;
+    }
+
+    public Colaboracion obtenerColaboracionPorId(Long id) {
+        EntityManager em = JPAUtil.getEntityManager();
+        Colaboracion colab;
+        try {
+            colab = em.find(Colaboracion.class, id);
+        } finally {
+            em.close();
+        }
+        return colab;
+    }
+
 }

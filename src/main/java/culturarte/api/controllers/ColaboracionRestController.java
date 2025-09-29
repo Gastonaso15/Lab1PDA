@@ -5,7 +5,7 @@ import culturarte.api.dto.PropuestaDto;
 import culturarte.api.dto.PropuestaCategoriaDto;
 import culturarte.api.dto.TipoRetornoDto;
 import culturarte.api.dto.TotalAportesDto;
-import culturarte.logica.controladores.PropuestaController as PropuestaControllerLogic;
+import culturarte.logica.controladores.PropuestaController; //as PropuestaControllerLogic;
 import culturarte.logica.DTs.DTColaboracion;
 import culturarte.logica.modelos.*;
 import culturarte.logica.manejadores.PropuestaManejador;
@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 public class ColaboracionRestController {
 
     @Autowired
-    private PropuestaControllerLogic propuestaController;
+    private PropuestaController propuestaController;
 
     @Autowired
     private PropuestaManejador propuestaManejador;
@@ -74,9 +74,14 @@ public class ColaboracionRestController {
                     colaboracionDto.getTipoRetorno().getTipo()
             );
 
-            // Obtener la colaboración creada (necesitarías implementar un método para obtener la última colaboración)
-            Colaboracion colaboracion = propuestaManejador.obtenerColaboracionPorId(colaboracionDto.getId());
-            ColaboracionDto responseDto = convertToColaboracionDto(colaboracion);
+            // Obtener la colaboración creada - buscar la última colaboración de este colaborador en esta propuesta
+            // Como no tenemos un método específico, creamos una respuesta básica
+            ColaboracionDto responseDto = new ColaboracionDto();
+            responseDto.setMonto(colaboracionDto.getMonto());
+            responseDto.setTipoRetorno(colaboracionDto.getTipoRetorno());
+            responseDto.setPropuesta(colaboracionDto.getPropuesta());
+            responseDto.setColaborador(colaboracionDto.getColaborador());
+            responseDto.setFechaHora(java.time.LocalDateTime.now());
 
             return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
         } catch (Exception e) {

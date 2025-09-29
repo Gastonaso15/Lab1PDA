@@ -4,7 +4,7 @@ import culturarte.api.dto.PropuestaDto;
 import culturarte.api.dto.PropuestaCategoriaDto;
 import culturarte.api.dto.PropuestaEstadoDto;
 import culturarte.api.dto.TipoRetornoDto;
-import culturarte.logica.controladores.PropuestaController as PropuestaControllerLogic;
+import culturarte.logica.controladores.PropuestaController; //as PropuestaControllerLogic;
 import culturarte.logica.DTs.DTPropuesta;
 import culturarte.logica.DTs.DTCategoria;
 import culturarte.logica.modelos.*;
@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 public class PropuestaRestController {
 
     @Autowired
-    private PropuestaControllerLogic propuestaController;
+    private PropuestaController propuestaController;
 
     @Autowired
     private PropuestaManejador propuestaManejador;
@@ -70,7 +70,7 @@ public class PropuestaRestController {
                     propuestaDto.getPrecioEntrada(),
                     propuestaDto.getMontoNecesario(),
                     propuestaDto.getImagen(),
-                    propuestaDto.getProponente().getNombre(), // Asumiendo que el nombre del proponente está en el DTO
+                    propuestaDto.getProponente().getNombre(), // Usando el nombre como nickname del proponente del DTO
                     propuestaDto.getCategoria().getNombre(),
                     tiposRetorno
             );
@@ -231,10 +231,10 @@ public class PropuestaRestController {
         }
 
         // Convertir proponente
-        if (dtPropuesta.getProponente() != null) {
+        if (dtPropuesta.getDTProponente() != null) {
             PropuestaCategoriaDto proponenteDto = new PropuestaCategoriaDto(
-                    dtPropuesta.getProponente().getId(),
-                    dtPropuesta.getProponente().getNickname()
+                    dtPropuesta.getDTProponente().getId(),
+                    dtPropuesta.getDTProponente().getNickname()
             );
             dto.setProponente(proponenteDto);
         }
