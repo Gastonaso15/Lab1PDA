@@ -10,8 +10,8 @@ RUN apt-get update && apt-get install -y \
     libxi6 \
  && rm -rf /var/lib/apt/lists/*
 
-# Copiamos el JAR ya compilado
-COPY target/culturarte-app-1.0.0-jar-with-dependencies.jar app.jar
+# Copiamos el JAR ya compilado (cualquier nombre generado por Maven)
+COPY target/*.jar app.jar
 
 # Script de inicio
 COPY start.sh /app/start.sh

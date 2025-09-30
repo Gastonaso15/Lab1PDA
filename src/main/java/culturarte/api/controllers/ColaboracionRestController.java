@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/colaboraciones")
+@RequestMapping("/colaboraciones")
 @CrossOrigin(origins = "*")
 public class ColaboracionRestController {
 

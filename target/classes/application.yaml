@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8082
   servlet:
     context-path: /api
 
@@ -41,3 +41,18 @@ springdoc:
     operationsSorter: method
     tagsSorter: alpha
     tryItOutEnabled: true
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+  datasource:
+    url: jdbc:mysql://db:3306/culturarte?useSSL=false&serverTimezone=UTC
+    username: root
+    password: password
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api

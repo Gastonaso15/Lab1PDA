@@ -1,8 +1,4 @@
 #!/bin/bash
-# Permitir que el contenedor acceda al X server del host
-export DISPLAY=${DISPLAY:-:0}
-xhost +local:docker
-
-# Ejecutar la app Java
+# Ejecutar la API REST (no necesita X11)
 java --enable-preview -jar app.jar
 
