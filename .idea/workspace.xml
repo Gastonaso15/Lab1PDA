@@ -4,7 +4,59 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5a7858f2-bec4-4aec-83ae-8a83410b928d" name="Changes" comment="Proyecto reorganizado en dos carpetas, una para la primera parte y otra para la que vamos a trabajar ahora." />
+    <list default="true" id="5a7858f2-bec4-4aec-83ae-8a83410b928d" name="Changes" comment="Proyecto reorganizado en dos carpetas, una para la primera parte y otra para la que vamos a trabajar ahora.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/META-INF/persistence.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTCategoria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTColaboracion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTColaborador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTEstadoPropuesta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTProponente.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTPropuesta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTPropuestaEstado.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTSeguimiento.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTTipoRetorno.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTUsuario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/Fabrica.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/controladores/IPropuestaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/controladores/IUsuarioController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/controladores/PropuestaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/controladores/UsuarioController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/manejadores/PropuestaManejador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/manejadores/UsuarioManejador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/Categoria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/Colaboracion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/Colaborador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/EstadoPropuesta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/Proponente.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/Propuesta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/PropuestaEstado.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/Seguimiento.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/TipoRetorno.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/Usuario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/persistencia/JPAUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/EstacionDeTrabajo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/helpers/CategoriaUIHelper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/helpers/ImagenUIHelper$ImagenPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/helpers/ImagenUIHelper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/AltaCategoriaInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/AltaPropuestaInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/ConsultaColaboracionInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/ConsultaPropuestasPorEstadoInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/ConsultarPropuestaInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/DejarSeguirUsuarioInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/ModificarDatosPropuestaInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/SeguirUsuarioInternalFrame.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,13 +87,40 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.EstacionDeTrabajo.executor": "Debug",
+    "JAR Application.culturarte-app.jar.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true"
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Tarea1" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.EstacionDeTrabajo">
+    <configuration name="EstacionDeTrabajo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="culturarte.presentacion.EstacionDeTrabajo" />
+      <module name="culturarte-app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="culturarte.presentacion.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="culturarte-app.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/Tarea1/out/artifacts/culturarte_app_jar/culturarte-app.jar" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
         <option name="Make" enabled="true" />
@@ -51,6 +130,12 @@
       <option name="filePath" />
       <method v="2" />
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.EstacionDeTrabajo" />
+        <item itemvalue="JAR Application.culturarte-app.jar" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -68,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759325687760</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Proyecto reorganizado en dos carpetas, una para la primera parte y otra para la que vamos a trabajar ahora.">
+      <option name="closed" value="true" />
+      <created>1759325882585</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1759325882585</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
