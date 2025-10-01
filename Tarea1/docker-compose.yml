@@ -39,7 +39,7 @@ services:
 
 
   app:
-    build: .
+    build: ..
     container_name: culturarte_app
     environment:
       DISPLAY: $DISPLAY
