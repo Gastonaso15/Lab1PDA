@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="Servidor web montado">
-      <change afterPath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="Cancelar Propuesta internal frame creado">
+      <change afterPath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/controladores/SesionController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,12 +130,38 @@
       <option name="project" value="LOCAL" />
       <updated>1759371286802</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Evaluar propuesta internal frame creado">
+      <option name="closed" value="true" />
+      <created>1759381660726</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1759381660726</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Cancelar Propuesta internal frame creado">
+      <option name="closed" value="true" />
+      <created>1759381807777</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1759381807777</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Cancelar Propuesta internal frame creado">
+      <option name="closed" value="true" />
+      <created>1759381840518</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1759381840518</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Proyecto reorganizado en dos carpetas, una para la primera parte y otra para la que vamos a trabajar ahora." />
     <MESSAGE value="Servidor web montado" />
-    <option name="LAST_COMMIT_MESSAGE" value="Servidor web montado" />
+    <MESSAGE value="Evaluar propuesta internal frame creado" />
+    <MESSAGE value="Cancelar Propuesta internal frame creado" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cancelar Propuesta internal frame creado" />
   </component>
 </project>
