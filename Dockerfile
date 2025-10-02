@@ -1,21 +1,28 @@
-FROM eclipse-temurin:21-jdk
+FROM eclipse-temurin:21-jre-alpine
 
 WORKDIR /app
 
-# Librerías necesarias para Swing/AWT
-RUN apt-get update && apt-get install -y \
-    libxext6 \
-    libxrender1 \
-    libxtst6 \
-    libxi6 \
- && rm -rf /var/lib/apt/lists/*
+# Create non-root user for security
+RUN addgroup -g 1001 -S appgroup && \
+    adduser -u 1001 -S appuser -G appgroup
 
-# Copiamos el JAR ya compilado (cualquier nombre generado por Maven)
+# Copy the JAR file
 COPY target/*.jar app.jar
 
-# Script de inicio
-COPY start.sh /app/start.sh
-RUN chmod +x /app/start.sh
+# Create uploads directory and set permissions
+RUN mkdir -p /app/uploads/propuestas /app/uploads/usuarios && \
+    chown -R appuser:appgroup /app
 
-CMD ["/app/start.sh"]
+# Switch to non-root user
+USER appuser
+
+# Expose port
+EXPOSE 8080
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
+    CMD wget --no-verbose --tries=1 --spider http://localhost:8080/api/actuator/health || exit 1
+
+# Run the application
+CMD ["java", "-jar", "app.jar", "--spring.profiles.active=docker"]
 

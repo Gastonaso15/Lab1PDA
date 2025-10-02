@@ -4,10 +4,10 @@ info:
   description: API REST para la gestión de Propuestas y Colaboraciones en la aplicación PDA.
   version: 1.0.0
 servers:
-  - url: http://localhost:8080/api
-    description: Servidor local de desarrollo
+- url: http://localhost:8080/api
+  description: Servidor local de desarrollo
 security:
-  - BearerAuth: []
+- BearerAuth: []
 paths:
   /propuestas:
     get:
@@ -20,55 +20,59 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "#/components/schemas/Propuesta"
+                  $ref: "#/components/schemas/PropuestaGet"
       security:
-        - BearerAuth: []
+      - BearerAuth: []
     post:
       summary: Crea una nueva propuesta
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Propuesta"
+              $ref: "#/components/schemas/PropuestaPost"
         required: true
       responses:
         "201":
           description: Propuesta creada
       security:
-        - BearerAuth: []
+      - BearerAuth: []
   /propuestas/{id}:
     get:
       summary: Obtiene una propuesta por ID
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
         "200":
           description: Propuesta encontrada
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Propuesta"
+                $ref: "#/components/schemas/PropuestaGet"
+            image/jpeg:
+              schema:
+                type: string
+                format: binary
         "404":
           description: Propuesta no encontrada
       security:
-        - BearerAuth: []
+      - BearerAuth: []
     put:
       summary: Actualiza una propuesta existente
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Propuesta"
+              $ref: "#/components/schemas/PropuestaPut"
         required: true
       responses:
         "200":
@@ -76,22 +80,40 @@ paths:
         "404":
           description: Propuesta no encontrada
       security:
-        - BearerAuth: []
+      - BearerAuth: []
     delete:
       summary: Elimina una propuesta
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
         "204":
           description: Propuesta eliminada
         "404":
           description: Propuesta no encontrada
       security:
-        - BearerAuth: []
+      - BearerAuth: []
+  /propuestas/{id}/total:
+    get:
+      summary: Obtiene el aporte total por propuesta
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: Aporte total de la propuesta
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/inline_response_200"
+      security:
+      - BearerAuth: []
   /colaboraciones:
     get:
       summary: Lista todas las colaboraciones
@@ -105,42 +127,114 @@ paths:
                 items:
                   $ref: "#/components/schemas/Colaboracion"
       security:
-        - BearerAuth: []
+      - BearerAuth: []
     post:
       summary: Crea una nueva colaboración
       requestBody:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Colaboracion"
+              $ref: "#/components/schemas/ColaboracionPost"
         required: true
       responses:
         "201":
           description: Colaboración creada
       security:
-        - BearerAuth: []
-  /colaboraciones/total:
-    get:
-      summary: Obtiene el total de aportes registrados
-      responses:
-        "200":
-          description: Total de aportes
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/inline_response_200"
-      security:
-        - BearerAuth: []
+      - BearerAuth: []
 components:
   schemas:
     Propuesta:
-      required:
-        - titulo
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
+        titulo:
+          type: string
+        descripcion:
+          type: string
+    PropuestaPost:
+      required:
+      - titulo
+      type: object
+      properties:
+        titulo:
+          type: string
+        descripcion:
+          type: string
+        lugar:
+          type: string
+        fechaPrevista:
+          type: string
+          format: date
+        precioEntrada:
+          type: number
+          format: double
+        montoNecesario:
+          type: number
+          format: double
+        imagen:
+          type: string
+          format: uri
+        categoria:
+          $ref: "#/components/schemas/Propuesta_categoria"
+        proponente:
+          $ref: "#/components/schemas/Propuesta_categoria"
+        estadoActual:
+          type: string
+          enum:
+          - INGRESADA
+          - PUBLICADA
+          - EN_FINANCIACION
+          - FINANCIADA
+          - NO_FINANCIADA
+          - CANCELADA
+        tiposRetorno:
+          type: array
+          items:
+            $ref: "#/components/schemas/TipoRetorno"
+    PropuestaPut:
+      required:
+      - titulo
+      type: object
+      properties:
+        titulo:
+          type: string
+        descripcion:
+          type: string
+        lugar:
+          type: string
+        fechaPrevista:
+          type: string
+          format: date
+        precioEntrada:
+          type: number
+          format: double
+        montoNecesario:
+          type: number
+          format: double
+        imagen:
+          type: string
+          format: uri
+        categoria:
+          $ref: "#/components/schemas/IdPropuesta_Idcategoria"
+        proponente:
+          $ref: "#/components/schemas/IdPropuesta_Idcategoria"
+        estadoActual:
+          type: string
+          enum:
+          - INGRESADA
+          - PUBLICADA
+          - EN_FINANCIACION
+          - FINANCIADA
+          - NO_FINANCIADA
+          - CANCELADA
+        tiposRetorno:
+          type: array
+          items:
+            $ref: "#/components/schemas/TipoRetorno"
+    PropuestaGet:
+      required:
+      - titulo
+      type: object
+      properties:
         titulo:
           type: string
         descripcion:
@@ -159,9 +253,6 @@ components:
         fechaPublicacion:
           type: string
           format: date
-        imagen:
-          type: string
-          format: uri
         categoria:
           $ref: "#/components/schemas/Propuesta_categoria"
         proponente:
@@ -169,30 +260,23 @@ components:
         estadoActual:
           type: string
           enum:
-            - INGRESADA
-            - PUBLICADA
-            - EN_FINANCIACION
-            - FINANCIADA
-            - NO_FINANCIADA
-            - CANCELADA
-        historial:
-          type: array
-          items:
-            $ref: "#/components/schemas/PropuestaEstado"
+          - INGRESADA
+          - PUBLICADA
+          - EN_FINANCIACION
+          - FINANCIADA
+          - NO_FINANCIADA
+          - CANCELADA
         tiposRetorno:
           type: array
           items:
             $ref: "#/components/schemas/TipoRetorno"
     Colaboracion:
       required:
-        - colaborador
-        - monto
-        - propuesta
+      - colaborador
+      - monto
+      - propuesta
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
         propuesta:
           $ref: "#/components/schemas/Propuesta"
         colaborador:
@@ -202,41 +286,55 @@ components:
           format: double
         tipoRetorno:
           $ref: "#/components/schemas/TipoRetorno"
-        fechaHora:
+        fechaColaboracion:
           type: string
-          format: date-time
+          format: date
+    ColaboracionPost:
+      required:
+      - colaborador
+      - monto
+      - propuesta
+      type: object
+      properties:
+        idPropuesta:
+          $ref: "#/components/schemas/IdPropuesta_Idcategoria"
+        colaborador:
+          $ref: "#/components/schemas/Propuesta_categoria"
+        monto:
+          type: number
+          format: double
+        tipoRetorno:
+          $ref: "#/components/schemas/TipoRetorno"
     TipoRetorno:
       type: string
       enum:
-        - ENTRADAS_GRATIS
-        - PORCENTAJE_GANANCIAS
-    PropuestaEstado:
-      type: object
-      properties:
-        fechaCambio:
-          type: string
-          format: date-time
-        estado:
-          type: string
-          enum:
-            - INGRESADA
-            - PUBLICADA
-            - EN_FINANCIACION
-            - FINANCIADA
-            - NO_FINANCIADA
-            - CANCELADA
-    inline_response_200:
-      type: object
-      properties:
-        total:
-          type: number
-          format: double
+      - ENTRADAS_GRATIS
+      - PORCENTAJE_GANANCIAS
     Propuesta_categoria:
+      type: object
+      properties:
+        nombre:
+          type: string
+    IdPropuesta_Idcategoria:
       type: object
       properties:
         id:
           type: integer
-        nombre:
+    inline_response_200:
+      type: object
+      properties:
+        propuesta:
+          $ref: "#/components/schemas/inline_response_200_propuesta"
+        aporteTotal:
+          type: number
+          format: double
+    inline_response_200_propuesta:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        titulo:
           type: string
   securitySchemes:
     BearerAuth:

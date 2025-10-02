@@ -377,4 +377,33 @@ public class PropuestaManejador {
         return colab;
     }
 
+    public Double obtenerTotalAportesPorPropuesta(Long idPropuesta) {
+        EntityManager em = JPAUtil.getEntityManager();
+        Double total;
+        try {
+            TypedQuery<Double> query = em.createQuery(
+                "SELECT COALESCE(SUM(c.monto), 0.0) FROM Colaboracion c WHERE c.propuesta.id = :idPropuesta", 
+                Double.class
+            );
+            query.setParameter("idPropuesta", idPropuesta);
+            total = query.getSingleResult();
+        } catch (Exception e) {
+            total = 0.0;
+        } finally {
+            em.close();
+        }
+        return total;
+    }
+
+    public Categoria obtenerCategoriaPorId(Long id) {
+        EntityManager em = JPAUtil.getEntityManager();
+        Categoria cat;
+        try {
+            cat = em.find(Categoria.class, id);
+        } finally {
+            em.close();
+        }
+        return cat;
+    }
+
 }

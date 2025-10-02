@@ -2,7 +2,7 @@ package culturarte.api.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class ColaboracionDto {
 
@@ -23,8 +23,8 @@ public class ColaboracionDto {
     @JsonProperty("tipoRetorno")
     private TipoRetornoDto tipoRetorno;
 
-    @JsonProperty("fechaHora")
-    private LocalDateTime fechaHora;
+    @JsonProperty("fechaColaboracion")
+    private LocalDate fechaColaboracion;
 
     public ColaboracionDto() {}
 
@@ -69,11 +69,11 @@ public class ColaboracionDto {
         this.tipoRetorno = tipoRetorno;
     }
 
-    public LocalDateTime getFechaHora() {
-        return fechaHora;
+    public LocalDate getFechaColaboracion() {
+        return fechaColaboracion;
     }
 
-    public void setFechaHora(LocalDateTime fechaHora) {
-        this.fechaHora = fechaHora;
+    public void setFechaColaboracion(LocalDate fechaColaboracion) {
+        this.fechaColaboracion = fechaColaboracion;
     }
 }

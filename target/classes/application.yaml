@@ -29,7 +29,7 @@ spring:
 
 # JWT Configuration
 jwt:
-  secret: mySecretKey
+  secret: ${JWT_SECRET:aVerySecureAndLongSecretKeyThatIsAtLeast256BitsLongForHMACAlgorithms1234567890}
   expiration: 86400
 
 # OpenAPI Configuration
@@ -41,6 +41,16 @@ springdoc:
     operationsSorter: method
     tagsSorter: alpha
     tryItOutEnabled: true
+
+# Actuator Configuration
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when-authorized
 
 ---
 spring:

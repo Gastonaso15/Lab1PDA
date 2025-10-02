@@ -1,9 +1,15 @@
 package culturarte.api.controllers;
 
+import culturarte.api.dto.*;
 import culturarte.api.dto.PropuestaDto;
+import culturarte.api.dto.PropuestaGetDto;
+import culturarte.api.dto.PropuestaPostDto;
+import culturarte.api.dto.PropuestaPutDto;
 import culturarte.api.dto.PropuestaCategoriaDto;
 import culturarte.api.dto.PropuestaEstadoDto;
 import culturarte.api.dto.TipoRetornoDto;
+import culturarte.api.dto.PropuestaTotalDto;
+import culturarte.api.dto.PropuestaBasicDto;
 import culturarte.logica.controladores.PropuestaController; //as PropuestaControllerLogic;
 import culturarte.logica.DTs.DTPropuesta;
 import culturarte.logica.DTs.DTCategoria;
@@ -40,11 +46,11 @@ public class PropuestaRestController {
 
     @GetMapping
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<List<PropuestaDto>> getAllPropuestas() {
+    public ResponseEntity<List<PropuestaGetDto>> getAllPropuestas() {
         try {
             List<DTPropuesta> dtPropuestas = propuestaController.devolverTodasLasPropuestas();
-            List<PropuestaDto> propuestas = dtPropuestas.stream()
-                    .map(this::convertToPropuestaDto)
+            List<PropuestaGetDto> propuestas = dtPropuestas.stream()
+                    .map(this::convertToPropuestaGetDto)
                     .collect(Collectors.toList());
             return ResponseEntity.ok(propuestas);
         } catch (Exception e) {
@@ -54,7 +60,7 @@ public class PropuestaRestController {
 
     @PostMapping
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<PropuestaDto> createPropuesta(@Valid @RequestBody PropuestaDto propuestaDto) {
+    public ResponseEntity<Void> createPropuesta(@Valid @RequestBody PropuestaPostDto propuestaDto) {
         try {
             // Convertir DTO a parámetros para el controlador existente
             List<String> tiposRetorno = propuestaDto.getTiposRetorno() != null ?
@@ -75,11 +81,7 @@ public class PropuestaRestController {
                     tiposRetorno
             );
 
-            // Obtener la propuesta creada
-            Propuesta propuesta = propuestaManejador.obtenerPropuestaPorTitulo(propuestaDto.getTitulo());
-            PropuestaDto responseDto = convertToPropuestaDto(propuesta);
-
-            return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
@@ -87,13 +89,13 @@ public class PropuestaRestController {
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<PropuestaDto> getPropuestaById(@PathVariable Long id) {
+    public ResponseEntity<PropuestaGetDto> getPropuestaById(@PathVariable Long id) {
         try {
             Propuesta propuesta = propuestaManejador.obtenerPropuestaPorId(id);
             if (propuesta == null) {
                 return ResponseEntity.notFound().build();
             }
-            PropuestaDto propuestaDto = convertToPropuestaDto(propuesta);
+            PropuestaGetDto propuestaDto = convertToPropuestaGetDto(propuesta);
             return ResponseEntity.ok(propuestaDto);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -102,7 +104,7 @@ public class PropuestaRestController {
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<PropuestaDto> updatePropuesta(@PathVariable Long id, @Valid @RequestBody PropuestaDto propuestaDto) {
+    public ResponseEntity<Void> updatePropuesta(@PathVariable Long id, @Valid @RequestBody PropuestaPutDto propuestaDto) {
         try {
             Propuesta propuesta = propuestaManejador.obtenerPropuestaPorId(id);
             if (propuesta == null) {
@@ -124,14 +126,11 @@ public class PropuestaRestController {
                     propuestaDto.getMontoNecesario(),
                     propuestaDto.getImagen(),
                     tiposRetorno,
-                    propuestaDto.getCategoria().getNombre()
+                    propuestaDto.getCategoria() != null ? 
+                        propuestaManejador.obtenerCategoriaPorId(propuestaDto.getCategoria().getId()).getNombre() : null
             );
 
-            // Obtener la propuesta actualizada
-            Propuesta propuestaActualizada = propuestaManejador.obtenerPropuestaPorId(id);
-            PropuestaDto responseDto = convertToPropuestaDto(propuestaActualizada);
-
-            return ResponseEntity.ok(responseDto);
+            return ResponseEntity.ok().build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
@@ -150,6 +149,30 @@ public class PropuestaRestController {
             // propuestaManejador.eliminarPropuesta(id);
 
             return ResponseEntity.noContent().build();
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/{id}/total")
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<PropuestaTotalDto> getTotalAportesPorPropuesta(@PathVariable Long id) {
+        try {
+            Propuesta propuesta = propuestaManejador.obtenerPropuestaPorId(id);
+            if (propuesta == null) {
+                return ResponseEntity.notFound().build();
+            }
+
+            // Calcular el total de aportes para esta propuesta específica
+            Double totalAportes = propuestaManejador.obtenerTotalAportesPorPropuesta(id);
+            if (totalAportes == null) {
+                totalAportes = 0.0;
+            }
+
+            PropuestaBasicDto propuestaBasic = new PropuestaBasicDto(propuesta.getId(), propuesta.getTitulo());
+            PropuestaTotalDto totalDto = new PropuestaTotalDto(propuestaBasic, totalAportes);
+
+            return ResponseEntity.ok(totalDto);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
@@ -203,6 +226,78 @@ public class PropuestaRestController {
                     .map(tr -> new TipoRetornoDto(tr.toString()))
                     .collect(Collectors.toList());
             dto.setTiposRetorno(tiposRetornoDto);
+        }
+
+        return dto;
+    }
+
+    private PropuestaGetDto convertToPropuestaGetDto(Propuesta propuesta) {
+        PropuestaGetDto dto = new PropuestaGetDto();
+        dto.setTitulo(propuesta.getTitulo());
+        dto.setDescripcion(propuesta.getDescripcion());
+        dto.setLugar(propuesta.getLugar());
+        dto.setFechaPrevista(propuesta.getFechaPrevista());
+        dto.setPrecioEntrada(propuesta.getPrecioEntrada());
+        dto.setMontoNecesario(propuesta.getMontoNecesario());
+        dto.setFechaPublicacion(propuesta.getFechaPublicacion());
+        dto.setEstadoActual(propuesta.getEstadoActual() != null ? propuesta.getEstadoActual().toString() : null);
+
+        // Convertir categoría
+        if (propuesta.getCategoria() != null) {
+            PropuestaCategoriaDto categoriaDto = new PropuestaCategoriaDto(
+                    propuesta.getCategoria().getId(),
+                    propuesta.getCategoria().getNombre()
+            );
+            dto.setCategoria(categoriaDto);
+        }
+
+        // Convertir proponente
+        if (propuesta.getProponente() != null) {
+            PropuestaCategoriaDto proponenteDto = new PropuestaCategoriaDto(
+                    propuesta.getProponente().getId(),
+                    propuesta.getProponente().getNickname()
+            );
+            dto.setProponente(proponenteDto);
+        }
+
+        // Convertir tipos de retorno
+        if (propuesta.getTiposRetorno() != null) {
+            List<TipoRetornoDto> tiposRetornoDto = propuesta.getTiposRetorno().stream()
+                    .map(tr -> new TipoRetornoDto(tr.toString()))
+                    .collect(Collectors.toList());
+            dto.setTiposRetorno(tiposRetornoDto);
+        }
+
+        return dto;
+    }
+
+    private PropuestaGetDto convertToPropuestaGetDto(DTPropuesta dtPropuesta) {
+        PropuestaGetDto dto = new PropuestaGetDto();
+        dto.setTitulo(dtPropuesta.getTitulo());
+        dto.setDescripcion(dtPropuesta.getDescripcion());
+        dto.setLugar(dtPropuesta.getLugar());
+        dto.setFechaPrevista(dtPropuesta.getFechaPrevista());
+        dto.setPrecioEntrada(dtPropuesta.getPrecioEntrada());
+        dto.setMontoNecesario(dtPropuesta.getMontoNecesario());
+        dto.setFechaPublicacion(dtPropuesta.getFechaPublicacion());
+        dto.setEstadoActual(dtPropuesta.getEstadoActual() != null ? dtPropuesta.getEstadoActual().toString() : null);
+
+        // Convertir categoría
+        if (dtPropuesta.getCategoria() != null) {
+            PropuestaCategoriaDto categoriaDto = new PropuestaCategoriaDto(
+                    dtPropuesta.getCategoria().getId(),
+                    dtPropuesta.getCategoria().getNombre()
+            );
+            dto.setCategoria(categoriaDto);
+        }
+
+        // Convertir proponente
+        if (dtPropuesta.getDTProponente() != null) {
+            PropuestaCategoriaDto proponenteDto = new PropuestaCategoriaDto(
+                    dtPropuesta.getDTProponente().getId(),
+                    dtPropuesta.getDTProponente().getNickname()
+            );
+            dto.setProponente(proponenteDto);
         }
 
         return dto;

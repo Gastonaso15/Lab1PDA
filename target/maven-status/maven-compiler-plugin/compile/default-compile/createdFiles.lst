@@ -5,6 +5,7 @@ culturarte/api/security/SecurityConfig.class
 culturarte/presentacion/EstacionDeTrabajo.class
 culturarte/api/security/JwtAuthenticationFilter.class
 culturarte/api/config/BeanConfig.class
+culturarte/api/dto/PropuestaBasicDto.class
 culturarte/logica/modelos/PropuestaEstado.class
 culturarte/api/dto/TotalAportesDto.class
 culturarte/api/controllers/ColaboracionRestController.class
@@ -18,8 +19,11 @@ culturarte/api/controllers/AuthController.class
 culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.class
 culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame$1.class
 culturarte/presentacion/internalFrames/DejarSeguirUsuarioInternalFrame.class
+culturarte/api/dto/IdDto.class
+culturarte/api/dto/PropuestaPutDto.class
 culturarte/logica/DTs/DTColaborador.class
 culturarte/logica/modelos/EstadoPropuesta.class
+culturarte/api/dto/ColaboracionPostDto.class
 culturarte/logica/modelos/Colaborador.class
 culturarte/logica/modelos/Categoria.class
 culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame.class
@@ -29,11 +33,13 @@ culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame.cl
 culturarte/api/security/CustomUserDetailsService.class
 culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame.class
 culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame$1.class
+culturarte/api/dto/PropuestaPostDto.class
 culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame.class
 culturarte/presentacion/helpers/CategoriaUIHelper.class
 culturarte/presentacion/helpers/ImagenUIHelper.class
 culturarte/api/controllers/AuthController$RegisterRequest.class
 culturarte/logica/controladores/UsuarioController.class
+culturarte/api/dto/PropuestaGetDto.class
 culturarte/api/CulturarteApiApplication.class
 culturarte/presentacion/internalFrames/AltaPropuestaInternalFrame.class
 culturarte/logica/DTs/DTPropuestaEstado.class
@@ -43,6 +49,7 @@ culturarte/presentacion/internalFrames/ConsultarPropuestaInternalFrame.class
 culturarte/logica/DTs/DTColaboracion.class
 culturarte/api/security/JwtUtil.class
 culturarte/api/dto/PropuestaDto.class
+culturarte/api/dto/PropuestaTotalDto.class
 culturarte/logica/DTs/DTPropuesta.class
 culturarte/logica/controladores/IUsuarioController.class
 culturarte/api/dto/TipoRetornoDto.class

@@ -1,10 +1,11 @@
 package culturarte.api.controllers;
 
+import culturarte.api.dto.*;
 import culturarte.api.dto.ColaboracionDto;
+import culturarte.api.dto.ColaboracionPostDto;
 import culturarte.api.dto.PropuestaDto;
 import culturarte.api.dto.PropuestaCategoriaDto;
 import culturarte.api.dto.TipoRetornoDto;
-import culturarte.api.dto.TotalAportesDto;
 import culturarte.logica.controladores.PropuestaController; //as PropuestaControllerLogic;
 import culturarte.logica.DTs.DTColaboracion;
 import culturarte.logica.modelos.*;
@@ -52,16 +53,16 @@ public class ColaboracionRestController {
 
     @PostMapping
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<ColaboracionDto> createColaboracion(@Valid @RequestBody ColaboracionDto colaboracionDto) {
+    public ResponseEntity<Void> createColaboracion(@Valid @RequestBody ColaboracionPostDto colaboracionDto) {
         try {
             // Obtener la propuesta por ID
-            Propuesta propuesta = propuestaManejador.obtenerPropuestaPorId(colaboracionDto.getPropuesta().getId());
+            Propuesta propuesta = propuestaManejador.obtenerPropuestaPorId(colaboracionDto.getIdPropuesta().getId());
             if (propuesta == null) {
                 return ResponseEntity.notFound().build();
             }
 
-            // Obtener el colaborador por ID
-            Usuario usuario = usuarioManejador.obtenerUsuarioPorId(colaboracionDto.getColaborador().getId());
+            // Obtener el colaborador por nombre (usando el nombre del DTO)
+            Usuario usuario = usuarioManejador.obtenerUsuarioPorNickname(colaboracionDto.getColaborador().getNombre());
             if (!(usuario instanceof Colaborador colaborador)) {
                 return ResponseEntity.badRequest().build();
             }
@@ -71,45 +72,21 @@ public class ColaboracionRestController {
                     propuesta.getTitulo(),
                     colaborador.getNickname(),
                     colaboracionDto.getMonto(),
-                    colaboracionDto.getTipoRetorno().getTipo()
+                    colaboracionDto.getTipoRetorno() != null ? colaboracionDto.getTipoRetorno().getTipo() : null
             );
 
-            // Obtener la colaboración creada - buscar la última colaboración de este colaborador en esta propuesta
-            // Como no tenemos un método específico, creamos una respuesta básica
-            ColaboracionDto responseDto = new ColaboracionDto();
-            responseDto.setMonto(colaboracionDto.getMonto());
-            responseDto.setTipoRetorno(colaboracionDto.getTipoRetorno());
-            responseDto.setPropuesta(colaboracionDto.getPropuesta());
-            responseDto.setColaborador(colaboracionDto.getColaborador());
-            responseDto.setFechaHora(java.time.LocalDateTime.now());
-
-            return ResponseEntity.status(HttpStatus.CREATED).body(responseDto);
+            return ResponseEntity.status(HttpStatus.CREATED).build();
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 
-    @GetMapping("/total")
-    @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<TotalAportesDto> getTotalAportes() {
-        try {
-            List<DTColaboracion> colaboraciones = propuestaController.obtenerTodasLasColaboraciones();
-            Double total = colaboraciones.stream()
-                    .mapToDouble(DTColaboracion::getMonto)
-                    .sum();
-
-            TotalAportesDto totalDto = new TotalAportesDto(total);
-            return ResponseEntity.ok(totalDto);
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-        }
-    }
 
     private ColaboracionDto convertToColaboracionDto(Colaboracion colaboracion) {
         ColaboracionDto dto = new ColaboracionDto();
         dto.setId(colaboracion.getId());
         dto.setMonto(colaboracion.getMonto());
-        dto.setFechaHora(colaboracion.getFechaHora());
+        dto.setFechaColaboracion(colaboracion.getFechaHora().toLocalDate());
 
         // Convertir propuesta
         if (colaboracion.getPropuesta() != null) {
@@ -141,7 +118,7 @@ public class ColaboracionRestController {
         ColaboracionDto dto = new ColaboracionDto();
         dto.setId(dtColaboracion.getId());
         dto.setMonto(dtColaboracion.getMonto());
-        dto.setFechaHora(dtColaboracion.getFechaHora());
+        dto.setFechaColaboracion(dtColaboracion.getFechaHora().toLocalDate());
 
         // Convertir propuesta
         if (dtColaboracion.getPropuesta() != null) {
