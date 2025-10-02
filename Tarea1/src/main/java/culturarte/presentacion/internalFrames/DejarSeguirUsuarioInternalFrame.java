@@ -1,4 +1,3 @@
-
 package culturarte.presentacion.internalFrames;
 
 import culturarte.logica.controladores.IUsuarioController;
