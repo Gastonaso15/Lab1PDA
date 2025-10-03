@@ -96,7 +96,6 @@
                 	</archive>
             	</configuration>
         	</plugin>
-            <!--
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.6.0</version>
@@ -120,7 +119,6 @@
                     </execution>
                 </executions>
             </plugin>
-            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>

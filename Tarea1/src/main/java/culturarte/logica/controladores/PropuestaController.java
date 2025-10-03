@@ -158,4 +158,31 @@ public class PropuestaController implements IPropuestaController {
         PropuestaManejador pm = PropuestaManejador.getInstance();
         pm.cancelarColaboracion(idColaboracion);
     }
+    @Override
+    public void publicarPropuesta(String titulo) throws Exception {
+        PropuestaManejador pm = PropuestaManejador.getInstance();
+        Propuesta propuesta = pm.obtenerPropuestaPorTitulo(titulo);
+
+        if(propuesta == null) {
+            throw new Exception("La propuesta con titulo " + titulo + " no existe.");
+        }
+        propuesta.setEstadoActual(EstadoPropuesta.PUBLICADA);
+        propuesta.getHistoria().add(new PrpuestaEstado(propuesta, EstadoPropuesta.PUBLICADA, LocalDate.now()));
+
+        pm.actualizarPropuesta(propuesta);
+    }
+    @Override
+    public void cancelarPropuesta(String titulo) throws Exception {
+        PropuestaManejador pm = PropuestaManejador.getInstance();
+        Propuesta propuesta = pm.obtenerPropuestaPorTitulo(titulo);
+
+        if(propuesta == null) {
+            throw new Exception("La propuesta con titulo " + titulo + " no existe.");
+        }
+
+        propuesta.setEstadoActual(EstadoPropuesta.CANCELADA);
+        propuesta,getHistorial().add(new PropuestaEstado(propuesta, EstadoPropuesta.CANCELADA, LocalDate.now()));
+
+        pm.actualizarPropuesta(propuesta);
+    }
 }
