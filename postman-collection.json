@@ -1,0 +1,255 @@
+{
+  "info": {
+    "name": "Culturarte API",
+    "description": "Colección de pruebas para la API de Culturarte",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080/api"
+    },
+    {
+      "key": "token",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Test Auth",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/auth/test",
+              "host": ["{{baseUrl}}"],
+              "path": ["auth", "test"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/actuator/health",
+              "host": ["{{baseUrl}}"],
+              "path": ["actuator", "health"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Propuestas",
+      "item": [
+        {
+          "name": "Get All Propuestas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/propuestas",
+              "host": ["{{baseUrl}}"],
+              "path": ["propuestas"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Propuesta by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/propuestas/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["propuestas", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Propuesta",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Concierto de Jazz\",\n  \"descripcion\": \"Un concierto de jazz en el teatro principal\",\n  \"lugar\": \"Teatro Principal\",\n  \"fechaPrevista\": \"2024-12-15\",\n  \"precioEntrada\": 25.50,\n  \"montoNecesario\": 5000.00,\n  \"imagen\": \"https://example.com/imagen.jpg\",\n  \"categoria\": {\n    \"nombre\": \"Música\"\n  },\n  \"proponente\": {\n    \"nombre\": \"Juan Pérez\"\n  },\n  \"estadoActual\": \"INGRESADA\",\n  \"tiposRetorno\": [\n    {\n      \"tipo\": \"ENTRADAS_GRATIS\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/propuestas",
+              "host": ["{{baseUrl}}"],
+              "path": ["propuestas"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update Propuesta",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"titulo\": \"Concierto de Jazz Actualizado\",\n  \"descripcion\": \"Un concierto de jazz actualizado\",\n  \"lugar\": \"Teatro Principal\",\n  \"fechaPrevista\": \"2024-12-20\",\n  \"precioEntrada\": 30.00,\n  \"montoNecesario\": 6000.00,\n  \"imagen\": \"https://example.com/imagen-nueva.jpg\",\n  \"categoria\": {\n    \"id\": 1\n  },\n  \"proponente\": {\n    \"id\": 1\n  },\n  \"estadoActual\": \"PUBLICADA\",\n  \"tiposRetorno\": [\n    {\n      \"tipo\": \"PORCENTAJE_GANANCIAS\"\n    }\n  ]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/propuestas/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["propuestas", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Propuesta",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/propuestas/1",
+              "host": ["{{baseUrl}}"],
+              "path": ["propuestas", "1"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Propuesta Total",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/propuestas/1/total",
+              "host": ["{{baseUrl}}"],
+              "path": ["propuestas", "1", "total"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Colaboraciones",
+      "item": [
+        {
+          "name": "Get All Colaboraciones",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/colaboraciones",
+              "host": ["{{baseUrl}}"],
+              "path": ["colaboraciones"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Colaboracion",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idPropuesta\": {\n    \"id\": 1\n  },\n  \"colaborador\": {\n    \"nombre\": \"colaborador1\"\n  },\n  \"monto\": 100.00,\n  \"tipoRetorno\": {\n    \"tipo\": \"ENTRADAS_GRATIS\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/colaboraciones",
+              "host": ["{{baseUrl}}"],
+              "path": ["colaboraciones"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

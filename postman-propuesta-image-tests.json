@@ -1,0 +1,125 @@
+{
+  "info": {
+    "name": "Culturarte API - Pruebas de Propuesta e Imagen",
+    "description": "Colección de pruebas para la funcionalidad de propuestas e imágenes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Test API",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/propuestas/test",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "propuestas", "test"]
+        }
+      }
+    },
+    {
+      "name": "2. Lista de Propuestas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/propuestas",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "propuestas"]
+        }
+      }
+    },
+    {
+      "name": "3. Propuesta por ID (Completa)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/propuestas/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "propuestas", "1"]
+        }
+      }
+    },
+    {
+      "name": "4. Propuesta por ID con image=false",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/propuestas/1?image=false",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "propuestas", "1"],
+          "query": [
+            {
+              "key": "image",
+              "value": "false"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "5. Imagen de Propuesta (image=true)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/propuestas/1?image=true",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "propuestas", "1"],
+          "query": [
+            {
+              "key": "image",
+              "value": "true"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "6. Propuesta por ID Alternativo",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/propuestas/by-id/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "propuestas", "by-id", "1"]
+        }
+      }
+    },
+    {
+      "name": "7. Imagen por ID Alternativo",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/propuestas/by-id/1?image=true",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "propuestas", "by-id", "1"],
+          "query": [
+            {
+              "key": "image",
+              "value": "true"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
