@@ -11,6 +11,7 @@ import java.util.List;
 
 public class EvaluarPropuestaInternalFrame extends JInternalFrame {
 
+    private final JTextArea txtDescripcion;
     private JTable tablaPropuestas;
     private JTextArea TextDescripcion;
     private JTextField txtTitulo, txtCategoria, txtEstado, txtProponente;
@@ -94,7 +95,7 @@ public class EvaluarPropuestaInternalFrame extends JInternalFrame {
                         txtTitulo.setText(p.getTitulo());
                         txtProponente.setText(p.getProponente());
                         txtCategoria.setText(p.getCategoria());
-                        txtEstado.setText(p.getEstado().toString());
+                        txtEstado.setText(p.getEstadoActual().toString());
                         txtDescripcion.setText(p.getDescripcion());
                     }
                 }

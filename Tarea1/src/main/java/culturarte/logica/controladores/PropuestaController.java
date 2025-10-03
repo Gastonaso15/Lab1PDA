@@ -186,7 +186,7 @@ public class PropuestaController implements IPropuestaController {
 
         pm.actualizarPropuesta(propuesta);
     }
-    public void evaluarPropuesta(String titulo, boolean publicar) throws Exception {
+    public static void evaluarPropuesta(String titulo, boolean publicar) throws Exception {
         PropuestaManejador pm = PropuestaManejador.getInstance();
         Propuesta p = pm.obtenerPropuestaPorTitulo(titulo);
 
@@ -201,5 +201,9 @@ public class PropuestaController implements IPropuestaController {
         else p.setEstadoActual(EstadoPropuesta.CANCELADA);
 
         pm.actualizarPropuesta(p);
+    }
+    public List<DTPropuesta> getPropuestasIngresadas(){
+        PropuestaManejador pm = PropuestaManejador.getInstance();
+        return pm.obtenerPropuestasPorEstado(EstadoPropuesta.INGRESADA);
     }
 }
