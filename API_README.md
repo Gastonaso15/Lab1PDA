@@ -1,6 +1,6 @@
 # API Culturarte - Guía de Uso
 
-## 🚀 Inicio Rápido
+## Inicio Rápido
 
 ### 1. Levantar la API con Docker
 
@@ -25,7 +25,7 @@ curl "http://localhost:8080/api/propuestas/test"
 ./test-image-functionality.sh
 ```
 
-## 📋 Endpoints Disponibles
+## Endpoints Disponibles
 
 ### Propuestas
 
@@ -47,7 +47,7 @@ curl "http://localhost:8080/api/propuestas/test"
 |--------|----------|-------------|
 | GET | `/api/colaboraciones` | Lista todas las colaboraciones |
 
-## 🖼️ Ejemplos de Uso
+## Ejemplos de Uso
 
 ### Obtener todas las propuestas
 ```bash
@@ -69,7 +69,7 @@ curl "http://localhost:8080/api/propuestas/2?image=true" --output imagen.jpg
 curl "http://localhost:8080/api/propuestas/2?image=true" -o imagen_propuesta.jpg
 ```
 
-## 🧪 Tests Automatizados
+## Tests Automatizados
 
 ### Test completo de la API
 ```bash
@@ -83,7 +83,7 @@ chmod +x test-image-functionality.sh
 ./test-image-functionality.sh
 ```
 
-## 🛠️ Comandos Útiles
+## Comandos Útiles
 
 ### Ver logs de la aplicación
 ```bash
@@ -101,7 +101,7 @@ docker-compose up -d
 docker-compose ps
 ```
 
-## 📝 Notas
+## Notas
 
 - **URL Base**: `http://localhost:8080/api`
 - **Propuestas con imagen**: IDs 2, 3, 4, 5 tienen imágenes
@@ -109,5 +109,3 @@ docker-compose ps
 - **Formato de imágenes**: JPG, PNG soportados
 
 ---
-
-**¡La API está lista para usar!** 🎉
