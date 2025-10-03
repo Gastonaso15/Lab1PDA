@@ -24,4 +24,8 @@ public class SesionController implements ISesionController{
     public Usuario getUsuarioActual(){
         return usuarioActual;
     }
+    @Override
+    public boolean isLoggedIn(){
+        return usuarioActual != null;
+    }
 }

@@ -1,6 +1,8 @@
 package culturarte.logica.controladores;
 
-import culturarte.logica.modelos.Usuario;
+import culturarte.logica.DTs.*;
+import culturarte.logica.manejadores.UsuarioManejador;
+import culturarte.logica.modelos.*;
 
 public interface ISesionController
 {
