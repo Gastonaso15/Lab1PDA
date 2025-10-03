@@ -18,6 +18,10 @@ fi
 
 echo "OK: Docker esta ejecutandose"
 
+# Configurar variables de entorno
+export MYSQL_ROOT_PASSWORD=culturarte123
+export JWT_SECRET=aVerySecureAndLongSecretKeyThatIsAtLeast256BitsLongForHMACAlgorithms1234567890
+
 # Construir la aplicacion
 echo ""
 echo "Construyendo el JAR de la aplicacion..."
@@ -59,7 +63,6 @@ echo "Servicios disponibles en:"
 echo "  - API: http://localhost:8080/api"
 echo "  - Swagger UI: http://localhost:8080/api/swagger-ui.html"
 echo "  - Health Check: http://localhost:8080/api/actuator/health"
-echo "  - phpMyAdmin: http://localhost:8081"
 echo ""
 echo "Para verificar el estado de los servicios:"
 echo "  docker-compose ps"

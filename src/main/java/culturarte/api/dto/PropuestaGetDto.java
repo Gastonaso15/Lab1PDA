@@ -7,6 +7,9 @@ import java.util.List;
 
 public class PropuestaGetDto {
 
+    @JsonProperty("id")
+    private Long id;
+
     @JsonProperty("titulo")
     @NotBlank(message = "El título es obligatorio")
     private String titulo;
@@ -29,6 +32,9 @@ public class PropuestaGetDto {
     @JsonProperty("fechaPublicacion")
     private LocalDate fechaPublicacion;
 
+    @JsonProperty("imagen")
+    private String imagen;
+
     @JsonProperty("categoria")
     private PropuestaCategoriaDto categoria;
 
@@ -44,6 +50,14 @@ public class PropuestaGetDto {
     public PropuestaGetDto() {}
 
     // Getters y Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getTitulo() {
         return titulo;
     }
@@ -98,6 +112,14 @@ public class PropuestaGetDto {
 
     public void setFechaPublicacion(LocalDate fechaPublicacion) {
         this.fechaPublicacion = fechaPublicacion;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public PropuestaCategoriaDto getCategoria() {

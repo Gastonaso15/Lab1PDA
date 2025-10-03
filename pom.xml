@@ -86,12 +86,14 @@
             <version>${spring.boot.version}</version>
         </dependency>
 
-        <!-- Spring Boot Actuator for health checks -->
+        <!-- Spring Boot Actuator for health checks - REMOVIDO para evitar conflictos -->
+        <!--
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
             <version>${spring.boot.version}</version>
         </dependency>
+        -->
 
         <!-- JWT Dependencias -->
         <dependency>
@@ -151,6 +153,7 @@
                 <version>3.11.0</version>
                 <configuration>
                     <release>21</release>
+                    <parameters>true</parameters>
                     <compilerArgs>
                         <arg>--enable-preview</arg>
                     </compilerArgs>

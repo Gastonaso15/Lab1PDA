@@ -15,7 +15,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Service
+// @Service - Deshabilitado temporalmente para evitar conflicto con SimpleUserDetailsService
+// @Component("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired

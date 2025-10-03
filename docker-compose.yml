@@ -4,7 +4,9 @@ services:
     container_name: culturarte_db
     environment:
       MYSQL_DATABASE: culturarte
-      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: culturarte
+      MYSQL_PASSWORD: culturarte123
+      MYSQL_ROOT_PASSWORD: culturarte123
     ports:
       - "3307:3306"
     volumes:
@@ -20,29 +22,16 @@ services:
       retries: 20
       start_period: 20s
 
-  phpmyadmin:
-    image: phpmyadmin:5.2.1
-    container_name: culturarte_pma
-    depends_on:
-      db:
-        condition: service_healthy
-    environment:
-      PMA_HOST: db
-      PMA_PORT: 3306
-      UPLOAD_LIMIT: 128M
-    ports:
-      - "8081:80"
-
-
   app:
     build: .
     container_name: culturarte_app
     environment:
       SPRING_PROFILES_ACTIVE: docker
+      DOCKER: "true"
       JWT_SECRET: ${JWT_SECRET:-aVerySecureAndLongSecretKeyThatIsAtLeast256BitsLongForHMACAlgorithms1234567890}
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/culturarte?useSSL=false&serverTimezone=UTC
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/culturarte?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: culturarte
+      SPRING_DATASOURCE_PASSWORD: culturarte123
     volumes:
       - ./uploads:/app/uploads
     depends_on:

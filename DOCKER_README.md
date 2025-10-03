@@ -36,7 +36,6 @@ Una vez iniciados los servicios, estarán disponibles en:
 - **API REST**: http://localhost:8080/api
 - **Swagger UI**: http://localhost:8080/api/swagger-ui.html
 - **Health Check**: http://localhost:8080/api/actuator/health
-- **phpMyAdmin**: http://localhost:8081
 
 ## 🔧 Configuración
 
@@ -102,7 +101,6 @@ Deberías ver algo como:
 ------------------------------------------------------------------------------------------------
 culturarte_app    java -jar app.jar --spring ...   Up      0.0.0.0:8080->8080/tcp              
 culturarte_db     docker-entrypoint.sh mysqld      Up      0.0.0.0:3307->3306/tcp, 33060/tcp  
-culturarte_pma    /docker-entrypoint.sh apac ...   Up      0.0.0.0:8081->80/tcp                
 ```
 
 ### 2. Verificar la salud de la API:
@@ -126,12 +124,6 @@ La API requiere autenticación JWT. Para probar los endpoints:
 2. Incluye el token en el header: `Authorization: Bearer <token>`
 
 ## 🗄️ Base de Datos
-
-### Acceso a phpMyAdmin
-- URL: http://localhost:8081
-- Servidor: `db`
-- Usuario: `root`
-- Contraseña: `password` (o la configurada en `.env`)
 
 ### Conexión directa a MySQL
 ```bash

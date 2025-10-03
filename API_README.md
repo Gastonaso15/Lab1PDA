@@ -1,381 +1,113 @@
-# API Culturarte - Documentación Completa
-
-Esta es la implementación de la API REST para la gestión de Propuestas y Colaboraciones en la aplicación Culturarte, desarrollada con Spring Boot.
+# API Culturarte - Guía de Uso
 
 ## 🚀 Inicio Rápido
 
-### Opción 1: Ejecución Local (Recomendado para desarrollo)
+### 1. Levantar la API con Docker
+
 ```bash
-# 1. Compilar y ejecutar
-mvn clean package -DskipTests
-mvn spring-boot:run
+# Levantar los servicios
+docker-compose up -d
 
-# 2. Verificar que funciona
-curl -s http://localhost:8080/api/v3/api-docs | jq '.openapi'
+# Verificar que estén funcionando
+docker-compose ps
 ```
 
-### Opción 2: Con Docker (Recomendado para producción)
+### 2. Probar que la API funciona
+
 ```bash
-# 1. Construir y levantar servicios
-docker compose build
-docker compose up -d
+# Test básico
+curl "http://localhost:8080/api/propuestas/test"
 
-# 2. Verificar que funciona
-curl -s http://localhost:8082/api/v3/api-docs | jq '.openapi'
+# Test completo con Docker
+./test-api-final.sh
+
+# Test de funcionalidad de imágenes
+./test-image-functionality.sh
 ```
 
-## 📋 Configuración
+## 📋 Endpoints Disponibles
 
-### Base de Datos
-- **Local**: MySQL en `localhost:3307` (puerto 3307 para evitar conflictos)
-- **Docker**: MySQL en `db:3306` (servicio interno)
-- **Base de datos**: `culturarte`
-- **Usuario**: `root` / **Contraseña**: `password`
+### Propuestas
 
-### Puertos
-- **API Local**: `http://localhost:8080`
-- **API Docker**: `http://localhost:8082`
-- **phpMyAdmin**: `http://localhost:8081`
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| GET | `/api/propuestas` | Lista todas las propuestas |
+| GET | `/api/propuestas/{id}` | Obtiene una propuesta específica |
+| GET | `/api/propuestas/{id}?image=true` | Obtiene la imagen de una propuesta |
 
-## 🔐 Autenticación
+### Autenticación
 
-### Obtener Token JWT
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| GET | `/api/auth/test` | Test de autenticación |
 
-#### Con Docker (Puerto 8082)
+### Colaboraciones
+
+| Método | Endpoint | Descripción |
+|--------|----------|-------------|
+| GET | `/api/colaboraciones` | Lista todas las colaboraciones |
+
+## 🖼️ Ejemplos de Uso
+
+### Obtener todas las propuestas
 ```bash
-# Login con usuario admin
-curl -X POST http://localhost:8082/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"username": "admin", "password": "admin"}'
-
-# Respuesta esperada:
-# {"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...", "type": "Bearer"}
+curl "http://localhost:8080/api/propuestas"
 ```
 
-#### Con Ejecución Local (Puerto 8080)
+### Obtener una propuesta específica
 ```bash
-# Login con usuario admin
-curl -X POST http://localhost:8080/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"username": "admin", "password": "admin"}'
+curl "http://localhost:8080/api/propuestas/1"
 ```
 
-### Usar Token en Requests
-
-#### Con Docker
+### Obtener la imagen de una propuesta
 ```bash
-# Guardar token en variable
-TOKEN=$(curl -s -X POST http://localhost:8082/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"username": "admin", "password": "admin"}' | jq -r .token)
-
-# Usar token en requests protegidos
-curl -X GET http://localhost:8082/api/propuestas \
-  -H "Authorization: Bearer $TOKEN"
+curl "http://localhost:8080/api/propuestas/2?image=true" --output imagen.jpg
 ```
 
-#### Con Ejecución Local
+### Guardar imagen en archivo
 ```bash
-# Guardar token en variable
-TOKEN=$(curl -s -X POST http://localhost:8080/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"username": "admin", "password": "admin"}' | jq -r .token)
-
-# Usar token en requests protegidos
-curl -X GET http://localhost:8080/api/propuestas \
-  -H "Authorization: Bearer $TOKEN"
+curl "http://localhost:8080/api/propuestas/2?image=true" -o imagen_propuesta.jpg
 ```
 
-## 📚 Endpoints Disponibles
+## 🧪 Tests Automatizados
 
-### 🔑 Autenticación
-| Método | Endpoint | Descripción | Autenticación |
-|--------|----------|-------------|---------------|
-| `POST` | `/api/auth/login` | Iniciar sesión | No |
-| `POST` | `/api/auth/register` | Registrar usuario | No |
-
-### 📝 Propuestas
-| Método | Endpoint | Descripción | Autenticación |
-|--------|----------|-------------|---------------|
-| `GET` | `/api/propuestas` | Listar todas las propuestas | ✅ JWT |
-| `POST` | `/api/propuestas` | Crear nueva propuesta | ✅ JWT |
-| `GET` | `/api/propuestas/{id}` | Obtener propuesta por ID | ✅ JWT |
-| `PUT` | `/api/propuestas/{id}` | Actualizar propuesta | ✅ JWT |
-| `DELETE` | `/api/propuestas/{id}` | Eliminar propuesta | ✅ JWT |
-
-### 💰 Colaboraciones
-| Método | Endpoint | Descripción | Autenticación |
-|--------|----------|-------------|---------------|
-| `GET` | `/api/colaboraciones` | Listar todas las colaboraciones | ✅ JWT |
-| `POST` | `/api/colaboraciones` | Crear nueva colaboración | ✅ JWT |
-| `GET` | `/api/colaboraciones/total` | Obtener total de aportes | ✅ JWT |
-
-## 🛠️ Ejemplos de Uso
-
-### 1. Crear una Propuesta
-
-#### Con Docker (Puerto 8082)
+### Test completo de la API
 ```bash
-TOKEN=$(curl -s -X POST http://localhost:8082/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"username": "admin", "password": "admin"}' | jq -r .token)
-
-curl -X POST http://localhost:8082/api/propuestas \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "titulo": "Concierto de Jazz",
-    "descripcion": "Evento musical en el centro cultural",
-    "lugar": "Teatro Municipal",
-    "fechaPrevista": "2024-12-15",
-    "precioEntrada": 25.0,
-    "montoNecesario": 5000.0,
-    "imagen": "concierto.jpg",
-    "categoria": {"nombre": "Música"},
-    "proponente": {"nombre": "admin"},
-    "tiposRetorno": [{"tipo": "ENTRADA_GRATUITA"}]
-  }'
+chmod +x test-api-final.sh
+./test-api-final.sh
 ```
 
-#### Con Ejecución Local (Puerto 8080)
+### Test de funcionalidad de imágenes
 ```bash
-TOKEN=$(curl -s -X POST http://localhost:8080/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"username": "admin", "password": "admin"}' | jq -r .token)
-
-curl -X POST http://localhost:8080/api/propuestas \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "titulo": "Concierto de Jazz",
-    "descripcion": "Evento musical en el centro cultural",
-    "lugar": "Teatro Municipal",
-    "fechaPrevista": "2024-12-15",
-    "precioEntrada": 25.0,
-    "montoNecesario": 5000.0,
-    "imagen": "concierto.jpg",
-    "categoria": {"nombre": "Música"},
-    "proponente": {"nombre": "admin"},
-    "tiposRetorno": [{"tipo": "ENTRADA_GRATUITA"}]
-  }'
+chmod +x test-image-functionality.sh
+./test-image-functionality.sh
 ```
 
-### 2. Listar Propuestas
+## 🛠️ Comandos Útiles
 
-#### Con Docker
+### Ver logs de la aplicación
 ```bash
-curl -X GET http://localhost:8082/api/propuestas \
-  -H "Authorization: Bearer $TOKEN" | jq .
+docker-compose logs app
 ```
 
-#### Con Ejecución Local
+### Reiniciar los servicios
 ```bash
-curl -X GET http://localhost:8080/api/propuestas \
-  -H "Authorization: Bearer $TOKEN" | jq .
+docker-compose down
+docker-compose up -d
 ```
 
-### 3. Crear Colaboración
-
-#### Con Docker
+### Verificar estado de contenedores
 ```bash
-curl -X POST http://localhost:8082/api/colaboraciones \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "monto": 100.0,
-    "tipoRetorno": {"tipo": "ENTRADA_GRATUITA"},
-    "propuesta": {"id": 1},
-    "colaborador": {"id": 1}
-  }'
+docker-compose ps
 ```
 
-#### Con Ejecución Local
-```bash
-curl -X POST http://localhost:8080/api/colaboraciones \
-  -H "Authorization: Bearer $TOKEN" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "monto": 100.0,
-    "tipoRetorno": {"tipo": "ENTRADA_GRATUITA"},
-    "propuesta": {"id": 1},
-    "colaborador": {"id": 1}
-  }'
-```
+## 📝 Notas
 
-### 4. Ver Total de Aportes
+- **URL Base**: `http://localhost:8080/api`
+- **Propuestas con imagen**: IDs 2, 3, 4, 5 tienen imágenes
+- **Propuesta sin imagen**: ID 1 no tiene imagen (devuelve 404)
+- **Formato de imágenes**: JPG, PNG soportados
 
-#### Con Docker
-```bash
-curl -X GET http://localhost:8082/api/colaboraciones/total \
-  -H "Authorization: Bearer $TOKEN"
-```
+---
 
-#### Con Ejecución Local
-```bash
-curl -X GET http://localhost:8080/api/colaboraciones/total \
-  -H "Authorization: Bearer $TOKEN"
-```
-
-## 📖 Documentación Interactiva
-
-Una vez que la aplicación esté ejecutándose, puedes acceder a:
-
-- **Swagger UI**: 
-  - Local: http://localhost:8080/api/swagger-ui.html
-  - Docker: http://localhost:8082/api/swagger-ui.html
-- **OpenAPI JSON**: 
-  - Local: http://localhost:8080/api/v3/api-docs
-  - Docker: http://localhost:8082/api/v3/api-docs
-
-##  Docker Commands
-
-### Comandos Útiles
-```bash
-# Ver logs de todos los servicios
-docker compose logs -f
-
-# Ver logs solo de la app
-docker compose logs -f app
-
-# Reiniciar solo la app
-docker compose restart app
-
-# Parar todos los servicios
-docker compose down
-
-# Parar y eliminar volúmenes (CUIDADO: borra la BD)
-docker compose down -v
-```
-
-### Troubleshooting Docker
-```bash
-# Si hay problemas de puerto
-docker compose down
-sudo fuser -k 8082/tcp
-docker compose up -d
-
-# Si hay problemas de BD
-docker compose down -v
-docker compose up -d
-```
-
-##  Configuración Avanzada
-
-### Variables de Entorno
-Puedes configurar las siguientes propiedades en `application.yaml`:
-
-```yaml
-# JWT Configuration
-jwt:
-  secret: mySecretKey          # Clave secreta para JWT
-  expiration: 86400            # Tiempo de expiración (24h)
-
-# Database Configuration
-spring:
-  datasource:
-    url: jdbc:mysql://localhost:3307/culturarte
-    username: root
-    password: password
-```
-
-### Perfiles
-- **default**: Usa `localhost:3307` (desarrollo local)
-- **docker**: Usa `db:3306` (contenedor Docker)
-
-## ️ Estructura del Proyecto
-
-```
-src/main/java/culturarte/api/
-├── CulturarteApiApplication.java          # Aplicación principal
-├── config/
-│   ├── BeanConfig.java                    # Configuración de beans
-│   └── OpenApiConfig.java                 # Configuración OpenAPI
-├── controllers/
-│   ├── AuthController.java                # Autenticación
-│   ├── ColaboracionRestController.java    # Colaboraciones
-│   └── PropuestaRestController.java      # Propuestas
-├── dto/
-│   ├── ColaboracionDto.java               # DTO Colaboración
-│   ├── PropuestaCategoriaDto.java         # DTO Categoría
-│   ├── PropuestaDto.java                  # DTO Propuesta
-│   ├── PropuestaEstadoDto.java            # DTO Estado
-│   ├── TipoRetornoDto.java                # DTO Tipo Retorno
-│   └── TotalAportesDto.java               # DTO Total Aportes
-└── security/
-    ├── CustomUserDetailsService.java      # Servicio de usuarios
-    ├── JwtAuthenticationFilter.java       # Filtro JWT
-    ├── JwtUtil.java                       # Utilidades JWT
-    └── SecurityConfig.java                # Configuración seguridad
-```
-
-## ️ Notas Importantes
-
-1. **Rutas corregidas**: Las rutas ahora son `/api/auth`, `/api/propuestas`, `/api/colaboraciones` (sin doble `/api`)
-
-2. **Puerto Docker**: La API en Docker corre en puerto `8082` para evitar conflictos
-
-3. **Base de datos**: Asegúrate de que MySQL esté corriendo antes de iniciar la aplicación
-
-4. **Autenticación**: Usa `admin/admin` para login inicial
-
-5. **CORS**: Configurado para permitir todas las orígenes en desarrollo
-
-## 🚨 Troubleshooting
-
-### Error: "Failed to connect to localhost port 8080"
-**Causa**: Estás intentando conectarte al puerto 8080 pero la API no está corriendo ahí.
-
-**Solución**:
-```bash
-# Verificar qué puerto está usando la API
-docker compose ps
-
-# Si usas Docker, usar puerto 8082
-curl -X POST http://localhost:8082/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"username": "admin", "password": "admin"}'
-
-# Si usas ejecución local, usar puerto 8080
-mvn spring-boot:run
-curl -X POST http://localhost:8080/api/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"username": "admin", "password": "admin"}'
-```
-
-### Error: "La dirección ya se está usando"
-```bash
-# Liberar puerto 8080
-sudo fuser -k 8080/tcp
-
-# O usar puerto diferente
-mvn spring-boot:run -Dspring-boot.run.arguments="--server.port=8082"
-```
-
-### Error: "Could not obtain connection to query metadata"
-- Verificar que MySQL esté corriendo
-- Verificar credenciales en `application.yaml`
-- Verificar que la base de datos `culturarte` exista
-
-### Error: "401 Unauthorized" o "403 Forbidden"
-- Verificar que el token JWT sea válido
-- Verificar que el header `Authorization: Bearer TOKEN` esté presente
-- Verificar que estés usando el puerto correcto (8080 local, 8082 Docker)
-
-### Error: "Empty reply from server"
-- Verificar que el contenedor esté corriendo: `docker compose ps`
-- Verificar logs: `docker compose logs app`
-- Verificar que la aplicación esté escuchando en el puerto correcto
-
-## 📞 Soporte
-
-Si encuentras problemas:
-
-### Con Docker
-1. Verifica los logs: `docker compose logs -f app`
-2. Verifica la conectividad: `curl -s http://localhost:8082/api/v3/api-docs`
-3. Verifica la autenticación: `curl -X POST http://localhost:8082/api/auth/login -H "Content-Type: application/json" -d '{"username": "admin", "password": "admin"}'`
-
-### Con Ejecución Local
-1. Verifica que esté corriendo: `ps aux | grep java`
-2. Verifica la conectividad: `curl -s http://localhost:8080/api/v3/api-docs`
-3. Verifica la autenticación: `curl -X POST http://localhost:8080/api/auth/login -H "Content-Type: application/json" -d '{"username": "admin", "password": "admin"}'`
+**¡La API está lista para usar!** 🎉

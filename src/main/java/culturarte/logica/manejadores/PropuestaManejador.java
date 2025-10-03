@@ -51,16 +51,17 @@ public class PropuestaManejador {
 
     public List<DTPropuesta> obtenerTodasLasPropuestas() {
         EntityManager em = JPAUtil.getEntityManager();
-        List<Propuesta> propuestas = em.createQuery("SELECT p FROM Propuesta p", Propuesta.class)
-                .getResultList();
-        for (Propuesta p : propuestas) {
-            p.getHistorial().size();
-            p.getColaboraciones().size();
-            p.getTiposRetorno().size();
-        }
-        em.close();
         List<DTPropuesta> dtPropuestas = new ArrayList<>();
-        for (Propuesta p : propuestas) {
+        try {
+            List<Propuesta> propuestas = em.createQuery("SELECT p FROM Propuesta p", Propuesta.class)
+                    .getResultList();
+            for (Propuesta p : propuestas) {
+                p.getHistorial().size();
+                p.getColaboraciones().size();
+                p.getTiposRetorno().size();
+            }
+            
+            for (Propuesta p : propuestas) {
 
             DTCategoria dtCategoria = null;
             if (p.getCategoria() != null) {
@@ -106,6 +107,7 @@ public class PropuestaManejador {
             dtProp.setNickname(p.getProponente().getNickname());
 
             DTPropuesta dt = new DTPropuesta();
+            dt.setId(p.getId()); // ¡Agregando el ID que faltaba!
             dt.setTitulo(p.getTitulo());
             dt.setDescripcion(p.getDescripcion());
             dt.setLugar(p.getLugar());
@@ -122,6 +124,12 @@ public class PropuestaManejador {
             dt.setTiposRetorno(tiposRetorno);
 
             dtPropuestas.add(dt);
+        }
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al obtener propuestas", e);
+        } finally {
+            em.close();
         }
         return dtPropuestas;
     }
@@ -179,6 +187,7 @@ public class PropuestaManejador {
                 dtProp.setNickname(p.getProponente().getNickname());
 
                 DTPropuesta dt = new DTPropuesta();
+                dt.setId(p.getId()); // ¡Agregando el ID que faltaba!
                 dt.setTitulo(p.getTitulo());
                 dt.setDescripcion(p.getDescripcion());
                 dt.setLugar(p.getLugar());

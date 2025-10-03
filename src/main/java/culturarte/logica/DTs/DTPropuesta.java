@@ -23,13 +23,14 @@ public class DTPropuesta {
 
     // Constructores
     public DTPropuesta() {
+        this.setId(null); // Inicializar ID como null para que se pueda establecer después
         this.setTitulo("");
         this.setDescripcion("");
         this.setLugar("");
         this.setFechaPrevista(null);
         this.setPrecioEntrada(0.0);
         this.setMontoNecesario(0.0);
-        this.setImagen("");
+        this.setImagen(null); // Cambiar a null para que se pueda establecer después
         this.setDTProponente(new DTProponente());
     }
 
