@@ -16,4 +16,8 @@ public class SesionController implements ISesionController{
             throw new RuntimeException("Datos incorrectos");
         }
     }
+    @Override
+    public void logout(){
+        usuarioActual = null;
+    }
 }
