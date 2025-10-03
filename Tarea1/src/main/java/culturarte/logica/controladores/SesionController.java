@@ -20,4 +20,8 @@ public class SesionController implements ISesionController{
     public void logout(){
         usuarioActual = null;
     }
+    @Override
+    public Usuario getUsuarioActual(){
+        return usuarioActual;
+    }
 }
