@@ -206,4 +206,13 @@ public class PropuestaController implements IPropuestaController {
         PropuestaManejador pm = PropuestaManejador.getInstance();
         return pm.obtenerPropuestasPorEstado(EstadoPropuesta.INGRESADA);
     }
+    
+    public DTPropuesta getDTPropuesta(String titulo) {
+        PropuestaManejador pm = PropuestaManejador.getInstance();
+        Propuesta propuesta = pm.obtenerPropuestaPorTitulo(titulo);
+        if (propuesta != null) {
+            return new DTPropuesta(propuesta);
+        }
+        return null;
+    }
 }

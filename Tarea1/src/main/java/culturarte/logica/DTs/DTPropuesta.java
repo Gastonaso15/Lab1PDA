@@ -75,6 +75,69 @@ public class DTPropuesta {
         this.setEstadoActual(estado);
         this.setColaboraciones(colaboraciones);
     }
+    
+    // Constructor que toma un objeto Propuesta del modelo
+    public DTPropuesta(culturarte.logica.modelos.Propuesta propuesta) {
+        this.setTitulo(propuesta.getTitulo());
+        this.setDescripcion(propuesta.getDescripcion());
+        this.setLugar(propuesta.getLugar());
+        this.setFechaPrevista(propuesta.getFechaPrevista());
+        this.setPrecioEntrada(propuesta.getPrecioEntrada());
+        this.setMontoNecesario(propuesta.getMontoNecesario());
+        this.setFechaPublicacion(propuesta.getFechaPublicacion());
+        this.setImagen(propuesta.getImagen());
+        
+        // Convertir Categoria a DTCategoria
+        if (propuesta.getCategoria() != null) {
+            this.setCategoria(new DTCategoria(propuesta.getCategoria().getNombre()));
+        }
+        
+        // Convertir Proponente a DTProponente
+        if (propuesta.getProponente() != null) {
+            this.setDTProponente(new DTProponente(propuesta.getProponente().getNickname(), 
+                propuesta.getProponente().getNombre(), propuesta.getProponente().getApellido(), 
+                propuesta.getProponente().getCorreo(), propuesta.getProponente().getFechaNacimiento(), 
+                propuesta.getProponente().getImagen(), propuesta.getProponente().getDireccion(),
+                propuesta.getProponente().getBio(), propuesta.getProponente().getSitioWeb()));
+        }
+        
+        // Convertir EstadoPropuesta a DTEstadoPropuesta
+        if (propuesta.getEstadoActual() != null) {
+            this.setEstadoActual(DTEstadoPropuesta.valueOf(propuesta.getEstadoActual().toString()));
+        }
+        
+        // Convertir historial
+        if (propuesta.getHistorial() != null) {
+            List<DTPropuestaEstado> historialDT = new ArrayList<>();
+            for (culturarte.logica.modelos.PropuestaEstado pe : propuesta.getHistorial()) {
+                historialDT.add(new DTPropuestaEstado(DTEstadoPropuesta.valueOf(pe.getEstado().toString()), pe.getFechaCambio()));
+            }
+            this.setHistorial(historialDT);
+        }
+        
+        // Convertir colaboraciones
+        if (propuesta.getColaboraciones() != null) {
+            List<DTColaboracion> colaboracionesDT = new ArrayList<>();
+            for (culturarte.logica.modelos.Colaboracion c : propuesta.getColaboraciones()) {
+                DTColaboracion dtColaboracion = new DTColaboracion();
+                dtColaboracion.setId(c.getId());
+                dtColaboracion.setMonto(c.getMonto());
+                dtColaboracion.setTipoRetorno(DTTipoRetorno.valueOf(c.getTipoRetorno().toString()));
+                dtColaboracion.setFechaHora(c.getFechaHora());
+                colaboracionesDT.add(dtColaboracion);
+            }
+            this.setColaboraciones(colaboracionesDT);
+        }
+        
+        // Convertir tipos de retorno
+        if (propuesta.getTiposRetorno() != null) {
+            List<DTTipoRetorno> tiposDT = new ArrayList<>();
+            for (culturarte.logica.modelos.TipoRetorno tr : propuesta.getTiposRetorno()) {
+                tiposDT.add(DTTipoRetorno.valueOf(tr.toString()));
+            }
+            this.setTiposRetorno(tiposDT);
+        }
+    }
 
     // Funciones
     @Override
@@ -110,11 +173,16 @@ public class DTPropuesta {
     public String getImagen() { return imagen; }
     public void setImagen(String imagen) { this.imagen = imagen; }
 
-    public String getCategoria() { return categoria; }
+    public DTCategoria getCategoria() { return categoria; }
     public void setCategoria(DTCategoria categoria) { this.categoria = categoria; }
 
     public DTProponente getDTProponente() { return proponente; }
     public void setDTProponente(DTProponente proponente) { this.proponente = proponente; }
+    
+    // Método de conveniencia para obtener el nickname del proponente
+    public String getProponente() { 
+        return proponente != null ? proponente.getNickname() : ""; 
+    }
 
     public DTEstadoPropuesta getEstadoActual() { return estadoActual; }
     public void setEstadoActual(DTEstadoPropuesta estadoActual) { this.estadoActual = estadoActual; }

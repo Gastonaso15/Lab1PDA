@@ -94,7 +94,7 @@ public class EvaluarPropuestaInternalFrame extends JInternalFrame {
                     if(p!=null){
                         txtTitulo.setText(p.getTitulo());
                         txtProponente.setText(p.getProponente());
-                        txtCategoria.setText(p.getCategoria());
+                        txtCategoria.setText(p.getCategoria().getNombre());
                         txtEstado.setText(p.getEstadoActual().toString());
                         txtDescripcion.setText(p.getDescripcion());
                     }
@@ -127,9 +127,9 @@ public class EvaluarPropuestaInternalFrame extends JInternalFrame {
         DefaultTableModel model = new DefaultTableModel(new Object[]{"Titulo","Proponente"},0);
         List<DTPropuesta> propuestas = propuestaController.getPropuestasIngresadas();
         for(DTPropuesta p : propuestas){
-            modelo.addRow(new Object[]{p.getTitulo(), p.getProponente()});
+            model.addRow(new Object[]{p.getTitulo(), p.getProponente()});
         }
-        tablaPropuestas.setModel(modelo);
+        tablaPropuestas.setModel(model);
 
     }
 }
