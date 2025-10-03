@@ -18,6 +18,6 @@ public class Fabrica {
 
     public IUsuarioController getIUsuarioController() { return new UsuarioController();}
     public IPropuestaController getIPropuestaController() {return new PropuestaController();}
-
+    public ISesionController getISesionController() {return new SesionController();}
 
 }
