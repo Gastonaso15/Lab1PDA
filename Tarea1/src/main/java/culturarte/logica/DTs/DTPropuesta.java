@@ -110,7 +110,7 @@ public class DTPropuesta {
     public String getImagen() { return imagen; }
     public void setImagen(String imagen) { this.imagen = imagen; }
 
-    public DTCategoria getCategoria() { return categoria; }
+    public String getCategoria() { return categoria; }
     public void setCategoria(DTCategoria categoria) { this.categoria = categoria; }
 
     public DTProponente getDTProponente() { return proponente; }

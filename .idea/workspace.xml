@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="metodos agregados a propuesta controller">
+    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="getpropuestasIngresadas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/controladores/IPropuestaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/controladores/IPropuestaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/controladores/PropuestaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/controladores/PropuestaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/DTs/DTPropuesta.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/DTs/DTPropuesta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/controladores/ISesionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/controladores/ISesionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/controladores/SesionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/controladores/SesionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/src/main/resources/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +54,7 @@
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "xml.catalog"
+    "settings.editor.selected.configurable": "preferences.externalResources"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -174,7 +175,23 @@
       <option name="project" value="LOCAL" />
       <updated>1759450513850</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="metodos agregados a propuesta controller pt2">
+      <option name="closed" value="true" />
+      <created>1759463314706</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1759463314706</updated>
+    </task>
+    <task id="LOCAL-00011" summary="getpropuestasIngresadas">
+      <option name="closed" value="true" />
+      <created>1759465500820</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1759465500820</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -185,7 +202,9 @@
     <MESSAGE value="Sesion controller creado para gestionar que usuario esta usando el sistema en ese momento y controlar que pueda hacer" />
     <MESSAGE value="ISesioncontroller creado" />
     <MESSAGE value="metodos agregados a propuesta controller" />
-    <option name="LAST_COMMIT_MESSAGE" value="metodos agregados a propuesta controller" />
+    <MESSAGE value="metodos agregados a propuesta controller pt2" />
+    <MESSAGE value="getpropuestasIngresadas" />
+    <option name="LAST_COMMIT_MESSAGE" value="getpropuestasIngresadas" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
