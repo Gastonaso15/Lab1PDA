@@ -24,4 +24,6 @@ public interface IPropuestaController {
                                                String tipoRetorno) throws Exception;
     void cancelarColaboracion(Long idColaboracion) throws Exception;
     List<DTColaboracion> obtenerTodasLasColaboraciones();
+
+    void publicarPropuesta(String titulo) throws Exception;
 }

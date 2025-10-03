@@ -18,7 +18,7 @@ public class PropuestaController implements IPropuestaController {
     }
 
     @Override
-    public  void crearPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista, Double precioEntrada, Double montoNecesario, String imagen, String proponente, String categoria, List<String> listaTipos) throws Exception {
+    public void crearPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista, Double precioEntrada, Double montoNecesario, String imagen, String proponente, String categoria, List<String> listaTipos) throws Exception {
         PropuestaManejador mp = PropuestaManejador.getInstance();
         Propuesta p = mp.obtenerPropuestaPorTitulo(titulo);
         if (p != null)
@@ -40,12 +40,12 @@ public class PropuestaController implements IPropuestaController {
             }
         }
 
-        p = new Propuesta(titulo,descripcion,lugar,fechaPrevista,precioEntrada,montoNecesario,imagen,prop,Cat,tipos);
+        p = new Propuesta(titulo, descripcion, lugar, fechaPrevista, precioEntrada, montoNecesario, imagen, prop, Cat, tipos);
         mp.persistirPropuesta(p);
     }
 
     @Override
-    public List<DTPropuesta> devolverTodasLasPropuestas(){
+    public List<DTPropuesta> devolverTodasLasPropuestas() {
         PropuestaManejador mp = PropuestaManejador.getInstance();
         return mp.obtenerTodasLasPropuestas();
     }
@@ -104,12 +104,12 @@ public class PropuestaController implements IPropuestaController {
         if (catPadre == null) {
             catPadre = mc.obtenerCategoriaPorNombre("Categoría");
         }
-        Categoria nueva = new Categoria(nombre,catPadre);
+        Categoria nueva = new Categoria(nombre, catPadre);
         mc.persistirCategoria(nueva);
     }
 
     @Override
-    public List<DTCategoria> devolverTodasLasCategorias(){
+    public List<DTCategoria> devolverTodasLasCategorias() {
         PropuestaManejador mc = PropuestaManejador.getInstance();
         return mc.obtenerTodasLasCategorias();
     }
@@ -158,31 +158,48 @@ public class PropuestaController implements IPropuestaController {
         PropuestaManejador pm = PropuestaManejador.getInstance();
         pm.cancelarColaboracion(idColaboracion);
     }
+
     @Override
     public void publicarPropuesta(String titulo) throws Exception {
         PropuestaManejador pm = PropuestaManejador.getInstance();
         Propuesta propuesta = pm.obtenerPropuestaPorTitulo(titulo);
 
-        if(propuesta == null) {
+        if (propuesta == null) {
             throw new Exception("La propuesta con titulo " + titulo + " no existe.");
         }
         propuesta.setEstadoActual(EstadoPropuesta.PUBLICADA);
-        propuesta.getHistoria().add(new PrpuestaEstado(propuesta, EstadoPropuesta.PUBLICADA, LocalDate.now()));
+        propuesta.getHistorial().add(new PropuestaEstado(propuesta, EstadoPropuesta.PUBLICADA, LocalDate.now()));
 
         pm.actualizarPropuesta(propuesta);
     }
-    @Override
+
     public void cancelarPropuesta(String titulo) throws Exception {
         PropuestaManejador pm = PropuestaManejador.getInstance();
         Propuesta propuesta = pm.obtenerPropuestaPorTitulo(titulo);
 
-        if(propuesta == null) {
+        if (propuesta == null) {
             throw new Exception("La propuesta con titulo " + titulo + " no existe.");
         }
 
         propuesta.setEstadoActual(EstadoPropuesta.CANCELADA);
-        propuesta,getHistorial().add(new PropuestaEstado(propuesta, EstadoPropuesta.CANCELADA, LocalDate.now()));
+        propuesta.getHistorial().add(new PropuestaEstado(propuesta, EstadoPropuesta.CANCELADA, LocalDate.now()));
 
         pm.actualizarPropuesta(propuesta);
+    }
+    public void evaluarPropuesta(String titulo, boolean publicar) throws Exception {
+        PropuestaManejador pm = PropuestaManejador.getInstance();
+        Propuesta p = pm.obtenerPropuestaPorTitulo(titulo);
+
+        if (p == null) {
+            throw new Exception("la propuesta no existe.");
+        }
+        if(p.getEstadoActual() != EstadoPropuesta.INGRESADA){
+            throw new Exception("La propuesta no esta ingresada");
+        }
+        if(publicar)
+            p.setEstadoActual(EstadoPropuesta.PUBLICADA);
+        else p.setEstadoActual(EstadoPropuesta.CANCELADA);
+
+        pm.actualizarPropuesta(p);
     }
 }

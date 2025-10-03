@@ -28,7 +28,7 @@ public class EvaluarPropuestaInternalFrame extends JInternalFrame {
         setLayout(new BorderLayout());
 
         //Panel tabla
-        JPanel panelTabla=new Jpanel(new BorderLayout());
+        JPanel panelTabla=new JPanel(new BorderLayout());
         tablaPropuestas=new JTable();
         JScrollPane scrollTabla=new JScrollPane(tablaPropuestas);
         panelTabla.add(scrollTabla,BorderLayout.CENTER);
@@ -121,16 +121,14 @@ public class EvaluarPropuestaInternalFrame extends JInternalFrame {
         btnCerrar.addActionListener(e->dispose());
 
         cargarPropuestas();
-
-        private void cargarPropuestas(){
-            DefaultTableModel model = new DefaultTableModel(new Object[]{"Titulo","Proponente"},0);
-            List<DTPropuesta> propuestas = propuestaController.getPropuestasIngresadas();
-            for(DTPropuesta p : propuestas){
-                modelo.addRow(new Object[]{p.getTitulo(), p.getProponente()});
-            }
-            tablaPropuestas.setModel(modelo);
-
+    }
+    private void cargarPropuestas(){
+        DefaultTableModel model = new DefaultTableModel(new Object[]{"Titulo","Proponente"},0);
+        List<DTPropuesta> propuestas = propuestaController.getPropuestasIngresadas();
+        for(DTPropuesta p : propuestas){
+            modelo.addRow(new Object[]{p.getTitulo(), p.getProponente()});
         }
+        tablaPropuestas.setModel(modelo);
 
     }
 }
