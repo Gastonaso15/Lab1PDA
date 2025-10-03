@@ -5,28 +5,65 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="logout hecho">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/DTs/DTPropuesta.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/DTs/DTPropuesta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/controladores/PropuestaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/controladores/PropuestaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/com/intellij/uiDesigner/core/AbstractLayout.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/com/intellij/uiDesigner/core/DimensionInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/com/intellij/uiDesigner/core/GridConstraints.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/com/intellij/uiDesigner/core/GridLayoutManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/com/intellij/uiDesigner/core/HorizontalInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/com/intellij/uiDesigner/core/LayoutState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/com/intellij/uiDesigner/core/Spacer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/com/intellij/uiDesigner/core/SupportCode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/com/intellij/uiDesigner/core/Util.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/com/intellij/uiDesigner/core/VerticalInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTPropuesta.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTPropuesta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/Fabrica.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/Fabrica.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/controladores/IPropuestaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/controladores/IPropuestaController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/controladores/PropuestaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/controladores/PropuestaController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/controladores/UsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/controladores/UsuarioController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/DejarSeguirUsuarioInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/DejarSeguirUsuarioInternalFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/dependency-reduced-pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTCategoria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTColaboracion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTColaborador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTEstadoPropuesta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTProponente.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTPropuesta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTPropuestaEstado.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTSeguimiento.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTTipoRetorno.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/DTs/DTUsuario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/Fabrica.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/controladores/IPropuestaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/controladores/ISesionController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/controladores/IUsuarioController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/controladores/PropuestaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/controladores/SesionController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/controladores/UsuarioController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/manejadores/PropuestaManejador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/manejadores/UsuarioManejador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/Categoria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/Colaboracion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/Colaborador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/EstadoPropuesta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/Proponente.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/Propuesta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/PropuestaEstado.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/Seguimiento.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/TipoRetorno.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/logica/modelos/Usuario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/persistencia/JPAUtil.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/EstacionDeTrabajo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/helpers/CategoriaUIHelper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/helpers/ImagenUIHelper$ImagenPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/helpers/ImagenUIHelper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/AltaCategoriaInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/AltaPropuestaInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/ConsultaColaboracionInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/ConsultaPropuestasPorEstadoInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/ConsultarPropuestaInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/DejarSeguirUsuarioInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/ModificarDatosPropuestaInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/SeguirUsuarioInternalFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/culturarte-app-1.0.0-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/target/culturarte-app-1.0.0-jar-with-dependencies.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/culturarte-app-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/target/culturarte-app-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tarea1/target/original-culturarte-app-1.0.0.jar" beforeDir="false" afterPath="$PROJECT_DIR$/Tarea1/target/original-culturarte-app-1.0.0.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/culturarte-app.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,12 +79,12 @@
     &quot;assignee&quot;: &quot;Gastonaso15&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Gastonaso15/Lab1PDA.git",
-    "accountId": "a983c076-8ffc-405b-b9ec-d1b18379d78c"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Gastonaso15/Lab1PDA.git&quot;,
+    &quot;accountId&quot;: &quot;a983c076-8ffc-405b-b9ec-d1b18379d78c&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
 }</component>
