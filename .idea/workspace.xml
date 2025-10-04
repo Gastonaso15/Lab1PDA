@@ -4,148 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="logout hecho">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="vuelta a la estructua original, la en dos carpetas nos dio muchos problemas.&#10;esta versión está con todo lo que hizo martin hasta el commit anterior">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/.idea/artifacts/culturarte_app_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/.idea/jarRepositories.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/.idea/libraries/MigLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/.idea/material_theme_project_new.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/dependency-reduced-pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/docker/init-db/RespaldoCulturarte.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/lib/miglayout-core-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/lib/miglayout-core-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/lib/miglayout-core.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/lib/miglayout-swing-javadoc.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/lib/miglayout-swing-sources.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/lib/miglayout-swing.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/out/artifacts/culturarte_app_jar/culturarte-app.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/DTs/DTCategoria.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/DTs/DTColaboracion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/DTs/DTColaborador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/DTs/DTEstadoPropuesta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/DTs/DTProponente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/DTs/DTPropuesta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/DTs/DTPropuestaEstado.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/DTs/DTSeguimiento.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/DTs/DTTipoRetorno.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/DTs/DTUsuario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/Fabrica.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/controladores/IPropuestaController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/controladores/ISesionController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/controladores/IUsuarioController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/controladores/PropuestaController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/controladores/SesionController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/controladores/UsuarioController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/manejadores/PropuestaManejador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/manejadores/UsuarioManejador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/modelos/Categoria.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/modelos/Colaboracion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/modelos/Colaborador.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/modelos/EstadoPropuesta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/modelos/Proponente.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/modelos/Propuesta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/modelos/PropuestaEstado.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/modelos/Seguimiento.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/modelos/TipoRetorno.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/logica/modelos/Usuario.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/persistencia/JPAUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/EstacionDeTrabajo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/helpers/CategoriaUIHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/helpers/ImagenUIHelper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/AltaCategoriaInternalFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/AltaPropuestaInternalFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/CancelarPropuestaInternalFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/ConsultaColaboracionInternalFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/ConsultaPropuestasPorEstadoInternalFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/ConsultarPropuestaInternalFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/DejarSeguirUsuarioInternalFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/ModificarDatosPropuestaInternalFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/java/culturarte/presentacion/internalFrames/SeguirUsuarioInternalFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/resources/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/src/main/resources/META-INF/persistence.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/META-INF/persistence.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/culturarte-app-1.0.0-jar-with-dependencies.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/culturarte-app-1.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/target/original-culturarte-app-1.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/uploads/propuestas/Imagen1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/uploads/propuestas/Imagen2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/uploads/propuestas/Imagen3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/uploads/propuestas/Imagen4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/uploads/propuestas/Imagen5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/uploads/usuarios/ImagenUC1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/uploads/usuarios/ImagenUC2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/uploads/usuarios/ImagenUC3pg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/uploads/usuarios/ImagenUC4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/uploads/usuarios/ImagenUC5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/uploads/usuarios/ImagenUP1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/uploads/usuarios/ImagenUP2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/uploads/usuarios/ImagenUP3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/uploads/usuarios/ImagenUP4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/uploads/usuarios/ImagenUP5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/uploads/usuarios/ImagenUP6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea1/uploads/usuarios/ImagenUP7.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea2/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea2/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea2/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea2/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea2/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea2/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea2/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea2/src/WEB-INF/culturarte-app-1.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea2/src/WEB-INF/web.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea2/src/main/java/com/smartgrow/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tarea2/src/main/webapp/index.jsp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dependency-reduced-pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/AbstractLayout.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/DimensionInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/GridConstraints.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/GridLayoutManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/HorizontalInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/LayoutState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/Spacer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/SupportCode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/Util.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/intellij/uiDesigner/core/VerticalInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/SesionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/SesionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/culturarte-app-1.0.0.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/original-culturarte-app-1.0.0.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -337,7 +199,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759467024544</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="vuelta a la estructua original, la en dos carpetas nos dio muchos problemas.&#10;esta versión está con todo lo que hizo martin hasta el commit anterior">
+      <option name="closed" value="true" />
+      <created>1759543178327</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1759543178327</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -352,7 +222,8 @@
     <MESSAGE value="getpropuestasIngresadas" />
     <MESSAGE value="login en controller nuevo de sesion creado" />
     <MESSAGE value="logout hecho" />
-    <option name="LAST_COMMIT_MESSAGE" value="logout hecho" />
+    <MESSAGE value="vuelta a la estructua original, la en dos carpetas nos dio muchos problemas.&#10;esta versión está con todo lo que hizo martin hasta el commit anterior" />
+    <option name="LAST_COMMIT_MESSAGE" value="vuelta a la estructua original, la en dos carpetas nos dio muchos problemas.&#10;esta versión está con todo lo que hizo martin hasta el commit anterior" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

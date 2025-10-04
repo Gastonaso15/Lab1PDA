@@ -21,8 +21,11 @@
             <property name="jakarta.persistence.jdbc.user" value="culturarte"/>
             <property name="jakarta.persistence.jdbc.password" value="culturarte123"/>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
             <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.connection.autocommit" value="false"/>
         </properties>
     </persistence-unit>
 
@@ -42,8 +45,11 @@
             <property name="jakarta.persistence.jdbc.user" value="culturarte"/>
             <property name="jakarta.persistence.jdbc.password" value="culturarte123"/>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
             <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+            <property name="hibernate.connection.autocommit" value="false"/>
         </properties>
     </persistence-unit>
 
