@@ -2,6 +2,8 @@ package culturarte.presentacion.helpers;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.net.URL;
 
 public class ImagenUIHelper {
 
@@ -10,8 +12,20 @@ public class ImagenUIHelper {
 
         public void setImagen(String ruta) {
             if (ruta != null && !ruta.isEmpty()) {
-                ImageIcon icon = new ImageIcon(ruta);
-                imagen = icon.getImage();
+
+                URL recurso = getClass().getResource("/" + ruta);
+                if (recurso != null) {
+                    ImageIcon icon = new ImageIcon(recurso);
+                    imagen = icon.getImage();
+                } else {
+                    File archivoExterno = new File(System.getProperty("user.dir") + "/" + ruta);
+                    if (archivoExterno.exists()) {
+                        ImageIcon icon = new ImageIcon(archivoExterno.getAbsolutePath());
+                        imagen = icon.getImage();
+                    } else {
+                        imagen = null;
+                    }
+                }
             } else {
                 imagen = null;
             }

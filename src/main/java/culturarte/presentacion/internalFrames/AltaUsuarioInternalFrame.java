@@ -146,7 +146,7 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
 
                     Files.copy(new File(rutaImagen).toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
-                    rutaFinal = destino.getAbsolutePath();
+                    rutaFinal = "uploads/usuarios/" + nombreArchivo;
                 } catch (IOException ioEx) {
                     JOptionPane.showMessageDialog(this,
                             "Error al guardar la imagen: " + ioEx.getMessage(),

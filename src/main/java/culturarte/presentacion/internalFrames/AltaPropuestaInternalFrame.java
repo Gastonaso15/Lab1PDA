@@ -178,7 +178,7 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                                 destino.toPath(),
                                 StandardCopyOption.REPLACE_EXISTING);
 
-                        rutaFinal = destino.getAbsolutePath();
+                        rutaFinal = "uploads/propuestas/" + nombreArchivo;
 
                     } catch (IOException ioEx) {
                         JOptionPane.showMessageDialog(this,
