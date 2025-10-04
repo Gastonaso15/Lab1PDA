@@ -12,9 +12,6 @@
         <version>3.11.0</version>
         <configuration>
           <release>21</release>
-          <compilerArgs>
-            <arg>--enable-preview</arg>
-          </compilerArgs>
         </configuration>
       </plugin>
       <plugin>
@@ -24,6 +21,29 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
+              <mainClass>culturarte.presentacion.EstacionDeTrabajo</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.6.0</version>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <descriptorRefs>
+            <descriptorRef>jar-with-dependencies</descriptorRef>
+          </descriptorRefs>
+          <archive>
+            <manifest>
               <mainClass>culturarte.presentacion.EstacionDeTrabajo</mainClass>
             </manifest>
           </archive>
