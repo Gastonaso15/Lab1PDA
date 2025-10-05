@@ -32,6 +32,8 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
     private final JComboBox<String> cbTipoUsuario;
     //NO DEBERIA PEDIRLO A LA FABRICA EN VES DE ASI?????
     private final IUsuarioController UsuarioContr;
+    //CREO TO DO  CON EL .FORM AHORA
+    private JPanel panel;
 
     public AltaUsuarioInternalFrame(IUsuarioController icu) {
         super("Alta de Usuario", true, true, true, true);
@@ -41,7 +43,8 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
         UsuarioContr = icu;
 
         //Jpanel Configuration
-        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
+        panel = new JPanel(new GridLayout(0, 2, 5, 5));
+
         panel.add(new JLabel("Nickname:"));
         tfNickname = new JTextField();
         panel.add(tfNickname);
