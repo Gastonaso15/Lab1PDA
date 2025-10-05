@@ -8,8 +8,11 @@ public class SesionController implements ISesionController{
     private Usuario usuarioActual;
 
     @Override
-    public DTUsuario login(String nick, String password){
-        Usuario u = UsuarioManejador.getInstance().obtenerUsuarioPorNickname(nick);
+    public DTUsuario login(String usu, String password){
+        Usuario u = UsuarioManejador.getInstance().obtenerUsuarioPorNickname(usu);
+        if(u == null){
+            u = UsuarioManejador.getInstance().obtenerUsuarioPorCorreo(usu);
+        }
         if(u != null && u.getPassword().equals(password)){
             usuarioActual = u;
             return new DTUsuario(
