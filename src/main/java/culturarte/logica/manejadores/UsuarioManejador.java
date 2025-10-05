@@ -5,6 +5,7 @@ import culturarte.persistencia.JPAUtil;
 
 import jakarta.persistence.*;
 
+import java.awt.*;
 import java.util.List;
 
 public class UsuarioManejador{
@@ -19,6 +20,7 @@ public class UsuarioManejador{
     public void persistirUsuario(Usuario usu) {
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction t = em.getTransaction();
+        System.out.println("ESTA PERSISTIENDO, O AL MENOS LLEGA ACA");
         try{
             t.begin();
             em.persist(usu);
