@@ -17,7 +17,7 @@
         <class>culturarte.logica.modelos.TipoRetorno</class>
         <class>culturarte.logica.modelos.Usuario</class>
         <properties>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3307/culturarte"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/culturarte"/>
             <property name="jakarta.persistence.jdbc.user" value="culturarte"/>
             <property name="jakarta.persistence.jdbc.password" value="culturarte123"/>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>

@@ -23,6 +23,7 @@ public class DTUsuario {
         this.setFechaNacimiento(null);
         this.setImagen("");
     }
+
     public DTUsuario(String nickname, String nombre, String apellido, String password, String correo,LocalDate fechaNacimiento,String imagen) {
         this.setNickname(nickname);
         this.setNombre(nombre);
@@ -41,6 +42,14 @@ public class DTUsuario {
         this.setNickname(nickname);
         this.setNombre(nombre);
         this.setApellido(apellido);
+    }
+
+    public DTUsuario(String nickname, String nombre, String apellido,String correo,String imagen) {
+        this.setNickname(nickname);
+        this.setNombre(nombre);
+        this.setApellido(apellido);
+        this.setCorreo(correo);
+        this.setImagen(imagen);
     }
 
     // Getters y setters

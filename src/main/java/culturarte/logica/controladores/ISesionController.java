@@ -1,11 +1,12 @@
 package culturarte.logica.controladores;
 
+import culturarte.logica.DTs.DTUsuario;
 import culturarte.logica.modelos.*;
 
 public interface ISesionController
 {
-    public void login(String nick, String password);
-    public void logout();
-    public Usuario getUsuarioActual();
-    public boolean isLoggedIn();
+    DTUsuario login(String nick, String password);
+    void logout();
+    Usuario getUsuarioActual();
+    boolean isLoggedIn();
 }

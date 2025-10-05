@@ -1,5 +1,6 @@
 package culturarte.logica.controladores;
 
+import culturarte.logica.DTs.DTUsuario;
 import culturarte.logica.manejadores.UsuarioManejador;
 import culturarte.logica.modelos.*;
 
@@ -7,11 +8,18 @@ public class SesionController implements ISesionController{
     private Usuario usuarioActual;
 
     @Override
-    public void login(String nick, String password){
+    public DTUsuario login(String nick, String password){
         Usuario u = UsuarioManejador.getInstance().obtenerUsuarioPorNickname(nick);
-        if(u!=null && u.getPassword().equals(password)){
+        if(u != null && u.getPassword().equals(password)){
             usuarioActual = u;
-        }else{
+            return new DTUsuario(
+                    u.getNickname(),
+                    u.getNombre(),
+                    u.getApellido(),
+                    u.getCorreo(),
+                    u instanceof Proponente ? "Proponente" : "Colaborador"
+            );
+        } else {
             throw new RuntimeException("Datos incorrectos");
         }
     }
