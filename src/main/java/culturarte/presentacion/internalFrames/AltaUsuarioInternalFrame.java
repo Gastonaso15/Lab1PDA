@@ -16,18 +16,21 @@ import culturarte.logica.controladores.IUsuarioController;
 
 public class AltaUsuarioInternalFrame extends JInternalFrame {
 
+    //Creo los Fields
     private final JTextField tfNickname;
     private final JTextField tfNombre;
     private final JTextField tfApellido;
+    private final JTextField tfContrasenia;
+    private final JTextField tfConfirmacionContrasenia;
     private final JTextField tfCorreo;
     private final JTextField tfFechaNacimiento;
     private final JTextField tfImagen;
     private final JTextField tfDireccion;
     private final JTextField tfBiografia;
     private final JTextField tfSitioWeb;
-
+    //Combo Box
     private final JComboBox<String> cbTipoUsuario;
-
+    //NO DEBERIA PEDIRLO A LA FABRICA EN VES DE ASI?????
     private final IUsuarioController UsuarioContr;
 
     public AltaUsuarioInternalFrame(IUsuarioController icu) {
@@ -37,7 +40,8 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
 
         UsuarioContr = icu;
 
-        JPanel panel = new JPanel(new GridLayout(5, 2, 5, 5));
+        //Jpanel Configuration
+        JPanel panel = new JPanel(new GridLayout(0, 2, 5, 5));
         panel.add(new JLabel("Nickname:"));
         tfNickname = new JTextField();
         panel.add(tfNickname);
@@ -49,6 +53,14 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
         panel.add(new JLabel("Apellido:"));
         tfApellido = new JTextField();
         panel.add(tfApellido);
+
+        panel.add(new JLabel("Contraseña:"));
+        tfContrasenia = new JTextField();
+        panel.add(tfContrasenia);
+
+        panel.add(new JLabel("Confirmar Contraseña:"));
+        tfConfirmacionContrasenia = new JTextField();
+        panel.add(tfConfirmacionContrasenia);
 
         panel.add(new JLabel("Correo:"));
         tfCorreo = new JTextField();
@@ -80,6 +92,7 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
         cbTipoUsuario = new JComboBox<>(new String[]{"Colaborador","Proponente"});
         panel.add(cbTipoUsuario);
 
+        //Info extra si es Proponente
         JLabel lblDireccion = new JLabel("Dirección:");
         tfDireccion = new JTextField();
         lblDireccion.setVisible(false);
@@ -126,10 +139,13 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
 
         cancelar.addActionListener(e -> dispose());
 
+        //Action listeners of ACEPTAR
         aceptar.addActionListener(e -> {
             String nickname = tfNickname.getText().trim();
             String nombre = tfNombre.getText().trim();
             String apellido = tfApellido.getText().trim();
+            String contrasenia = tfContrasenia.getText().trim();
+            String confirmContrasenia = tfConfirmacionContrasenia.getText().trim();
             String correo = tfCorreo.getText().trim();
             String fechaTexto = tfFechaNacimiento.getText().trim();
             String tipo = (String) cbTipoUsuario.getSelectedItem();
@@ -157,9 +173,17 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
             }
             boolean esProp = "Proponente".equals(cbTipoUsuario.getSelectedItem());
             String direccion = tfDireccion.getText().trim();
-            if (nickname.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || fechaTexto.isEmpty() || (esProp && direccion.isEmpty())) {
+            if (nickname.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || contrasenia.isEmpty() || confirmContrasenia.isEmpty() || correo.isEmpty() || fechaTexto.isEmpty() || (esProp && direccion.isEmpty())) {
                 JOptionPane.showMessageDialog(this,
                         "Todos los campos obligatorios deben completarse",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            if (contrasenia != confirmContrasenia){
+                JOptionPane.showMessageDialog(this,
+                        "Las contrasñas deben ser iguales",
                         "Error",
                         JOptionPane.ERROR_MESSAGE);
                 return;
