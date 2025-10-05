@@ -9,39 +9,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="vuelta a la estructua original, la en dos carpetas nos dio muchos problemas.&#10;esta versión está con todo lo que hizo martin hasta el commit anterior">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/culturarte_app_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/uploads/propuestas/Imagen1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/uploads/propuestas/Imagen2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/uploads/propuestas/Imagen3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/uploads/propuestas/Imagen4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/uploads/propuestas/Imagen5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/uploads/usuarios/ImagenUC1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/uploads/usuarios/ImagenUC2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/uploads/usuarios/ImagenUC4.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/uploads/usuarios/ImagenUC5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/uploads/usuarios/ImagenUP1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/uploads/usuarios/ImagenUP2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/uploads/usuarios/ImagenUP3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/uploads/usuarios/ImagenUP4.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/uploads/usuarios/ImagenUP5.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/uploads/usuarios/ImagenUP6.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/uploads/usuarios/ImagenUP7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/usuarios/ImagenUC3.jpg" afterDir="false" />
+    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="Fondo principal de la app agregado y caso de Uso Alta Usuario en proceso">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab1PDA.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestDataRetrieval.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dependency-reduced-pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/culturarte_app_jar/culturarte-app.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/helpers/ImagenUIHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/helpers/ImagenUIHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/AltaPropuestaInternalFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/AltaPropuestaInternalFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/DTs/DTColaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/DTs/DTColaborador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/DTs/DTProponente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/DTs/DTProponente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/DTs/DTPropuesta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/DTs/DTPropuesta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/DTs/DTUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/DTs/DTUsuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/manejadores/PropuestaManejador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/manejadores/PropuestaManejador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/modelos/Colaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/modelos/Colaborador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/modelos/Proponente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/modelos/Proponente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/modelos/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/modelos/Usuario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/helpers/ImagenUIHelper$ImagenPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/helpers/ImagenUIHelper$ImagenPanel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/helpers/ImagenUIHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/helpers/ImagenUIHelper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/AltaPropuestaInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/AltaPropuestaInternalFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/DTs/DTColaborador.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/DTs/DTColaborador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/DTs/DTProponente.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/DTs/DTProponente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/DTs/DTPropuesta.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/DTs/DTPropuesta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/DTs/DTUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/DTs/DTUsuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/UsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/UsuarioController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/manejadores/PropuestaManejador.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/manejadores/PropuestaManejador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/modelos/Colaborador.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/modelos/Colaborador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/modelos/Proponente.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/modelos/Proponente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/modelos/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/modelos/Usuario.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/usuarios/ImagenUC3pg.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/uploads/usuarios/ImagenUC3.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,8 +49,12 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/Gastonaso15/Lab1PDA.git",
-    "accountId": "21b155d5-536d-41dc-a9dd-679c566ba710"
+    "accountId": "249734d4-c81d-4948-b929-92b0fb4fb68a"
   }
+}]]></component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
 }]]></component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -75,6 +68,7 @@
   "keyToString": {
     "Application.EstacionDeTrabajo (1).executor": "Run",
     "Application.EstacionDeTrabajo.executor": "Run",
+    "Docker.docker-compose.yml.phpmyadmin: Compose Deployment.executor": "Run",
     "JAR Application.culturarte-app.jar (1).executor": "Run",
     "JAR Application.culturarte-app.jar.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
@@ -85,10 +79,16 @@
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/agusm/IdeaProjects/Lab1PDA/src/main/resources",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Artifacts",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.externalResources"
+    "settings.editor.selected.configurable": "preferences.externalResources",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -120,9 +120,27 @@
       <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/culturarte_app_jar/culturarte-app.jar" />
       <method v="2" />
     </configuration>
+    <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
+      <deployment type="docker-compose.yml" />
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.phpmyadmin: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="phpmyadmin" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.EstacionDeTrabajo" />
+        <item itemvalue="Docker.docker-compose.yml.phpmyadmin: Compose Deployment" />
         <item itemvalue="JAR Application.culturarte-app.jar (1)" />
       </list>
     </recent_temporary>
@@ -130,7 +148,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26199.169" />
+        <option value="bundled-js-predefined-d6986cc7102b-9c94529fcfe0-JavaScript-IU-252.26199.169" />
       </set>
     </attachedChunks>
   </component>
@@ -141,6 +160,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1759325528811</updated>
+      <workItem from="1759622469367" duration="12678000" />
     </task>
     <task id="LOCAL-00001" summary="Proyecto reorganizado en dos carpetas, una para la primera parte y otra para la que vamos a trabajar ahora.">
       <option name="closed" value="true" />
@@ -254,8 +274,19 @@
       <option name="project" value="LOCAL" />
       <updated>1759543178327</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Fondo principal de la app agregado y caso de Uso Alta Usuario en proceso">
+      <option name="closed" value="true" />
+      <created>1759630011720</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1759630011720</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Proyecto reorganizado en dos carpetas, una para la primera parte y otra para la que vamos a trabajar ahora." />
@@ -270,7 +301,8 @@
     <MESSAGE value="login en controller nuevo de sesion creado" />
     <MESSAGE value="logout hecho" />
     <MESSAGE value="vuelta a la estructua original, la en dos carpetas nos dio muchos problemas.&#10;esta versión está con todo lo que hizo martin hasta el commit anterior" />
-    <option name="LAST_COMMIT_MESSAGE" value="vuelta a la estructua original, la en dos carpetas nos dio muchos problemas.&#10;esta versión está con todo lo que hizo martin hasta el commit anterior" />
+    <MESSAGE value="Fondo principal de la app agregado y caso de Uso Alta Usuario en proceso" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fondo principal de la app agregado y caso de Uso Alta Usuario en proceso" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

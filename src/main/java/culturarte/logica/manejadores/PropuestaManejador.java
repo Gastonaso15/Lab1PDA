@@ -307,25 +307,31 @@ public class PropuestaManejador {
     }
 
     public List<DTColaboracion> obtenerTodasLasColaboraciones() {
+        //1
         EntityManager em = JPAUtil.getEntityManager();
-        List<Colaboracion> colabs = em.createQuery("SELECT c FROM Colaboracion c", Colaboracion.class)
-                .getResultList();
+        //2
+        List<Colaboracion> colabs = em.createQuery("SELECT c FROM Colaboracion c", Colaboracion.class).getResultList();
 
+        //3: Obtengo el tamanio que debo recorrer
         for (Colaboracion c : colabs) {
             c.getPropuesta().getColaboraciones().size();
         }
 
         em.close();
 
-
+        //4: creo la lista que voy a devolver de colaboraciones
         List<DTColaboracion> dtColaboraciones = new ArrayList<>();
 
+        //5: recorro las colaboraciones de la base de datos para rellenar la lista
         for (Colaboracion c : colabs) {
 
             List<DTColaboracion> dtColabsPropuesta = new ArrayList<>();
+
+            //list<Colaboracion> col = c.getPropuesta().getColaboraciones()
+            //5*.3*
             for (Colaboracion col : c.getPropuesta().getColaboraciones()) {
-                DTColaborador dtColab = new DTColaborador(col.getColaborador().getNickname());
-                dtColabsPropuesta.add(new DTColaboracion(dtColab, col.getMonto()));
+                DTColaborador dtColab = new DTColaborador(col.getColaborador().getNickname());//5*.3*.2
+                dtColabsPropuesta.add(new DTColaboracion(dtColab, col.getMonto())); //5*.3*.3
             }
 
             DTEstadoPropuesta dtEstadoPropuesta = DTEstadoPropuesta.valueOf(c.getPropuesta().getEstadoActual().name());

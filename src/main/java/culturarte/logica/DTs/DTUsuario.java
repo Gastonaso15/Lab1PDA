@@ -23,10 +23,11 @@ public class DTUsuario {
         this.setFechaNacimiento(null);
         this.setImagen("");
     }
-    public DTUsuario(String nickname, String nombre, String apellido, String correo,LocalDate fechaNacimiento,String imagen) {
+    public DTUsuario(String nickname, String nombre, String apellido, String password, String correo,LocalDate fechaNacimiento,String imagen) {
         this.setNickname(nickname);
         this.setNombre(nombre);
         this.setApellido(apellido);
+        this.setPassword(password);
         this.setCorreo(correo);
         this.setFechaNacimiento(fechaNacimiento);
         this.setImagen(imagen);

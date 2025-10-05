@@ -95,7 +95,7 @@ public class DTPropuesta {
         // Convertir Proponente a DTProponente
         if (propuesta.getProponente() != null) {
             this.setDTProponente(new DTProponente(propuesta.getProponente().getNickname(), 
-                propuesta.getProponente().getNombre(), propuesta.getProponente().getApellido(), 
+                propuesta.getProponente().getNombre(), propuesta.getProponente().getApellido(), propuesta.getProponente().getPassword(),
                 propuesta.getProponente().getCorreo(), propuesta.getProponente().getFechaNacimiento(), 
                 propuesta.getProponente().getImagen(), propuesta.getProponente().getDireccion(),
                 propuesta.getProponente().getBio(), propuesta.getProponente().getSitioWeb()));

@@ -17,8 +17,8 @@ public class Colaborador extends Usuario {
     public Colaborador() {
         super();
     }
-    public Colaborador(String nickname, String nombre, String apellido, String correo,String imagen, LocalDate fechaNacimiento) {
-        super(nickname, nombre, apellido, correo,imagen,fechaNacimiento);
+    public Colaborador(String nickname, String nombre, String apellido,String password, String correo,String imagen, LocalDate fechaNacimiento) {
+        super(nickname, nombre, apellido, password, correo,imagen,fechaNacimiento);
     }
 
     // Getters y Setters

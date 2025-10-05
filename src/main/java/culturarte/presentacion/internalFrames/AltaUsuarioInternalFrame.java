@@ -180,8 +180,8 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
-            if (contrasenia != confirmContrasenia){
+            //Valido la igualdad de las contraseñas
+            if (!contrasenia.equals(confirmContrasenia)){
                 JOptionPane.showMessageDialog(this,
                         "Las contrasñas deben ser iguales",
                         "Error",
@@ -204,9 +204,9 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
             if ("Proponente".equals(tipo)) {
                 String bio = tfBiografia.getText().trim();
                 String sitioWeb = tfSitioWeb.getText().trim();
-                usuario = new DTProponente(nickname, nombre, apellido, correo,fechaNacimiento,rutaFinal,direccion,bio,sitioWeb);
+                usuario = new DTProponente(nickname, nombre, apellido, contrasenia, correo,fechaNacimiento,rutaFinal,direccion,bio,sitioWeb);
             } else {
-                usuario = new DTColaborador(nickname, nombre, apellido, correo,fechaNacimiento,rutaFinal);
+                usuario = new DTColaborador(nickname, nombre, apellido, contrasenia, correo,fechaNacimiento,rutaFinal);
             }
 
             try {

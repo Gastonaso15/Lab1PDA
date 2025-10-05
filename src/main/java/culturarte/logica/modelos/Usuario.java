@@ -33,10 +33,11 @@ public class Usuario {
 
     // Constructores
     public Usuario() {}
-    public Usuario(String nickname, String nombre, String apellido, String correo,String imagen,LocalDate fechaNacimiento) {
+    public Usuario(String nickname, String nombre, String apellido, String password, String correo,String imagen,LocalDate fechaNacimiento) {
         this.nickname = nickname;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.password = password;
         this.correo = correo;
         this.imagen = imagen;
         this.fechaNacimiento = fechaNacimiento;

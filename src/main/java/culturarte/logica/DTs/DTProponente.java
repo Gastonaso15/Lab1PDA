@@ -17,14 +17,14 @@ public class DTProponente extends DTUsuario {
         this.setBio("");
         this.setSitioWeb("");
     }
-    public DTProponente(String nickname, String nombre, String apellido, String correo, LocalDate fechaNacimiento, String imagen,String direccion, String bio, String sitioWeb) {
-        super(nickname, nombre, apellido, correo,fechaNacimiento,imagen);
+    public DTProponente(String nickname, String nombre, String apellido, String password, String correo, LocalDate fechaNacimiento, String imagen,String direccion, String bio, String sitioWeb) {
+        super(nickname, nombre, apellido, password, correo,fechaNacimiento,imagen);
         this.setDireccion(direccion);
         this.setBio(bio);
         this.setSitioWeb(sitioWeb);
     }
-    public DTProponente(String nickname, String nombre, String apellido, String correo, LocalDate fechaNacimiento, String imagen,String direccion, String bio, String sitioWeb,List<DTPropuesta> propuestas) {
-        super(nickname, nombre, apellido, correo,fechaNacimiento,imagen);
+    public DTProponente(String nickname, String nombre, String apellido, String password, String correo, LocalDate fechaNacimiento, String imagen,String direccion, String bio, String sitioWeb,List<DTPropuesta> propuestas) {
+        super(nickname, nombre, apellido, password, correo,fechaNacimiento,imagen);
         this.setDireccion(direccion);
         this.setBio(bio);
         this.setSitioWeb(sitioWeb);

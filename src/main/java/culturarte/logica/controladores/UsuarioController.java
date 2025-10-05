@@ -27,9 +27,9 @@ public class UsuarioController implements IUsuarioController {
 
         //--Si pasa los 2 if anteriores lo creo y persisto--
         if (dtu instanceof DTProponente dtp) {  //el instanceof funciona porque DTProponente extiende DTUsuario
-            u = new Proponente(dtp.getNickname(), dtp.getNombre(), dtp.getApellido(), dtp.getCorreo(), dtp.getImagen(), dtp.getFechaNacimiento(), dtp.getDireccion(), dtp.getBio(), dtp.getSitioWeb());
+            u = new Proponente(dtp.getNickname(), dtp.getNombre(), dtp.getApellido(),dtp.getPassword(), dtp.getCorreo(), dtp.getImagen(), dtp.getFechaNacimiento(), dtp.getDireccion(), dtp.getBio(), dtp.getSitioWeb());
         } else if (dtu instanceof DTColaborador dtc) {
-            u = new Colaborador(dtc.getNickname(), dtc.getNombre(), dtc.getApellido(), dtc.getCorreo(), dtc.getImagen(), dtc.getFechaNacimiento());
+            u = new Colaborador(dtc.getNickname(), dtc.getNombre(), dtc.getApellido(), dtc.getPassword(), dtc.getCorreo(), dtc.getImagen(), dtc.getFechaNacimiento());
         } else {
             throw new Exception("Tipo de usuario no reconocido");
         }
@@ -66,6 +66,7 @@ public class UsuarioController implements IUsuarioController {
 
         String nombre = colab.getNombre();
         String apellido = colab.getApellido();
+        String password = colab.getPassword();
         String correo = colab.getCorreo();
         LocalDate fechaNacimiento = colab.getFechaNacimiento();
         String imagen = colab.getImagen();
@@ -107,6 +108,7 @@ public class UsuarioController implements IUsuarioController {
                     prop.getProponente().getNickname(),
                     prop.getProponente().getNombre(),
                     prop.getProponente().getApellido(),
+                    prop.getProponente().getPassword(),
                     prop.getProponente().getCorreo(),
                     prop.getProponente().getFechaNacimiento(),
                     prop.getProponente().getImagen(),
@@ -162,7 +164,7 @@ public class UsuarioController implements IUsuarioController {
             dtColaboraciones.add(dtColaboracion);
         }
 
-        return new DTColaborador(nickname, nombre, apellido, correo, fechaNacimiento, imagen, dtColaboraciones);
+        return new DTColaborador(nickname, nombre, apellido, correo,password,fechaNacimiento, imagen, dtColaboraciones);
     }
 
     @Override
@@ -177,6 +179,7 @@ public class UsuarioController implements IUsuarioController {
         String nombre = prop.getNombre();
         String apellido = prop.getApellido();
         String correo = prop.getCorreo();
+        String password = prop.getPassword();
         LocalDate fechaNacimiento = prop.getFechaNacimiento();
         String direccion = prop.getDireccion();
         String biografia = prop.getBio();
@@ -243,7 +246,7 @@ public class UsuarioController implements IUsuarioController {
             dtPropuestas.add(dtp);
         }
 
-        return new DTProponente(nickname,nombre, apellido,correo,fechaNacimiento, imagen, direccion, biografia, sitioWeb, dtPropuestas);
+        return new DTProponente(nickname,nombre, apellido, password,correo,fechaNacimiento, imagen, direccion, biografia, sitioWeb, dtPropuestas);
     }
 
     @Override
