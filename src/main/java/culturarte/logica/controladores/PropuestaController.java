@@ -186,33 +186,33 @@ public class PropuestaController implements IPropuestaController {
 
         pm.actualizarPropuesta(propuesta);
     }
-    public static void evaluarPropuesta(String titulo, boolean publicar) throws Exception {
+    public DTPropuesta getDTPropuesta(String titulo) {
+        PropuestaManejador pm = PropuestaManejador.getInstance();
+        Propuesta p = pm.obtenerPropuestaPorTitulo(titulo);
+        return (p != null) ? p.getDataType() : null;
+    }
+    @Override
+    public List<DTPropuesta> getPropuestasIngresadas() {
+        PropuestaManejador pm = PropuestaManejador.getInstance();
+        List<DTPropuesta> propuestas = pm.obtenerPropuestasPorEstado(EstadoPropuesta.INGRESADA);
+        return propuestas;
+    }
+
+    public void evaluarPropuesta(String titulo, boolean publicar) throws Exception{
+
         PropuestaManejador pm = PropuestaManejador.getInstance();
         Propuesta p = pm.obtenerPropuestaPorTitulo(titulo);
 
         if (p == null) {
-            throw new Exception("la propuesta no existe.");
+            throw new Exception("La propuesta no existe");
         }
-        if(p.getEstadoActual() != EstadoPropuesta.INGRESADA){
-            throw new Exception("La propuesta no esta ingresada");
-        }
-        if(publicar)
-            p.setEstadoActual(EstadoPropuesta.PUBLICADA);
-        else p.setEstadoActual(EstadoPropuesta.CANCELADA);
 
+        EstadoPropuesta nuevoEstado = publicar ? EstadoPropuesta.PUBLICADA : EstadoPropuesta.CANCELADA;
+
+        p.setEstadoActual(nuevoEstado);
+
+        PropuestaEstado nuevo = new PropuestaEstado(p, nuevoEstado, LocalDate.now());
+        p.agregarPropuestaEstado(nuevo);
         pm.actualizarPropuesta(p);
-    }
-    public List<DTPropuesta> getPropuestasIngresadas(){
-        PropuestaManejador pm = PropuestaManejador.getInstance();
-        return pm.obtenerPropuestasPorEstado(EstadoPropuesta.INGRESADA);
-    }
-    
-    public DTPropuesta getDTPropuesta(String titulo) {
-        PropuestaManejador pm = PropuestaManejador.getInstance();
-        Propuesta propuesta = pm.obtenerPropuestaPorTitulo(titulo);
-        if (propuesta != null) {
-            return new DTPropuesta(propuesta);
-        }
-        return null;
     }
 }

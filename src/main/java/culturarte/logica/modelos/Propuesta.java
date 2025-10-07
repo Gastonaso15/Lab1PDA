@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import culturarte.logica.DTs.DTPropuesta;
 
 @Entity
 @Table(name = "propuestas")
@@ -111,5 +112,21 @@ public class Propuesta {
 
         public List<TipoRetorno> getTiposRetorno() { return tiposRetorno; }
         public void setTiposRetorno(List<TipoRetorno> tiposRetorno) { this.tiposRetorno = tiposRetorno; }
+
+    public DTPropuesta getDataType() {
+        DTPropuesta dt = new DTPropuesta();
+        dt.setTitulo(this.titulo);
+        dt.setDescripcion(this.descripcion);
+        dt.setLugar(this.lugar);
+        dt.setFechaPrevista(this.fechaPrevista);
+        dt.setPrecioEntrada(this.precioEntrada);
+        dt.setMontoNecesario(this.montoNecesario);
+        dt.setFechaPublicacion(this.fechaPublicacion);
+        dt.setImagen(this.imagen);
+        return dt;
+    }
+    public void agregarPropuestaEstado(PropuestaEstado nuevoEstado) {
+        this.historial.add(nuevoEstado);
+    }
 
 }

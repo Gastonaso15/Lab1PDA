@@ -111,7 +111,7 @@ public class EvaluarPropuestaInternalFrame extends JInternalFrame {
             boolean publicar = rbPublicar.isSelected();
 
             try{
-                PropuestaController.evaluarPropuesta(titulo, publicar);
+                propuestaController.evaluarPropuesta(titulo, publicar);
                 JOptionPane.showMessageDialog(this,"Propuesta evaluada con exito");
                 cargarPropuestas();
             } catch (Exception ex){
