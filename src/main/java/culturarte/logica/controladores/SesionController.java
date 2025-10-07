@@ -20,7 +20,7 @@ public class SesionController implements ISesionController{
                     u.getNombre(),
                     u.getApellido(),
                     u.getCorreo(),
-                    u instanceof Proponente ? "Proponente" : "Colaborador"
+                    u.getImagen()
             );
         } else {
             throw new RuntimeException("Datos incorrectos");

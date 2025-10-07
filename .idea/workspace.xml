@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="Arreglos para que funcine inicio de sesion">
+    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="Inicio de sesion con correo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/culturarte_app_jar/culturarte-app.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/culturarte_app_jar/culturarte-app.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/SesionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/SesionController.java" afterDir="false" />
@@ -283,7 +283,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759648949174</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Inicio de sesion con correo">
+      <option name="closed" value="true" />
+      <created>1759699915355</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1759699915355</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,7 +313,8 @@
     <MESSAGE value="Fondo principal de la app agregado y caso de Uso Alta Usuario en proceso" />
     <MESSAGE value="Caso de uso Alta de Perfil completado" />
     <MESSAGE value="Arreglos para que funcine inicio de sesion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arreglos para que funcine inicio de sesion" />
+    <MESSAGE value="Inicio de sesion con correo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Inicio de sesion con correo" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
