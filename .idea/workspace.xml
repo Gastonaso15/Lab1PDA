@@ -11,32 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="Inicio de sesion con correo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/EstacionDeTrabajo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/EstacionDeTrabajo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/persistence.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/EstacionDeTrabajo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/EstacionDeTrabajo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uploads/Swing/fondo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uploads/propuestas/Imagen1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uploads/propuestas/Imagen2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uploads/propuestas/Imagen3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uploads/propuestas/Imagen4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uploads/propuestas/Imagen5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uploads/usuarios/ImagenUC1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uploads/usuarios/ImagenUC2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uploads/usuarios/ImagenUC3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uploads/usuarios/ImagenUC4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uploads/usuarios/ImagenUC5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uploads/usuarios/ImagenUP1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uploads/usuarios/ImagenUP2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uploads/usuarios/ImagenUP3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uploads/usuarios/ImagenUP4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uploads/usuarios/ImagenUP5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uploads/usuarios/ImagenUP6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/uploads/usuarios/ImagenUP7.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
