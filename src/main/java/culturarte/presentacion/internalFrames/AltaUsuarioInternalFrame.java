@@ -16,7 +16,6 @@ import culturarte.logica.controladores.IUsuarioController;
 
 public class AltaUsuarioInternalFrame extends JInternalFrame {
 
-    //Creo los Fields
     private final JTextField tfNickname;
     private final JTextField tfNombre;
     private final JTextField tfApellido;
@@ -28,11 +27,8 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
     private final JTextField tfDireccion;
     private final JTextField tfBiografia;
     private final JTextField tfSitioWeb;
-    //Combo Box
     private final JComboBox<String> cbTipoUsuario;
-    //NO DEBERIA PEDIRLO A LA FABRICA EN VES DE ASI?????
     private final IUsuarioController UsuarioContr;
-    //CREO TO DO  CON EL .FORM AHORA
     private JPanel panel;
 
     public AltaUsuarioInternalFrame(IUsuarioController icu) {
@@ -42,7 +38,6 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
 
         UsuarioContr = icu;
 
-        //Jpanel Configuration
         panel = new JPanel(new GridLayout(0, 2, 5, 5));
 
         panel.add(new JLabel("Nickname:"));
@@ -95,7 +90,6 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
         cbTipoUsuario = new JComboBox<>(new String[]{"Colaborador","Proponente"});
         panel.add(cbTipoUsuario);
 
-        //Info extra si es Proponente
         JLabel lblDireccion = new JLabel("Dirección:");
         tfDireccion = new JTextField();
         lblDireccion.setVisible(false);
@@ -142,7 +136,6 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
 
         cancelar.addActionListener(e -> dispose());
 
-        //Action listeners of ACEPTAR
         aceptar.addActionListener(e -> {
             String nickname = tfNickname.getText().trim();
             String nombre = tfNombre.getText().trim();
@@ -183,7 +176,7 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
-            //Valido la igualdad de las contraseñas
+
             if (!contrasenia.equals(confirmContrasenia)){
                 JOptionPane.showMessageDialog(this,
                         "Las contrasñas deben ser iguales",

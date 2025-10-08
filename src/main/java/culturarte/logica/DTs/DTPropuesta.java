@@ -75,8 +75,7 @@ public class DTPropuesta {
         this.setEstadoActual(estado);
         this.setColaboraciones(colaboraciones);
     }
-    
-    // Constructor que toma un objeto Propuesta del modelo
+
     public DTPropuesta(culturarte.logica.modelos.Propuesta propuesta) {
         this.setTitulo(propuesta.getTitulo());
         this.setDescripcion(propuesta.getDescripcion());
@@ -86,13 +85,11 @@ public class DTPropuesta {
         this.setMontoNecesario(propuesta.getMontoNecesario());
         this.setFechaPublicacion(propuesta.getFechaPublicacion());
         this.setImagen(propuesta.getImagen());
-        
-        // Convertir Categoria a DTCategoria
+
         if (propuesta.getCategoria() != null) {
             this.setCategoria(new DTCategoria(propuesta.getCategoria().getNombre()));
         }
-        
-        // Convertir Proponente a DTProponente
+
         if (propuesta.getProponente() != null) {
             this.setDTProponente(new DTProponente(propuesta.getProponente().getNickname(), 
                 propuesta.getProponente().getNombre(), propuesta.getProponente().getApellido(), propuesta.getProponente().getPassword(),
@@ -100,13 +97,11 @@ public class DTPropuesta {
                 propuesta.getProponente().getImagen(), propuesta.getProponente().getDireccion(),
                 propuesta.getProponente().getBio(), propuesta.getProponente().getSitioWeb()));
         }
-        
-        // Convertir EstadoPropuesta a DTEstadoPropuesta
+
         if (propuesta.getEstadoActual() != null) {
             this.setEstadoActual(DTEstadoPropuesta.valueOf(propuesta.getEstadoActual().toString()));
         }
-        
-        // Convertir historial
+
         if (propuesta.getHistorial() != null) {
             List<DTPropuestaEstado> historialDT = new ArrayList<>();
             for (culturarte.logica.modelos.PropuestaEstado pe : propuesta.getHistorial()) {
@@ -114,8 +109,7 @@ public class DTPropuesta {
             }
             this.setHistorial(historialDT);
         }
-        
-        // Convertir colaboraciones
+
         if (propuesta.getColaboraciones() != null) {
             List<DTColaboracion> colaboracionesDT = new ArrayList<>();
             for (culturarte.logica.modelos.Colaboracion c : propuesta.getColaboraciones()) {
@@ -128,8 +122,7 @@ public class DTPropuesta {
             }
             this.setColaboraciones(colaboracionesDT);
         }
-        
-        // Convertir tipos de retorno
+
         if (propuesta.getTiposRetorno() != null) {
             List<DTTipoRetorno> tiposDT = new ArrayList<>();
             for (culturarte.logica.modelos.TipoRetorno tr : propuesta.getTiposRetorno()) {

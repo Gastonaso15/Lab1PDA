@@ -11,21 +11,15 @@
   <component name="ChangeListManager">
     <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="Caso de uso Alta de Perfil completado">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/DTs/DTUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/DTs/DTUsuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/ISesionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/ISesionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/SesionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/SesionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/EstacionDeTrabajo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/EstacionDeTrabajo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/uploads/usuarios/Santi_Image.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/DTs/DTUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/DTs/DTUsuario.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/init-db/RespaldoCulturarte.sql" beforeDir="false" afterPath="$PROJECT_DIR$/docker/init-db/RespaldoCulturarte.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/culturarte_app_jar/culturarte-app.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/culturarte_app_jar/culturarte-app.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/DTs/DTPropuesta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/DTs/DTPropuesta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/manejadores/UsuarioManejador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/manejadores/UsuarioManejador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/persistencia/JPAUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/persistencia/JPAUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/ISesionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/ISesionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/SesionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/SesionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/EstacionDeTrabajo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/EstacionDeTrabajo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/usuarios/0daa7660-0ff0-433f-bfa7-353bd462fd81_Santi_Image.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/usuarios/30cbb4b5-1bde-4776-b2ea-812fd5b728b3_Santi_Image.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/usuarios/6c002bab-97d9-488c-b779-fbc1d8c3b534_Santi_Image.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/usuarios/dd7f88fb-7d49-41ed-a438-702e36919ab8_Santi_Image.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

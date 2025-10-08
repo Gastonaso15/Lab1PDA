@@ -16,24 +16,20 @@ public class UsuarioController implements IUsuarioController {
     @Override
     public void crearUsuario(DTUsuario dtu) throws Exception {
         UsuarioManejador mu = UsuarioManejador.getInstance();
-        //->me fijo si el nick del usr a crear no existe ya<-
         Usuario u = mu.obtenerUsuarioPorNickname(dtu.getNickname());
         if (u != null)
             throw new Exception("El usuario con el nickname " + dtu.getNickname() + " ya esta registrado");
-        //->me fijo si el correo del usr a crear no existe ya<-
         u = mu.obtenerUsuarioPorCorreo(dtu.getCorreo());
         if (u != null)
             throw new Exception("El usuario con el correo " + dtu.getCorreo() + " ya esta registrado");
 
-        //--Si pasa los 2 if anteriores lo creo y persisto--
-        if (dtu instanceof DTProponente dtp) {  //el instanceof funciona porque DTProponente extiende DTUsuario
+        if (dtu instanceof DTProponente dtp) {
             u = new Proponente(dtp.getNickname(), dtp.getNombre(), dtp.getApellido(),dtp.getPassword(), dtp.getCorreo(), dtp.getImagen(), dtp.getFechaNacimiento(), dtp.getDireccion(), dtp.getBio(), dtp.getSitioWeb());
         } else if (dtu instanceof DTColaborador dtc) {
             u = new Colaborador(dtc.getNickname(), dtc.getNombre(), dtc.getApellido(), dtc.getPassword(), dtc.getCorreo(), dtc.getImagen(), dtc.getFechaNacimiento());
         } else {
             throw new Exception("Tipo de usuario no reconocido");
         }
-        //Llamo a la instancia del UsuarioManejador para persistir la logica
         mu.persistirUsuario(u);
     }
 
