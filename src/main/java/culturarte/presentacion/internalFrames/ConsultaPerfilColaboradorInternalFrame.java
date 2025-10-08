@@ -25,7 +25,7 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
     private final JPanel panelPropuestas;
 
     public ConsultaPerfilColaboradorInternalFrame(IUsuarioController icu) {
-        super("Consultar Perfil de Proponente", true, true, true, true);
+        super("Consultar Perfil de Colaborador", true, true, true, true);
         setSize(1000, 500);
         setLayout(new BorderLayout());
 

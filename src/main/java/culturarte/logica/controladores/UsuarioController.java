@@ -164,7 +164,7 @@ public class UsuarioController implements IUsuarioController {
             dtColaboraciones.add(dtColaboracion);
         }
 
-        return new DTColaborador(nickname, nombre, apellido, correo,password,fechaNacimiento, imagen, dtColaboraciones);
+        return new DTColaborador(nickname, nombre, apellido, password,correo,fechaNacimiento, imagen, dtColaboraciones);
     }
 
     @Override
