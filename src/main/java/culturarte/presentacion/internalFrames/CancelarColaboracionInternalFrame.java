@@ -136,25 +136,25 @@ public class CancelarColaboracionInternalFrame extends JInternalFrame {
             try {
                 DTPropuesta propuestaSeleccionada = jListPropuestas.getSelectedValue();
                 DTColaboracion colaboracionSeleccionada = jListColaboraciones.getSelectedValue();
-                
+
                 if (propuestaSeleccionada == null) {
                     JOptionPane.showMessageDialog(this, "Debe seleccionar una propuesta.");
                     return;
                 }
-                
+
                 if (colaboracionSeleccionada == null) {
                     JOptionPane.showMessageDialog(this, "Debe seleccionar una colaboración.");
                     return;
                 }
 
                 String nickname = colaboracionSeleccionada.getColaborador().getNickname();
-                
+
                 int confirmacion = JOptionPane.showConfirmDialog(this,
-                        "¿Está seguro que desea cancelar la colaboración de " + nickname + 
-                        " por $" + colaboracionSeleccionada.getMonto() + "?",
+                        "¿Está seguro que desea cancelar la colaboración de " + nickname +
+                                " por $" + colaboracionSeleccionada.getMonto() + "?",
                         "Confirmar cancelación",
                         JOptionPane.YES_NO_OPTION);
-                
+
                 if (confirmacion == JOptionPane.YES_OPTION) {
                     PropuestaContr.cancelarColaboracion(
                             colaboracionSeleccionada.getId()
