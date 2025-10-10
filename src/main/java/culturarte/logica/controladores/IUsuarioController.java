@@ -17,4 +17,7 @@ public interface IUsuarioController {
     List<String> devolverUsuariosSeguidos(String nicknameSeguidor);
     void dejarDeSeguirUsuario(String nickSeguidor, String nickSeguido);
     boolean UsuarioUnoYaSigueUsuarioDos(String nickSeguidor, String nickSeguido);
+    void marcarPropuestaFavorita(String nickname,String titulo);
+    void quitarPropuestaFavorita(String nickname,String titulo);
+    boolean UsuarioYaTienePropuestaFavorita(String nickSeguidor, String nickSeguido);
 }

@@ -249,4 +249,73 @@ public class UsuarioManejador{
             em.close();
         }
     }
+
+    public void agregarPropuestaFavorita(String nickname,String titulo){
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction t = em.getTransaction();
+        try {
+            t.begin();
+
+            Usuario usuario = em.createQuery(
+                            "SELECT u FROM Usuario u WHERE u.nickname = :nick", Usuario.class)
+                    .setParameter("nick", nickname)
+                    .getSingleResult();
+
+            Propuesta propuesta = em.createQuery("SELECT p FROM Propuesta p WHERE p.titulo = :titulo", Propuesta.class)
+                    .setParameter("titulo", titulo)
+                    .getSingleResult();
+
+            usuario.getPropuestasFavoritas().add(propuesta);
+
+            t.commit();
+        }  catch(Exception e) {
+            if (t.isActive()) t.rollback();
+            throw new PersistenceException("Error al agregar propuesta favorita", e);
+        } finally {
+            em.close();
+        }
+    }
+
+    public boolean comprobarUsuarioYaTienePropuestaFavorita(String nickname,String titulo) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            TypedQuery<Long> query = em.createQuery(
+                    "SELECT COUNT(pf) FROM Usuario u JOIN u.propuestasFavoritas pf " +
+                            "WHERE u.nickname = :nick AND pf.titulo = :titulo", Long.class);
+            query.setParameter("nick", nickname);
+            query.setParameter("titulo", titulo);
+
+            Long count = query.getSingleResult();
+            return count > 0;
+        } finally {
+            em.close();
+        }
+    }
+
+    public void eliminarPropuestaFavorita(String nickname,String titulo){
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction t = em.getTransaction();
+        try {
+            t.begin();
+
+            Usuario usuario = em.createQuery(
+                            "SELECT u FROM Usuario u WHERE u.nickname = :nick", Usuario.class)
+                    .setParameter("nick", nickname)
+                    .getSingleResult();
+
+            Propuesta propuesta = em.createQuery("SELECT p FROM Propuesta p WHERE p.titulo = :titulo", Propuesta.class)
+                    .setParameter("titulo", titulo)
+                    .getSingleResult();
+
+            usuario.getPropuestasFavoritas().remove(propuesta);
+
+            t.commit();
+        }  catch(Exception e) {
+            if (t.isActive()) t.rollback();
+            throw new PersistenceException("Error al eliminar propuesta favorita", e);
+        } finally {
+            em.close();
+        }
+    }
+
 }

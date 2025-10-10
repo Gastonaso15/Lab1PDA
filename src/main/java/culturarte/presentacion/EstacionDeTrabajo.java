@@ -5,7 +5,6 @@ import java.awt.*;
 
 import culturarte.logica.Fabrica;
 import culturarte.logica.controladores.IPropuestaController;
-import culturarte.logica.controladores.ISesionController;
 import culturarte.logica.controladores.IUsuarioController;
 import culturarte.presentacion.internalFrames.*;
 
@@ -18,7 +17,6 @@ public class EstacionDeTrabajo extends JFrame {
     private final JDesktopPane desktop;
     private IUsuarioController ICU;
     private IPropuestaController ICP;
-    private ISesionController ICS;
 
     public EstacionDeTrabajo() {
         this.desktop = new JDesktopPane();
@@ -52,7 +50,6 @@ public class EstacionDeTrabajo extends JFrame {
         Fabrica fabrica = Fabrica.getInstance();
         ICU = fabrica.getIUsuarioController();
         ICP = fabrica.getIPropuestaController();
-        ICS = fabrica.getISesionController();
     }
 
     private JMenuBar buildMenuBar() {

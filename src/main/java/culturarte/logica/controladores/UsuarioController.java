@@ -1,6 +1,7 @@
 package culturarte.logica.controladores;
 
 import culturarte.logica.DTs.*;
+import culturarte.logica.manejadores.PropuestaManejador;
 import culturarte.logica.manejadores.UsuarioManejador;
 import culturarte.logica.modelos.*;
 
@@ -292,6 +293,49 @@ public class UsuarioController implements IUsuarioController {
     public boolean UsuarioUnoYaSigueUsuarioDos(String nickSeguidor, String nickSeguido){
         UsuarioManejador mu = UsuarioManejador.getInstance();
         return mu.comprobarUsuarioUnoYaSigueUsuarioDos(nickSeguidor, nickSeguido);
+    }
+
+    @Override
+    public void marcarPropuestaFavorita(String nickname,String titulo) {
+        UsuarioManejador mu = UsuarioManejador.getInstance();
+        PropuestaManejador mp = PropuestaManejador.getInstance();
+        Usuario usuario = mu.obtenerUsuarioPorNickname(nickname);
+        Propuesta propuesta = mp.obtenerPropuestaPorTitulo(titulo);
+
+        if (usuario == null) {
+            throw new IllegalArgumentException("El usuario no puede ser nulo.");
+        }
+        if (propuesta == null) {
+            throw new IllegalArgumentException("La propuesta no puede ser nula.");
+        }
+        if (mu.comprobarUsuarioYaTienePropuestaFavorita(nickname, titulo)) {
+            throw new IllegalStateException("El usuario ya tiene marcada como favorita esta propuesta.");
+        }
+
+        mu.agregarPropuestaFavorita(nickname,titulo);
+    }
+
+    @Override
+    public void quitarPropuestaFavorita(String nickname,String titulo) {
+        UsuarioManejador mu = UsuarioManejador.getInstance();
+        PropuestaManejador mp = PropuestaManejador.getInstance();
+        Usuario usuario = mu.obtenerUsuarioPorNickname(nickname);
+        Propuesta propuesta = mp.obtenerPropuestaPorTitulo(titulo);
+
+        if (usuario == null) {
+            throw new IllegalArgumentException("El usuario no puede ser nulo.");
+        }
+        if (propuesta == null) {
+            throw new IllegalArgumentException("La propuesta no puede ser nula.");
+        }
+
+        mu.eliminarPropuestaFavorita(nickname,titulo);
+    }
+
+    @Override
+    public boolean UsuarioYaTienePropuestaFavorita(String nickSeguidor, String nickSeguido){
+        UsuarioManejador mu = UsuarioManejador.getInstance();
+        return mu.comprobarUsuarioYaTienePropuestaFavorita(nickSeguidor, nickSeguido);
     }
 
 }
