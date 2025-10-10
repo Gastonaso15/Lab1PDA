@@ -5,7 +5,6 @@ import culturarte.persistencia.JPAUtil;
 
 import jakarta.persistence.*;
 
-import java.awt.*;
 import java.util.List;
 
 public class UsuarioManejador{
@@ -176,7 +175,7 @@ public class UsuarioManejador{
         }
     }
 
-    public boolean usuarioUnoYaSigueUsuarioDos(String nicknameSeguidor, String nicknameSeguido) {
+    public boolean comprobarUsuarioUnoYaSigueUsuarioDos(String nicknameSeguidor, String nicknameSeguido) {
         EntityManager em = JPAUtil.getEntityManager();
         try {
             TypedQuery<Long> query = em.createQuery(

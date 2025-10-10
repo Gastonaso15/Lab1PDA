@@ -257,7 +257,7 @@ public class UsuarioController implements IUsuarioController {
         if (seguidor.getNickname().equals(seguido.getNickname())) {
             throw new IllegalArgumentException("Un usuario no puede seguirse a sí mismo.");
         }
-        if (mu.usuarioUnoYaSigueUsuarioDos(nickSeguidor, nickSeguido)) {
+        if (mu.comprobarUsuarioUnoYaSigueUsuarioDos(nickSeguidor, nickSeguido)) {
             throw new IllegalStateException("El usuario ya sigue a este usuario.");
         }
 
@@ -286,6 +286,12 @@ public class UsuarioController implements IUsuarioController {
         }
 
         mu.eliminarSeguimiento(nickSeguidor, nickSeguido);
+    }
+
+    @Override
+    public boolean UsuarioUnoYaSigueUsuarioDos(String nickSeguidor, String nickSeguido){
+        UsuarioManejador mu = UsuarioManejador.getInstance();
+        return mu.comprobarUsuarioUnoYaSigueUsuarioDos(nickSeguidor, nickSeguido);
     }
 
 }
