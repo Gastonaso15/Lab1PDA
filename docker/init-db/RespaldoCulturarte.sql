@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `categorias`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categorias` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `categoriaPadre_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `FKliaexxwvcnq95gwhl053bdie4` (`categoriaPadre_id`),
@@ -53,7 +53,7 @@ CREATE TABLE `colaboraciones` (
   `id` bigint NOT NULL AUTO_INCREMENT,
   `fechaHora` datetime(6) DEFAULT NULL,
   `monto` double DEFAULT NULL,
-  `tipoRetorno` enum('ENTRADAS_GRATIS','PORCENTAJE_GANANCIAS') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tipoRetorno` enum('ENTRADAS_GRATIS','PORCENTAJE_GANANCIAS') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `colaborador_id` bigint DEFAULT NULL,
   `propuesta_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -99,6 +99,36 @@ INSERT INTO `colaboradores` VALUES (10),(11),(12),(13),(14),(15),(16),(17),(18),
 UNLOCK TABLES;
 
 --
+-- Table structure for table `comentarios`
+--
+
+DROP TABLE IF EXISTS `comentarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `comentarios` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `contenido` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fechaHora` datetime(6) DEFAULT NULL,
+  `propuesta_id` bigint NOT NULL,
+  `usuario_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKgi1gyjpwsvb1le6m332agui9b` (`propuesta_id`),
+  KEY `FKdts62yj83qe3k748cgcjvm48r` (`usuario_id`),
+  CONSTRAINT `FKdts62yj83qe3k748cgcjvm48r` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `FKgi1gyjpwsvb1le6m332agui9b` FOREIGN KEY (`propuesta_id`) REFERENCES `propuestas` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comentarios`
+--
+
+LOCK TABLES `comentarios` WRITE;
+/*!40000 ALTER TABLE `comentarios` DISABLE KEYS */;
+/*!40000 ALTER TABLE `comentarios` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `proponentes`
 --
 
@@ -106,9 +136,9 @@ DROP TABLE IF EXISTS `proponentes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `proponentes` (
-  `bio` varchar(2000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `direccion` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sitioWeb` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `bio` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `direccion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sitioWeb` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `id` bigint NOT NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `FKnnskygcfx4pnhrw762b0it9hy` FOREIGN KEY (`id`) REFERENCES `usuarios` (`id`)
@@ -134,7 +164,7 @@ DROP TABLE IF EXISTS `propuesta_tiposretorno`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `propuesta_tiposretorno` (
   `Propuesta_id` bigint NOT NULL,
-  `tiposRetorno` enum('ENTRADAS_GRATIS','PORCENTAJE_GANANCIAS') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `tiposRetorno` enum('ENTRADAS_GRATIS','PORCENTAJE_GANANCIAS') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   KEY `FKdpm0yfawyg4wfcqql9ui0qsgf` (`Propuesta_id`),
   CONSTRAINT `FKdpm0yfawyg4wfcqql9ui0qsgf` FOREIGN KEY (`Propuesta_id`) REFERENCES `propuestas` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -159,15 +189,15 @@ DROP TABLE IF EXISTS `propuestas`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `propuestas` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `descripcion` varchar(2000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `estadoActual` enum('INGRESADA','PUBLICADA','EN_FINANCIACION','FINANCIADA','NO_FINANCIADA','CANCELADA') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `descripcion` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `estadoActual` enum('INGRESADA','PUBLICADA','EN_FINANCIACION','FINANCIADA','NO_FINANCIADA','CANCELADA') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fechaPrevista` date DEFAULT NULL,
   `fechaPublicacion` date DEFAULT NULL,
-  `imagen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `lugar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imagen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `lugar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `montoNecesario` double DEFAULT NULL,
   `precioEntrada` double DEFAULT NULL,
-  `titulo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `titulo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `categoria_id` bigint DEFAULT NULL,
   `proponente_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -198,7 +228,7 @@ DROP TABLE IF EXISTS `propuestas_estados`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `propuestas_estados` (
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `estado` enum('INGRESADA','PUBLICADA','EN_FINANCIACION','FINANCIADA','NO_FINANCIADA','CANCELADA') COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `estado` enum('INGRESADA','PUBLICADA','EN_FINANCIACION','FINANCIADA','NO_FINANCIADA','CANCELADA') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fechaCambio` date DEFAULT NULL,
   `propuesta_id` bigint DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -233,7 +263,7 @@ CREATE TABLE `seguimientos` (
   KEY `FKe3hco1dfe8nspo78oxk25kug1` (`seguidor_id`),
   CONSTRAINT `FKb5qfn7w373khd24c4799k9d4j` FOREIGN KEY (`seguido_id`) REFERENCES `usuarios` (`id`),
   CONSTRAINT `FKe3hco1dfe8nspo78oxk25kug1` FOREIGN KEY (`seguidor_id`) REFERENCES `usuarios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=227 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=229 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -254,15 +284,15 @@ DROP TABLE IF EXISTS `usuarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuarios` (
-  `tipo_usuario` varchar(31) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo_usuario` varchar(31) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `id` bigint NOT NULL AUTO_INCREMENT,
-  `apellido` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `correo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `apellido` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `correo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `fechaNacimiento` date DEFAULT NULL,
-  `imagen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `nickname` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `imagen` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `nickname` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_cdmw5hxlfj78uf4997i3qyyw5` (`correo`),
   UNIQUE KEY `UK_rhly81kdno827noroj2qabux` (`nickname`)
@@ -275,7 +305,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES ('Proponente',1,'Rubino','horacio.rubino@guambia.com.uy','1962-02-25','uploads/usuarios/ImagenUP1.jpg','hrubino','Horacio',1234),('Proponente',2,'Buscaglia','Martin.bus@agadu.org.uy','1972-06-14','uploads/usuarios/ImagenUP2.jpg','mbusca','Martín',1234),('Proponente',3,'Guido','hector.gui@elgalpon.org.uy','1954-01-07','uploads/usuarios/ImagenUP5.jpg','hectorg','Héctor',1234),('Proponente',4,'Cardozo','tabare.car@agadu.org.uy','1971-07-24','uploads/usuarios/ImagenUP3.jpg','tabarec','Tabaré',1234),('Proponente',5,'Silva','Cachila.sil@c1080.org.uy','1947-01-01','uploads/usuarios/ImagenUP4.jpg','cachilas','Waldemar \"Cachila\"',1234),('Proponente',6,'Bocca','juliobocca@sodre.com.uy','1967-03-16',NULL,'juliob','Julio',1234),('Proponente',7,'Parodi','diego@efectocine.com','1975-01-01',NULL,'diegop','Diego',1234),('Proponente',8,'Herrera','kairoher@pilsenrock.com.uy','1840-04-25','uploads/usuarios/ImagenUP6.jpg','kairoh','Kairo',1234),('Proponente',9,'Bardo','losbardo@bardocientifico.com','1980-10-31','uploads/usuarios/ImagenUP7.jpg','losBardo','Los',1234),('Colaborador',10,'Henderson','Robin.h@tinglesa.com.uy','1940-08-03',NULL,'robinh','Robin',1234),('Colaborador',11,'Tinelli','mareclot@ideasdelsur.com.ar','1960-04-01','uploads/usuarios/ImagenUC1.jpg','marcelot','Marcelo',1234),('Colaborador',12,'Novick','edgardo@novick.com.uy','1952-07-17','uploads/usuarios/ImagenUC2.jpg','novick','Edgardo',1234),('Colaborador',13,'Puglia','puglia@alpanpan.com.uy','1950-01-28','uploads/usuarios/ImagenUC3.jpg','sergiop','Sergio',1234),('Colaborador',14,'Recoba','chino@trico.org.uy','1976-03-17',NULL,'chino','Alvaro',1234),('Colaborador',15,'Pacheco','eltony@manya.org.uy','1955-02-14','uploads/usuarios/ImagenUC4.jpg','tonyp','Antonio',1234),('Colaborador',16,'Jodal','jodal@artech.com.uy','1960-08-09','uploads/usuarios/ImagenUC5.jpg','nicoJ','Nicolás',1234),('Colaborador',17,'Perez','juanp@elpueblo.com','1970-01-01',NULL,'juanP','Juan',1234),('Colaborador',18,'Gómez','menganog@elpueblo.com','1982-02-02',NULL,'Mengano','Mengano',1234),('Colaborador',19,'López','pere@elpueblo.com','1985-03-03',NULL,'Perengano','Perengano',1234),('Colaborador',20,'Jacinta','jacinta@elpueblo.com','1990-04-04',NULL,'Tiajaci','Tía',1234);
+INSERT INTO `usuarios` VALUES ('Proponente',1,'Rubino','horacio.rubino@guambia.com.uy','1962-02-25','uploads/usuarios/ImagenUP1.jpg','hrubino','Horacio','1234'),('Proponente',2,'Buscaglia','Martin.bus@agadu.org.uy','1972-06-14','uploads/usuarios/ImagenUP2.jpg','mbusca','Martín','1234'),('Proponente',3,'Guido','hector.gui@elgalpon.org.uy','1954-01-07','uploads/usuarios/ImagenUP5.jpg','hectorg','Héctor','1234'),('Proponente',4,'Cardozo','tabare.car@agadu.org.uy','1971-07-24','uploads/usuarios/ImagenUP3.jpg','tabarec','Tabaré','1234'),('Proponente',5,'Silva','Cachila.sil@c1080.org.uy','1947-01-01','uploads/usuarios/ImagenUP4.jpg','cachilas','Waldemar \"Cachila\"','1234'),('Proponente',6,'Bocca','juliobocca@sodre.com.uy','1967-03-16',NULL,'juliob','Julio','1234'),('Proponente',7,'Parodi','diego@efectocine.com','1975-01-01',NULL,'diegop','Diego','1234'),('Proponente',8,'Herrera','kairoher@pilsenrock.com.uy','1840-04-25','uploads/usuarios/ImagenUP6.jpg','kairoh','Kairo','1234'),('Proponente',9,'Bardo','losbardo@bardocientifico.com','1980-10-31','uploads/usuarios/ImagenUP7.jpg','losBardo','Los','1234'),('Colaborador',10,'Henderson','Robin.h@tinglesa.com.uy','1940-08-03',NULL,'robinh','Robin','1234'),('Colaborador',11,'Tinelli','mareclot@ideasdelsur.com.ar','1960-04-01','uploads/usuarios/ImagenUC1.jpg','marcelot','Marcelo','1234'),('Colaborador',12,'Novick','edgardo@novick.com.uy','1952-07-17','uploads/usuarios/ImagenUC2.jpg','novick','Edgardo','1234'),('Colaborador',13,'Puglia','puglia@alpanpan.com.uy','1950-01-28','uploads/usuarios/ImagenUC3.jpg','sergiop','Sergio','1234'),('Colaborador',14,'Recoba','chino@trico.org.uy','1976-03-17',NULL,'chino','Alvaro','1234'),('Colaborador',15,'Pacheco','eltony@manya.org.uy','1955-02-14','uploads/usuarios/ImagenUC4.jpg','tonyp','Antonio','1234'),('Colaborador',16,'Jodal','jodal@artech.com.uy','1960-08-09','uploads/usuarios/ImagenUC5.jpg','nicoJ','Nicolás','1234'),('Colaborador',17,'Perez','juanp@elpueblo.com','1970-01-01',NULL,'juanP','Juan','1234'),('Colaborador',18,'Gómez','menganog@elpueblo.com','1982-02-02',NULL,'Mengano','Mengano','1234'),('Colaborador',19,'López','pere@elpueblo.com','1985-03-03',NULL,'Perengano','Perengano','1234'),('Colaborador',20,'Jacinta','jacinta@elpueblo.com','1990-04-04',NULL,'Tiajaci','Tía','1234');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -314,4 +344,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-09-10  7:40:40
+-- Dump completed on 2025-10-14 15:57:13
