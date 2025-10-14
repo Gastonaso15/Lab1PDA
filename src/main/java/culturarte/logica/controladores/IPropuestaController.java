@@ -2,6 +2,7 @@ package culturarte.logica.controladores;
 
 import culturarte.logica.DTs.DTCategoria;
 import culturarte.logica.DTs.DTColaboracion;
+import culturarte.logica.DTs.DTComentario;
 import culturarte.logica.DTs.DTPropuesta;
 import culturarte.logica.DTs.DTEstadoPropuesta;
 
@@ -29,4 +30,6 @@ public interface IPropuestaController {
     List<DTColaboracion> obtenerTodasLasColaboraciones();
     void evaluarPropuesta(String titulo, boolean publicar) throws Exception;
     void publicarPropuesta(String titulo) throws Exception;
+    void agregarComentario(String tituloPropuesta, String nicknameUsuario, String contenido) throws Exception;
+    List<DTComentario> obtenerComentariosPropuesta(String tituloPropuesta);
 }

@@ -56,6 +56,7 @@ public class PropuestaManejador {
         for (Propuesta p : propuestas) {
             p.getHistorial().size();
             p.getColaboraciones().size();
+            p.getComentarios().size();
             p.getTiposRetorno().size();
         }
         em.close();
@@ -100,6 +101,13 @@ public class PropuestaManejador {
                 }
             }
 
+            List<DTComentario> comentarios = new ArrayList<>();
+            if (p.getComentarios() != null) {
+                for (Comentario c : p.getComentarios()) {
+                    comentarios.add(c.getDataType());
+                }
+            }
+
             DTProponente dtProp = new DTProponente();
             dtProp.setNombre(p.getProponente().getNombre());
             dtProp.setApellido(p.getProponente().getApellido());
@@ -119,6 +127,7 @@ public class PropuestaManejador {
             dt.setEstadoActual(dtEstadoPropuesta);
             dt.setHistorial(historial);
             dt.setColaboraciones(colaboraciones);
+            dt.setComentarios(comentarios);
             dt.setTiposRetorno(tiposRetorno);
 
             dtPropuestas.add(dt);
@@ -359,6 +368,21 @@ public class PropuestaManejador {
         };
 
         return dtColaboraciones;
+    }
+
+    public void persistirComentario(Comentario comentario) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction t = em.getTransaction();
+        try {
+            t.begin();
+            em.persist(comentario);
+            t.commit();
+        } catch(Exception e) {
+            if (t.isActive()) t.rollback();
+            throw new PersistenceException("Error al persistir comentario", e);
+        } finally {
+            em.close();
+        }
     }
 
 

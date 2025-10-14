@@ -19,6 +19,7 @@ public class DTPropuesta {
     private DTEstadoPropuesta estadoActual;
     private List<DTPropuestaEstado> historial = new ArrayList<>();
     private List<DTColaboracion> colaboraciones = new ArrayList<>();
+    private List<DTComentario> comentarios = new ArrayList<>();
     private List<DTTipoRetorno> tiposRetorno = new ArrayList<>();
 
     // Constructores
@@ -130,6 +131,14 @@ public class DTPropuesta {
             }
             this.setTiposRetorno(tiposDT);
         }
+
+        if (propuesta.getComentarios() != null) {
+            List<DTComentario> comentariosDT = new ArrayList<>();
+            for (culturarte.logica.modelos.Comentario c : propuesta.getComentarios()) {
+                comentariosDT.add(c.getDataType());
+            }
+            this.setComentarios(comentariosDT);
+        }
     }
 
     // Funciones
@@ -185,6 +194,9 @@ public class DTPropuesta {
 
     public List<DTColaboracion> getColaboraciones() { return colaboraciones; }
     public void setColaboraciones(List<DTColaboracion> colaboraciones) { this.colaboraciones = colaboraciones; }
+
+    public List<DTComentario> getComentarios() { return comentarios; }
+    public void setComentarios(List<DTComentario> comentarios) { this.comentarios = comentarios; }
 
     public List<DTTipoRetorno> getTiposRetorno() { return tiposRetorno; }
     public void setTiposRetorno(List<DTTipoRetorno> tiposRetorno) { this.tiposRetorno = tiposRetorno; }

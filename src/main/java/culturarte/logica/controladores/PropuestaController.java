@@ -2,6 +2,7 @@ package culturarte.logica.controladores;
 
 import culturarte.logica.DTs.DTCategoria;
 import culturarte.logica.DTs.DTColaboracion;
+import culturarte.logica.DTs.DTComentario;
 import culturarte.logica.DTs.DTEstadoPropuesta;
 import culturarte.logica.DTs.DTPropuesta;
 import culturarte.logica.manejadores.PropuestaManejador;
@@ -214,5 +215,47 @@ public class PropuestaController implements IPropuestaController {
         PropuestaEstado nuevo = new PropuestaEstado(p, nuevoEstado, LocalDate.now());
         p.agregarPropuestaEstado(nuevo);
         pm.actualizarPropuesta(p);
+    }
+
+    @Override
+    public void agregarComentario(String tituloPropuesta, String nicknameUsuario, String contenido) throws Exception {
+        PropuestaManejador pm = PropuestaManejador.getInstance();
+        UsuarioManejador um = UsuarioManejador.getInstance();
+
+        Propuesta propuesta = pm.obtenerPropuestaPorTitulo(tituloPropuesta);
+        if (propuesta == null) {
+            throw new Exception("La propuesta con título " + tituloPropuesta + " no existe.");
+        }
+
+        Usuario usuario = um.obtenerUsuarioPorNickname(nicknameUsuario);
+        if (usuario == null) {
+            throw new Exception("El usuario " + nicknameUsuario + " no existe.");
+        }
+
+        if (contenido == null || contenido.trim().isEmpty()) {
+            throw new Exception("El contenido del comentario no puede estar vacío.");
+        }
+
+        Comentario comentario = new Comentario(contenido.trim(), propuesta, usuario);
+        propuesta.agregarComentario(comentario);
+        pm.persistirComentario(comentario);
+        pm.actualizarPropuesta(propuesta);
+    }
+
+    @Override
+    public List<DTComentario> obtenerComentariosPropuesta(String tituloPropuesta) {
+        PropuestaManejador pm = PropuestaManejador.getInstance();
+        Propuesta propuesta = pm.obtenerPropuestaPorTitulo(tituloPropuesta);
+        
+        if (propuesta == null || propuesta.getComentarios() == null) {
+            return new ArrayList<>();
+        }
+        
+        List<DTComentario> comentariosDT = new ArrayList<>();
+        for (Comentario comentario : propuesta.getComentarios()) {
+            comentariosDT.add(comentario.getDataType());
+        }
+        
+        return comentariosDT;
     }
 }

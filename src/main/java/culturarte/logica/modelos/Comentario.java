@@ -47,4 +47,10 @@ public class Comentario {
 
     public Usuario getUsuario() { return usuario; }
     public void setUsuario(Usuario usuario) { this.usuario = usuario; }
+
+    public culturarte.logica.DTs.DTComentario getDataType() {
+        return new culturarte.logica.DTs.DTComentario(this);
+    }
 }
+
+
