@@ -9,6 +9,7 @@
     <class>culturarte.logica.modelos.Categoria</class>
         <class>culturarte.logica.modelos.Colaboracion</class>
         <class>culturarte.logica.modelos.Colaborador</class>
+        <class>culturarte.logica.modelos.Comentario</class>
         <class>culturarte.logica.modelos.EstadoPropuesta</class>
         <class>culturarte.logica.modelos.Proponente</class>
         <class>culturarte.logica.modelos.Propuesta</class>
@@ -33,6 +34,7 @@
         <class>culturarte.logica.modelos.Categoria</class>
         <class>culturarte.logica.modelos.Colaboracion</class>
         <class>culturarte.logica.modelos.Colaborador</class>
+        <class>culturarte.logica.modelos.Comentario</class>
         <class>culturarte.logica.modelos.EstadoPropuesta</class>
         <class>culturarte.logica.modelos.Proponente</class>
         <class>culturarte.logica.modelos.Propuesta</class>

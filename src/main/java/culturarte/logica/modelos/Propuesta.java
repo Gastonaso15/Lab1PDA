@@ -35,6 +35,8 @@ public class Propuesta {
         private List<PropuestaEstado> historial = new ArrayList<>();
         @OneToMany(mappedBy = "propuesta", cascade = CascadeType.ALL, orphanRemoval = true)
         private List<Colaboracion> colaboraciones = new ArrayList<>();
+        @OneToMany(mappedBy = "propuesta", cascade = CascadeType.ALL, orphanRemoval = true)
+        private List<Comentario> comentarios = new ArrayList<>();
         @ElementCollection(targetClass = TipoRetorno.class)
         @Enumerated(EnumType.STRING)
         @CollectionTable(
@@ -110,6 +112,9 @@ public class Propuesta {
         public List<Colaboracion> getColaboraciones() { return colaboraciones; }
         public void setColaboraciones(List<Colaboracion> colaboraciones) { this.colaboraciones = colaboraciones; }
 
+        public List<Comentario> getComentarios() { return comentarios; }
+        public void setComentarios(List<Comentario> comentarios) { this.comentarios = comentarios; }
+
         public List<TipoRetorno> getTiposRetorno() { return tiposRetorno; }
         public void setTiposRetorno(List<TipoRetorno> tiposRetorno) { this.tiposRetorno = tiposRetorno; }
 
@@ -127,6 +132,10 @@ public class Propuesta {
     }
     public void agregarPropuestaEstado(PropuestaEstado nuevoEstado) {
         this.historial.add(nuevoEstado);
+    }
+
+    public void agregarComentario(Comentario comentario) {
+        this.comentarios.add(comentario);
     }
 
 }
