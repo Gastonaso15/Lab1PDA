@@ -41,6 +41,14 @@ public class PropuestaManejador {
         try {
             TypedQuery<Propuesta> query = em.createQuery("SELECT p FROM Propuesta p WHERE p.titulo = :titulo", Propuesta.class).setParameter("titulo", titulo);
             pro = query.getSingleResult();
+            
+            // Cargar las colecciones lazy antes de cerrar la sesión
+            if (pro != null) {
+                pro.getHistorial().size();
+                pro.getColaboraciones().size();
+                pro.getComentarios().size();
+                pro.getTiposRetorno().size();
+            }
         } catch (NoResultException e) {
             pro = null;
         } finally {
@@ -143,6 +151,14 @@ public class PropuestaManejador {
             query.setParameter("estado", estado);
             List<Propuesta> propuestas = query.getResultList();
 
+            // Cargar las colecciones lazy antes de procesarlas
+            for (Propuesta p : propuestas) {
+                p.getHistorial().size();
+                p.getColaboraciones().size();
+                p.getComentarios().size();
+                p.getTiposRetorno().size();
+            }
+
             for (Propuesta p : propuestas) {
                 DTCategoria dtCategoria = null;
                 if (p.getCategoria() != null) {
@@ -182,6 +198,13 @@ public class PropuestaManejador {
                     }
                 }
 
+                List<DTComentario> comentarios = new ArrayList<>();
+                if (p.getComentarios() != null) {
+                    for (Comentario c : p.getComentarios()) {
+                        comentarios.add(c.getDataType());
+                    }
+                }
+
                 DTProponente dtProp = new DTProponente();
                 dtProp.setNombre(p.getProponente().getNombre());
                 dtProp.setApellido(p.getProponente().getApellido());
@@ -201,6 +224,7 @@ public class PropuestaManejador {
                 dt.setEstadoActual(dtEstadoPropuesta);
                 dt.setHistorial(historial);
                 dt.setColaboraciones(colaboraciones);
+                dt.setComentarios(comentarios);
                 dt.setTiposRetorno(tiposRetorno);
 
                 dtPropuestas.add(dt);

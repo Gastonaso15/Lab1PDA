@@ -9,19 +9,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="agregue la clase comentario y a su vez le agregué una lista de comentarios a las propuestas, este cambio se refleja en la bd">
+    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="incuí un método en el propuestaController para obtener y postear un comentario, además cree el DTComentario y actualicé varios dt que se vieron afectados por el cambio">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_10_2025_3_04_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_07_10_2025_3_04__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_10_2025_16_38_[Changes]1/DTColaborador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_10_2025_16_38_[Changes]1/DTProponente.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_10_2025_16_38_[Changes]1/DTPropuesta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_10_2025_16_38_[Changes]1/DTUsuario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_10_2025_16_38_[Changes]1/UsuarioController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_10_2025_16_38_[Changes]1/UsuarioManejador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_10_2025_16_38_[Changes]1/culturarte-app.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_10_2025_16_38_[Changes]1/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_08_10_2025_16_38__Changes_1.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/DTs/DTPropuesta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/DTs/DTPropuesta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/IPropuestaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/IPropuestaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/PropuestaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/PropuestaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/culturarte_app_jar/culturarte-app.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/culturarte_app_jar/culturarte-app.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/DTs/DTComentario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/DTs/DTComentario.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/manejadores/PropuestaManejador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/manejadores/PropuestaManejador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/modelos/Comentario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/modelos/Comentario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/EstacionDeTrabajo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/EstacionDeTrabajo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/DTs/DTComentario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/DTs/DTComentario.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/DTs/DTPropuesta.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/DTs/DTPropuesta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/IPropuestaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/IPropuestaController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/PropuestaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/PropuestaController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/manejadores/PropuestaManejador.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/manejadores/PropuestaManejador.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/modelos/Comentario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/modelos/Comentario.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/modelos/Propuesta.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/modelos/Propuesta.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/EstacionDeTrabajo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/EstacionDeTrabajo.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,7 +306,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760406406067</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="incuí un método en el propuestaController para obtener y postear un comentario, además cree el DTComentario y actualicé varios dt que se vieron afectados por el cambio">
+      <option name="closed" value="true" />
+      <created>1760413301188</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1760413301188</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,7 +336,8 @@
     <MESSAGE value="Fondo principal de la app agregado y caso de Uso Alta Usuario en proceso" />
     <MESSAGE value="Caso de uso Alta de Perfil completado" />
     <MESSAGE value="agregue la clase comentario y a su vez le agregué una lista de comentarios a las propuestas, este cambio se refleja en la bd" />
-    <option name="LAST_COMMIT_MESSAGE" value="agregue la clase comentario y a su vez le agregué una lista de comentarios a las propuestas, este cambio se refleja en la bd" />
+    <MESSAGE value="incuí un método en el propuestaController para obtener y postear un comentario, además cree el DTComentario y actualicé varios dt que se vieron afectados por el cambio" />
+    <option name="LAST_COMMIT_MESSAGE" value="incuí un método en el propuestaController para obtener y postear un comentario, además cree el DTComentario y actualicé varios dt que se vieron afectados por el cambio" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

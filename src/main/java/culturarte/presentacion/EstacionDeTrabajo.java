@@ -86,6 +86,7 @@ public class EstacionDeTrabajo extends JFrame {
         JMenuItem consultarColaboracion = new JMenuItem("Consultar Colaboracion a Propuesta");
         JMenuItem cancelarColaboracion = new JMenuItem("Cancelar Colaboracion a Propuesta");
         JMenuItem evaluarPropuesta = new JMenuItem("Evaluar Propuesta");
+        JMenuItem gestionarComentarios = new JMenuItem("Gestionar Comentarios");
 
         propuestas.add(altaPropuesta);
         propuestas.add(consultarPropuesta);
@@ -96,6 +97,7 @@ public class EstacionDeTrabajo extends JFrame {
         propuestas.add(consultarColaboracion);
         propuestas.add(cancelarColaboracion);
         propuestas.add(evaluarPropuesta);
+        propuestas.add(gestionarComentarios);
 
 
         altaPropuesta.addActionListener(e -> abrirAltaPropuesta());
@@ -107,6 +109,7 @@ public class EstacionDeTrabajo extends JFrame {
         consultarColaboracion.addActionListener(e ->abrirConsultarColaboracion());
         cancelarColaboracion.addActionListener(e ->abrirCancelarColaboracion());
         evaluarPropuesta.addActionListener(e -> abrirEvaluarPropuesta());
+        gestionarComentarios.addActionListener(e -> abrirGestionarComentarios());
 
         menu.add(usuarios);
         menu.add(propuestas);
@@ -196,6 +199,11 @@ public class EstacionDeTrabajo extends JFrame {
     }
     private void abrirEvaluarPropuesta() {
         EvaluarPropuestaInternalFrame frame = new EvaluarPropuestaInternalFrame(ICP);
+        abrir(frame);
+    }
+
+    private void abrirGestionarComentarios() {
+        GestionarComentariosInternalFrame frame = new GestionarComentariosInternalFrame(ICP);
         abrir(frame);
     }
 }
