@@ -52,6 +52,7 @@ public class Propuesta {
             this.setDescripcion(descripcion);
             this.setLugar(lugar);
             this.setFechaPrevista(fechaPrevista);
+            this.fechaPublicacion = LocalDate.now();
             this.setPrecioEntrada(precioEntrada);
             this.setMontoNecesario(montoNecesario);
             this.setImagen(imagen);

@@ -9,7 +9,7 @@ public class DTComentario {
     private DTUsuario usuario;
     private Long propuestaId;
 
-    // Constructores
+
     public DTComentario() {
         this.setContenido("");
         this.setFechaHora(null);

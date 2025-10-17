@@ -32,7 +32,7 @@ public class GestionarComentariosInternalFrame extends JInternalFrame {
 
         PropuestaContr = icp;
 
-        // Panel izquierdo - Lista de propuestas
+
         JPanel panelIzquierdo = crearPanelPropuestas();
         add(panelIzquierdo, BorderLayout.WEST);
 
