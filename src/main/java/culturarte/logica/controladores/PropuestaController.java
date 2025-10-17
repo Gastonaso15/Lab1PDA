@@ -137,13 +137,7 @@ public class PropuestaController implements IPropuestaController {
             throw new Exception("El tipo de retorno ingresado no es válido.");
         }
 
-        Colaboracion colaboracion = new Colaboracion(
-                propuesta,
-                colaborador,
-                monto,
-                retorno,
-                java.time.LocalDateTime.now()
-        );
+        Colaboracion colaboracion = new Colaboracion(propuesta, colaborador, monto, retorno, java.time.LocalDateTime.now());
 
         pm.persistirColaboracion(colaboracion);
     }
@@ -187,11 +181,13 @@ public class PropuestaController implements IPropuestaController {
 
         pm.actualizarPropuesta(propuesta);
     }
+
     public DTPropuesta getDTPropuesta(String titulo) {
         PropuestaManejador pm = PropuestaManejador.getInstance();
         Propuesta p = pm.obtenerPropuestaPorTitulo(titulo);
         return (p != null) ? p.getDataType() : null;
     }
+
     @Override
     public List<DTPropuesta> getPropuestasIngresadas() {
         PropuestaManejador pm = PropuestaManejador.getInstance();
@@ -246,16 +242,16 @@ public class PropuestaController implements IPropuestaController {
     public List<DTComentario> obtenerComentariosPropuesta(String tituloPropuesta) {
         PropuestaManejador pm = PropuestaManejador.getInstance();
         Propuesta propuesta = pm.obtenerPropuestaPorTitulo(tituloPropuesta);
-        
+
         if (propuesta == null || propuesta.getComentarios() == null) {
             return new ArrayList<>();
         }
-        
+
         List<DTComentario> comentariosDT = new ArrayList<>();
         for (Comentario comentario : propuesta.getComentarios()) {
             comentariosDT.add(comentario.getDataType());
         }
-        
+
         return comentariosDT;
     }
 }
