@@ -10,14 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="actualicé porque necesitaba solucionar que no se estaban persitiendo los datos del comentario, cree un internal frame para pruebas directamente desde la estacion de trabajo">
-      <change afterPath="$PROJECT_DIR$/src/test/java/culturarte/logica/controladores/SesionControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/culturarte/logica/controladores/UsuarioControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/SesionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/SesionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/culturarte/logica/controladores/PropuestaControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/culturarte/logica/controladores/PropuestaControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/SesionController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/SesionController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/culturarte/logica/controladores/PropuestaControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/culturarte/logica/controladores/PropuestaControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/culturarte/logica/controladores/SesionControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/culturarte/logica/controladores/SesionControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/culturarte/logica/controladores/UsuarioControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/culturarte/logica/controladores/UsuarioControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/culturarte/logica/controladores/SesionControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/culturarte/logica/controladores/SesionControllerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/culturarte/logica/controladores/UsuarioControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/culturarte/logica/controladores/UsuarioControllerTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +72,7 @@
     "Docker.docker-compose.yml.phpmyadmin: Compose Deployment.executor": "Run",
     "JAR Application.culturarte-app.jar (1).executor": "Run",
     "JAR Application.culturarte-app.jar.executor": "Run",
+    "JUnit.All in culturarte-app.executor": "Coverage",
     "JUnit.PropuestaControllerTest.executor": "Coverage",
     "JUnit.UsuarioControllerTest.executor": "Coverage",
     "JUnit.controladores in culturarte-app.executor": "Coverage",
@@ -110,7 +112,7 @@
       <recent name="culturarte.logica.controladores" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.controladores in culturarte-app">
+  <component name="RunManager" selected="JUnit.All in culturarte-app">
     <configuration name="EstacionDeTrabajo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="culturarte.presentacion.EstacionDeTrabajo" />
       <module name="culturarte-app" />
@@ -124,17 +126,10 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PropuestaControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="All in culturarte-app" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="culturarte-app" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="culturarte.logica.controladores.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="culturarte.logica.controladores" />
-      <option name="MAIN_CLASS_NAME" value="culturarte.logica.controladores.PropuestaControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -184,11 +179,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in culturarte-app" />
         <item itemvalue="JUnit.controladores in culturarte-app" />
         <item itemvalue="JUnit.culturarte.logica.controladores in culturarte-app" />
         <item itemvalue="JUnit.UsuarioControllerTest" />
         <item itemvalue="Application.EstacionDeTrabajo" />
-        <item itemvalue="JUnit.PropuestaControllerTest" />
       </list>
     </recent_temporary>
   </component>
