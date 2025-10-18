@@ -106,7 +106,7 @@ public class PropuestaControllerTest {
 
     @Test
     void devolverTodasLasPropuestas_DatosValidos_RetornaListaCorrectamente() {
-        List<DTPropuesta> lista = List.of(mock(DTPropuesta.class));
+        List<DTPropuesta> lista = List.of(mock(DTPropuesta.class),mock(DTPropuesta.class));
         when(propuestaManejadorMock.obtenerTodasLasPropuestas()).thenReturn(lista);
 
         List<DTPropuesta> resultado = controller.devolverTodasLasPropuestas();
@@ -115,7 +115,7 @@ public class PropuestaControllerTest {
 
     @Test
     void devolverPropuestasPorEstado_DatosValidos_RetornaListaCorrectamente() {
-        List<DTPropuesta> lista = List.of(mock(DTPropuesta.class));
+        List<DTPropuesta> lista = List.of(mock(DTPropuesta.class),mock(DTPropuesta.class));
         when(propuestaManejadorMock.obtenerPropuestasPorEstado(EstadoPropuesta.INGRESADA)).thenReturn(lista);
 
         List<DTPropuesta> resultado = controller.devolverPropuestasPorEstado(DTEstadoPropuesta.INGRESADA);
@@ -221,7 +221,7 @@ public class PropuestaControllerTest {
 
     @Test
     void devolverTodasLasCategorias_DatosValidos_RetornaListaCorrectamente() {
-        List<DTCategoria> lista = List.of(mock(DTCategoria.class));
+        List<DTCategoria> lista = List.of(mock(DTCategoria.class),mock(DTCategoria.class));
         when(propuestaManejadorMock.obtenerTodasLasCategorias()).thenReturn(lista);
 
         List<DTCategoria> resultado = controller.devolverTodasLasCategorias();
@@ -279,7 +279,7 @@ public class PropuestaControllerTest {
 
     @Test
     void obtenerTodasLasColaboraciones_DatosValidos_RetornaListaCorrectamente() {
-        List<DTColaboracion> lista = List.of(mock(DTColaboracion.class));
+        List<DTColaboracion> lista = List.of(mock(DTColaboracion.class),mock(DTColaboracion.class));
         when(propuestaManejadorMock.obtenerTodasLasColaboraciones()).thenReturn(lista);
 
         List<DTColaboracion> resultado = controller.obtenerTodasLasColaboraciones();
@@ -353,7 +353,7 @@ public class PropuestaControllerTest {
 
     @Test
     void getPropuestasIngresadas_DatosValidos_RetornaListaCorrectamente() {
-        List<DTPropuesta> lista = List.of(mock(DTPropuesta.class));
+        List<DTPropuesta> lista = List.of(mock(DTPropuesta.class),mock(DTPropuesta.class));
         when(propuestaManejadorMock.obtenerPropuestasPorEstado(EstadoPropuesta.INGRESADA)).thenReturn(lista);
 
         List<DTPropuesta> resultado = controller.getPropuestasIngresadas();
@@ -417,7 +417,7 @@ public class PropuestaControllerTest {
     }
 
     @Test
-    void agregarComentario_UsuarioNoExiste_LanzaExcepcion() throws Exception {
+    void agregarComentario_UsuarioNoExiste_LanzaExcepcion() {
         Propuesta mockPropuesta = mock(Propuesta.class);
         when(propuestaManejadorMock.obtenerPropuestaPorTitulo("Batman")).thenReturn(mockPropuesta);
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("Joe")).thenReturn(null);
