@@ -5,6 +5,7 @@ import culturarte.logica.DTs.DTColaboracion;
 import culturarte.logica.DTs.DTComentario;
 import culturarte.logica.DTs.DTPropuesta;
 import culturarte.logica.DTs.DTEstadoPropuesta;
+import culturarte.logica.DTs.DTUsuario;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -32,4 +33,5 @@ public interface IPropuestaController {
     void publicarPropuesta(String titulo) throws Exception;
     void agregarComentario(String tituloPropuesta, String nicknameUsuario, String contenido) throws Exception;
     List<DTComentario> obtenerComentariosPropuesta(String tituloPropuesta);
+    void extenderFinanciacion(DTUsuario usuario, String tituloPropuesta);
 }

@@ -1,10 +1,6 @@
 package culturarte.logica.controladores;
 
-import culturarte.logica.DTs.DTCategoria;
-import culturarte.logica.DTs.DTColaboracion;
-import culturarte.logica.DTs.DTComentario;
-import culturarte.logica.DTs.DTEstadoPropuesta;
-import culturarte.logica.DTs.DTPropuesta;
+import culturarte.logica.DTs.*;
 import culturarte.logica.manejadores.PropuestaManejador;
 import culturarte.logica.manejadores.UsuarioManejador;
 import culturarte.logica.modelos.*;
@@ -253,5 +249,12 @@ public class PropuestaController implements IPropuestaController {
         }
 
         return comentariosDT;
+    }
+
+    @Override
+    void extenderFinanciacion(DTUsuario usuario, String tituloPropuesta){
+        PropuestaManejador pm = PropuestaManejador.getInstance();
+        Propuesta propuesta = pm.obtenerPropuestaPorTitulo(tituloPropuesta);
+        propuesta.setFechaPrevista(propuesta.getFechaPrevista().plusMonths(1)); //Le agrego 1 mes a la fecha actual
     }
 }
