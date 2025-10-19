@@ -256,5 +256,6 @@ public class PropuestaController implements IPropuestaController {
         PropuestaManejador pm = PropuestaManejador.getInstance();
         Propuesta propuesta = pm.obtenerPropuestaPorTitulo(tituloPropuesta);
         propuesta.setFechaPrevista(propuesta.getFechaPrevista().plusMonths(1)); //Le agrego 1 mes a la fecha actual
+        pm.actualizarPropuesta(propuesta); //debo persistirla para que se efectúe el cambio en la base de datos
     }
 }
