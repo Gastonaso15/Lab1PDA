@@ -317,5 +317,23 @@ public class UsuarioManejador{
             em.close();
         }
     }
+    public List<String> obtenerFollowers(String nicknameSeguido) {
+        EntityManager em = JPAUtil.getEntityManager();
+        List<String> followers;
+        try {
+            TypedQuery<String> query = em.createQuery(
+                    "SELECT s.seguidor.nickname " +
+                            "FROM Seguimiento s " +
+                            "WHERE s.seguido.nickname = :nick", String.class
+            );
+            query.setParameter("nick", nicknameSeguido);
+            followers = query.getResultList(); // si no hay, devuelve lista vacía
+        } finally {
+            em.close();
+        }
+        return followers;
+    }
+
+
 
 }
