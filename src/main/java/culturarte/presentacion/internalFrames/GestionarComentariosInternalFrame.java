@@ -36,15 +36,12 @@ public class GestionarComentariosInternalFrame extends JInternalFrame {
         JPanel panelIzquierdo = crearPanelPropuestas();
         add(panelIzquierdo, BorderLayout.WEST);
 
-        // Panel central - Detalles de propuesta y comentarios
         JPanel panelCentral = crearPanelCentral();
         add(panelCentral, BorderLayout.CENTER);
 
-        // Panel derecho - Agregar comentario
         JPanel panelDerecho = crearPanelAgregarComentario();
         add(panelDerecho, BorderLayout.EAST);
 
-        // Cargar propuestas al inicializar
         cargarPropuestas();
     }
 
@@ -76,7 +73,6 @@ public class GestionarComentariosInternalFrame extends JInternalFrame {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(BorderFactory.createTitledBorder("Detalles de Propuesta y Comentarios"));
 
-        // Panel superior - Detalles de la propuesta
         JPanel panelDetalles = new JPanel(new GridLayout(3, 2, 5, 5));
         panelDetalles.setBorder(BorderFactory.createTitledBorder("Información de la Propuesta"));
 
@@ -93,7 +89,6 @@ public class GestionarComentariosInternalFrame extends JInternalFrame {
         lblEstadoPropuesta = new JLabel("Seleccione una propuesta");
         panelDetalles.add(lblEstadoPropuesta);
 
-        // Panel inferior - Lista de comentarios
         JPanel panelComentarios = new JPanel(new BorderLayout());
         panelComentarios.setBorder(BorderFactory.createTitledBorder("Comentarios"));
 
@@ -115,7 +110,6 @@ public class GestionarComentariosInternalFrame extends JInternalFrame {
 
         JPanel panelFormulario = new JPanel(new GridLayout(4, 1, 5, 5));
 
-        // Campo para nickname del usuario
         JPanel panelUsuario = new JPanel(new BorderLayout());
         panelUsuario.add(new JLabel("Nickname Usuario:"), BorderLayout.NORTH);
         tfNicknameUsuario = new JTextField();
@@ -123,7 +117,6 @@ public class GestionarComentariosInternalFrame extends JInternalFrame {
         panelUsuario.add(tfNicknameUsuario, BorderLayout.CENTER);
         panelFormulario.add(panelUsuario);
 
-        // Campo para el contenido del comentario
         JPanel panelComentario = new JPanel(new BorderLayout());
         panelComentario.add(new JLabel("Contenido del Comentario:"), BorderLayout.NORTH);
         txtNuevoComentario = new JTextArea(6, 20);
@@ -134,7 +127,6 @@ public class GestionarComentariosInternalFrame extends JInternalFrame {
         panelComentario.add(scrollComentario, BorderLayout.CENTER);
         panelFormulario.add(panelComentario);
 
-        // Botón para agregar comentario
         btnAgregarComentario = new JButton("Agregar Comentario");
         btnAgregarComentario.addActionListener(new ActionListener() {
             @Override
@@ -144,7 +136,6 @@ public class GestionarComentariosInternalFrame extends JInternalFrame {
         });
         panelFormulario.add(btnAgregarComentario);
 
-        // Panel de instrucciones
         JTextArea txtInstrucciones = new JTextArea(4, 20);
         txtInstrucciones.setEditable(false);
         txtInstrucciones.setBackground(getBackground());
@@ -236,12 +227,10 @@ public class GestionarComentariosInternalFrame extends JInternalFrame {
             
             JOptionPane.showMessageDialog(this, "Comentario agregado exitosamente.", 
                 "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            
-            // Limpiar campos
+
             tfNicknameUsuario.setText("");
             txtNuevoComentario.setText("");
-            
-            // Recargar comentarios
+
             cargarComentariosPropuesta();
             
         } catch (Exception e) {
@@ -250,7 +239,6 @@ public class GestionarComentariosInternalFrame extends JInternalFrame {
         }
     }
 
-    // Renderer personalizado para mostrar comentarios con formato
     private static class ComentarioListCellRenderer extends DefaultListCellRenderer {
         private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
 

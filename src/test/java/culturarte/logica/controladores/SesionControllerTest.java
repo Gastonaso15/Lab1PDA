@@ -36,7 +36,6 @@ public class SesionControllerTest {
 
     @Test
     void login_EntraConNickname_RetornaDTCorrectamente() {
-        // Arrange
         Usuario usuarioMock = mock(Usuario.class);
         when(usuarioMock.getNickname()).thenReturn("testUser");
         when(usuarioMock.getNombre()).thenReturn("Test");
@@ -48,10 +47,8 @@ public class SesionControllerTest {
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("testUser")).thenReturn(usuarioMock);
         when(usuarioManejadorMock.obtenerUsuarioPorCorreo("testUser")).thenReturn(null);
 
-        // Act
         DTUsuario result = controller.login("testUser", "password123");
 
-        // Assert
         assertNotNull(result);
         assertEquals("testUser", result.getNickname());
         assertEquals("Test", result.getNombre());
@@ -62,7 +59,6 @@ public class SesionControllerTest {
 
     @Test
     void login_EntraConCorreo_RetornaDTCorrectamente() {
-        // Arrange
         Usuario usuarioMock = mock(Usuario.class);
         when(usuarioMock.getNickname()).thenReturn("testUser");
         when(usuarioMock.getNombre()).thenReturn("Test");
@@ -74,10 +70,8 @@ public class SesionControllerTest {
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("test@example.com")).thenReturn(null);
         when(usuarioManejadorMock.obtenerUsuarioPorCorreo("test@example.com")).thenReturn(usuarioMock);
 
-        // Act
         DTUsuario result = controller.login("test@example.com", "password123");
 
-        // Assert
         assertNotNull(result);
         assertEquals("testUser", result.getNickname());
         assertEquals("Test", result.getNombre());
@@ -88,11 +82,9 @@ public class SesionControllerTest {
 
     @Test
     void login_UsuarioNoExiste_LanzaExcepcion() {
-        // Arrange
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("nonexistent")).thenReturn(null);
         when(usuarioManejadorMock.obtenerUsuarioPorCorreo("nonexistent")).thenReturn(null);
 
-        // Act & Assert
         RuntimeException exception = assertThrows(RuntimeException.class, () -> 
             controller.login("nonexistent", "password123"));
         
@@ -101,14 +93,12 @@ public class SesionControllerTest {
 
     @Test
     void login_ContraseniaIncorrecta_LanzaExcepcion() {
-        // Arrange
         Usuario usuarioMock = mock(Usuario.class);
         when(usuarioMock.getPassword()).thenReturn("correctPassword");
         
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("testUser")).thenReturn(usuarioMock);
         when(usuarioManejadorMock.obtenerUsuarioPorCorreo("testUser")).thenReturn(null);
 
-        // Act & Assert
         RuntimeException exception = assertThrows(RuntimeException.class, () -> 
             controller.login("testUser", "wrongPassword"));
         
@@ -117,7 +107,6 @@ public class SesionControllerTest {
 
     @Test
     void logout_DatosValidos_UsuarioActualQuedaNullCorrectamente() {
-        // Arrange - First login to set usuarioActual
         Usuario usuarioMock = mock(Usuario.class);
         when(usuarioMock.getNickname()).thenReturn("testUser");
         when(usuarioMock.getNombre()).thenReturn("Test");
@@ -132,17 +121,14 @@ public class SesionControllerTest {
         controller.login("testUser", "password123");
         assertNotNull(controller.getUsuarioActual());
 
-        // Act
         controller.logout();
 
-        // Assert
         assertNull(controller.getUsuarioActual());
         assertFalse(controller.isLoggedIn());
     }
 
     @Test
     void getUsuarioActual_UsuarioActualNoNull_RetornaUsuarioCorrectamente() {
-        // Arrange - First login to set usuarioActual
         Usuario usuarioMock = mock(Usuario.class);
         when(usuarioMock.getNickname()).thenReturn("testUser");
         when(usuarioMock.getNombre()).thenReturn("Test");
@@ -156,26 +142,21 @@ public class SesionControllerTest {
         
         controller.login("testUser", "password123");
 
-        // Act
         Usuario result = controller.getUsuarioActual();
 
-        // Assert
         assertNotNull(result);
         assertEquals(usuarioMock, result);
     }
 
     @Test
     void getUsuarioActual_UsuarioActualNull_RetornaNullCorrectamente() {
-        // Act
         Usuario result = controller.getUsuarioActual();
 
-        // Assert
         assertNull(result);
     }
 
     @Test
     void isLoggedIn_UsuarioActualNoNull_RetornaTrueCorrectamente() {
-        // Arrange - First login to set usuarioActual
         Usuario usuarioMock = mock(Usuario.class);
         when(usuarioMock.getNickname()).thenReturn("testUser");
         when(usuarioMock.getNombre()).thenReturn("Test");
@@ -189,19 +170,15 @@ public class SesionControllerTest {
         
         controller.login("testUser", "password123");
 
-        // Act
         boolean result = controller.isLoggedIn();
 
-        // Assert
         assertTrue(result);
     }
 
     @Test
     void isLoggedIn_UsuarioActualNull_RetornaFalseCorrectamente() {
-        // Act
         boolean result = controller.isLoggedIn();
 
-        // Assert
         assertFalse(result);
     }
 }

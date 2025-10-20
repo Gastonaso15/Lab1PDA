@@ -141,7 +141,6 @@ public class UsuarioControllerTest {
 
     @Test
     void devolverColaboradorPorNickname_DatosValidos_RetornaCorrectamente() throws Exception {
-        // Arrange
         Colaborador colaboradorMock = mock(Colaborador.class);
         when(colaboradorMock.getNickname()).thenReturn("colaborador1");
         when(colaboradorMock.getNombre()).thenReturn("Juan");
@@ -154,10 +153,8 @@ public class UsuarioControllerTest {
         
         when(usuarioManejadorMock.obtenerColaboradorPorNickname("colaborador1")).thenReturn(colaboradorMock);
 
-        // Act
         DTColaborador result = controller.devolverColaboradorPorNickname("colaborador1");
 
-        // Assert
         assertNotNull(result);
         assertEquals("colaborador1", result.getNickname());
         assertEquals("Juan", result.getNombre());
@@ -171,10 +168,8 @@ public class UsuarioControllerTest {
 
     @Test
     void devolverColaboradorPorNickname_ColaboradorNoExiste_LanzaExcepcion() {
-        // Arrange
         when(usuarioManejadorMock.obtenerColaboradorPorNickname("inexistente")).thenReturn(null);
 
-        // Act & Assert
         Exception exception = assertThrows(Exception.class, () -> 
             controller.devolverColaboradorPorNickname("inexistente"));
         
@@ -183,7 +178,6 @@ public class UsuarioControllerTest {
 
     @Test
     void devolverProponentePorNickname_DatosValidos_RetornaCorrectamente() throws Exception {
-        // Arrange
         Proponente proponenteMock = mock(Proponente.class);
         when(proponenteMock.getNickname()).thenReturn("proponente1");
         when(proponenteMock.getNombre()).thenReturn("María");
@@ -199,10 +193,8 @@ public class UsuarioControllerTest {
         
         when(usuarioManejadorMock.obtenerProponentePorNickname("proponente1")).thenReturn(proponenteMock);
 
-        // Act
         DTProponente result = controller.devolverProponentePorNickname("proponente1");
 
-        // Assert
         assertNotNull(result);
         assertEquals("proponente1", result.getNickname());
         assertEquals("María", result.getNombre());
@@ -219,10 +211,8 @@ public class UsuarioControllerTest {
 
     @Test
     void devolverProponentePorNickname_ProponenteNoExiste_LanzaExcepcion() {
-        // Arrange
         when(usuarioManejadorMock.obtenerProponentePorNickname("inexistente")).thenReturn(null);
 
-        // Act & Assert
         Exception exception = assertThrows(Exception.class, () -> 
             controller.devolverProponentePorNickname("inexistente"));
         
@@ -231,7 +221,6 @@ public class UsuarioControllerTest {
 
     @Test
     void seguirUsuario_DatosValidos_SigueCorrectamente() {
-        // Arrange
         Usuario seguidorMock = mock(Usuario.class);
         Usuario seguidoMock = mock(Usuario.class);
         when(seguidorMock.getNickname()).thenReturn("seguidor1");
@@ -241,20 +230,16 @@ public class UsuarioControllerTest {
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("seguido1")).thenReturn(seguidoMock);
         when(usuarioManejadorMock.comprobarUsuarioUnoYaSigueUsuarioDos("seguidor1", "seguido1")).thenReturn(false);
 
-        // Act
         controller.seguirUsuario("seguidor1", "seguido1");
 
-        // Assert
         verify(usuarioManejadorMock).persistirSeguimiento("seguidor1", "seguido1");
     }
 
     @Test
     void seguirUsuario_UsuariosNoExisten_LanzaExcepcion() {
-        // Arrange
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("seguidor1")).thenReturn(null);
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("seguido1")).thenReturn(null);
 
-        // Act & Assert
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> 
             controller.seguirUsuario("seguidor1", "seguido1"));
         
@@ -263,13 +248,11 @@ public class UsuarioControllerTest {
 
     @Test
     void seguirUsuario_SeguirASiMismo_LanzaExcepcion() {
-        // Arrange
         Usuario usuarioMock = mock(Usuario.class);
         when(usuarioMock.getNickname()).thenReturn("usuario1");
         
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("usuario1")).thenReturn(usuarioMock);
 
-        // Act & Assert
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> 
             controller.seguirUsuario("usuario1", "usuario1"));
         
@@ -278,7 +261,6 @@ public class UsuarioControllerTest {
 
     @Test
     void seguirUsuario_UsuarioYaSigue_LanzaExcepcion() {
-        // Arrange
         Usuario seguidorMock = mock(Usuario.class);
         Usuario seguidoMock = mock(Usuario.class);
         when(seguidorMock.getNickname()).thenReturn("seguidor1");
@@ -288,7 +270,6 @@ public class UsuarioControllerTest {
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("seguido1")).thenReturn(seguidoMock);
         when(usuarioManejadorMock.comprobarUsuarioUnoYaSigueUsuarioDos("seguidor1", "seguido1")).thenReturn(true);
 
-        // Act & Assert
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> 
             controller.seguirUsuario("seguidor1", "seguido1"));
         
@@ -297,20 +278,16 @@ public class UsuarioControllerTest {
 
     @Test
     void devolverUsuariosSeguidos_DatosValidos_RetornaListaCorrectamente() {
-        // Arrange
         List<String> usuariosSeguidos = List.of("usuario1", "usuario2", "usuario3");
         when(usuarioManejadorMock.obtenerUsuariosSeguidos("seguidor1")).thenReturn(usuariosSeguidos);
 
-        // Act
         List<String> result = controller.devolverUsuariosSeguidos("seguidor1");
 
-        // Assert
         assertEquals(usuariosSeguidos, result);
     }
 
     @Test
     void dejarDeSeguirUsuario_DatosValidos_DejaSeguirCorrectamente() {
-        // Arrange
         Usuario seguidorMock = mock(Usuario.class);
         Usuario seguidoMock = mock(Usuario.class);
         when(seguidorMock.getId()).thenReturn(1L);
@@ -319,20 +296,16 @@ public class UsuarioControllerTest {
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("seguidor1")).thenReturn(seguidorMock);
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("seguido1")).thenReturn(seguidoMock);
 
-        // Act
         controller.dejarDeSeguirUsuario("seguidor1", "seguido1");
 
-        // Assert
         verify(usuarioManejadorMock).eliminarSeguimiento("seguidor1", "seguido1");
     }
 
     @Test
     void dejarDeSeguirUsuario_UsuariosNulos_LanzaExcepcion() {
-        // Arrange
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("seguidor1")).thenReturn(null);
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("seguido1")).thenReturn(null);
 
-        // Act & Assert
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> 
             controller.dejarDeSeguirUsuario("seguidor1", "seguido1"));
         
@@ -341,13 +314,11 @@ public class UsuarioControllerTest {
 
     @Test
     void dejarDeSeguirUsuario_SiMismo_LanzaExcepcion() {
-        // Arrange
         Usuario usuarioMock = mock(Usuario.class);
         when(usuarioMock.getId()).thenReturn(1L);
         
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("usuario1")).thenReturn(usuarioMock);
 
-        // Act & Assert
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> 
             controller.dejarDeSeguirUsuario("usuario1", "usuario1"));
         
@@ -356,19 +327,15 @@ public class UsuarioControllerTest {
 
     @Test
     void usuarioUnoYaSigueUsuarioDos_DatosValidos_RetornaBoolCorresponde() {
-        // Arrange
         when(usuarioManejadorMock.comprobarUsuarioUnoYaSigueUsuarioDos("seguidor1", "seguido1")).thenReturn(true);
 
-        // Act
         boolean result = controller.UsuarioUnoYaSigueUsuarioDos("seguidor1", "seguido1");
 
-        // Assert
         assertTrue(result);
     }
 
     @Test
     void marcarPropuestaFavorita_DatosValidos_MarcaCorrectamente() {
-        // Arrange
         Usuario usuarioMock = mock(Usuario.class);
         Propuesta propuestaMock = mock(Propuesta.class);
         
@@ -376,19 +343,15 @@ public class UsuarioControllerTest {
         when(propuestaManejadorMock.obtenerPropuestaPorTitulo("Propuesta Test")).thenReturn(propuestaMock);
         when(usuarioManejadorMock.comprobarUsuarioYaTienePropuestaFavorita("usuario1", "Propuesta Test")).thenReturn(false);
 
-        // Act
         controller.marcarPropuestaFavorita("usuario1", "Propuesta Test");
 
-        // Assert
         verify(usuarioManejadorMock).agregarPropuestaFavorita("usuario1", "Propuesta Test");
     }
 
     @Test
     void marcarPropuestaFavorita_UsuarioNoExiste_LanzaExcepcion() {
-        // Arrange
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("usuario1")).thenReturn(null);
 
-        // Act & Assert
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> 
             controller.marcarPropuestaFavorita("usuario1", "Propuesta Test"));
         
@@ -397,13 +360,11 @@ public class UsuarioControllerTest {
 
     @Test
     void marcarPropuestaFavorita_PropuestaNoExiste_LanzaExcepcion() {
-        // Arrange
         Usuario usuarioMock = mock(Usuario.class);
         
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("usuario1")).thenReturn(usuarioMock);
         when(propuestaManejadorMock.obtenerPropuestaPorTitulo("Propuesta Test")).thenReturn(null);
 
-        // Act & Assert
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> 
             controller.marcarPropuestaFavorita("usuario1", "Propuesta Test"));
         
@@ -412,7 +373,6 @@ public class UsuarioControllerTest {
 
     @Test
     void marcarPropuestaFavorita_YaMarcada_LanzaExcepcion() {
-        // Arrange
         Usuario usuarioMock = mock(Usuario.class);
         Propuesta propuestaMock = mock(Propuesta.class);
         
@@ -420,7 +380,6 @@ public class UsuarioControllerTest {
         when(propuestaManejadorMock.obtenerPropuestaPorTitulo("Propuesta Test")).thenReturn(propuestaMock);
         when(usuarioManejadorMock.comprobarUsuarioYaTienePropuestaFavorita("usuario1", "Propuesta Test")).thenReturn(true);
 
-        // Act & Assert
         IllegalStateException exception = assertThrows(IllegalStateException.class, () -> 
             controller.marcarPropuestaFavorita("usuario1", "Propuesta Test"));
         
@@ -429,26 +388,21 @@ public class UsuarioControllerTest {
 
     @Test
     void quitarPropuestaFavorita_DatosValidos_QuitaCorrectamente() {
-        // Arrange
         Usuario usuarioMock = mock(Usuario.class);
         Propuesta propuestaMock = mock(Propuesta.class);
         
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("usuario1")).thenReturn(usuarioMock);
         when(propuestaManejadorMock.obtenerPropuestaPorTitulo("Propuesta Test")).thenReturn(propuestaMock);
 
-        // Act
         controller.quitarPropuestaFavorita("usuario1", "Propuesta Test");
 
-        // Assert
         verify(usuarioManejadorMock).eliminarPropuestaFavorita("usuario1", "Propuesta Test");
     }
 
     @Test
     void quitarPropuestaFavorita_UsuarioNoExiste_LanzaExcepcion() {
-        // Arrange
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("usuario1")).thenReturn(null);
 
-        // Act & Assert
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> 
             controller.quitarPropuestaFavorita("usuario1", "Propuesta Test"));
         
@@ -457,13 +411,11 @@ public class UsuarioControllerTest {
 
     @Test
     void quitarPropuestaFavorita_PropuestaNoExiste_LanzaExcepcion() {
-        // Arrange
         Usuario usuarioMock = mock(Usuario.class);
         
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("usuario1")).thenReturn(usuarioMock);
         when(propuestaManejadorMock.obtenerPropuestaPorTitulo("Propuesta Test")).thenReturn(null);
 
-        // Act & Assert
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> 
             controller.quitarPropuestaFavorita("usuario1", "Propuesta Test"));
         
@@ -472,13 +424,10 @@ public class UsuarioControllerTest {
 
     @Test
     void usuarioYaTienePropuestaFavorita_DatosValidos_RetornaTrueCuandoCorresponde() {
-        // Arrange
         when(usuarioManejadorMock.comprobarUsuarioYaTienePropuestaFavorita("usuario1", "Propuesta Test")).thenReturn(true);
 
-        // Act
         boolean result = controller.UsuarioYaTienePropuestaFavorita("usuario1", "Propuesta Test");
 
-        // Assert
         assertTrue(result);
     }
 

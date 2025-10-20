@@ -24,14 +24,12 @@ public class EvaluarPropuestaInternalFrame extends JInternalFrame {
         setSize(1000, 500);
         setLayout(new BorderLayout());
 
-        // Panel izquierdo: Lista de propuestas INGRESADAS
         JPanel panelIzquierdo = new JPanel(new BorderLayout());
         jListPropuestas = new JList<>();
         JScrollPane scrollPropuestas = new JScrollPane(jListPropuestas);
         panelIzquierdo.add(new JLabel("Propuestas INGRESADAS:"), BorderLayout.NORTH);
         panelIzquierdo.add(scrollPropuestas, BorderLayout.CENTER);
 
-        // Panel derecho: Detalles
         JPanel panelDerecho = new JPanel(new BorderLayout());
 
         JPanel panelDetalle = new JPanel(new GridLayout(4, 2, 10, 10));
@@ -53,7 +51,6 @@ public class EvaluarPropuestaInternalFrame extends JInternalFrame {
 
         panelDerecho.add(panelDetalle, BorderLayout.NORTH);
 
-        // Organizar etiquetas en el panel detalle
         panelDetalle.add(lblTitulo);
         panelDetalle.add(lblProponente);
         panelDetalle.add(lblCategoria);
@@ -63,7 +60,6 @@ public class EvaluarPropuestaInternalFrame extends JInternalFrame {
         panelDetalle.add(lblPrecioEntrada);
         panelDetalle.add(lblMontoNecesario);
 
-        // Panel inferior: Acciones
         JPanel panelAcciones = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         rbPublicar = new JRadioButton("Publicar");
         rbCancelar = new JRadioButton("Cancelar");
@@ -80,12 +76,10 @@ public class EvaluarPropuestaInternalFrame extends JInternalFrame {
         panelAcciones.add(btnCerrar);
         panelDerecho.add(panelAcciones, BorderLayout.SOUTH);
 
-        // Split pane
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelIzquierdo, panelDerecho);
         splitPane.setDividerLocation(300);
         add(splitPane, BorderLayout.CENTER);
 
-        // Eventos
         jListPropuestas.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 DTPropuesta propuesta = jListPropuestas.getSelectedValue();
