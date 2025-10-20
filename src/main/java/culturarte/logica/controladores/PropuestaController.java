@@ -255,7 +255,7 @@ public class PropuestaController implements IPropuestaController {
     public void extenderFinanciacion(DTUsuario usuario, String tituloPropuesta){
         PropuestaManejador pm = PropuestaManejador.getInstance();
         Propuesta propuesta = pm.obtenerPropuestaPorTitulo(tituloPropuesta);
-        propuesta.setFechaPrevista(propuesta.getFechaPrevista().plusMonths(1)); //Le agrego 1 mes a la fecha actual
+        propuesta.setFechaPublicacion(propuesta.getFechaPublicacion().plusMonths(1));//Le agrego 1 mes a la fecha actual
         pm.actualizarPropuesta(propuesta); //debo persistirla para que se efectúe el cambio en la base de datos
     }
 }
