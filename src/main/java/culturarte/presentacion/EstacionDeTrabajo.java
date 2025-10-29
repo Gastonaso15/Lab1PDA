@@ -3,9 +3,9 @@ package culturarte.presentacion;
 import javax.swing.*;
 import java.awt.*;
 
-import culturarte.logica.Fabrica;
-import culturarte.logica.controladores.IPropuestaController;
-import culturarte.logica.controladores.IUsuarioController;
+import culturarte.servicios.Fabrica;
+import culturarte.servicios.interfaces.IPropuestaController;
+import culturarte.servicios.interfaces.IUsuarioController;
 import culturarte.presentacion.internalFrames.*;
 
 public class EstacionDeTrabajo extends JFrame {

@@ -5,8 +5,8 @@ import javax.swing.tree.*;
 import java.awt.*;
 import java.util.List;
 
-import culturarte.logica.DTs.DTCategoria;
-import culturarte.logica.controladores.IPropuestaController;
+import culturarte.servicios.DTs.DTCategoria;
+import culturarte.servicios.interfaces.IPropuestaController;
 import culturarte.presentacion.helpers.CategoriaUIHelper;
 
 public class AltaCategoriaInternalFrame extends JInternalFrame {

@@ -1,7 +1,7 @@
 package culturarte.logica.manejadores;
 
-import culturarte.logica.DTs.*;
 import culturarte.logica.modelos.*;
+import culturarte.servicios.DTs.*;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;

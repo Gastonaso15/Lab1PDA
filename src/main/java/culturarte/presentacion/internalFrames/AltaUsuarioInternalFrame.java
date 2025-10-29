@@ -9,10 +9,10 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import culturarte.logica.DTs.DTColaborador;
-import culturarte.logica.DTs.DTProponente;
-import culturarte.logica.DTs.DTUsuario;
-import culturarte.logica.controladores.IUsuarioController;
+import culturarte.servicios.DTs.DTColaborador;
+import culturarte.servicios.DTs.DTProponente;
+import culturarte.servicios.DTs.DTUsuario;
+import culturarte.servicios.interfaces.IUsuarioController;
 
 public class AltaUsuarioInternalFrame extends JInternalFrame {
 

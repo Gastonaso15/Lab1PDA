@@ -7,9 +7,9 @@ import java.awt.event.ActionListener;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import culturarte.logica.DTs.DTComentario;
-import culturarte.logica.DTs.DTPropuesta;
-import culturarte.logica.controladores.IPropuestaController;
+import culturarte.servicios.DTs.DTComentario;
+import culturarte.servicios.DTs.DTPropuesta;
+import culturarte.servicios.interfaces.IPropuestaController;
 
 public class GestionarComentariosInternalFrame extends JInternalFrame {
 

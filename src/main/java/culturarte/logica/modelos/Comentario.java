@@ -1,5 +1,6 @@
 package culturarte.logica.modelos;
 
+import culturarte.servicios.DTs.DTComentario;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -48,8 +49,8 @@ public class Comentario {
     public Usuario getUsuario() { return usuario; }
     public void setUsuario(Usuario usuario) { this.usuario = usuario; }
 
-    public culturarte.logica.DTs.DTComentario getDataType() {
-        return new culturarte.logica.DTs.DTComentario(this);
+    public DTComentario getDataType() {
+        return new DTComentario(this);
     }
 }
 

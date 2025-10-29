@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import culturarte.logica.DTs.DTCategoria;
-import culturarte.logica.controladores.IPropuestaController;
-import culturarte.logica.controladores.IUsuarioController;
-import culturarte.logica.DTs.DTTipoRetorno;
+import culturarte.servicios.DTs.DTCategoria;
+import culturarte.servicios.interfaces.IPropuestaController;
+import culturarte.servicios.interfaces.IUsuarioController;
+import culturarte.servicios.DTs.DTTipoRetorno;
 import culturarte.presentacion.helpers.CategoriaUIHelper;
 
 public class AltaPropuestaInternalFrame extends JInternalFrame {

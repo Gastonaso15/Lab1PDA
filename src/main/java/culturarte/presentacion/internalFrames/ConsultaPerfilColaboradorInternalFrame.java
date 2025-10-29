@@ -1,10 +1,10 @@
 package culturarte.presentacion.internalFrames;
 
-import culturarte.logica.DTs.DTColaboracion;
-import culturarte.logica.DTs.DTColaborador;
-import culturarte.logica.DTs.DTEstadoPropuesta;
-import culturarte.logica.DTs.DTPropuesta;
-import culturarte.logica.controladores.IUsuarioController;
+import culturarte.servicios.DTs.DTColaboracion;
+import culturarte.servicios.DTs.DTColaborador;
+import culturarte.servicios.DTs.DTEstadoPropuesta;
+import culturarte.servicios.DTs.DTPropuesta;
+import culturarte.servicios.interfaces.IUsuarioController;
 import culturarte.presentacion.helpers.ImagenUIHelper;
 
 import javax.swing.*;

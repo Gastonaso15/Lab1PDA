@@ -1,6 +1,6 @@
 package culturarte.logica.controladores;
 
-import culturarte.logica.DTs.DTUsuario;
+import culturarte.servicios.DTs.DTUsuario;
 import culturarte.logica.manejadores.UsuarioManejador;
 import culturarte.logica.modelos.Usuario;
 import org.junit.jupiter.api.AfterEach;

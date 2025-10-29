@@ -1,6 +1,6 @@
 package culturarte.presentacion.internalFrames;
 
-import culturarte.logica.controladores.IUsuarioController;
+import culturarte.servicios.interfaces.IUsuarioController;
 
 import javax.swing.*;
 import java.awt.*;

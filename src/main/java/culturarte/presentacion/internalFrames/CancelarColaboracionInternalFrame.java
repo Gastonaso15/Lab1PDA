@@ -1,8 +1,8 @@
 package culturarte.presentacion.internalFrames;
 
-import culturarte.logica.DTs.DTColaboracion;
-import culturarte.logica.DTs.DTPropuesta;
-import culturarte.logica.controladores.IPropuestaController;
+import culturarte.servicios.DTs.DTColaboracion;
+import culturarte.servicios.DTs.DTPropuesta;
+import culturarte.servicios.interfaces.IPropuestaController;
 
 import javax.swing.*;
 import java.awt.*;

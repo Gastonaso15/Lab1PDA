@@ -7,10 +7,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import culturarte.logica.DTs.DTCategoria;
-import culturarte.logica.DTs.DTPropuesta;
-import culturarte.logica.DTs.DTTipoRetorno;
-import culturarte.logica.controladores.IPropuestaController;
+import culturarte.servicios.DTs.DTCategoria;
+import culturarte.servicios.DTs.DTPropuesta;
+import culturarte.servicios.DTs.DTTipoRetorno;
+import culturarte.servicios.interfaces.IPropuestaController;
 import culturarte.presentacion.helpers.CategoriaUIHelper;
 
 public class ModificarDatosPropuestaInternalFrame extends JInternalFrame {

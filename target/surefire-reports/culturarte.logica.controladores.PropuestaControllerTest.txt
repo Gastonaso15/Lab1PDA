@@ -1,4 +1,2113 @@
 -------------------------------------------------------------------------------
 Test set: culturarte.logica.controladores.PropuestaControllerTest
 -------------------------------------------------------------------------------
-Tests run: 37, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.275 s -- in culturarte.logica.controladores.PropuestaControllerTest
+Tests run: 37, Failures: 0, Errors: 37, Skipped: 0, Time elapsed: 0.806 s <<< FAILURE! -- in culturarte.logica.controladores.PropuestaControllerTest
+culturarte.logica.controladores.PropuestaControllerTest.crearCategoria_PadreExiste_CreaCorrectamente -- Time elapsed: 0.329 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.modificarPropuesta_TipoRetornoInvalido_LanzaExcepcion -- Time elapsed: 0.007 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.agregarComentario_PropuestaNoExiste_LanzaExcepcion -- Time elapsed: 0.006 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.registrarColaboracion_PropuestaNoExiste_LanzaExcepcion -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.devolverTodasLasCategorias_DatosValidos_RetornaListaCorrectamente -- Time elapsed: 0.007 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.devolverPropuestasPorEstado_DatosValidos_RetornaListaCorrectamente -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.obtenerComentariosPropuesta_PropuestaNoExiste_RetornaListaVaciaCorrectamente -- Time elapsed: 0.008 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.cancelarColaboracion_DatosValidos_CancelaCorrectamente -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.cancelarPropuesta_DatosValidos_CancelaCorrectamente -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.modificarPropuesta_DatosValidos_ModificaCorrectamente -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.obtenerComentariosPropuesta_PropuestaConComentarios_RetornaListaComentariosCorrectamente -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.modificarPropuesta_PropuestaNoExiste_LanzaExcepcion -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.registrarColaboracion_DatosValidos_CreaCorrectamente -- Time elapsed: 0.006 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.crearPropuesta_DatosValidos_CreaCorrectamente -- Time elapsed: 0.008 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.evaluarPropuesta_PublicarTrue_CambiaEstadoCorrectamente -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.agregarComentario_UsuarioNoExiste_LanzaExcepcion -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.evaluarPropuesta_PropuestaNoExiste_LanzaExcepcion -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.crearPropuesta_TituloYaExiste_LanzaExcepcion -- Time elapsed: 0.006 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.crearPropuesta_TipoRetornoInvalido_LanzaExcepcion -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.agregarComentario_DatosValidos_CreaCorrectamente -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.obtenerComentariosPropuesta_PropuestaSinComentarios_RetornaListaVaciaCorrectamente -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.cancelarPropuesta_PropuestaNoExiste_LanzaExcepcion -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.registrarColaboracion_TipoRetornoInvalido_LanzaExcepcion -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.getPropuestasIngresadas_DatosValidos_RetornaListaCorrectamente -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.getDTPropuesta_PropuestaNoExiste_RetornaNullCorrectamente -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.modificarPropuesta_CategoriaNoExiste_LanzaExcepcion -- Time elapsed: 0.008 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.publicarPropuesta_PropuestaNoExiste_LanzaExcepcion -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.devolverTodasLasPropuestas_DatosValidos_RetornaListaCorrectamente -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.agregarComentario_ContenidoVacio_LanzaExcepcion -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.publicarPropuesta_DatosValidos_PublicaCorrectamente -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.evaluarPropuesta_PublicarFalse_CambiaEstadoCorrectamente -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.crearCategoria_PadreNoExiste_CreaCorrectamente -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.registrarColaboracion_UsuarioNoEsColaborador_LanzaExcepcion -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.obtenerTodasLasColaboraciones_DatosValidos_RetornaListaCorrectamente -- Time elapsed: 0.004 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.crearCategoria_NombreYaExiste_LanzaExcepcion -- Time elapsed: 0.005 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.getDTPropuesta_PropuestaExiste_RetornaDTCorrectamente -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+
+culturarte.logica.controladores.PropuestaControllerTest.crearPropuesta_CategoriaNoExiste_LanzaExcepcion -- Time elapsed: 0.003 s <<< ERROR!
+java.lang.IllegalStateException: Could not initialize plugin: interface org.mockito.plugins.MockMaker (alternate: null)
+	at org.mockito.internal.configuration.plugins.PluginLoader$1.invoke(PluginLoader.java:85)
+	at jdk.proxy2/jdk.proxy2.$Proxy11.isTypeMockable(Unknown Source)
+	at org.mockito.internal.util.MockUtil.typeMockabilityOf(MockUtil.java:78)
+	at org.mockito.internal.util.MockCreationValidator.validateType(MockCreationValidator.java:22)
+	at org.mockito.internal.creation.MockSettingsImpl.validatedSettings(MockSettingsImpl.java:275)
+	at org.mockito.internal.creation.MockSettingsImpl.build(MockSettingsImpl.java:236)
+	at org.mockito.internal.MockitoCore.mock(MockitoCore.java:82)
+	at org.mockito.Mockito.mock(Mockito.java:2151)
+	at org.mockito.Mockito.mock(Mockito.java:2066)
+	at culturarte.logica.controladores.PropuestaControllerTest.setUp(PropuestaControllerTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	Suppressed: java.lang.NullPointerException: Cannot invoke "org.mockito.MockedStatic.close()" because "this.propuestaManejadorStatic" is null
+		at culturarte.logica.controladores.PropuestaControllerTest.tearDown(PropuestaControllerTest.java:44)
+		... 3 more
+Caused by: java.lang.IllegalStateException: Internal problem occurred, please report it. Mockito is unable to load the default implementation of class that is a part of Mockito distribution. Failed to load interface org.mockito.plugins.MockMaker
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:105)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.getDefaultPlugin(DefaultMockitoPlugins.java:79)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:75)
+	at org.mockito.internal.configuration.plugins.PluginLoader.loadPlugin(PluginLoader.java:49)
+	at org.mockito.internal.configuration.plugins.PluginRegistry.<init>(PluginRegistry.java:29)
+	at org.mockito.internal.configuration.plugins.Plugins.<clinit>(Plugins.java:26)
+	at org.mockito.internal.MockitoCore.<clinit>(MockitoCore.java:71)
+	at org.mockito.Mockito.<clinit>(Mockito.java:1730)
+	... 4 more
+Caused by: java.lang.reflect.InvocationTargetException
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:74)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at org.mockito.internal.configuration.plugins.DefaultMockitoPlugins.create(DefaultMockitoPlugins.java:103)
+	... 11 more
+Caused by: org.mockito.exceptions.base.MockitoInitializationException: 
+Could not initialize inline Byte Buddy mock maker.
+
+It appears as if your JDK does not supply a working agent attachment mechanism.
+Java               : 24
+JVM vendor name    : Oracle Corporation
+JVM vendor version : 24.0.2+12-54
+JVM name           : Java HotSpot(TM) 64-Bit Server VM
+JVM version        : 24.0.2+12-54
+JVM info           : mixed mode, sharing
+OS name            : Windows 11
+OS version         : 10.0
+
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<init>(InlineDelegateByteBuddyMockMaker.java:273)
+	at org.mockito.internal.creation.bytebuddy.InlineByteBuddyMockMaker.<init>(InlineByteBuddyMockMaker.java:23)
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+	... 14 more
+Caused by: java.lang.IllegalStateException: Failed to resolve the class file version of the current VM: Unknown Java version: 0
+	at net.bytebuddy.ClassFileVersion$VersionLocator$Unresolved.resolve(ClassFileVersion.java:667)
+	at net.bytebuddy.ClassFileVersion.ofThisVm(ClassFileVersion.java:349)
+	at org.mockito.internal.creation.bytebuddy.InlineDelegateByteBuddyMockMaker.<clinit>(InlineDelegateByteBuddyMockMaker.java:142)
+	... 16 more
+

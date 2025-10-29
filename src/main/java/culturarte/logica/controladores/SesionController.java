@@ -1,10 +1,11 @@
 package culturarte.logica.controladores;
 
-import culturarte.logica.DTs.DTUsuario;
+import culturarte.servicios.DTs.DTUsuario;
 import culturarte.logica.manejadores.UsuarioManejador;
 import culturarte.logica.modelos.*;
+import culturarte.servicios.interfaces.ISesionController;
 
-public class SesionController implements ISesionController{
+public class SesionController implements ISesionController {
     private Usuario usuarioActual;
 
     @Override

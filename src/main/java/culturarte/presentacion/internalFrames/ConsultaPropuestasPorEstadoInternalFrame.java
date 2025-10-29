@@ -5,8 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-import culturarte.logica.DTs.*;
-import culturarte.logica.controladores.IPropuestaController;
+import culturarte.servicios.DTs.*;
+import culturarte.servicios.interfaces.IPropuestaController;
 import culturarte.presentacion.helpers.ImagenUIHelper;
 
 public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {

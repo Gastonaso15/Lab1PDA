@@ -1,9 +1,10 @@
 package culturarte.logica.controladores;
 
-import culturarte.logica.DTs.*;
 import culturarte.logica.manejadores.PropuestaManejador;
 import culturarte.logica.manejadores.UsuarioManejador;
 import culturarte.logica.modelos.*;
+import culturarte.servicios.DTs.*;
+import culturarte.servicios.interfaces.IPropuestaController;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -1,12 +1,14 @@
 package culturarte.logica.controladores;
 
-import culturarte.logica.DTs.*;
 import culturarte.logica.manejadores.PropuestaManejador;
 import culturarte.logica.manejadores.UsuarioManejador;
 import culturarte.logica.modelos.Colaborador;
 import culturarte.logica.modelos.Proponente;
 import culturarte.logica.modelos.Propuesta;
 import culturarte.logica.modelos.Usuario;
+import culturarte.servicios.DTs.DTColaborador;
+import culturarte.servicios.DTs.DTProponente;
+import culturarte.servicios.DTs.DTUsuario;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

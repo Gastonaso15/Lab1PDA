@@ -1,6 +1,6 @@
 package culturarte.presentacion.helpers;
 
-import culturarte.logica.DTs.DTCategoria;
+import culturarte.servicios.DTs.DTCategoria;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
