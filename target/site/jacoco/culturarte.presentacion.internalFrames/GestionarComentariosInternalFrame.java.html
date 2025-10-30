@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>GestionarComentariosInternalFrame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Culturarte App</a> &gt; <a href="index.source.html" class="el_package">culturarte.presentacion.internalFrames</a> &gt; <span class="el_source">GestionarComentariosInternalFrame.java</span></div><h1>GestionarComentariosInternalFrame.java</h1><pre class="source lang-java linenums">package culturarte.presentacion.internalFrames;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
+import culturarte.servicios.DTs.DTComentario;
+import culturarte.servicios.DTs.DTPropuesta;
+import culturarte.servicios.interfaces.IPropuestaController;
+
+public class GestionarComentariosInternalFrame extends JInternalFrame {
+
+    private JList&lt;DTPropuesta&gt; jListPropuestas;
+    private JList&lt;DTComentario&gt; jListComentarios;
+    private JTextArea txtNuevoComentario;
+    private JTextField tfNicknameUsuario;
+    private JLabel lblTituloPropuesta;
+    private JLabel lblDescripcionPropuesta;
+    private JLabel lblEstadoPropuesta;
+    private JButton btnAgregarComentario;
+    private JButton btnActualizarComentarios;
+
+    private final IPropuestaController PropuestaContr;
+
+    public GestionarComentariosInternalFrame(IPropuestaController icp) {
+<span class="nc" id="L29">        super(&quot;Gestionar Comentarios&quot;, true, true, true, true);</span>
+<span class="nc" id="L30">        setSize(1200, 700);</span>
+<span class="nc" id="L31">        setLayout(new BorderLayout());</span>
+
+<span class="nc" id="L33">        PropuestaContr = icp;</span>
+
+
+<span class="nc" id="L36">        JPanel panelIzquierdo = crearPanelPropuestas();</span>
+<span class="nc" id="L37">        add(panelIzquierdo, BorderLayout.WEST);</span>
+
+<span class="nc" id="L39">        JPanel panelCentral = crearPanelCentral();</span>
+<span class="nc" id="L40">        add(panelCentral, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L42">        JPanel panelDerecho = crearPanelAgregarComentario();</span>
+<span class="nc" id="L43">        add(panelDerecho, BorderLayout.EAST);</span>
+
+<span class="nc" id="L45">        cargarPropuestas();</span>
+<span class="nc" id="L46">    }</span>
+
+    private JPanel crearPanelPropuestas() {
+<span class="nc" id="L49">        JPanel panel = new JPanel(new BorderLayout());</span>
+<span class="nc" id="L50">        panel.setBorder(BorderFactory.createTitledBorder(&quot;Propuestas&quot;));</span>
+<span class="nc" id="L51">        panel.setPreferredSize(new Dimension(250, 0));</span>
+
+<span class="nc" id="L53">        jListPropuestas = new JList&lt;&gt;();</span>
+<span class="nc" id="L54">        jListPropuestas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);</span>
+<span class="nc" id="L55">        jListPropuestas.addListSelectionListener(e -&gt; {</span>
+<span class="nc bnc" id="L56" title="All 2 branches missed.">            if (!e.getValueIsAdjusting()) {</span>
+<span class="nc" id="L57">                cargarDetallesPropuesta();</span>
+<span class="nc" id="L58">                cargarComentariosPropuesta();</span>
+            }
+<span class="nc" id="L60">        });</span>
+
+<span class="nc" id="L62">        JScrollPane scrollList = new JScrollPane(jListPropuestas);</span>
+<span class="nc" id="L63">        panel.add(scrollList, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L65">        btnActualizarComentarios = new JButton(&quot;Actualizar Lista&quot;);</span>
+<span class="nc" id="L66">        btnActualizarComentarios.addActionListener(e -&gt; cargarPropuestas());</span>
+<span class="nc" id="L67">        panel.add(btnActualizarComentarios, BorderLayout.SOUTH);</span>
+
+<span class="nc" id="L69">        return panel;</span>
+    }
+
+    private JPanel crearPanelCentral() {
+<span class="nc" id="L73">        JPanel panel = new JPanel(new BorderLayout());</span>
+<span class="nc" id="L74">        panel.setBorder(BorderFactory.createTitledBorder(&quot;Detalles de Propuesta y Comentarios&quot;));</span>
+
+<span class="nc" id="L76">        JPanel panelDetalles = new JPanel(new GridLayout(3, 2, 5, 5));</span>
+<span class="nc" id="L77">        panelDetalles.setBorder(BorderFactory.createTitledBorder(&quot;Información de la Propuesta&quot;));</span>
+
+<span class="nc" id="L79">        panelDetalles.add(new JLabel(&quot;Título:&quot;));</span>
+<span class="nc" id="L80">        lblTituloPropuesta = new JLabel(&quot;Seleccione una propuesta&quot;);</span>
+<span class="nc" id="L81">        panelDetalles.add(lblTituloPropuesta);</span>
+
+<span class="nc" id="L83">        panelDetalles.add(new JLabel(&quot;Descripción:&quot;));</span>
+<span class="nc" id="L84">        lblDescripcionPropuesta = new JLabel(&quot;Seleccione una propuesta&quot;);</span>
+<span class="nc" id="L85">        lblDescripcionPropuesta.setVerticalAlignment(SwingConstants.TOP);</span>
+<span class="nc" id="L86">        panelDetalles.add(lblDescripcionPropuesta);</span>
+
+<span class="nc" id="L88">        panelDetalles.add(new JLabel(&quot;Estado:&quot;));</span>
+<span class="nc" id="L89">        lblEstadoPropuesta = new JLabel(&quot;Seleccione una propuesta&quot;);</span>
+<span class="nc" id="L90">        panelDetalles.add(lblEstadoPropuesta);</span>
+
+<span class="nc" id="L92">        JPanel panelComentarios = new JPanel(new BorderLayout());</span>
+<span class="nc" id="L93">        panelComentarios.setBorder(BorderFactory.createTitledBorder(&quot;Comentarios&quot;));</span>
+
+<span class="nc" id="L95">        jListComentarios = new JList&lt;&gt;();</span>
+<span class="nc" id="L96">        jListComentarios.setCellRenderer(new ComentarioListCellRenderer());</span>
+<span class="nc" id="L97">        JScrollPane scrollComentarios = new JScrollPane(jListComentarios);</span>
+<span class="nc" id="L98">        panelComentarios.add(scrollComentarios, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L100">        panel.add(panelDetalles, BorderLayout.NORTH);</span>
+<span class="nc" id="L101">        panel.add(panelComentarios, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L103">        return panel;</span>
+    }
+
+    private JPanel crearPanelAgregarComentario() {
+<span class="nc" id="L107">        JPanel panel = new JPanel(new BorderLayout());</span>
+<span class="nc" id="L108">        panel.setBorder(BorderFactory.createTitledBorder(&quot;Agregar Comentario&quot;));</span>
+<span class="nc" id="L109">        panel.setPreferredSize(new Dimension(300, 0));</span>
+
+<span class="nc" id="L111">        JPanel panelFormulario = new JPanel(new GridLayout(4, 1, 5, 5));</span>
+
+<span class="nc" id="L113">        JPanel panelUsuario = new JPanel(new BorderLayout());</span>
+<span class="nc" id="L114">        panelUsuario.add(new JLabel(&quot;Nickname Usuario:&quot;), BorderLayout.NORTH);</span>
+<span class="nc" id="L115">        tfNicknameUsuario = new JTextField();</span>
+<span class="nc" id="L116">        tfNicknameUsuario.setToolTipText(&quot;Ingrese el nickname del usuario que comenta&quot;);</span>
+<span class="nc" id="L117">        panelUsuario.add(tfNicknameUsuario, BorderLayout.CENTER);</span>
+<span class="nc" id="L118">        panelFormulario.add(panelUsuario);</span>
+
+<span class="nc" id="L120">        JPanel panelComentario = new JPanel(new BorderLayout());</span>
+<span class="nc" id="L121">        panelComentario.add(new JLabel(&quot;Contenido del Comentario:&quot;), BorderLayout.NORTH);</span>
+<span class="nc" id="L122">        txtNuevoComentario = new JTextArea(6, 20);</span>
+<span class="nc" id="L123">        txtNuevoComentario.setLineWrap(true);</span>
+<span class="nc" id="L124">        txtNuevoComentario.setWrapStyleWord(true);</span>
+<span class="nc" id="L125">        txtNuevoComentario.setToolTipText(&quot;Ingrese el contenido del comentario&quot;);</span>
+<span class="nc" id="L126">        JScrollPane scrollComentario = new JScrollPane(txtNuevoComentario);</span>
+<span class="nc" id="L127">        panelComentario.add(scrollComentario, BorderLayout.CENTER);</span>
+<span class="nc" id="L128">        panelFormulario.add(panelComentario);</span>
+
+<span class="nc" id="L130">        btnAgregarComentario = new JButton(&quot;Agregar Comentario&quot;);</span>
+<span class="nc" id="L131">        btnAgregarComentario.addActionListener(new ActionListener() {</span>
+            @Override
+            public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L134">                agregarComentario();</span>
+<span class="nc" id="L135">            }</span>
+        });
+<span class="nc" id="L137">        panelFormulario.add(btnAgregarComentario);</span>
+
+<span class="nc" id="L139">        JTextArea txtInstrucciones = new JTextArea(4, 20);</span>
+<span class="nc" id="L140">        txtInstrucciones.setEditable(false);</span>
+<span class="nc" id="L141">        txtInstrucciones.setBackground(getBackground());</span>
+<span class="nc" id="L142">        txtInstrucciones.setText(&quot;Instrucciones:\n&quot; +</span>
+                &quot;1. Seleccione una propuesta\n&quot; +
+                &quot;2. Ingrese el nickname del usuario\n&quot; +
+                &quot;3. Escriba el comentario\n&quot; +
+                &quot;4. Haga clic en 'Agregar Comentario'&quot;);
+<span class="nc" id="L147">        panelFormulario.add(txtInstrucciones);</span>
+
+<span class="nc" id="L149">        panel.add(panelFormulario, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L151">        return panel;</span>
+    }
+
+    private void cargarPropuestas() {
+        try {
+<span class="nc" id="L156">            List&lt;DTPropuesta&gt; propuestas = PropuestaContr.devolverTodasLasPropuestas();</span>
+<span class="nc" id="L157">            jListPropuestas.setListData(propuestas.toArray(new DTPropuesta[0]));</span>
+            
+<span class="nc bnc" id="L159" title="All 2 branches missed.">            if (propuestas.isEmpty()) {</span>
+<span class="nc" id="L160">                JOptionPane.showMessageDialog(this, &quot;No hay propuestas disponibles.&quot;, </span>
+                    &quot;Información&quot;, JOptionPane.INFORMATION_MESSAGE);
+            }
+<span class="nc" id="L163">        } catch (Exception e) {</span>
+<span class="nc" id="L164">            JOptionPane.showMessageDialog(this, &quot;Error al cargar propuestas: &quot; + e.getMessage(), </span>
+                &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L166">        }</span>
+<span class="nc" id="L167">    }</span>
+
+    private void cargarDetallesPropuesta() {
+<span class="nc" id="L170">        DTPropuesta propuestaSeleccionada = jListPropuestas.getSelectedValue();</span>
+        
+<span class="nc bnc" id="L172" title="All 2 branches missed.">        if (propuestaSeleccionada != null) {</span>
+<span class="nc" id="L173">            lblTituloPropuesta.setText(propuestaSeleccionada.getTitulo());</span>
+<span class="nc" id="L174">            lblDescripcionPropuesta.setText(propuestaSeleccionada.getDescripcion());</span>
+<span class="nc" id="L175">            lblEstadoPropuesta.setText(propuestaSeleccionada.getEstadoActual().toString());</span>
+        } else {
+<span class="nc" id="L177">            lblTituloPropuesta.setText(&quot;Seleccione una propuesta&quot;);</span>
+<span class="nc" id="L178">            lblDescripcionPropuesta.setText(&quot;Seleccione una propuesta&quot;);</span>
+<span class="nc" id="L179">            lblEstadoPropuesta.setText(&quot;Seleccione una propuesta&quot;);</span>
+        }
+<span class="nc" id="L181">    }</span>
+
+    private void cargarComentariosPropuesta() {
+<span class="nc" id="L184">        DTPropuesta propuestaSeleccionada = jListPropuestas.getSelectedValue();</span>
+        
+<span class="nc bnc" id="L186" title="All 2 branches missed.">        if (propuestaSeleccionada != null) {</span>
+            try {
+<span class="nc" id="L188">                List&lt;DTComentario&gt; comentarios = PropuestaContr.obtenerComentariosPropuesta(</span>
+<span class="nc" id="L189">                    propuestaSeleccionada.getTitulo());</span>
+<span class="nc" id="L190">                jListComentarios.setListData(comentarios.toArray(new DTComentario[0]));</span>
+<span class="nc" id="L191">            } catch (Exception e) {</span>
+<span class="nc" id="L192">                JOptionPane.showMessageDialog(this, &quot;Error al cargar comentarios: &quot; + e.getMessage(), </span>
+                    &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L194">                jListComentarios.setListData(new DTComentario[0]);</span>
+<span class="nc" id="L195">            }</span>
+        } else {
+<span class="nc" id="L197">            jListComentarios.setListData(new DTComentario[0]);</span>
+        }
+<span class="nc" id="L199">    }</span>
+
+    private void agregarComentario() {
+<span class="nc" id="L202">        DTPropuesta propuestaSeleccionada = jListPropuestas.getSelectedValue();</span>
+        
+<span class="nc bnc" id="L204" title="All 2 branches missed.">        if (propuestaSeleccionada == null) {</span>
+<span class="nc" id="L205">            JOptionPane.showMessageDialog(this, &quot;Por favor seleccione una propuesta.&quot;, </span>
+                &quot;Advertencia&quot;, JOptionPane.WARNING_MESSAGE);
+<span class="nc" id="L207">            return;</span>
+        }
+
+<span class="nc" id="L210">        String nickname = tfNicknameUsuario.getText().trim();</span>
+<span class="nc" id="L211">        String contenido = txtNuevoComentario.getText().trim();</span>
+
+<span class="nc bnc" id="L213" title="All 2 branches missed.">        if (nickname.isEmpty()) {</span>
+<span class="nc" id="L214">            JOptionPane.showMessageDialog(this, &quot;Por favor ingrese el nickname del usuario.&quot;, </span>
+                &quot;Advertencia&quot;, JOptionPane.WARNING_MESSAGE);
+<span class="nc" id="L216">            return;</span>
+        }
+
+<span class="nc bnc" id="L219" title="All 2 branches missed.">        if (contenido.isEmpty()) {</span>
+<span class="nc" id="L220">            JOptionPane.showMessageDialog(this, &quot;Por favor ingrese el contenido del comentario.&quot;, </span>
+                &quot;Advertencia&quot;, JOptionPane.WARNING_MESSAGE);
+<span class="nc" id="L222">            return;</span>
+        }
+
+        try {
+<span class="nc" id="L226">            PropuestaContr.agregarComentario(propuestaSeleccionada.getTitulo(), nickname, contenido);</span>
+            
+<span class="nc" id="L228">            JOptionPane.showMessageDialog(this, &quot;Comentario agregado exitosamente.&quot;, </span>
+                &quot;Éxito&quot;, JOptionPane.INFORMATION_MESSAGE);
+
+<span class="nc" id="L231">            tfNicknameUsuario.setText(&quot;&quot;);</span>
+<span class="nc" id="L232">            txtNuevoComentario.setText(&quot;&quot;);</span>
+
+<span class="nc" id="L234">            cargarComentariosPropuesta();</span>
+            
+<span class="nc" id="L236">        } catch (Exception e) {</span>
+<span class="nc" id="L237">            JOptionPane.showMessageDialog(this, &quot;Error al agregar comentario: &quot; + e.getMessage(), </span>
+                &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L239">        }</span>
+<span class="nc" id="L240">    }</span>
+
+<span class="nc" id="L242">    private static class ComentarioListCellRenderer extends DefaultListCellRenderer {</span>
+<span class="nc" id="L243">        private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;dd/MM/yyyy HH:mm&quot;);</span>
+
+        @Override
+        public Component getListCellRendererComponent(JList&lt;?&gt; list, Object value, int index, 
+                boolean isSelected, boolean cellHasFocus) {
+<span class="nc" id="L248">            super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);</span>
+            
+<span class="nc bnc" id="L250" title="All 2 branches missed.">            if (value instanceof DTComentario comentario) {</span>
+<span class="nc" id="L251">                String texto = String.format(&quot;&lt;html&gt;&lt;b&gt;%s&lt;/b&gt; - %s&lt;br/&gt;&lt;i&gt;%s&lt;/i&gt;&lt;br/&gt;%s&quot;, </span>
+<span class="nc" id="L252">                    comentario.getUsuarioNickname(),</span>
+<span class="nc" id="L253">                    comentario.getFechaHora().format(formatter),</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">                    comentario.getContenido().length() &gt; 100 ? </span>
+<span class="nc" id="L255">                        comentario.getContenido().substring(0, 100) + &quot;...&quot; : </span>
+<span class="nc" id="L256">                        comentario.getContenido(),</span>
+<span class="nc" id="L257">                    comentario.getUsuarioNombreCompleto());</span>
+<span class="nc" id="L258">                setText(texto);</span>
+            }
+            
+<span class="nc" id="L261">            return this;</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

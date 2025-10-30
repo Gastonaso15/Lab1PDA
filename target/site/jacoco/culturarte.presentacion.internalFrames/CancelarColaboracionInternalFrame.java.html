@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CancelarColaboracionInternalFrame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Culturarte App</a> &gt; <a href="index.source.html" class="el_package">culturarte.presentacion.internalFrames</a> &gt; <span class="el_source">CancelarColaboracionInternalFrame.java</span></div><h1>CancelarColaboracionInternalFrame.java</h1><pre class="source lang-java linenums">package culturarte.presentacion.internalFrames;
+
+import culturarte.servicios.DTs.DTColaboracion;
+import culturarte.servicios.DTs.DTPropuesta;
+import culturarte.servicios.interfaces.IPropuestaController;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
+
+public class CancelarColaboracionInternalFrame extends JInternalFrame {
+
+    private final JList&lt;DTPropuesta&gt; jListPropuestas;
+    private final JList&lt;DTColaboracion&gt; jListColaboraciones;
+    private final JLabel lblTitulo;
+    private final JLabel lblDescripcion;
+    private final JLabel lblLugar;
+    private final JLabel lblFechaPrevista;
+    private final JLabel lblPrecioEntrada;
+    private final JLabel lblMontoNecesario;
+    private final JLabel lblProponente;
+    private final JLabel lblEstado;
+    private final JLabel lblMontoTotal;
+    private final JLabel lblCategoria;
+
+    private final IPropuestaController PropuestaContr;
+
+    public CancelarColaboracionInternalFrame(IPropuestaController icp) {
+<span class="nc" id="L29">        super(&quot;Cancelar Colaboración a Propuesta&quot;, true, true, true, true);</span>
+<span class="nc" id="L30">        setSize(1000, 500);</span>
+<span class="nc" id="L31">        setLayout(new BorderLayout());</span>
+
+<span class="nc" id="L33">        PropuestaContr = icp;</span>
+
+<span class="nc" id="L35">        JPanel panelIzquierdo = new JPanel(new BorderLayout());</span>
+<span class="nc" id="L36">        List&lt;DTPropuesta&gt; propuestas = PropuestaContr.devolverTodasLasPropuestas();</span>
+<span class="nc" id="L37">        jListPropuestas = new JList&lt;&gt;(propuestas.toArray(new DTPropuesta[0]));</span>
+<span class="nc" id="L38">        JScrollPane scrollPropuestas = new JScrollPane(jListPropuestas);</span>
+<span class="nc" id="L39">        panelIzquierdo.add(new JLabel(&quot;Propuestas:&quot;), BorderLayout.NORTH);</span>
+<span class="nc" id="L40">        panelIzquierdo.add(scrollPropuestas, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L42">        JPanel panelDerecho = new JPanel(new BorderLayout());</span>
+
+<span class="nc" id="L44">        JPanel panelInfo = new JPanel(new GridLayout(1, 2, 10, 0));</span>
+
+<span class="nc" id="L46">        JPanel col1 = new JPanel();</span>
+<span class="nc" id="L47">        col1.setLayout(new BoxLayout(col1, BoxLayout.Y_AXIS));</span>
+<span class="nc" id="L48">        lblTitulo = new JLabel(&quot;Título: &quot;);</span>
+<span class="nc" id="L49">        lblDescripcion = new JLabel(&quot;Descripción: &quot;);</span>
+<span class="nc" id="L50">        lblLugar = new JLabel(&quot;Lugar: &quot;);</span>
+<span class="nc" id="L51">        lblFechaPrevista = new JLabel(&quot;Fecha Prevista: &quot;);</span>
+<span class="nc" id="L52">        lblCategoria = new JLabel(&quot;Categoria: &quot;);</span>
+<span class="nc" id="L53">        col1.add(lblTitulo);</span>
+<span class="nc" id="L54">        col1.add(lblDescripcion);</span>
+<span class="nc" id="L55">        col1.add(lblLugar);</span>
+<span class="nc" id="L56">        col1.add(lblFechaPrevista);</span>
+<span class="nc" id="L57">        col1.add(lblCategoria);</span>
+
+<span class="nc" id="L59">        JPanel col2 = new JPanel();</span>
+<span class="nc" id="L60">        col2.setLayout(new BoxLayout(col2, BoxLayout.Y_AXIS));</span>
+<span class="nc" id="L61">        lblPrecioEntrada = new JLabel(&quot;Precio Entrada: &quot;);</span>
+<span class="nc" id="L62">        lblMontoNecesario = new JLabel(&quot;Monto Necesario: &quot;);</span>
+<span class="nc" id="L63">        lblMontoTotal = new JLabel(&quot;Monto Recaudado: &quot;);</span>
+<span class="nc" id="L64">        lblProponente = new JLabel(&quot;Proponente: &quot;);</span>
+<span class="nc" id="L65">        lblEstado = new JLabel(&quot;Estado: &quot;);</span>
+<span class="nc" id="L66">        col2.add(lblPrecioEntrada);</span>
+<span class="nc" id="L67">        col2.add(lblMontoNecesario);</span>
+<span class="nc" id="L68">        col2.add(lblMontoTotal);</span>
+<span class="nc" id="L69">        col2.add(lblProponente);</span>
+<span class="nc" id="L70">        col2.add(lblEstado);</span>
+
+<span class="nc" id="L72">        Font fontInfo = new Font(&quot;Times New Roman&quot;, Font.PLAIN, 16);</span>
+<span class="nc" id="L73">        setFontToLabels(fontInfo, lblTitulo, lblDescripcion, lblLugar, lblFechaPrevista,</span>
+                lblPrecioEntrada, lblMontoNecesario, lblProponente, lblEstado, lblCategoria, lblMontoTotal);
+
+<span class="nc" id="L76">        panelInfo.add(col1);</span>
+<span class="nc" id="L77">        panelInfo.add(col2);</span>
+
+<span class="nc" id="L79">        JPanel panelColaboraciones = new JPanel(new BorderLayout());</span>
+<span class="nc" id="L80">        panelColaboraciones.add(new JLabel(&quot;Colaboraciones:&quot;), BorderLayout.NORTH);</span>
+<span class="nc" id="L81">        jListColaboraciones = new JList&lt;&gt;();</span>
+<span class="nc" id="L82">        JScrollPane scrollColaboraciones = new JScrollPane(jListColaboraciones);</span>
+<span class="nc" id="L83">        panelColaboraciones.add(scrollColaboraciones, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L85">        panelDerecho.add(panelInfo, BorderLayout.NORTH);</span>
+<span class="nc" id="L86">        panelDerecho.add(panelColaboraciones, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L88">        JPanel panelBotones = new JPanel();</span>
+<span class="nc" id="L89">        JButton btnCancelarColaboracion = new JButton(&quot;Cancelar Colaboración&quot;);</span>
+<span class="nc" id="L90">        JButton btnCancelar = new JButton(&quot;Cancelar&quot;);</span>
+<span class="nc" id="L91">        panelBotones.add(btnCancelarColaboracion);</span>
+<span class="nc" id="L92">        panelBotones.add(btnCancelar);</span>
+<span class="nc" id="L93">        panelDerecho.add(panelBotones, BorderLayout.SOUTH);</span>
+
+<span class="nc" id="L95">        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelIzquierdo, panelDerecho);</span>
+<span class="nc" id="L96">        splitPane.setDividerLocation(300);</span>
+<span class="nc" id="L97">        add(splitPane, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L99">        jListPropuestas.setCellRenderer(new DefaultListCellRenderer() {</span>
+            @Override
+            public Component getListCellRendererComponent(JList&lt;?&gt; list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+<span class="nc" id="L102">                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">                if (value instanceof DTPropuesta p) {</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">                    String proponenteNick = (p.getDTProponente() != null) ?</span>
+<span class="nc" id="L105">                            p.getDTProponente().getNickname() : &quot;N/A&quot;;</span>
+<span class="nc" id="L106">                    setText(p.getTitulo() + &quot; (&quot; + proponenteNick + &quot;)&quot;);</span>
+                }
+<span class="nc" id="L108">                return this;</span>
+            }
+        });
+
+<span class="nc" id="L112">        jListColaboraciones.setCellRenderer(new DefaultListCellRenderer() {</span>
+            @Override
+            public Component getListCellRendererComponent(JList&lt;?&gt; list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+<span class="nc" id="L115">                super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">                if (value instanceof DTColaboracion c) {</span>
+<span class="nc bnc" id="L117" title="All 2 branches missed.">                    String colaboradorNick = (c.getColaborador() != null) ?</span>
+<span class="nc" id="L118">                            c.getColaborador().getNickname() : &quot;N/A&quot;;</span>
+<span class="nc" id="L119">                    setText(colaboradorNick + &quot; - $&quot; + c.getMonto());</span>
+                }
+<span class="nc" id="L121">                return this;</span>
+            }
+        });
+
+<span class="nc" id="L125">        jListPropuestas.addListSelectionListener(e -&gt; {</span>
+<span class="nc bnc" id="L126" title="All 2 branches missed.">            if (!e.getValueIsAdjusting()) {</span>
+<span class="nc" id="L127">                DTPropuesta propuesta = jListPropuestas.getSelectedValue();</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">                if (propuesta != null) {</span>
+<span class="nc" id="L129">                    mostrarDetallesPropuesta(propuesta);</span>
+<span class="nc" id="L130">                    cargarColaboraciones(propuesta);</span>
+                }
+            }
+<span class="nc" id="L133">        });</span>
+
+<span class="nc" id="L135">        btnCancelarColaboracion.addActionListener(e -&gt; {</span>
+            try {
+<span class="nc" id="L137">                DTPropuesta propuestaSeleccionada = jListPropuestas.getSelectedValue();</span>
+<span class="nc" id="L138">                DTColaboracion colaboracionSeleccionada = jListColaboraciones.getSelectedValue();</span>
+
+<span class="nc bnc" id="L140" title="All 2 branches missed.">                if (propuestaSeleccionada == null) {</span>
+<span class="nc" id="L141">                    JOptionPane.showMessageDialog(this, &quot;Debe seleccionar una propuesta.&quot;);</span>
+<span class="nc" id="L142">                    return;</span>
+                }
+
+<span class="nc bnc" id="L145" title="All 2 branches missed.">                if (colaboracionSeleccionada == null) {</span>
+<span class="nc" id="L146">                    JOptionPane.showMessageDialog(this, &quot;Debe seleccionar una colaboración.&quot;);</span>
+<span class="nc" id="L147">                    return;</span>
+                }
+
+<span class="nc" id="L150">                String nickname = colaboracionSeleccionada.getColaborador().getNickname();</span>
+
+<span class="nc" id="L152">                int confirmacion = JOptionPane.showConfirmDialog(this,</span>
+                        &quot;¿Está seguro que desea cancelar la colaboración de &quot; + nickname +
+<span class="nc" id="L154">                                &quot; por $&quot; + colaboracionSeleccionada.getMonto() + &quot;?&quot;,</span>
+                        &quot;Confirmar cancelación&quot;,
+                        JOptionPane.YES_NO_OPTION);
+
+<span class="nc bnc" id="L158" title="All 2 branches missed.">                if (confirmacion == JOptionPane.YES_OPTION) {</span>
+<span class="nc" id="L159">                    PropuestaContr.cancelarColaboracion(</span>
+<span class="nc" id="L160">                            colaboracionSeleccionada.getId()</span>
+                    );
+
+<span class="nc" id="L163">                    JOptionPane.showMessageDialog(this, &quot;Colaboración cancelada con éxito&quot;);</span>
+
+<span class="nc" id="L165">                    jListPropuestas.clearSelection();</span>
+<span class="nc" id="L166">                    jListColaboraciones.setListData(new DTColaboracion[0]);</span>
+<span class="nc" id="L167">                    limpiarDetalles();</span>
+
+<span class="nc" id="L169">                    List&lt;DTPropuesta&gt; propuestasActualizadas = PropuestaContr.devolverTodasLasPropuestas();</span>
+<span class="nc" id="L170">                    jListPropuestas.setListData(propuestasActualizadas.toArray(new DTPropuesta[0]));</span>
+                }
+
+<span class="nc" id="L173">            } catch (Exception ex) {</span>
+<span class="nc" id="L174">                JOptionPane.showMessageDialog(this, &quot;Error: &quot; + ex.getMessage());</span>
+<span class="nc" id="L175">            }</span>
+<span class="nc" id="L176">        });</span>
+
+<span class="nc" id="L178">        btnCancelar.addActionListener(e -&gt; dispose());</span>
+<span class="nc" id="L179">    }</span>
+
+    private void mostrarDetallesPropuesta(DTPropuesta propuesta) {
+<span class="nc" id="L182">        lblTitulo.setText(&quot;Título: &quot; + propuesta.getTitulo());</span>
+<span class="nc" id="L183">        lblDescripcion.setText(&quot;Descripción: &quot; +</span>
+<span class="nc bnc" id="L184" title="All 2 branches missed.">                (propuesta.getDescripcion().length() &gt; 50 ?</span>
+<span class="nc" id="L185">                        propuesta.getDescripcion().substring(0, 50) + &quot;...&quot; :</span>
+<span class="nc" id="L186">                        propuesta.getDescripcion()));</span>
+<span class="nc" id="L187">        lblLugar.setText(&quot;Lugar: &quot; + propuesta.getLugar());</span>
+<span class="nc" id="L188">        lblFechaPrevista.setText(&quot;Fecha Prevista: &quot; + propuesta.getFechaPrevista());</span>
+<span class="nc" id="L189">        lblPrecioEntrada.setText(&quot;Precio Entrada: $&quot; + propuesta.getPrecioEntrada());</span>
+<span class="nc" id="L190">        lblMontoNecesario.setText(&quot;Monto Necesario: $&quot; + propuesta.getMontoNecesario());</span>
+
+<span class="nc" id="L192">        double montoTotal = 0;</span>
+<span class="nc bnc" id="L193" title="All 2 branches missed.">        if (propuesta.getColaboraciones() != null) {</span>
+<span class="nc bnc" id="L194" title="All 2 branches missed.">            for (DTColaboracion c : propuesta.getColaboraciones()) {</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">                if (c.getMonto() != null) {</span>
+<span class="nc" id="L196">                    montoTotal += c.getMonto();</span>
+                }
+<span class="nc" id="L198">            }</span>
+        }
+<span class="nc" id="L200">        lblMontoTotal.setText(&quot;Monto Recaudado: $&quot; + montoTotal);</span>
+
+<span class="nc" id="L202">        lblCategoria.setText(&quot;Categoria: &quot; + propuesta.getCategoria().getNombre());</span>
+
+<span class="nc bnc" id="L204" title="All 2 branches missed.">        String proponenteInfo = (propuesta.getDTProponente() != null) ?</span>
+<span class="nc" id="L205">                propuesta.getDTProponente().getNickname() : &quot;N/A&quot;;</span>
+<span class="nc" id="L206">        lblProponente.setText(&quot;Proponente: &quot; + proponenteInfo);</span>
+
+<span class="nc bnc" id="L208" title="All 2 branches missed.">        String estadoInfo = (propuesta.getEstadoActual() != null) ?</span>
+<span class="nc" id="L209">                propuesta.getEstadoActual().toString() : &quot;N/A&quot;;</span>
+<span class="nc" id="L210">        lblEstado.setText(&quot;Estado: &quot; + estadoInfo);</span>
+<span class="nc" id="L211">    }</span>
+
+    private void cargarColaboraciones(DTPropuesta propuesta) {
+<span class="nc bnc" id="L214" title="All 4 branches missed.">        if (propuesta.getColaboraciones() != null &amp;&amp; !propuesta.getColaboraciones().isEmpty()) {</span>
+<span class="nc" id="L215">            jListColaboraciones.setListData(propuesta.getColaboraciones().toArray(new DTColaboracion[0]));</span>
+        } else {
+<span class="nc" id="L217">            jListColaboraciones.setListData(new DTColaboracion[0]);</span>
+        }
+<span class="nc" id="L219">    }</span>
+
+    private void limpiarDetalles() {
+<span class="nc" id="L222">        lblTitulo.setText(&quot;Título: &quot;);</span>
+<span class="nc" id="L223">        lblDescripcion.setText(&quot;Descripción: &quot;);</span>
+<span class="nc" id="L224">        lblLugar.setText(&quot;Lugar: &quot;);</span>
+<span class="nc" id="L225">        lblFechaPrevista.setText(&quot;Fecha Prevista: &quot;);</span>
+<span class="nc" id="L226">        lblPrecioEntrada.setText(&quot;Precio Entrada: &quot;);</span>
+<span class="nc" id="L227">        lblMontoNecesario.setText(&quot;Monto Necesario: &quot;);</span>
+<span class="nc" id="L228">        lblProponente.setText(&quot;Proponente: &quot;);</span>
+<span class="nc" id="L229">        lblEstado.setText(&quot;Estado: &quot;);</span>
+<span class="nc" id="L230">        lblCategoria.setText(&quot;Categoria: &quot;);</span>
+<span class="nc" id="L231">        lblMontoTotal.setText(&quot;Monto Recaudado: &quot;);</span>
+<span class="nc" id="L232">    }</span>
+
+    private void setFontToLabels(Font font, JLabel... labels) {
+<span class="nc bnc" id="L235" title="All 2 branches missed.">        for (JLabel lbl : labels) {</span>
+<span class="nc" id="L236">            lbl.setFont(font);</span>
+        }
+<span class="nc" id="L238">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

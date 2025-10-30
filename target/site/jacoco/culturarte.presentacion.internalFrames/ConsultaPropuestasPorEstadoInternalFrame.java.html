@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConsultaPropuestasPorEstadoInternalFrame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Culturarte App</a> &gt; <a href="index.source.html" class="el_package">culturarte.presentacion.internalFrames</a> &gt; <span class="el_source">ConsultaPropuestasPorEstadoInternalFrame.java</span></div><h1>ConsultaPropuestasPorEstadoInternalFrame.java</h1><pre class="source lang-java linenums">
+package culturarte.presentacion.internalFrames;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
+
+import culturarte.servicios.DTs.*;
+import culturarte.servicios.interfaces.IPropuestaController;
+import culturarte.presentacion.helpers.ImagenUIHelper;
+
+public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
+
+    private final JComboBox&lt;DTEstadoPropuesta&gt; comboEstados;
+    private final JList&lt;DTPropuesta&gt; jListPropuestas;
+    private final JLabel lblTitulo;
+    private final JTextArea txtDescripcion;
+    private final JLabel lblLugar;
+    private final JLabel lblFechaPrevista;
+    private final JLabel lblEstado;
+    private final ImagenUIHelper.ImagenPanel lblImagen;
+    private final JTextArea txtColaboradores;
+    private final JLabel lblMontoTotal;
+    private final JLabel lblProponente;
+    private final JLabel lblPrecioEntrada;
+    private final JLabel lblCategoria;
+    private final JLabel lblMontoNecesario;
+    private final JLabel lblFechaPublicacion;
+    private final JTextArea txtHistorial;
+    private final JLabel lblTiposRetorno;
+
+    private final IPropuestaController PropuestaContr;
+
+    public ConsultaPropuestasPorEstadoInternalFrame(IPropuestaController icp) {
+<span class="nc" id="L35">        super(&quot;Consulta de Propuestas por Estado&quot;, true, true, true, true);</span>
+<span class="nc" id="L36">        setSize(1000, 500);</span>
+<span class="nc" id="L37">        setLayout(new BorderLayout());</span>
+
+<span class="nc" id="L39">        PropuestaContr = icp;</span>
+
+<span class="nc" id="L41">        JPanel panelSuperior = new JPanel(new FlowLayout(FlowLayout.LEFT));</span>
+<span class="nc" id="L42">        panelSuperior.add(new JLabel(&quot;Estado:&quot;));</span>
+
+<span class="nc" id="L44">        comboEstados = new JComboBox&lt;&gt;();</span>
+<span class="nc" id="L45">        cargarEstados();</span>
+<span class="nc" id="L46">        panelSuperior.add(comboEstados);</span>
+
+<span class="nc" id="L48">        JButton btnConsultar = new JButton(&quot;Consultar&quot;);</span>
+<span class="nc" id="L49">        panelSuperior.add(btnConsultar);</span>
+
+<span class="nc" id="L51">        add(panelSuperior, BorderLayout.NORTH);</span>
+
+<span class="nc" id="L53">        jListPropuestas = new JList&lt;&gt;();</span>
+<span class="nc" id="L54">        JScrollPane scrollList = new JScrollPane(jListPropuestas);</span>
+<span class="nc" id="L55">        scrollList.setPreferredSize(new Dimension(200, 0));</span>
+<span class="nc" id="L56">        add(scrollList, BorderLayout.WEST);</span>
+
+<span class="nc" id="L58">        JPanel panelDetalles = new JPanel(new GridLayout(5, 3, 5, 5));</span>
+
+<span class="nc" id="L60">        panelDetalles.add(new JLabel(&quot;Título:&quot;));</span>
+<span class="nc" id="L61">        lblTitulo = new JLabel();</span>
+<span class="nc" id="L62">        panelDetalles.add(lblTitulo);</span>
+<span class="nc" id="L63">        estilizarLabelContenido(lblTitulo);</span>
+
+<span class="nc" id="L65">        panelDetalles.add(new JLabel(&quot;Descripción:&quot;));</span>
+<span class="nc" id="L66">        txtDescripcion = new JTextArea();</span>
+<span class="nc" id="L67">        txtDescripcion.setLineWrap(true);</span>
+<span class="nc" id="L68">        txtDescripcion.setWrapStyleWord(true);</span>
+<span class="nc" id="L69">        txtDescripcion.setEditable(false);</span>
+<span class="nc" id="L70">        txtDescripcion.setRows(5);</span>
+<span class="nc" id="L71">        txtDescripcion.setFont(txtDescripcion.getFont().deriveFont(Font.BOLD));</span>
+<span class="nc" id="L72">        JScrollPane scrollDesc = new JScrollPane(txtDescripcion);</span>
+<span class="nc" id="L73">        scrollDesc.setBorder(BorderFactory.createEmptyBorder());</span>
+<span class="nc" id="L74">        scrollDesc.setAlignmentX(Component.LEFT_ALIGNMENT);</span>
+<span class="nc" id="L75">        panelDetalles.add(scrollDesc);</span>
+<span class="nc" id="L76">        estilizarLabelContenido(txtDescripcion);</span>
+
+<span class="nc" id="L78">        panelDetalles.add(new JLabel(&quot;Proponente:&quot;));</span>
+<span class="nc" id="L79">        lblProponente = new JLabel();</span>
+<span class="nc" id="L80">        panelDetalles.add(lblProponente);</span>
+<span class="nc" id="L81">        estilizarLabelContenido(lblProponente);</span>
+
+<span class="nc" id="L83">        panelDetalles.add(new JLabel(&quot;Lugar:&quot;));</span>
+<span class="nc" id="L84">        lblLugar = new JLabel();</span>
+<span class="nc" id="L85">        panelDetalles.add(lblLugar);</span>
+<span class="nc" id="L86">        estilizarLabelContenido(lblLugar);</span>
+
+<span class="nc" id="L88">        panelDetalles.add(new JLabel(&quot;Fecha Prevista:&quot;));</span>
+<span class="nc" id="L89">        lblFechaPrevista = new JLabel();</span>
+<span class="nc" id="L90">        panelDetalles.add(lblFechaPrevista);</span>
+<span class="nc" id="L91">        estilizarLabelContenido(lblFechaPrevista);</span>
+
+<span class="nc" id="L93">        panelDetalles.add(new JLabel(&quot;Precio Entrada:&quot;));</span>
+<span class="nc" id="L94">        lblPrecioEntrada = new JLabel();</span>
+<span class="nc" id="L95">        panelDetalles.add(lblPrecioEntrada);</span>
+<span class="nc" id="L96">        estilizarLabelContenido(lblPrecioEntrada);</span>
+
+<span class="nc" id="L98">        panelDetalles.add(new JLabel(&quot;Imagen:&quot;));</span>
+<span class="nc" id="L99">        lblImagen = new ImagenUIHelper.ImagenPanel();</span>
+<span class="nc" id="L100">        lblImagen.setPreferredSize(new Dimension(150, 150));</span>
+<span class="nc" id="L101">        panelDetalles.add(lblImagen);</span>
+<span class="nc" id="L102">        estilizarLabelContenido(lblImagen);</span>
+
+<span class="nc" id="L104">        panelDetalles.add(new JLabel(&quot;Categoría:&quot;));</span>
+<span class="nc" id="L105">        lblCategoria = new JLabel();</span>
+<span class="nc" id="L106">        panelDetalles.add(lblCategoria);</span>
+<span class="nc" id="L107">        estilizarLabelContenido(lblCategoria);</span>
+
+<span class="nc" id="L109">        panelDetalles.add(new JLabel(&quot;Estado:&quot;));</span>
+<span class="nc" id="L110">        lblEstado = new JLabel();</span>
+<span class="nc" id="L111">        panelDetalles.add(lblEstado);</span>
+<span class="nc" id="L112">        estilizarLabelContenido(lblEstado);</span>
+
+<span class="nc" id="L114">        panelDetalles.add(new JLabel(&quot;Colaboradores:&quot;));</span>
+<span class="nc" id="L115">        txtColaboradores = new JTextArea();</span>
+<span class="nc" id="L116">        txtColaboradores.setLineWrap(true);</span>
+<span class="nc" id="L117">        txtColaboradores.setWrapStyleWord(true);</span>
+<span class="nc" id="L118">        txtColaboradores.setEditable(false);</span>
+<span class="nc" id="L119">        txtColaboradores.setRows(5);</span>
+<span class="nc" id="L120">        txtColaboradores.setFont(txtColaboradores.getFont().deriveFont(Font.BOLD));</span>
+<span class="nc" id="L121">        JScrollPane scrollColab = new JScrollPane(txtColaboradores);</span>
+<span class="nc" id="L122">        scrollColab.setBorder(BorderFactory.createEmptyBorder());</span>
+<span class="nc" id="L123">        scrollColab.setAlignmentX(Component.LEFT_ALIGNMENT);</span>
+<span class="nc" id="L124">        panelDetalles.add(scrollColab);</span>
+<span class="nc" id="L125">        estilizarLabelContenido(txtColaboradores);</span>
+
+<span class="nc" id="L127">        panelDetalles.add(new JLabel(&quot;Monto total recaudado:&quot;));</span>
+<span class="nc" id="L128">        lblMontoTotal = new JLabel();</span>
+<span class="nc" id="L129">        panelDetalles.add(lblMontoTotal);</span>
+<span class="nc" id="L130">        estilizarLabelContenido(lblMontoTotal);</span>
+
+<span class="nc" id="L132">        panelDetalles.add(new JLabel(&quot;Monto Necesario:&quot;));</span>
+<span class="nc" id="L133">        lblMontoNecesario = new JLabel();</span>
+<span class="nc" id="L134">        panelDetalles.add(lblMontoNecesario);</span>
+<span class="nc" id="L135">        estilizarLabelContenido(lblMontoNecesario);</span>
+
+<span class="nc" id="L137">        panelDetalles.add(new JLabel(&quot;Fecha Publicación:&quot;));</span>
+<span class="nc" id="L138">        lblFechaPublicacion = new JLabel();</span>
+<span class="nc" id="L139">        panelDetalles.add(lblFechaPublicacion);</span>
+<span class="nc" id="L140">        estilizarLabelContenido(lblFechaPublicacion);</span>
+
+<span class="nc" id="L142">        panelDetalles.add(new JLabel(&quot;Historial:&quot;));</span>
+<span class="nc" id="L143">        txtHistorial = new JTextArea();</span>
+<span class="nc" id="L144">        txtHistorial.setLineWrap(true);</span>
+<span class="nc" id="L145">        txtHistorial.setWrapStyleWord(true);</span>
+<span class="nc" id="L146">        txtHistorial.setEditable(false);</span>
+<span class="nc" id="L147">        txtHistorial.setRows(5);</span>
+<span class="nc" id="L148">        txtHistorial.setFont(txtHistorial.getFont().deriveFont(Font.BOLD));</span>
+<span class="nc" id="L149">        txtHistorial.setAlignmentX(Component.CENTER_ALIGNMENT);</span>
+<span class="nc" id="L150">        JScrollPane scrollHist = new JScrollPane(txtHistorial);</span>
+<span class="nc" id="L151">        scrollHist.setBorder(BorderFactory.createEmptyBorder());</span>
+<span class="nc" id="L152">        scrollHist.setAlignmentX(Component.LEFT_ALIGNMENT);</span>
+<span class="nc" id="L153">        panelDetalles.add(scrollHist);</span>
+<span class="nc" id="L154">        estilizarLabelContenido(txtHistorial);</span>
+
+<span class="nc" id="L156">        panelDetalles.add(new JLabel(&quot;Tipos de Retorno:&quot;));</span>
+<span class="nc" id="L157">        lblTiposRetorno = new JLabel();</span>
+<span class="nc" id="L158">        panelDetalles.add(lblTiposRetorno);</span>
+<span class="nc" id="L159">        estilizarLabelContenido(lblTiposRetorno);</span>
+
+<span class="nc" id="L161">        add(panelDetalles, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L163">        btnConsultar.addActionListener(e -&gt; consultarPropuestasPorEstado());</span>
+
+<span class="nc" id="L165">        jListPropuestas.addListSelectionListener(e -&gt; {</span>
+<span class="nc bnc" id="L166" title="All 2 branches missed.">            if (!e.getValueIsAdjusting()) {</span>
+<span class="nc" id="L167">                DTPropuesta p = jListPropuestas.getSelectedValue();</span>
+<span class="nc bnc" id="L168" title="All 2 branches missed.">                if (p != null) {</span>
+<span class="nc" id="L169">                    mostrarDetalles(p);</span>
+                }
+            }
+<span class="nc" id="L172">        });</span>
+<span class="nc" id="L173">    }</span>
+
+    private void cargarEstados() {
+<span class="nc bnc" id="L176" title="All 2 branches missed.">        for (DTEstadoPropuesta estado : DTEstadoPropuesta.values()) {</span>
+<span class="nc bnc" id="L177" title="All 2 branches missed.">            if (estado != DTEstadoPropuesta.INGRESADA) {</span>
+<span class="nc" id="L178">                comboEstados.addItem(estado);</span>
+            }
+        }
+<span class="nc" id="L181">    }</span>
+
+    private void consultarPropuestasPorEstado() {
+<span class="nc" id="L184">        DTEstadoPropuesta estadoSeleccionado = (DTEstadoPropuesta) comboEstados.getSelectedItem();</span>
+
+<span class="nc bnc" id="L186" title="All 2 branches missed.">        if (estadoSeleccionado == null) {</span>
+<span class="nc" id="L187">            JOptionPane.showMessageDialog(this, &quot;Seleccione un estado&quot;, &quot;Aviso&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="nc" id="L188">            return;</span>
+        }
+
+        try {
+<span class="nc" id="L192">            List&lt;DTPropuesta&gt; propuestas = PropuestaContr.devolverPropuestasPorEstado(estadoSeleccionado);</span>
+
+<span class="nc" id="L194">            DefaultListModel&lt;DTPropuesta&gt; modeloLista = new DefaultListModel&lt;&gt;();</span>
+<span class="nc bnc" id="L195" title="All 2 branches missed.">            for (DTPropuesta p : propuestas) {</span>
+<span class="nc" id="L196">                modeloLista.addElement(p);</span>
+<span class="nc" id="L197">            }</span>
+<span class="nc" id="L198">            jListPropuestas.setModel(modeloLista);</span>
+
+<span class="nc" id="L200">            limpiarDetalles();</span>
+
+<span class="nc bnc" id="L202" title="All 2 branches missed.">            if (propuestas.isEmpty()) {</span>
+<span class="nc" id="L203">                JOptionPane.showMessageDialog(this,</span>
+<span class="nc" id="L204">                        &quot;No hay propuestas en estado &quot; + estadoSeleccionado.name(),</span>
+                        &quot;Información&quot;,
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+
+<span class="nc" id="L209">        } catch (Exception ex) {</span>
+<span class="nc" id="L210">            JOptionPane.showMessageDialog(this,</span>
+<span class="nc" id="L211">                    &quot;Error al consultar propuestas: &quot; + ex.getMessage(),</span>
+                    &quot;Error&quot;,
+                    JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L214">        }</span>
+<span class="nc" id="L215">    }</span>
+
+    private void mostrarDetalles(DTPropuesta p) {
+<span class="nc" id="L218">        lblTitulo.setText(p.getTitulo());</span>
+<span class="nc" id="L219">        txtDescripcion.setText(p.getDescripcion());</span>
+<span class="nc" id="L220">        lblLugar.setText(p.getLugar());</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">        lblFechaPrevista.setText(p.getFechaPrevista() != null ? p.getFechaPrevista().toString() : &quot;&quot;);</span>
+<span class="nc bnc" id="L222" title="All 2 branches missed.">        lblEstado.setText(p.getEstadoActual() != null ? p.getEstadoActual().toString() : &quot;Sin estado&quot;);</span>
+
+<span class="nc" id="L224">        lblImagen.setImagen(p.getImagen());</span>
+
+<span class="nc" id="L226">        StringBuilder colaboradoresStr = new StringBuilder();</span>
+<span class="nc bnc" id="L227" title="All 2 branches missed.">        for (DTColaboracion c : p.getColaboraciones()) {</span>
+<span class="nc bnc" id="L228" title="All 2 branches missed.">            if (!colaboradoresStr.isEmpty()) colaboradoresStr.append(&quot;, &quot;);</span>
+<span class="nc" id="L229">            colaboradoresStr.append(c.getColaborador().getNickname());</span>
+<span class="nc" id="L230">        }</span>
+<span class="nc" id="L231">        txtColaboradores.setText(colaboradoresStr.toString());</span>
+
+<span class="nc" id="L233">        double montoTotal = 0;</span>
+<span class="nc bnc" id="L234" title="All 2 branches missed.">        for (DTColaboracion c : p.getColaboraciones()) {</span>
+<span class="nc bnc" id="L235" title="All 2 branches missed.">            if (c.getMonto() != null) montoTotal += c.getMonto();</span>
+<span class="nc" id="L236">        }</span>
+<span class="nc" id="L237">        lblMontoTotal.setText(String.valueOf(montoTotal));</span>
+
+<span class="nc" id="L239">        StringBuilder historialStr = new StringBuilder();</span>
+<span class="nc bnc" id="L240" title="All 2 branches missed.">        for (DTPropuestaEstado h : p.getHistorial()) {</span>
+<span class="nc bnc" id="L241" title="All 2 branches missed.">            if (!historialStr.isEmpty()) historialStr.append(&quot;, &quot;);</span>
+<span class="nc" id="L242">            historialStr.append(h.getEstado().toString()).append(&quot; (&quot;).append(h.getFechaCambio()).append(&quot;)&quot;);</span>
+<span class="nc" id="L243">        }</span>
+<span class="nc" id="L244">        txtHistorial.setText(historialStr.toString());</span>
+
+<span class="nc" id="L246">        StringBuilder tiposRetornoStr = new StringBuilder();</span>
+<span class="nc bnc" id="L247" title="All 2 branches missed.">        for (DTTipoRetorno t : p.getTiposRetorno()) {</span>
+<span class="nc bnc" id="L248" title="All 2 branches missed.">            if (!tiposRetornoStr.isEmpty()) tiposRetornoStr.append(&quot;, &quot;);</span>
+<span class="nc" id="L249">            tiposRetornoStr.append(t.toString());</span>
+<span class="nc" id="L250">        }</span>
+<span class="nc" id="L251">        lblTiposRetorno.setText(tiposRetornoStr.toString());</span>
+<span class="nc bnc" id="L252" title="All 2 branches missed.">        lblPrecioEntrada.setText(p.getPrecioEntrada() != null ? p.getPrecioEntrada().toString() : &quot;&quot;);</span>
+<span class="nc bnc" id="L253" title="All 2 branches missed.">        lblMontoNecesario.setText(p.getMontoNecesario() != null ? p.getMontoNecesario().toString() : &quot;&quot;);</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">        lblFechaPublicacion.setText(p.getFechaPublicacion() != null ? p.getFechaPublicacion().toString() : &quot;&quot;);</span>
+<span class="nc bnc" id="L255" title="All 2 branches missed.">        lblCategoria.setText(p.getCategoria() != null ? p.getCategoria().getNombre() : &quot;&quot;);</span>
+<span class="nc" id="L256">        lblProponente.setText(p.getDTProponente().getNombre());</span>
+<span class="nc" id="L257">    }</span>
+
+    private void limpiarDetalles() {
+<span class="nc" id="L260">        lblTitulo.setText(&quot;&quot;);</span>
+<span class="nc" id="L261">        txtDescripcion.setText(&quot;&quot;);</span>
+<span class="nc" id="L262">        lblLugar.setText(&quot;&quot;);</span>
+<span class="nc" id="L263">        lblFechaPrevista.setText(&quot;&quot;);</span>
+<span class="nc" id="L264">        lblEstado.setText(&quot;&quot;);</span>
+<span class="nc" id="L265">        lblImagen.setImagen(null);</span>
+<span class="nc" id="L266">        txtColaboradores.setText(&quot;&quot;);</span>
+<span class="nc" id="L267">        lblMontoTotal.setText(&quot;&quot;);</span>
+
+<span class="nc" id="L269">        lblCategoria.setText(&quot;&quot;);</span>
+<span class="nc" id="L270">        lblPrecioEntrada.setText(&quot;&quot;);</span>
+<span class="nc" id="L271">        lblProponente.setText(&quot;&quot;);</span>
+<span class="nc" id="L272">        lblMontoNecesario.setText(&quot;&quot;);</span>
+<span class="nc" id="L273">        lblFechaPublicacion.setText(&quot;&quot;);</span>
+<span class="nc" id="L274">        txtHistorial.setText(&quot;&quot;);</span>
+<span class="nc" id="L275">        lblTiposRetorno.setText(&quot;&quot;);</span>
+<span class="nc" id="L276">    }</span>
+
+    private void estilizarLabelContenido(JComponent comp) {
+<span class="nc" id="L279">        comp.setOpaque(true);</span>
+<span class="nc" id="L280">        comp.setBackground(new Color(200, 230, 250));</span>
+<span class="nc" id="L281">        comp.setForeground(Color.BLACK);</span>
+<span class="nc" id="L282">        comp.setBorder(BorderFactory.createEmptyBorder(0, 5, 0, 0));</span>
+<span class="nc" id="L283">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

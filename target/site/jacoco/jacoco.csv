@@ -1,0 +1,56 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+Culturarte App,culturarte.servicios.DTs,DTPropuestaEstado,37,0,0,0,12,0,9,0,9,0
+Culturarte App,culturarte.servicios.DTs,DTColaboracion,72,21,0,0,24,8,15,1,15,1
+Culturarte App,culturarte.servicios.DTs,DTComentario,166,0,10,0,47,0,22,0,17,0
+Culturarte App,culturarte.servicios.DTs,DTTipoRetorno,0,15,0,0,0,3,0,1,0,1
+Culturarte App,culturarte.servicios.DTs,DTProponente,0,107,0,0,0,27,0,12,0,12
+Culturarte App,culturarte.servicios.DTs,DTCategoria,37,33,0,0,11,10,7,4,7,4
+Culturarte App,culturarte.servicios.DTs,DTEstadoPropuesta,0,39,0,0,0,7,0,1,0,1
+Culturarte App,culturarte.servicios.DTs,DTPropuesta,435,149,24,0,97,36,34,17,22,17
+Culturarte App,culturarte.servicios.DTs,DTColaborador,14,20,0,0,4,6,2,3,2,3
+Culturarte App,culturarte.servicios.DTs,DTUsuario,14,130,0,0,4,46,4,19,4,19
+Culturarte App,culturarte.servicios.DTs,DTSeguimiento,24,0,0,0,7,0,7,0,7,0
+Culturarte App,culturarte.logica.endpoints,UsuarioWSEndpoint,75,0,0,0,21,0,14,0,14,0
+Culturarte App,culturarte.logica.controladores,PropuestaController,16,496,1,43,5,137,2,38,1,17
+Culturarte App,culturarte.logica.controladores,UsuarioController,369,385,33,35,91,98,19,29,0,14
+Culturarte App,culturarte.logica.controladores,SesionController,0,56,0,8,0,17,0,9,0,5
+Culturarte App,culturarte.presentacion.helpers,ImagenUIHelper,3,0,0,0,1,0,1,0,1,0
+Culturarte App,culturarte.presentacion.helpers,CategoriaUIHelper,84,0,14,0,20,0,10,0,3,0
+Culturarte App,culturarte.presentacion.helpers,ImagenUIHelper.ImagenPanel,127,0,10,0,30,0,8,0,3,0
+Culturarte App,culturarte.presentacion.internalFrames,GestionarComentariosInternalFrame.ComentarioListCellRenderer,66,0,4,0,13,0,4,0,2,0
+Culturarte App,culturarte.presentacion.internalFrames,EvaluarPropuestaInternalFrame,593,0,30,0,107,0,24,0,9,0
+Culturarte App,culturarte.presentacion.internalFrames,ModificarDatosPropuestaInternalFrame,649,0,44,0,131,0,30,0,8,0
+Culturarte App,culturarte.presentacion.internalFrames,ConsultaColaboracionInternalFrame,701,0,36,0,144,0,29,0,11,0
+Culturarte App,culturarte.presentacion.internalFrames,DejarSeguirUsuarioInternalFrame,233,0,14,0,56,0,12,0,5,0
+Culturarte App,culturarte.presentacion.internalFrames,ConsultaPerfilProponenteInternalFrame,689,0,25,0,119,0,19,0,4,0
+Culturarte App,culturarte.presentacion.internalFrames,CancelarColaboracionInternalFrame.new DefaultListCellRenderer() {...},37,0,4,0,7,0,4,0,2,0
+Culturarte App,culturarte.presentacion.internalFrames,CancelarColaboracionInternalFrame.new DefaultListCellRenderer() {...},37,0,4,0,7,0,4,0,2,0
+Culturarte App,culturarte.presentacion.internalFrames,SeguirUsuarioInternalFrame,187,0,8,0,44,0,8,0,4,0
+Culturarte App,culturarte.presentacion.internalFrames,GestionarComentariosInternalFrame,574,0,14,0,129,0,17,0,10,0
+Culturarte App,culturarte.presentacion.internalFrames,RegistrarColaboracionInternalFrame,767,0,40,0,158,0,27,0,7,0
+Culturarte App,culturarte.presentacion.internalFrames,RegistrarColaboracionInternalFrame.new DefaultListCellRenderer() {...},37,0,4,0,7,0,4,0,2,0
+Culturarte App,culturarte.presentacion.internalFrames,ConsultarPropuestaInternalFrame,797,0,38,0,152,0,24,0,5,0
+Culturarte App,culturarte.presentacion.internalFrames,ConsultaPropuestasPorEstadoInternalFrame,953,0,42,0,191,0,29,0,8,0
+Culturarte App,culturarte.presentacion.internalFrames,AltaPropuestaInternalFrame,639,0,36,0,130,0,23,0,5,0
+Culturarte App,culturarte.presentacion.internalFrames,AltaUsuarioInternalFrame,698,0,28,0,142,0,19,0,5,0
+Culturarte App,culturarte.presentacion.internalFrames,AltaCategoriaInternalFrame,199,0,4,0,49,0,6,0,4,0
+Culturarte App,culturarte.presentacion.internalFrames,CancelarColaboracionInternalFrame,677,0,28,0,134,0,22,0,8,0
+Culturarte App,culturarte.presentacion.internalFrames,ConsultaPerfilColaboradorInternalFrame,620,0,27,0,106,0,20,0,4,0
+Culturarte App,culturarte.presentacion.internalFrames,GestionarComentariosInternalFrame.new ActionListener() {...},10,0,0,0,3,0,2,0,2,0
+Culturarte App,culturarte.persistencia,JPAUtil,9,9,1,1,3,3,3,1,2,1
+Culturarte App,culturarte.servicios,Fabrica,20,0,2,0,6,0,5,0,4,0
+Culturarte App,culturarte.logica.modelos,EstadoPropuesta,0,39,0,0,0,7,0,1,0,1
+Culturarte App,culturarte.logica.modelos,Colaborador,22,8,0,0,5,3,3,1,3,1
+Culturarte App,culturarte.logica.modelos,Seguimiento,22,11,0,0,8,3,5,3,5,3
+Culturarte App,culturarte.logica.modelos,Usuario,77,27,0,0,22,10,22,2,22,2
+Culturarte App,culturarte.logica.modelos,Categoria,28,22,0,0,8,6,8,2,8,2
+Culturarte App,culturarte.logica.modelos,Proponente,31,32,0,0,9,8,9,2,9,2
+Culturarte App,culturarte.logica.modelos,Colaboracion,42,21,0,0,12,8,12,2,12,2
+Culturarte App,culturarte.logica.modelos,Comentario,40,18,0,0,11,7,11,2,11,2
+Culturarte App,culturarte.logica.modelos,PropuestaEstado,28,15,0,0,8,6,8,2,8,2
+Culturarte App,culturarte.logica.modelos,Propuesta,109,150,0,0,32,36,22,16,22,16
+Culturarte App,culturarte.logica.modelos,TipoRetorno,0,15,0,0,0,3,0,1,0,1
+Culturarte App,culturarte.logica.manejadores,UsuarioManejador,70,528,13,15,16,161,11,22,0,19
+Culturarte App,culturarte.logica.manejadores,PropuestaManejador,153,822,27,45,34,222,25,26,0,15
+Culturarte App,culturarte.presentacion,WSPublisher,92,0,6,0,31,0,6,0,3,0
+Culturarte App,culturarte.presentacion,EstacionDeTrabajo,534,0,2,0,130,0,38,0,37,0

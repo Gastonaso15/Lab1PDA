@@ -1,5 +1,5 @@
 package culturarte.logica.controladores;
-
+/*
 import culturarte.servicios.DTs.DTUsuario;
 import culturarte.logica.manejadores.UsuarioManejador;
 import culturarte.logica.modelos.*;
@@ -28,6 +28,7 @@ public class SesionController implements ISesionController {
         }
     }
 
+    /*
     @Override
     public void logout(){
         usuarioActual = null;
@@ -42,4 +43,4 @@ public class SesionController implements ISesionController {
     public boolean isLoggedIn(){
         return usuarioActual != null;
     }
-}
+}*/

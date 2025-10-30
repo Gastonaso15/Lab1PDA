@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AltaUsuarioInternalFrame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Culturarte App</a> &gt; <a href="index.source.html" class="el_package">culturarte.presentacion.internalFrames</a> &gt; <span class="el_source">AltaUsuarioInternalFrame.java</span></div><h1>AltaUsuarioInternalFrame.java</h1><pre class="source lang-java linenums">package culturarte.presentacion.internalFrames;
+
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.time.LocalDate;
+import java.util.UUID;
+
+import culturarte.servicios.DTs.DTColaborador;
+import culturarte.servicios.DTs.DTProponente;
+import culturarte.servicios.DTs.DTUsuario;
+import culturarte.servicios.interfaces.IUsuarioController;
+
+public class AltaUsuarioInternalFrame extends JInternalFrame {
+
+    private final JTextField tfNickname;
+    private final JTextField tfNombre;
+    private final JTextField tfApellido;
+    private final JTextField tfContrasenia;
+    private final JTextField tfConfirmacionContrasenia;
+    private final JTextField tfCorreo;
+    private final JTextField tfFechaNacimiento;
+    private final JTextField tfImagen;
+    private final JTextField tfDireccion;
+    private final JTextField tfBiografia;
+    private final JTextField tfSitioWeb;
+    private final JComboBox&lt;String&gt; cbTipoUsuario;
+    private final IUsuarioController UsuarioContr;
+    private JPanel panel;
+
+    public AltaUsuarioInternalFrame(IUsuarioController icu) {
+<span class="nc" id="L35">        super(&quot;Alta de Usuario&quot;, true, true, true, true);</span>
+<span class="nc" id="L36">        setSize(1000, 500);</span>
+<span class="nc" id="L37">        setLayout(new BorderLayout());</span>
+
+<span class="nc" id="L39">        UsuarioContr = icu;</span>
+
+<span class="nc" id="L41">        panel = new JPanel(new GridLayout(0, 2, 5, 5));</span>
+
+<span class="nc" id="L43">        panel.add(new JLabel(&quot;Nickname:&quot;));</span>
+<span class="nc" id="L44">        tfNickname = new JTextField();</span>
+<span class="nc" id="L45">        panel.add(tfNickname);</span>
+
+<span class="nc" id="L47">        panel.add(new JLabel(&quot;Nombre:&quot;));</span>
+<span class="nc" id="L48">        tfNombre = new JTextField();</span>
+<span class="nc" id="L49">        panel.add(tfNombre);</span>
+
+<span class="nc" id="L51">        panel.add(new JLabel(&quot;Apellido:&quot;));</span>
+<span class="nc" id="L52">        tfApellido = new JTextField();</span>
+<span class="nc" id="L53">        panel.add(tfApellido);</span>
+
+<span class="nc" id="L55">        panel.add(new JLabel(&quot;Contraseña:&quot;));</span>
+<span class="nc" id="L56">        tfContrasenia = new JTextField();</span>
+<span class="nc" id="L57">        panel.add(tfContrasenia);</span>
+
+<span class="nc" id="L59">        panel.add(new JLabel(&quot;Confirmar Contraseña:&quot;));</span>
+<span class="nc" id="L60">        tfConfirmacionContrasenia = new JTextField();</span>
+<span class="nc" id="L61">        panel.add(tfConfirmacionContrasenia);</span>
+
+<span class="nc" id="L63">        panel.add(new JLabel(&quot;Correo:&quot;));</span>
+<span class="nc" id="L64">        tfCorreo = new JTextField();</span>
+<span class="nc" id="L65">        panel.add(tfCorreo);</span>
+
+<span class="nc" id="L67">        panel.add(new JLabel(&quot;Fecha de Nacimiento (yyyy-mm-dd):&quot;));</span>
+<span class="nc" id="L68">        tfFechaNacimiento = new JTextField();</span>
+<span class="nc" id="L69">        panel.add(tfFechaNacimiento);</span>
+
+<span class="nc" id="L71">        panel.add(new JLabel(&quot;Imagen (Opcional):&quot;));</span>
+<span class="nc" id="L72">        JPanel imagenPanel = new JPanel(new BorderLayout(5, 5));</span>
+<span class="nc" id="L73">        tfImagen = new JTextField();</span>
+<span class="nc" id="L74">        tfImagen.setEditable(false);</span>
+<span class="nc" id="L75">        JButton btnSeleccionarImagen = new JButton(&quot;Seleccionar Imagen&quot;);</span>
+<span class="nc" id="L76">        imagenPanel.add(tfImagen, BorderLayout.CENTER);</span>
+<span class="nc" id="L77">        imagenPanel.add(btnSeleccionarImagen, BorderLayout.EAST);</span>
+<span class="nc" id="L78">        panel.add(imagenPanel);</span>
+
+<span class="nc" id="L80">        btnSeleccionarImagen.addActionListener(e -&gt; {</span>
+<span class="nc" id="L81">            JFileChooser fileChooser = new JFileChooser();</span>
+<span class="nc" id="L82">            fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);</span>
+<span class="nc" id="L83">            int resultado = fileChooser.showOpenDialog(this);</span>
+<span class="nc bnc" id="L84" title="All 2 branches missed.">            if (resultado == JFileChooser.APPROVE_OPTION) {</span>
+<span class="nc" id="L85">                tfImagen.setText(fileChooser.getSelectedFile().getAbsolutePath());</span>
+            }
+<span class="nc" id="L87">        });</span>
+
+<span class="nc" id="L89">        panel.add(new JLabel(&quot;Tipo Usuario:&quot;));</span>
+<span class="nc" id="L90">        cbTipoUsuario = new JComboBox&lt;&gt;(new String[]{&quot;Colaborador&quot;,&quot;Proponente&quot;});</span>
+<span class="nc" id="L91">        panel.add(cbTipoUsuario);</span>
+
+<span class="nc" id="L93">        JLabel lblDireccion = new JLabel(&quot;Dirección:&quot;);</span>
+<span class="nc" id="L94">        tfDireccion = new JTextField();</span>
+<span class="nc" id="L95">        lblDireccion.setVisible(false);</span>
+<span class="nc" id="L96">        tfDireccion.setVisible(false);</span>
+<span class="nc" id="L97">        panel.add(lblDireccion);</span>
+<span class="nc" id="L98">        panel.add(tfDireccion);</span>
+
+<span class="nc" id="L100">        JLabel lblBiografia = new JLabel(&quot;Biografía (Opcional):&quot;);</span>
+<span class="nc" id="L101">        tfBiografia = new JTextField();</span>
+<span class="nc" id="L102">        lblBiografia.setVisible(false);</span>
+<span class="nc" id="L103">        tfBiografia.setVisible(false);</span>
+<span class="nc" id="L104">        panel.add(lblBiografia);</span>
+<span class="nc" id="L105">        panel.add(tfBiografia);</span>
+
+<span class="nc" id="L107">        JLabel lblSitioWeb = new JLabel(&quot;Sitio Web (Opcional):&quot;);</span>
+<span class="nc" id="L108">        tfSitioWeb = new JTextField();</span>
+<span class="nc" id="L109">        lblSitioWeb.setVisible(false);</span>
+<span class="nc" id="L110">        tfSitioWeb.setVisible(false);</span>
+<span class="nc" id="L111">        panel.add(lblSitioWeb);</span>
+<span class="nc" id="L112">        panel.add(tfSitioWeb);</span>
+
+<span class="nc" id="L114">        cbTipoUsuario.addActionListener(e -&gt; {</span>
+<span class="nc" id="L115">            boolean esProponente = &quot;Proponente&quot;.equals(cbTipoUsuario.getSelectedItem());</span>
+
+<span class="nc" id="L117">            lblDireccion.setVisible(esProponente);</span>
+<span class="nc" id="L118">            tfDireccion.setVisible(esProponente);</span>
+<span class="nc" id="L119">            lblBiografia.setVisible(esProponente);</span>
+<span class="nc" id="L120">            tfBiografia.setVisible(esProponente);</span>
+<span class="nc" id="L121">            lblSitioWeb.setVisible(esProponente);</span>
+<span class="nc" id="L122">            tfSitioWeb.setVisible(esProponente);</span>
+
+<span class="nc" id="L124">            panel.revalidate();</span>
+<span class="nc" id="L125">            panel.repaint();</span>
+<span class="nc" id="L126">        });</span>
+
+<span class="nc" id="L128">        add(panel, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L130">        JPanel botones = new JPanel();</span>
+<span class="nc" id="L131">        JButton aceptar = new JButton(&quot;Aceptar&quot;);</span>
+<span class="nc" id="L132">        JButton cancelar = new JButton(&quot;Cancelar&quot;);</span>
+<span class="nc" id="L133">        botones.add(aceptar);</span>
+<span class="nc" id="L134">        botones.add(cancelar);</span>
+<span class="nc" id="L135">        add(botones, BorderLayout.SOUTH);</span>
+
+<span class="nc" id="L137">        cancelar.addActionListener(e -&gt; dispose());</span>
+
+<span class="nc" id="L139">        aceptar.addActionListener(e -&gt; {</span>
+<span class="nc" id="L140">            String nickname = tfNickname.getText().trim();</span>
+<span class="nc" id="L141">            String nombre = tfNombre.getText().trim();</span>
+<span class="nc" id="L142">            String apellido = tfApellido.getText().trim();</span>
+<span class="nc" id="L143">            String contrasenia = tfContrasenia.getText().trim();</span>
+<span class="nc" id="L144">            String confirmContrasenia = tfConfirmacionContrasenia.getText().trim();</span>
+<span class="nc" id="L145">            String correo = tfCorreo.getText().trim();</span>
+<span class="nc" id="L146">            String fechaTexto = tfFechaNacimiento.getText().trim();</span>
+<span class="nc" id="L147">            String tipo = (String) cbTipoUsuario.getSelectedItem();</span>
+<span class="nc" id="L148">            String rutaImagen = tfImagen.getText().trim();</span>
+<span class="nc" id="L149">            String rutaFinal = null;</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">            if (!rutaImagen.isEmpty()) {</span>
+                try {
+<span class="nc" id="L152">                    File carpeta = new File(&quot;uploads/usuarios/&quot;);</span>
+<span class="nc bnc" id="L153" title="All 2 branches missed.">                    if (!carpeta.exists()) {</span>
+<span class="nc" id="L154">                        carpeta.mkdirs();</span>
+                    }
+<span class="nc" id="L156">                    String nombreArchivo = UUID.randomUUID() + &quot;_&quot; + new File(rutaImagen).getName();</span>
+<span class="nc" id="L157">                    File destino = new File(carpeta, nombreArchivo);</span>
+
+<span class="nc" id="L159">                    Files.copy(new File(rutaImagen).toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);</span>
+
+<span class="nc" id="L161">                    rutaFinal = &quot;uploads/usuarios/&quot; + nombreArchivo;</span>
+<span class="nc" id="L162">                } catch (IOException ioEx) {</span>
+<span class="nc" id="L163">                    JOptionPane.showMessageDialog(this,</span>
+<span class="nc" id="L164">                            &quot;Error al guardar la imagen: &quot; + ioEx.getMessage(),</span>
+                            &quot;Error&quot;,
+                            JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L167">                    return;</span>
+<span class="nc" id="L168">                }</span>
+            }
+<span class="nc" id="L170">            boolean esProp = &quot;Proponente&quot;.equals(cbTipoUsuario.getSelectedItem());</span>
+<span class="nc" id="L171">            String direccion = tfDireccion.getText().trim();</span>
+<span class="nc bnc" id="L172" title="All 18 branches missed.">            if (nickname.isEmpty() || nombre.isEmpty() || apellido.isEmpty() || contrasenia.isEmpty() || confirmContrasenia.isEmpty() || correo.isEmpty() || fechaTexto.isEmpty() || (esProp &amp;&amp; direccion.isEmpty())) {</span>
+<span class="nc" id="L173">                JOptionPane.showMessageDialog(this,</span>
+                        &quot;Todos los campos obligatorios deben completarse&quot;,
+                        &quot;Error&quot;,
+                        JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L177">                return;</span>
+            }
+
+<span class="nc bnc" id="L180" title="All 2 branches missed.">            if (!contrasenia.equals(confirmContrasenia)){</span>
+<span class="nc" id="L181">                JOptionPane.showMessageDialog(this,</span>
+                        &quot;Las contrasñas deben ser iguales&quot;,
+                        &quot;Error&quot;,
+                        JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L185">                return;</span>
+            }
+
+            LocalDate fechaNacimiento;
+            try {
+<span class="nc" id="L190">                fechaNacimiento = LocalDate.parse(fechaTexto);</span>
+<span class="nc" id="L191">            } catch (Exception ex) {</span>
+<span class="nc" id="L192">                JOptionPane.showMessageDialog(this,</span>
+                        &quot;Formato de fecha incorrecto, use yyyy-MM-dd&quot;,
+                        &quot;Error&quot;,
+                        JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L196">                return;</span>
+<span class="nc" id="L197">            }</span>
+
+            DTUsuario usuario;
+<span class="nc bnc" id="L200" title="All 2 branches missed.">            if (&quot;Proponente&quot;.equals(tipo)) {</span>
+<span class="nc" id="L201">                String bio = tfBiografia.getText().trim();</span>
+<span class="nc" id="L202">                String sitioWeb = tfSitioWeb.getText().trim();</span>
+<span class="nc" id="L203">                usuario = new DTProponente(nickname, nombre, apellido, contrasenia, correo,fechaNacimiento,rutaFinal,direccion,bio,sitioWeb);</span>
+<span class="nc" id="L204">            } else {</span>
+<span class="nc" id="L205">                usuario = new DTColaborador(nickname, nombre, apellido, contrasenia, correo,fechaNacimiento,rutaFinal);</span>
+            }
+
+            try {
+<span class="nc" id="L209">                UsuarioContr.crearUsuario(usuario);</span>
+<span class="nc" id="L210">                JOptionPane.showMessageDialog(this,</span>
+                        &quot;Usuario creado correctamente&quot;,
+                        &quot;Alta de Usuario&quot;,
+                        JOptionPane.INFORMATION_MESSAGE);
+
+<span class="nc" id="L215">                tfNickname.setText(&quot;&quot;);</span>
+<span class="nc" id="L216">                tfNombre.setText(&quot;&quot;);</span>
+<span class="nc" id="L217">                tfApellido.setText(&quot;&quot;);</span>
+<span class="nc" id="L218">                tfCorreo.setText(&quot;&quot;);</span>
+<span class="nc" id="L219">                tfFechaNacimiento.setText(&quot;&quot;);</span>
+<span class="nc" id="L220">                tfImagen.setText(&quot;&quot;);</span>
+<span class="nc" id="L221">                tfDireccion.setText(&quot;&quot;);</span>
+<span class="nc" id="L222">                tfBiografia.setText(&quot;&quot;);</span>
+<span class="nc" id="L223">                tfSitioWeb.setText(&quot;&quot;);</span>
+<span class="nc" id="L224">                cbTipoUsuario.setSelectedIndex(0);</span>
+
+<span class="nc" id="L226">            } catch (Exception ex) {</span>
+<span class="nc" id="L227">                JOptionPane.showMessageDialog(this,</span>
+<span class="nc" id="L228">                        &quot;Error al crear usuario: &quot; + ex.getMessage(),</span>
+                        &quot;Error&quot;,
+                        JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L231">            }</span>
+<span class="nc" id="L232">        });</span>
+<span class="nc" id="L233">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

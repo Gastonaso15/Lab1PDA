@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ConsultaPerfilProponenteInternalFrame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Culturarte App</a> &gt; <a href="index.source.html" class="el_package">culturarte.presentacion.internalFrames</a> &gt; <span class="el_source">ConsultaPerfilProponenteInternalFrame.java</span></div><h1>ConsultaPerfilProponenteInternalFrame.java</h1><pre class="source lang-java linenums">package culturarte.presentacion.internalFrames;
+
+import culturarte.servicios.DTs.DTColaboracion;
+import culturarte.servicios.DTs.DTEstadoPropuesta;
+import culturarte.servicios.DTs.DTProponente;
+import culturarte.servicios.DTs.DTPropuesta;
+import culturarte.servicios.interfaces.IUsuarioController;
+import culturarte.presentacion.helpers.ImagenUIHelper;
+
+import javax.swing.*;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
+import java.util.List;
+
+
+public class ConsultaPerfilProponenteInternalFrame extends JInternalFrame {
+
+    private final IUsuarioController UsuarioContr;
+    private final JList&lt;String&gt; listProponentes;
+    private final JLabel lblNickname;
+    private final JLabel lblNombre;
+    private final JLabel lblApellido;
+    private final JLabel lblCorreo;
+    private final JLabel lblFechaNacimiento;
+    private final JLabel lblDireccion;
+    private final JTextArea txtBiografia;
+    private final JLabel lblWeb;
+    private final ImagenUIHelper.ImagenPanel lblImagen;
+    private final JPanel panelPropuestas;
+
+    public ConsultaPerfilProponenteInternalFrame(IUsuarioController icu) {
+<span class="nc" id="L32">        super(&quot;Consultar Perfil de Proponente&quot;, true, true, true, true);</span>
+<span class="nc" id="L33">        setSize(1000, 500);</span>
+<span class="nc" id="L34">        setLayout(new BorderLayout());</span>
+
+<span class="nc" id="L36">        UsuarioContr = icu;</span>
+
+<span class="nc" id="L38">        JPanel panelIzquierdo = new JPanel(new BorderLayout());</span>
+<span class="nc" id="L39">        List&lt;String&gt; nicknames = icu.devolverNicknamesProponentes();</span>
+<span class="nc" id="L40">        listProponentes = new JList&lt;&gt;(nicknames.toArray(new String[0]));</span>
+<span class="nc" id="L41">        JScrollPane scrollProponentes = new JScrollPane(listProponentes);</span>
+<span class="nc" id="L42">        panelIzquierdo.add(new JLabel(&quot;Proponentes:&quot;), BorderLayout.NORTH);</span>
+<span class="nc" id="L43">        panelIzquierdo.add(scrollProponentes, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L45">        JPanel panelDerecho = new JPanel(new BorderLayout());</span>
+
+<span class="nc" id="L47">        JPanel panelInfo = new JPanel(new GridLayout(1,3,10,0));</span>
+
+<span class="nc" id="L49">        JPanel col1 = new JPanel();</span>
+<span class="nc" id="L50">        col1.setLayout(new BoxLayout(col1, BoxLayout.Y_AXIS));</span>
+<span class="nc" id="L51">        lblNickname = new JLabel(&quot;Nickname: &quot;);</span>
+<span class="nc" id="L52">        lblNombre = new JLabel(&quot;Nombre: &quot;);</span>
+<span class="nc" id="L53">        lblApellido = new JLabel(&quot;Apellido: &quot;);</span>
+<span class="nc" id="L54">        lblFechaNacimiento = new JLabel(&quot;Fecha de nacimiento: &quot;);</span>
+<span class="nc" id="L55">        col1.add(lblNickname);</span>
+<span class="nc" id="L56">        col1.add(lblNombre);</span>
+<span class="nc" id="L57">        col1.add(lblApellido);</span>
+<span class="nc" id="L58">        col1.add(lblFechaNacimiento);</span>
+
+<span class="nc" id="L60">        JPanel col2 = new JPanel();</span>
+<span class="nc" id="L61">        col2.setLayout(new BoxLayout(col2, BoxLayout.Y_AXIS));</span>
+<span class="nc" id="L62">        lblCorreo = new JLabel(&quot;Correo: &quot;);</span>
+<span class="nc" id="L63">        lblDireccion = new JLabel(&quot;Dirección: &quot;);</span>
+<span class="nc" id="L64">        lblWeb = new JLabel(&quot;Sitio Web: &quot;);</span>
+<span class="nc" id="L65">        txtBiografia = new JTextArea();</span>
+<span class="nc" id="L66">        txtBiografia.setLineWrap(true);</span>
+<span class="nc" id="L67">        txtBiografia.setWrapStyleWord(true);</span>
+<span class="nc" id="L68">        txtBiografia.setEditable(false);</span>
+<span class="nc" id="L69">        txtBiografia.setFont(new Font(&quot;Times New Roman&quot;, Font.PLAIN, 20));</span>
+<span class="nc" id="L70">        txtBiografia.setBackground(col2.getBackground());</span>
+<span class="nc" id="L71">        txtBiografia.setRows(5);</span>
+<span class="nc" id="L72">        JScrollPane scrollBio = new JScrollPane(txtBiografia);</span>
+<span class="nc" id="L73">        scrollBio.setBorder(BorderFactory.createEmptyBorder());</span>
+<span class="nc" id="L74">        scrollBio.setAlignmentX(Component.LEFT_ALIGNMENT);</span>
+<span class="nc" id="L75">        col2.add(lblCorreo);</span>
+<span class="nc" id="L76">        col2.add(lblDireccion);</span>
+<span class="nc" id="L77">        col2.add(lblWeb);</span>
+<span class="nc" id="L78">        col2.add(scrollBio);</span>
+
+<span class="nc" id="L80">        JPanel col3 = new JPanel();</span>
+<span class="nc" id="L81">        col3.setLayout(new BoxLayout(col3, BoxLayout.Y_AXIS));</span>
+<span class="nc" id="L82">        lblImagen = new ImagenUIHelper.ImagenPanel();</span>
+<span class="nc" id="L83">        lblImagen.setPreferredSize(new Dimension(150, 150));</span>
+<span class="nc" id="L84">        lblImagen.setBorder(BorderFactory.createLineBorder(Color.BLACK));</span>
+<span class="nc" id="L85">        col3.add(lblImagen);</span>
+
+<span class="nc" id="L87">        Font fontInfo = new Font(&quot;Times New Roman&quot;, Font.PLAIN, 20);</span>
+<span class="nc" id="L88">        setFontToLabels(fontInfo, lblNickname, lblNombre, lblApellido, lblFechaNacimiento,</span>
+                lblCorreo, lblDireccion, lblWeb);
+
+
+<span class="nc" id="L92">        panelInfo.add(col3);</span>
+<span class="nc" id="L93">        panelInfo.add(col1);</span>
+<span class="nc" id="L94">        panelInfo.add(col2);</span>
+
+<span class="nc" id="L96">        panelPropuestas = new JPanel();</span>
+<span class="nc" id="L97">        panelPropuestas.setLayout(new BoxLayout(panelPropuestas, BoxLayout.Y_AXIS));</span>
+<span class="nc" id="L98">        JScrollPane scrollPropuestas = new JScrollPane(panelPropuestas);</span>
+<span class="nc" id="L99">        scrollPropuestas.setPreferredSize(new Dimension(600, 300));</span>
+
+<span class="nc" id="L101">        panelDerecho.add(panelInfo, BorderLayout.NORTH);</span>
+<span class="nc" id="L102">        panelDerecho.add(scrollPropuestas, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L104">        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelIzquierdo, panelDerecho);</span>
+<span class="nc" id="L105">        splitPane.setDividerLocation(200);</span>
+<span class="nc" id="L106">        add(splitPane, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L108">        listProponentes.addListSelectionListener(e -&gt; {</span>
+<span class="nc bnc" id="L109" title="All 2 branches missed.">            if (!e.getValueIsAdjusting()) {</span>
+<span class="nc" id="L110">                String nickname = listProponentes.getSelectedValue();</span>
+<span class="nc bnc" id="L111" title="All 2 branches missed.">                if (nickname != null) {</span>
+<span class="nc" id="L112">                    mostrarProponente(nickname);</span>
+                }
+            }
+<span class="nc" id="L115">        });</span>
+<span class="nc" id="L116">    }</span>
+
+    private void mostrarProponente(String nickname) {
+        try {
+<span class="nc" id="L120">            DTProponente proponente = UsuarioContr.devolverProponentePorNickname(nickname);</span>
+<span class="nc" id="L121">            lblNickname.setText(&quot;Nickname: &quot; + proponente.getNickname());</span>
+<span class="nc" id="L122">            lblNombre.setText(&quot;Nombre: &quot; + proponente.getNombre());</span>
+<span class="nc" id="L123">            lblApellido.setText(&quot;Apellido: &quot; + proponente.getApellido());</span>
+<span class="nc" id="L124">            lblCorreo.setText(&quot;Correo: &quot; + proponente.getCorreo());</span>
+<span class="nc" id="L125">            lblFechaNacimiento.setText(&quot;Fecha de Nacimiento: &quot; + proponente.getFechaNacimiento());</span>
+<span class="nc" id="L126">            lblDireccion.setText(&quot;Direccion: &quot; + proponente.getDireccion());</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            txtBiografia.setText(&quot;Biografía: &quot; + (proponente.getBio() != null ? proponente.getBio() : &quot;&quot;));</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">            lblWeb.setText(&quot;Sitio Web: &quot; + (proponente.getSitioWeb() != null ? proponente.getSitioWeb() : &quot;&quot;));</span>
+
+<span class="nc" id="L130">            lblImagen.setImagen(proponente.getImagen());</span>
+
+<span class="nc" id="L132">            panelPropuestas.removeAll();</span>
+<span class="nc bnc" id="L133" title="All 2 branches missed.">            for (DTPropuesta p : proponente.getPropuestas()) {</span>
+
+<span class="nc bnc" id="L135" title="All 2 branches missed.">                if (p.getEstadoActual() == DTEstadoPropuesta.INGRESADA) {</span>
+<span class="nc" id="L136">                    continue;</span>
+                }
+
+<span class="nc" id="L139">                JPanel pPanel = new JPanel();</span>
+<span class="nc" id="L140">                pPanel.setLayout(new BoxLayout(pPanel, BoxLayout.Y_AXIS));</span>
+<span class="nc" id="L141">                pPanel.setBorder(BorderFactory.createTitledBorder(</span>
+<span class="nc" id="L142">                        BorderFactory.createLineBorder(Color.BLACK),</span>
+<span class="nc" id="L143">                        p.getTitulo() + &quot; - &quot; + p.getEstadoActual(),</span>
+                        TitledBorder.LEFT,
+                        TitledBorder.TOP
+                ));
+
+<span class="nc bnc" id="L148" title="All 7 branches missed.">                switch(p.getEstadoActual()) {</span>
+<span class="nc" id="L149">                    case INGRESADA -&gt; pPanel.setBackground(new Color(238, 10, 238));</span>
+<span class="nc" id="L150">                    case PUBLICADA -&gt; pPanel.setBackground(new Color(144, 238, 144));</span>
+<span class="nc" id="L151">                    case EN_FINANCIACION -&gt; pPanel.setBackground(new Color(255, 255, 102));</span>
+<span class="nc" id="L152">                    case CANCELADA -&gt; pPanel.setBackground(new Color(255, 102, 102));</span>
+<span class="nc" id="L153">                    case FINANCIADA -&gt; pPanel.setBackground(new Color(102, 178, 255));</span>
+<span class="nc" id="L154">                    case NO_FINANCIADA -&gt; pPanel.setBackground(new Color(211, 211, 211));</span>
+                }
+
+<span class="nc" id="L157">                double dineroRecaudado = 0;</span>
+<span class="nc" id="L158">                StringBuilder colaboradoresStr = new StringBuilder();</span>
+<span class="nc bnc" id="L159" title="All 2 branches missed.">                for (DTColaboracion c : p.getColaboraciones()) {</span>
+<span class="nc" id="L160">                    dineroRecaudado += c.getMonto();</span>
+<span class="nc bnc" id="L161" title="All 2 branches missed.">                    if (!colaboradoresStr.isEmpty()) {</span>
+<span class="nc" id="L162">                        colaboradoresStr.append(&quot;, &quot;);</span>
+                    }
+<span class="nc" id="L164">                    colaboradoresStr.append(c.getColaborador().getNickname());</span>
+<span class="nc" id="L165">                }</span>
+
+<span class="nc" id="L167">                pPanel.add(new JLabel(&quot;Titulo: &quot; + p.getTitulo()));</span>
+<span class="nc" id="L168">                pPanel.add(new JLabel(&quot;Fecha Prevista: &quot; + p.getFechaPrevista()));</span>
+<span class="nc" id="L169">                pPanel.add(new JLabel(&quot;Monto Necesario: &quot; + p.getMontoNecesario()));</span>
+<span class="nc" id="L170">                pPanel.add(new JLabel(&quot;Dinero recaudado: &quot; + dineroRecaudado));</span>
+<span class="nc" id="L171">                pPanel.add(new JLabel(&quot;Colaboradores: &quot; + colaboradoresStr));</span>
+
+<span class="nc" id="L173">                panelPropuestas.add(pPanel);</span>
+<span class="nc" id="L174">                panelPropuestas.add(Box.createRigidArea(new Dimension(0,5)));</span>
+<span class="nc" id="L175">            }</span>
+
+<span class="nc" id="L177">            panelPropuestas.revalidate();</span>
+<span class="nc" id="L178">            panelPropuestas.repaint();</span>
+
+<span class="nc" id="L180">        } catch (Exception ex) {</span>
+<span class="nc" id="L181">            JOptionPane.showMessageDialog(this, &quot;Error al mostrar proponente: &quot; + ex.getMessage());</span>
+<span class="nc" id="L182">        }</span>
+<span class="nc" id="L183">    }</span>
+
+    private void setFontToLabels(Font font, JLabel... labels) {
+<span class="nc bnc" id="L186" title="All 2 branches missed.">        for (JLabel lbl : labels) {</span>
+<span class="nc" id="L187">            lbl.setFont(font);</span>
+        }
+<span class="nc" id="L189">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

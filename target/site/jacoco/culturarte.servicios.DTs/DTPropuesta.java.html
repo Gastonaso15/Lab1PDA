@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DTPropuesta.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Culturarte App</a> &gt; <a href="index.source.html" class="el_package">culturarte.servicios.DTs</a> &gt; <span class="el_source">DTPropuesta.java</span></div><h1>DTPropuesta.java</h1><pre class="source lang-java linenums">package culturarte.servicios.DTs;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+public class DTPropuesta {
+    private Long id;
+    private String titulo;
+    private String descripcion;
+    private String lugar;
+    private LocalDate fechaPrevista;
+    private Double precioEntrada;
+    private Double montoNecesario;
+    private LocalDate fechaPublicacion;
+    private String imagen;
+    private DTCategoria categoria;
+    private DTProponente proponente;
+    private DTEstadoPropuesta estadoActual;
+<span class="pc" id="L20">    private List&lt;DTPropuestaEstado&gt; historial = new ArrayList&lt;&gt;();</span>
+<span class="pc" id="L21">    private List&lt;DTColaboracion&gt; colaboraciones = new ArrayList&lt;&gt;();</span>
+<span class="pc" id="L22">    private List&lt;DTComentario&gt; comentarios = new ArrayList&lt;&gt;();</span>
+<span class="pc" id="L23">    private List&lt;DTTipoRetorno&gt; tiposRetorno = new ArrayList&lt;&gt;();</span>
+
+    // Constructores
+<span class="fc" id="L26">    public DTPropuesta() {</span>
+<span class="fc" id="L27">        this.setTitulo(&quot;&quot;);</span>
+<span class="fc" id="L28">        this.setDescripcion(&quot;&quot;);</span>
+<span class="fc" id="L29">        this.setLugar(&quot;&quot;);</span>
+<span class="fc" id="L30">        this.setFechaPrevista(null);</span>
+<span class="fc" id="L31">        this.setPrecioEntrada(0.0);</span>
+<span class="fc" id="L32">        this.setMontoNecesario(0.0);</span>
+<span class="fc" id="L33">        this.setImagen(&quot;&quot;);</span>
+<span class="fc" id="L34">        this.setDTProponente(new DTProponente());</span>
+<span class="fc" id="L35">    }</span>
+
+    public DTPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista,
+                       Double precioEntrada, Double montoNecesario, LocalDate fechaPublicacion,  String imagen,
+                       DTCategoria categoria,DTProponente proponente,DTEstadoPropuesta estadoActual,
+                       List&lt;DTPropuestaEstado&gt; historial, List&lt;DTColaboracion&gt; colaboraciones,
+<span class="nc" id="L41">                       List&lt;DTTipoRetorno&gt; tiposRetorno) {</span>
+<span class="nc" id="L42">        this.setTitulo(titulo);</span>
+<span class="nc" id="L43">        this.setDescripcion(descripcion);</span>
+<span class="nc" id="L44">        this.setLugar(lugar);</span>
+<span class="nc" id="L45">        this.setFechaPrevista(fechaPrevista);</span>
+<span class="nc" id="L46">        this.setPrecioEntrada(precioEntrada);</span>
+<span class="nc" id="L47">        this.setMontoNecesario(montoNecesario);</span>
+<span class="nc" id="L48">        this.setFechaPublicacion(fechaPublicacion);</span>
+<span class="nc" id="L49">        this.setImagen(imagen);</span>
+<span class="nc" id="L50">        this.setCategoria(categoria);</span>
+<span class="nc" id="L51">        this.setDTProponente(proponente);</span>
+<span class="nc" id="L52">        this.setEstadoActual(estadoActual);</span>
+<span class="nc" id="L53">        this.setHistorial(historial);</span>
+<span class="nc" id="L54">        this.setColaboraciones(colaboraciones);</span>
+<span class="nc" id="L55">        this.setTiposRetorno(tiposRetorno);</span>
+<span class="nc" id="L56">    }</span>
+
+<span class="nc" id="L58">    public DTPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista, Double precioEntrada, Double montoNecesario, String imagen, DTCategoria categoria, List&lt;DTTipoRetorno&gt; tiposRetorno,DTEstadoPropuesta estadoActual,List&lt;DTColaboracion&gt; colaboraciones) {</span>
+<span class="nc" id="L59">        this.setTitulo(titulo);</span>
+<span class="nc" id="L60">        this.setDescripcion(descripcion);</span>
+<span class="nc" id="L61">        this.setLugar(lugar);</span>
+<span class="nc" id="L62">        this.setFechaPrevista(fechaPrevista);</span>
+<span class="nc" id="L63">        this.setPrecioEntrada(precioEntrada);</span>
+<span class="nc" id="L64">        this.setMontoNecesario(montoNecesario);</span>
+<span class="nc" id="L65">        this.setImagen(imagen);</span>
+<span class="nc" id="L66">        this.setCategoria(categoria);</span>
+<span class="nc" id="L67">        this.tiposRetorno = tiposRetorno;</span>
+<span class="nc" id="L68">        this.estadoActual = estadoActual;</span>
+<span class="nc" id="L69">        this.colaboraciones = colaboraciones;</span>
+<span class="nc" id="L70">    }</span>
+
+<span class="fc" id="L72">    public DTPropuesta(String titulo,Double montoNecesario, DTProponente proponente, DTEstadoPropuesta estado, List&lt;DTColaboracion&gt; colaboraciones) {</span>
+<span class="fc" id="L73">        this.setTitulo(titulo);</span>
+<span class="fc" id="L74">        this.setMontoNecesario(montoNecesario);</span>
+<span class="fc" id="L75">        this.setDTProponente(proponente);</span>
+<span class="fc" id="L76">        this.setEstadoActual(estado);</span>
+<span class="fc" id="L77">        this.setColaboraciones(colaboraciones);</span>
+<span class="fc" id="L78">    }</span>
+
+<span class="nc" id="L80">    public DTPropuesta(culturarte.logica.modelos.Propuesta propuesta) {</span>
+<span class="nc" id="L81">        this.setTitulo(propuesta.getTitulo());</span>
+<span class="nc" id="L82">        this.setDescripcion(propuesta.getDescripcion());</span>
+<span class="nc" id="L83">        this.setLugar(propuesta.getLugar());</span>
+<span class="nc" id="L84">        this.setFechaPrevista(propuesta.getFechaPrevista());</span>
+<span class="nc" id="L85">        this.setPrecioEntrada(propuesta.getPrecioEntrada());</span>
+<span class="nc" id="L86">        this.setMontoNecesario(propuesta.getMontoNecesario());</span>
+<span class="nc" id="L87">        this.setFechaPublicacion(propuesta.getFechaPublicacion());</span>
+<span class="nc" id="L88">        this.setImagen(propuesta.getImagen());</span>
+
+<span class="nc bnc" id="L90" title="All 2 branches missed.">        if (propuesta.getCategoria() != null) {</span>
+<span class="nc" id="L91">            this.setCategoria(new DTCategoria(propuesta.getCategoria().getNombre()));</span>
+        }
+
+<span class="nc bnc" id="L94" title="All 2 branches missed.">        if (propuesta.getProponente() != null) {</span>
+<span class="nc" id="L95">            this.setDTProponente(new DTProponente(propuesta.getProponente().getNickname(), </span>
+<span class="nc" id="L96">                propuesta.getProponente().getNombre(), propuesta.getProponente().getApellido(), propuesta.getProponente().getPassword(),</span>
+<span class="nc" id="L97">                propuesta.getProponente().getCorreo(), propuesta.getProponente().getFechaNacimiento(), </span>
+<span class="nc" id="L98">                propuesta.getProponente().getImagen(), propuesta.getProponente().getDireccion(),</span>
+<span class="nc" id="L99">                propuesta.getProponente().getBio(), propuesta.getProponente().getSitioWeb()));</span>
+        }
+
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        if (propuesta.getEstadoActual() != null) {</span>
+<span class="nc" id="L103">            this.setEstadoActual(DTEstadoPropuesta.valueOf(propuesta.getEstadoActual().toString()));</span>
+        }
+
+<span class="nc bnc" id="L106" title="All 2 branches missed.">        if (propuesta.getHistorial() != null) {</span>
+<span class="nc" id="L107">            List&lt;DTPropuestaEstado&gt; historialDT = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L108" title="All 2 branches missed.">            for (culturarte.logica.modelos.PropuestaEstado pe : propuesta.getHistorial()) {</span>
+<span class="nc" id="L109">                historialDT.add(new DTPropuestaEstado(DTEstadoPropuesta.valueOf(pe.getEstado().toString()), pe.getFechaCambio()));</span>
+<span class="nc" id="L110">            }</span>
+<span class="nc" id="L111">            this.setHistorial(historialDT);</span>
+        }
+
+<span class="nc bnc" id="L114" title="All 2 branches missed.">        if (propuesta.getColaboraciones() != null) {</span>
+<span class="nc" id="L115">            List&lt;DTColaboracion&gt; colaboracionesDT = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L116" title="All 2 branches missed.">            for (culturarte.logica.modelos.Colaboracion c : propuesta.getColaboraciones()) {</span>
+<span class="nc" id="L117">                DTColaboracion dtColaboracion = new DTColaboracion();</span>
+<span class="nc" id="L118">                dtColaboracion.setId(c.getId());</span>
+<span class="nc" id="L119">                dtColaboracion.setMonto(c.getMonto());</span>
+<span class="nc" id="L120">                dtColaboracion.setTipoRetorno(DTTipoRetorno.valueOf(c.getTipoRetorno().toString()));</span>
+<span class="nc" id="L121">                dtColaboracion.setFechaHora(c.getFechaHora());</span>
+<span class="nc" id="L122">                colaboracionesDT.add(dtColaboracion);</span>
+<span class="nc" id="L123">            }</span>
+<span class="nc" id="L124">            this.setColaboraciones(colaboracionesDT);</span>
+        }
+
+<span class="nc bnc" id="L127" title="All 2 branches missed.">        if (propuesta.getTiposRetorno() != null) {</span>
+<span class="nc" id="L128">            List&lt;DTTipoRetorno&gt; tiposDT = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">            for (culturarte.logica.modelos.TipoRetorno tr : propuesta.getTiposRetorno()) {</span>
+<span class="nc" id="L130">                tiposDT.add(DTTipoRetorno.valueOf(tr.toString()));</span>
+<span class="nc" id="L131">            }</span>
+<span class="nc" id="L132">            this.setTiposRetorno(tiposDT);</span>
+        }
+
+<span class="nc bnc" id="L135" title="All 2 branches missed.">        if (propuesta.getComentarios() != null) {</span>
+<span class="nc" id="L136">            List&lt;DTComentario&gt; comentariosDT = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L137" title="All 2 branches missed.">            for (culturarte.logica.modelos.Comentario c : propuesta.getComentarios()) {</span>
+<span class="nc" id="L138">                comentariosDT.add(c.getDataType());</span>
+<span class="nc" id="L139">            }</span>
+<span class="nc" id="L140">            this.setComentarios(comentariosDT);</span>
+        }
+<span class="nc" id="L142">    }</span>
+
+    // Funciones
+    @Override
+    public String toString() {
+<span class="nc" id="L147">        return titulo;</span>
+    }
+
+    // Getters y Setters
+<span class="nc" id="L151">    public Long getId() { return id; }</span>
+<span class="nc" id="L152">    public void setId(Long id) { this.id = id; }</span>
+
+<span class="nc" id="L154">    public String getTitulo() { return titulo; }</span>
+<span class="fc" id="L155">    public void setTitulo(String titulo) { this.titulo = titulo; }</span>
+
+<span class="nc" id="L157">    public String getDescripcion() { return descripcion; }</span>
+<span class="fc" id="L158">    public void setDescripcion(String descripcion) { this.descripcion = descripcion; }</span>
+
+<span class="nc" id="L160">    public String getLugar() { return lugar; }</span>
+<span class="fc" id="L161">    public void setLugar(String lugar) { this.lugar = lugar; }</span>
+
+<span class="nc" id="L163">    public LocalDate getFechaPrevista() { return fechaPrevista; }</span>
+<span class="fc" id="L164">    public void setFechaPrevista(LocalDate fechaPrevista) { this.fechaPrevista = fechaPrevista; }</span>
+
+<span class="nc" id="L166">    public Double getPrecioEntrada() { return precioEntrada; }</span>
+<span class="fc" id="L167">    public void setPrecioEntrada(Double precioEntrada) { this.precioEntrada = precioEntrada; }</span>
+
+<span class="nc" id="L169">    public Double getMontoNecesario() { return montoNecesario; }</span>
+<span class="fc" id="L170">    public void setMontoNecesario(Double montoNecesario) { this.montoNecesario = montoNecesario; }</span>
+
+<span class="nc" id="L172">    public LocalDate getFechaPublicacion() { return fechaPublicacion; }</span>
+<span class="fc" id="L173">    public void setFechaPublicacion(LocalDate fechaPublicacion) { this.fechaPublicacion = fechaPublicacion; }</span>
+
+<span class="nc" id="L175">    public String getImagen() { return imagen; }</span>
+<span class="fc" id="L176">    public void setImagen(String imagen) { this.imagen = imagen; }</span>
+
+<span class="nc" id="L178">    public DTCategoria getCategoria() { return categoria; }</span>
+<span class="fc" id="L179">    public void setCategoria(DTCategoria categoria) { this.categoria = categoria; }</span>
+
+<span class="nc" id="L181">    public DTProponente getDTProponente() { return proponente; }</span>
+<span class="fc" id="L182">    public void setDTProponente(DTProponente proponente) { this.proponente = proponente; }</span>
+    
+    // Método de conveniencia para obtener el nickname del proponente
+    public String getProponente() { 
+<span class="nc bnc" id="L186" title="All 2 branches missed.">        return proponente != null ? proponente.getNickname() : &quot;&quot;; </span>
+    }
+
+<span class="nc" id="L189">    public DTEstadoPropuesta getEstadoActual() { return estadoActual; }</span>
+<span class="fc" id="L190">    public void setEstadoActual(DTEstadoPropuesta estadoActual) { this.estadoActual = estadoActual; }</span>
+
+<span class="nc" id="L192">    public List&lt;DTPropuestaEstado&gt; getHistorial() { return historial; }</span>
+<span class="fc" id="L193">    public void setHistorial(List&lt;DTPropuestaEstado&gt; historial) { this.historial = historial; }</span>
+
+<span class="nc" id="L195">    public List&lt;DTColaboracion&gt; getColaboraciones() { return colaboraciones; }</span>
+<span class="fc" id="L196">    public void setColaboraciones(List&lt;DTColaboracion&gt; colaboraciones) { this.colaboraciones = colaboraciones; }</span>
+
+<span class="nc" id="L198">    public List&lt;DTComentario&gt; getComentarios() { return comentarios; }</span>
+<span class="fc" id="L199">    public void setComentarios(List&lt;DTComentario&gt; comentarios) { this.comentarios = comentarios; }</span>
+
+<span class="nc" id="L201">    public List&lt;DTTipoRetorno&gt; getTiposRetorno() { return tiposRetorno; }</span>
+<span class="fc" id="L202">    public void setTiposRetorno(List&lt;DTTipoRetorno&gt; tiposRetorno) { this.tiposRetorno = tiposRetorno; }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

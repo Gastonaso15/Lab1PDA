@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>UsuarioWSEndpoint.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Culturarte App</a> &gt; <a href="index.source.html" class="el_package">culturarte.logica.endpoints</a> &gt; <span class="el_source">UsuarioWSEndpoint.java</span></div><h1>UsuarioWSEndpoint.java</h1><pre class="source lang-java linenums">package culturarte.logica.endpoints;
+
+import culturarte.servicios.Fabrica;
+import culturarte.servicios.interfaces.IUsuarioController;
+import culturarte.servicios.DTs.*;
+import java.util.List;
+
+import jakarta.jws.WebService;
+
+@WebService(endpointInterface = &quot;culturarte.servicios.interfaces.IUsuarioController&quot;)
+public class UsuarioWSEndpoint implements IUsuarioController {
+
+    private IUsuarioController controlador;
+
+<span class="nc" id="L15">    public UsuarioWSEndpoint() {</span>
+<span class="nc" id="L16">        this.controlador = Fabrica.getInstance().getIUsuarioController();</span>
+<span class="nc" id="L17">    }</span>
+
+    @Override
+    public void crearUsuario(DTUsuario dtu) throws Exception {
+<span class="nc" id="L21">        this.controlador.crearUsuario(dtu);</span>
+<span class="nc" id="L22">    }</span>
+
+    @Override
+    public List&lt;String&gt; devolverNicknamesUsuarios() {
+<span class="nc" id="L26">        return this.controlador.devolverNicknamesUsuarios();</span>
+    }
+
+    @Override
+    public List&lt;String&gt; devolverNicknamesProponentes(){
+<span class="nc" id="L31">        return this.controlador.devolverNicknamesProponentes();</span>
+    }
+
+    @Override
+    public List&lt;String&gt; devolverNicknamesColaboradores() {
+<span class="nc" id="L36">        return this.controlador.devolverNicknamesColaboradores();</span>
+    }
+
+    @Override
+    public DTProponente devolverProponentePorNickname(String nickname) throws Exception {
+<span class="nc" id="L41">        return this.controlador.devolverProponentePorNickname(nickname);</span>
+    }
+
+    @Override
+    public DTColaborador devolverColaboradorPorNickname(String nickname) throws Exception {
+<span class="nc" id="L46">        return this.controlador.devolverColaboradorPorNickname(nickname);</span>
+    }
+
+    @Override
+    public void seguirUsuario(String nickSeguidor, String nickSeguido) throws Exception {
+<span class="nc" id="L51">        this.controlador.seguirUsuario(nickSeguidor, nickSeguido);</span>
+<span class="nc" id="L52">    }</span>
+
+    @Override
+    public List&lt;String&gt; devolverUsuariosSeguidos(String nicknameSeguidor) {
+<span class="nc" id="L56">        return this.controlador.devolverUsuariosSeguidos(nicknameSeguidor);</span>
+    }
+
+    @Override
+    public void dejarDeSeguirUsuario(String nickSeguidor, String nickSeguido) {
+<span class="nc" id="L61">        this.controlador.dejarDeSeguirUsuario(nickSeguidor, nickSeguido);</span>
+<span class="nc" id="L62">    }</span>
+
+    @Override
+    public boolean UsuarioUnoYaSigueUsuarioDos(String nickSeguidor, String nickSeguido){
+<span class="nc" id="L66">        return this.controlador.UsuarioUnoYaSigueUsuarioDos(nickSeguidor, nickSeguido);</span>
+    }
+
+    @Override
+    public void marcarPropuestaFavorita(String nickname,String titulo) {
+<span class="nc" id="L71">        this.controlador.marcarPropuestaFavorita(nickname, titulo);</span>
+<span class="nc" id="L72">    }</span>
+
+    @Override
+    public void quitarPropuestaFavorita(String nickname,String titulo) {
+<span class="nc" id="L76">        this.controlador.quitarPropuestaFavorita(nickname, titulo);</span>
+<span class="nc" id="L77">    }</span>
+
+    @Override
+    public boolean UsuarioYaTienePropuestaFavorita(String nickSeguidor, String nickSeguido){
+<span class="nc" id="L81">        return this.controlador.UsuarioYaTienePropuestaFavorita(nickSeguidor, nickSeguido);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

@@ -50,9 +50,6 @@ culturarte\servicios\Fabrica.class
 culturarte\logica\modelos\Seguimiento.class
 culturarte\logica\modelos\PropuestaEstado.class
 culturarte\persistencia\JPAUtil.class
-culturarte\servicios\IPropuestaController.class
 culturarte\presentacion\internalFrames\AltaUsuarioInternalFrame.class
 culturarte\presentacion\internalFrames\CancelarColaboracionInternalFrame$1.class
 culturarte\presentacion\internalFrames\GestionarComentariosInternalFrame.class
-culturarte\servicios\ISesionController.class
-culturarte\servicios\IUsuarioController.class

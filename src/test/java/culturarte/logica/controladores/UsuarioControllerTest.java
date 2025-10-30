@@ -152,7 +152,7 @@ public class UsuarioControllerTest {
         when(colaboradorMock.getFechaNacimiento()).thenReturn(LocalDate.of(1990, 1, 1));
         when(colaboradorMock.getImagen()).thenReturn("imagen.png");
         when(colaboradorMock.getColaboraciones()).thenReturn(new ArrayList<>());
-        
+
         when(usuarioManejadorMock.obtenerColaboradorPorNickname("colaborador1")).thenReturn(colaboradorMock);
 
         DTColaborador result = controller.devolverColaboradorPorNickname("colaborador1");
@@ -172,9 +172,9 @@ public class UsuarioControllerTest {
     void devolverColaboradorPorNickname_ColaboradorNoExiste_LanzaExcepcion() {
         when(usuarioManejadorMock.obtenerColaboradorPorNickname("inexistente")).thenReturn(null);
 
-        Exception exception = assertThrows(Exception.class, () -> 
+        Exception exception = assertThrows(Exception.class, () ->
             controller.devolverColaboradorPorNickname("inexistente"));
-        
+
         assertTrue(exception.getMessage().contains("El colaborador inexistente no existe"));
     }
 
@@ -192,7 +192,7 @@ public class UsuarioControllerTest {
         when(proponenteMock.getBio()).thenReturn("Biografía de María");
         when(proponenteMock.getSitioWeb()).thenReturn("www.maria.com");
         when(proponenteMock.getPropuestas()).thenReturn(new ArrayList<>());
-        
+
         when(usuarioManejadorMock.obtenerProponentePorNickname("proponente1")).thenReturn(proponenteMock);
 
         DTProponente result = controller.devolverProponentePorNickname("proponente1");
@@ -215,9 +215,9 @@ public class UsuarioControllerTest {
     void devolverProponentePorNickname_ProponenteNoExiste_LanzaExcepcion() {
         when(usuarioManejadorMock.obtenerProponentePorNickname("inexistente")).thenReturn(null);
 
-        Exception exception = assertThrows(Exception.class, () -> 
+        Exception exception = assertThrows(Exception.class, () ->
             controller.devolverProponentePorNickname("inexistente"));
-        
+
         assertTrue(exception.getMessage().contains("El proponente inexistente no existe"));
     }
 
@@ -227,7 +227,7 @@ public class UsuarioControllerTest {
         Usuario seguidoMock = mock(Usuario.class);
         when(seguidorMock.getNickname()).thenReturn("seguidor1");
         when(seguidoMock.getNickname()).thenReturn("seguido1");
-        
+
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("seguidor1")).thenReturn(seguidorMock);
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("seguido1")).thenReturn(seguidoMock);
         when(usuarioManejadorMock.comprobarUsuarioUnoYaSigueUsuarioDos("seguidor1", "seguido1")).thenReturn(false);
@@ -242,9 +242,9 @@ public class UsuarioControllerTest {
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("seguidor1")).thenReturn(null);
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("seguido1")).thenReturn(null);
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> 
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
             controller.seguirUsuario("seguidor1", "seguido1"));
-        
+
         assertEquals("Los usuarios no pueden ser nulos.", exception.getMessage());
     }
 
@@ -252,12 +252,12 @@ public class UsuarioControllerTest {
     void seguirUsuario_SeguirASiMismo_LanzaExcepcion() {
         Usuario usuarioMock = mock(Usuario.class);
         when(usuarioMock.getNickname()).thenReturn("usuario1");
-        
+
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("usuario1")).thenReturn(usuarioMock);
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> 
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
             controller.seguirUsuario("usuario1", "usuario1"));
-        
+
         assertEquals("Un usuario no puede seguirse a sí mismo.", exception.getMessage());
     }
 
@@ -267,14 +267,14 @@ public class UsuarioControllerTest {
         Usuario seguidoMock = mock(Usuario.class);
         when(seguidorMock.getNickname()).thenReturn("seguidor1");
         when(seguidoMock.getNickname()).thenReturn("seguido1");
-        
+
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("seguidor1")).thenReturn(seguidorMock);
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("seguido1")).thenReturn(seguidoMock);
         when(usuarioManejadorMock.comprobarUsuarioUnoYaSigueUsuarioDos("seguidor1", "seguido1")).thenReturn(true);
 
-        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> 
+        IllegalStateException exception = assertThrows(IllegalStateException.class, () ->
             controller.seguirUsuario("seguidor1", "seguido1"));
-        
+
         assertEquals("El usuario ya sigue a este usuario.", exception.getMessage());
     }
 
@@ -294,7 +294,7 @@ public class UsuarioControllerTest {
         Usuario seguidoMock = mock(Usuario.class);
         when(seguidorMock.getId()).thenReturn(1L);
         when(seguidoMock.getId()).thenReturn(2L);
-        
+
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("seguidor1")).thenReturn(seguidorMock);
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("seguido1")).thenReturn(seguidoMock);
 
@@ -308,9 +308,9 @@ public class UsuarioControllerTest {
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("seguidor1")).thenReturn(null);
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("seguido1")).thenReturn(null);
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> 
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
             controller.dejarDeSeguirUsuario("seguidor1", "seguido1"));
-        
+
         assertEquals("Los usuarios no pueden ser nulos.", exception.getMessage());
     }
 
@@ -318,12 +318,12 @@ public class UsuarioControllerTest {
     void dejarDeSeguirUsuario_SiMismo_LanzaExcepcion() {
         Usuario usuarioMock = mock(Usuario.class);
         when(usuarioMock.getId()).thenReturn(1L);
-        
+
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("usuario1")).thenReturn(usuarioMock);
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> 
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
             controller.dejarDeSeguirUsuario("usuario1", "usuario1"));
-        
+
         assertEquals("Un usuario no puede dejar de seguirse a sí mismo.", exception.getMessage());
     }
 
@@ -340,7 +340,7 @@ public class UsuarioControllerTest {
     void marcarPropuestaFavorita_DatosValidos_MarcaCorrectamente() {
         Usuario usuarioMock = mock(Usuario.class);
         Propuesta propuestaMock = mock(Propuesta.class);
-        
+
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("usuario1")).thenReturn(usuarioMock);
         when(propuestaManejadorMock.obtenerPropuestaPorTitulo("Propuesta Test")).thenReturn(propuestaMock);
         when(usuarioManejadorMock.comprobarUsuarioYaTienePropuestaFavorita("usuario1", "Propuesta Test")).thenReturn(false);
@@ -354,22 +354,22 @@ public class UsuarioControllerTest {
     void marcarPropuestaFavorita_UsuarioNoExiste_LanzaExcepcion() {
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("usuario1")).thenReturn(null);
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> 
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
             controller.marcarPropuestaFavorita("usuario1", "Propuesta Test"));
-        
+
         assertEquals("El usuario no puede ser nulo.", exception.getMessage());
     }
 
     @Test
     void marcarPropuestaFavorita_PropuestaNoExiste_LanzaExcepcion() {
         Usuario usuarioMock = mock(Usuario.class);
-        
+
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("usuario1")).thenReturn(usuarioMock);
         when(propuestaManejadorMock.obtenerPropuestaPorTitulo("Propuesta Test")).thenReturn(null);
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> 
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
             controller.marcarPropuestaFavorita("usuario1", "Propuesta Test"));
-        
+
         assertEquals("La propuesta no puede ser nula.", exception.getMessage());
     }
 
@@ -377,14 +377,14 @@ public class UsuarioControllerTest {
     void marcarPropuestaFavorita_YaMarcada_LanzaExcepcion() {
         Usuario usuarioMock = mock(Usuario.class);
         Propuesta propuestaMock = mock(Propuesta.class);
-        
+
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("usuario1")).thenReturn(usuarioMock);
         when(propuestaManejadorMock.obtenerPropuestaPorTitulo("Propuesta Test")).thenReturn(propuestaMock);
         when(usuarioManejadorMock.comprobarUsuarioYaTienePropuestaFavorita("usuario1", "Propuesta Test")).thenReturn(true);
 
-        IllegalStateException exception = assertThrows(IllegalStateException.class, () -> 
+        IllegalStateException exception = assertThrows(IllegalStateException.class, () ->
             controller.marcarPropuestaFavorita("usuario1", "Propuesta Test"));
-        
+
         assertEquals("El usuario ya tiene marcada como favorita esta propuesta.", exception.getMessage());
     }
 
@@ -392,7 +392,7 @@ public class UsuarioControllerTest {
     void quitarPropuestaFavorita_DatosValidos_QuitaCorrectamente() {
         Usuario usuarioMock = mock(Usuario.class);
         Propuesta propuestaMock = mock(Propuesta.class);
-        
+
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("usuario1")).thenReturn(usuarioMock);
         when(propuestaManejadorMock.obtenerPropuestaPorTitulo("Propuesta Test")).thenReturn(propuestaMock);
 
@@ -405,22 +405,22 @@ public class UsuarioControllerTest {
     void quitarPropuestaFavorita_UsuarioNoExiste_LanzaExcepcion() {
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("usuario1")).thenReturn(null);
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> 
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
             controller.quitarPropuestaFavorita("usuario1", "Propuesta Test"));
-        
+
         assertEquals("El usuario no puede ser nulo.", exception.getMessage());
     }
 
     @Test
     void quitarPropuestaFavorita_PropuestaNoExiste_LanzaExcepcion() {
         Usuario usuarioMock = mock(Usuario.class);
-        
+
         when(usuarioManejadorMock.obtenerUsuarioPorNickname("usuario1")).thenReturn(usuarioMock);
         when(propuestaManejadorMock.obtenerPropuestaPorTitulo("Propuesta Test")).thenReturn(null);
 
-        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> 
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () ->
             controller.quitarPropuestaFavorita("usuario1", "Propuesta Test"));
-        
+
         assertEquals("La propuesta no puede ser nula.", exception.getMessage());
     }
 
@@ -431,6 +431,77 @@ public class UsuarioControllerTest {
         boolean result = controller.UsuarioYaTienePropuestaFavorita("usuario1", "Propuesta Test");
 
         assertTrue(result);
+    }
+
+    @Test
+    void login_EntraConNickname_RetornaDTCorrectamente() {
+        Usuario usuarioMock = mock(Usuario.class);
+        when(usuarioMock.getNickname()).thenReturn("testUser");
+        when(usuarioMock.getNombre()).thenReturn("Test");
+        when(usuarioMock.getApellido()).thenReturn("User");
+        when(usuarioMock.getCorreo()).thenReturn("test@example.com");
+        when(usuarioMock.getImagen()).thenReturn("imagen.png");
+        when(usuarioMock.getPassword()).thenReturn("password123");
+
+        when(usuarioManejadorMock.obtenerUsuarioPorNickname("testUser")).thenReturn(usuarioMock);
+        when(usuarioManejadorMock.obtenerUsuarioPorCorreo("testUser")).thenReturn(null);
+
+        DTUsuario result = controller.login("testUser", "password123");
+
+        assertNotNull(result);
+        assertEquals("testUser", result.getNickname());
+        assertEquals("Test", result.getNombre());
+        assertEquals("User", result.getApellido());
+        assertEquals("test@example.com", result.getCorreo());
+        assertEquals("imagen.png", result.getImagen());
+    }
+
+    @Test
+    void login_EntraConCorreo_RetornaDTCorrectamente() {
+        Usuario usuarioMock = mock(Usuario.class);
+        when(usuarioMock.getNickname()).thenReturn("testUser");
+        when(usuarioMock.getNombre()).thenReturn("Test");
+        when(usuarioMock.getApellido()).thenReturn("User");
+        when(usuarioMock.getCorreo()).thenReturn("test@example.com");
+        when(usuarioMock.getImagen()).thenReturn("imagen.png");
+        when(usuarioMock.getPassword()).thenReturn("password123");
+
+        when(usuarioManejadorMock.obtenerUsuarioPorNickname("test@example.com")).thenReturn(null);
+        when(usuarioManejadorMock.obtenerUsuarioPorCorreo("test@example.com")).thenReturn(usuarioMock);
+
+        DTUsuario result = controller.login("test@example.com", "password123");
+
+        assertNotNull(result);
+        assertEquals("testUser", result.getNickname());
+        assertEquals("Test", result.getNombre());
+        assertEquals("User", result.getApellido());
+        assertEquals("test@example.com", result.getCorreo());
+        assertEquals("imagen.png", result.getImagen());
+    }
+
+    @Test
+    void login_UsuarioNoExiste_LanzaExcepcion() {
+        when(usuarioManejadorMock.obtenerUsuarioPorNickname("nonexistent")).thenReturn(null);
+        when(usuarioManejadorMock.obtenerUsuarioPorCorreo("nonexistent")).thenReturn(null);
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () ->
+                controller.login("nonexistent", "password123"));
+
+        assertEquals("Datos incorrectos", exception.getMessage());
+    }
+
+    @Test
+    void login_ContraseniaIncorrecta_LanzaExcepcion() {
+        Usuario usuarioMock = mock(Usuario.class);
+        when(usuarioMock.getPassword()).thenReturn("correctPassword");
+
+        when(usuarioManejadorMock.obtenerUsuarioPorNickname("testUser")).thenReturn(usuarioMock);
+        when(usuarioManejadorMock.obtenerUsuarioPorCorreo("testUser")).thenReturn(null);
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () ->
+                controller.login("testUser", "wrongPassword"));
+
+        assertEquals("Datos incorrectos", exception.getMessage());
     }
 
 }

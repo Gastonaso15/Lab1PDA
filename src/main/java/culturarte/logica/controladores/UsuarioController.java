@@ -339,4 +339,23 @@ public class UsuarioController implements IUsuarioController {
         return mu.comprobarUsuarioYaTienePropuestaFavorita(nickSeguidor, nickSeguido);
     }
 
+    @Override
+    public DTUsuario login(String usu, String password){
+        Usuario u = UsuarioManejador.getInstance().obtenerUsuarioPorNickname(usu);
+        if(u == null){
+            u = UsuarioManejador.getInstance().obtenerUsuarioPorCorreo(usu);
+        }
+        if(u != null && u.getPassword().equals(password)){
+            return new DTUsuario(
+                    u.getNickname(),
+                    u.getNombre(),
+                    u.getApellido(),
+                    u.getCorreo(),
+                    u.getImagen()
+            );
+        } else {
+            throw new RuntimeException("Datos incorrectos");
+        }
+    }
+
 }

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EvaluarPropuestaInternalFrame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Culturarte App</a> &gt; <a href="index.source.html" class="el_package">culturarte.presentacion.internalFrames</a> &gt; <span class="el_source">EvaluarPropuestaInternalFrame.java</span></div><h1>EvaluarPropuestaInternalFrame.java</h1><pre class="source lang-java linenums">package culturarte.presentacion.internalFrames;
+
+import culturarte.servicios.DTs.DTPropuesta;
+import culturarte.servicios.interfaces.IPropuestaController;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.List;
+
+public class EvaluarPropuestaInternalFrame extends JInternalFrame {
+
+    private final IPropuestaController propuestaController;
+    private final JList&lt;DTPropuesta&gt; jListPropuestas;
+    private final JLabel lblTitulo, lblDescripcion, lblLugar, lblFechaPrevista, lblCategoria;
+    private final JLabel lblPrecioEntrada, lblMontoNecesario, lblProponente, lblEstado;
+    private final JRadioButton rbPublicar, rbCancelar;
+    private final JButton btnConfirmar, btnCerrar;
+
+    public EvaluarPropuestaInternalFrame(IPropuestaController controller) {
+<span class="nc" id="L20">        super(&quot;Evaluar Propuesta&quot;, true, true, true, true);</span>
+<span class="nc" id="L21">        this.propuestaController = controller;</span>
+
+<span class="nc" id="L23">        setSize(1000, 500);</span>
+<span class="nc" id="L24">        setLayout(new BorderLayout());</span>
+
+<span class="nc" id="L26">        JPanel panelIzquierdo = new JPanel(new BorderLayout());</span>
+<span class="nc" id="L27">        jListPropuestas = new JList&lt;&gt;();</span>
+<span class="nc" id="L28">        JScrollPane scrollPropuestas = new JScrollPane(jListPropuestas);</span>
+<span class="nc" id="L29">        panelIzquierdo.add(new JLabel(&quot;Propuestas INGRESADAS:&quot;), BorderLayout.NORTH);</span>
+<span class="nc" id="L30">        panelIzquierdo.add(scrollPropuestas, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L32">        JPanel panelDerecho = new JPanel(new BorderLayout());</span>
+
+<span class="nc" id="L34">        JPanel panelDetalle = new JPanel(new GridLayout(4, 2, 10, 10));</span>
+<span class="nc" id="L35">        panelDetalle.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));</span>
+
+<span class="nc" id="L37">        lblTitulo = new JLabel(&quot;Título: &quot;);</span>
+<span class="nc" id="L38">        lblDescripcion = new JLabel(&quot;Descripción: &quot;);</span>
+<span class="nc" id="L39">        lblLugar = new JLabel(&quot;Lugar: &quot;);</span>
+<span class="nc" id="L40">        lblFechaPrevista = new JLabel(&quot;Fecha Prevista: &quot;);</span>
+<span class="nc" id="L41">        lblCategoria = new JLabel(&quot;Categoría: &quot;);</span>
+<span class="nc" id="L42">        lblPrecioEntrada = new JLabel(&quot;Precio Entrada: &quot;);</span>
+<span class="nc" id="L43">        lblMontoNecesario = new JLabel(&quot;Monto Necesario: &quot;);</span>
+<span class="nc" id="L44">        lblProponente = new JLabel(&quot;Proponente: &quot;);</span>
+<span class="nc" id="L45">        lblEstado = new JLabel(&quot;Estado: &quot;);</span>
+
+<span class="nc" id="L47">        Font fontInfo = new Font(&quot;Times New Roman&quot;, Font.PLAIN, 16);</span>
+<span class="nc" id="L48">        setFontToLabels(fontInfo, lblTitulo, lblDescripcion, lblLugar, lblFechaPrevista,</span>
+                lblPrecioEntrada, lblMontoNecesario, lblProponente, lblEstado, lblCategoria);
+
+<span class="nc" id="L51">        panelDerecho.add(panelDetalle, BorderLayout.NORTH);</span>
+
+<span class="nc" id="L53">        panelDetalle.add(lblTitulo);</span>
+<span class="nc" id="L54">        panelDetalle.add(lblProponente);</span>
+<span class="nc" id="L55">        panelDetalle.add(lblCategoria);</span>
+<span class="nc" id="L56">        panelDetalle.add(lblEstado);</span>
+<span class="nc" id="L57">        panelDetalle.add(lblDescripcion);</span>
+<span class="nc" id="L58">        panelDetalle.add(lblLugar);</span>
+<span class="nc" id="L59">        panelDetalle.add(lblPrecioEntrada);</span>
+<span class="nc" id="L60">        panelDetalle.add(lblMontoNecesario);</span>
+
+<span class="nc" id="L62">        JPanel panelAcciones = new JPanel(new FlowLayout(FlowLayout.RIGHT));</span>
+<span class="nc" id="L63">        rbPublicar = new JRadioButton(&quot;Publicar&quot;);</span>
+<span class="nc" id="L64">        rbCancelar = new JRadioButton(&quot;Cancelar&quot;);</span>
+<span class="nc" id="L65">        ButtonGroup group = new ButtonGroup();</span>
+<span class="nc" id="L66">        group.add(rbPublicar);</span>
+<span class="nc" id="L67">        group.add(rbCancelar);</span>
+
+<span class="nc" id="L69">        btnConfirmar = new JButton(&quot;Confirmar&quot;);</span>
+<span class="nc" id="L70">        btnCerrar = new JButton(&quot;Cerrar&quot;);</span>
+
+<span class="nc" id="L72">        panelAcciones.add(rbPublicar);</span>
+<span class="nc" id="L73">        panelAcciones.add(rbCancelar);</span>
+<span class="nc" id="L74">        panelAcciones.add(btnConfirmar);</span>
+<span class="nc" id="L75">        panelAcciones.add(btnCerrar);</span>
+<span class="nc" id="L76">        panelDerecho.add(panelAcciones, BorderLayout.SOUTH);</span>
+
+<span class="nc" id="L78">        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelIzquierdo, panelDerecho);</span>
+<span class="nc" id="L79">        splitPane.setDividerLocation(300);</span>
+<span class="nc" id="L80">        add(splitPane, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L82">        jListPropuestas.addListSelectionListener(e -&gt; {</span>
+<span class="nc bnc" id="L83" title="All 2 branches missed.">            if (!e.getValueIsAdjusting()) {</span>
+<span class="nc" id="L84">                DTPropuesta propuesta = jListPropuestas.getSelectedValue();</span>
+<span class="nc bnc" id="L85" title="All 2 branches missed.">                if (propuesta != null) mostrarDetallesPropuesta(propuesta);</span>
+            }
+<span class="nc" id="L87">        });</span>
+
+<span class="nc" id="L89">        btnConfirmar.addActionListener(e -&gt; evaluarSeleccion());</span>
+<span class="nc" id="L90">        btnCerrar.addActionListener(e -&gt; dispose());</span>
+
+        // Cargar lista inicial
+<span class="nc" id="L93">        cargarPropuestas();</span>
+<span class="nc" id="L94">    }</span>
+
+    private void mostrarDetallesPropuesta(DTPropuesta p) {
+<span class="nc" id="L97">        lblTitulo.setText(&quot;Título: &quot; + p.getTitulo());</span>
+<span class="nc" id="L98">        lblProponente.setText(&quot;Proponente: &quot; + p.getProponente());</span>
+<span class="nc bnc" id="L99" title="All 2 branches missed.">        lblCategoria.setText(&quot;Categoría: &quot; + (p.getCategoria() != null ? p.getCategoria().getNombre() : &quot;N/A&quot;));</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">        lblEstado.setText(&quot;Estado: &quot; + (p.getEstadoActual() != null ? p.getEstadoActual() : &quot;N/A&quot;));</span>
+<span class="nc bnc" id="L101" title="All 2 branches missed.">        lblDescripcion.setText(&quot;Descripción: &quot; + (p.getDescripcion() != null ? p.getDescripcion() : &quot;&quot;));</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">        lblLugar.setText(&quot;Lugar: &quot; + (p.getLugar() != null ? p.getLugar() : &quot;&quot;));</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        lblPrecioEntrada.setText(&quot;Precio Entrada: $&quot; + (p.getPrecioEntrada() != null ? p.getPrecioEntrada() : 0));</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">        lblMontoNecesario.setText(&quot;Monto Necesario: $&quot; + (p.getMontoNecesario() != null ? p.getMontoNecesario() : 0));</span>
+<span class="nc" id="L105">        rbPublicar.setSelected(false);</span>
+<span class="nc" id="L106">        rbCancelar.setSelected(false);</span>
+<span class="nc" id="L107">    }</span>
+
+    private void limpiarDetalle() {
+<span class="nc" id="L110">        lblTitulo.setText(&quot;Título: &quot;);</span>
+<span class="nc" id="L111">        lblProponente.setText(&quot;Proponente: &quot;);</span>
+<span class="nc" id="L112">        lblCategoria.setText(&quot;Categoría: &quot;);</span>
+<span class="nc" id="L113">        lblEstado.setText(&quot;Estado: &quot;);</span>
+<span class="nc" id="L114">        lblDescripcion.setText(&quot;Descripción: &quot;);</span>
+<span class="nc" id="L115">        lblLugar.setText(&quot;Lugar: &quot;);</span>
+<span class="nc" id="L116">        lblPrecioEntrada.setText(&quot;Precio Entrada: &quot;);</span>
+<span class="nc" id="L117">        lblMontoNecesario.setText(&quot;Monto Necesario: &quot;);</span>
+<span class="nc" id="L118">        rbPublicar.setSelected(false);</span>
+<span class="nc" id="L119">        rbCancelar.setSelected(false);</span>
+<span class="nc" id="L120">        jListPropuestas.clearSelection();</span>
+<span class="nc" id="L121">    }</span>
+
+    private void cargarPropuestas() {
+<span class="nc" id="L124">        List&lt;DTPropuesta&gt; propuestas = propuestaController.getPropuestasIngresadas();</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">        if (propuestas != null) {</span>
+<span class="nc" id="L126">            jListPropuestas.setListData(propuestas.toArray(new DTPropuesta[0]));</span>
+        } else {
+<span class="nc" id="L128">            jListPropuestas.setListData(new DTPropuesta[0]);</span>
+        }
+<span class="nc" id="L130">        limpiarDetalle();</span>
+<span class="nc" id="L131">    }</span>
+
+    private void evaluarSeleccion() {
+<span class="nc" id="L134">        DTPropuesta propuesta = jListPropuestas.getSelectedValue();</span>
+<span class="nc bnc" id="L135" title="All 2 branches missed.">        if (propuesta == null) {</span>
+<span class="nc" id="L136">            JOptionPane.showMessageDialog(this, &quot;Seleccione una propuesta&quot;, &quot;Atención&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="nc" id="L137">            return;</span>
+        }
+
+<span class="nc bnc" id="L140" title="All 4 branches missed.">        if (!rbPublicar.isSelected() &amp;&amp; !rbCancelar.isSelected()) {</span>
+<span class="nc" id="L141">            JOptionPane.showMessageDialog(this, &quot;Seleccione Publicar o Cancelar&quot;, &quot;Atención&quot;, JOptionPane.WARNING_MESSAGE);</span>
+<span class="nc" id="L142">            return;</span>
+        }
+
+<span class="nc" id="L145">        boolean publicar = rbPublicar.isSelected();</span>
+<span class="nc" id="L146">        int confirm = JOptionPane.showConfirmDialog(</span>
+                this,
+<span class="nc bnc" id="L148" title="All 2 branches missed.">                &quot;¿Está seguro que desea &quot; + (publicar ? &quot;PUBLICAR&quot; : &quot;CANCELAR&quot;) + &quot; la propuesta \&quot;&quot; + propuesta.getTitulo() + &quot;\&quot;?&quot;,</span>
+                &quot;Confirmar evaluación&quot;,
+                JOptionPane.YES_NO_OPTION
+        );
+<span class="nc bnc" id="L152" title="All 2 branches missed.">        if (confirm != JOptionPane.YES_OPTION) return;</span>
+
+        try {
+<span class="nc" id="L155">            propuestaController.evaluarPropuesta(propuesta.getTitulo(), publicar);</span>
+<span class="nc" id="L156">            JOptionPane.showMessageDialog(this, &quot;Propuesta evaluada con éxito&quot;);</span>
+<span class="nc" id="L157">            cargarPropuestas();</span>
+<span class="nc" id="L158">        } catch (Exception ex) {</span>
+<span class="nc" id="L159">            JOptionPane.showMessageDialog(this, ex.getMessage(), &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+<span class="nc" id="L160">        }</span>
+<span class="nc" id="L161">    }</span>
+
+    private void setFontToLabels(Font font, JLabel... labels) {
+<span class="nc bnc" id="L164" title="All 2 branches missed.">        for (JLabel lbl : labels) {</span>
+<span class="nc" id="L165">            lbl.setFont(font);</span>
+        }
+<span class="nc" id="L167">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

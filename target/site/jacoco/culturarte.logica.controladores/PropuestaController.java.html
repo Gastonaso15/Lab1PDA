@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PropuestaController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Culturarte App</a> &gt; <a href="index.source.html" class="el_package">culturarte.logica.controladores</a> &gt; <span class="el_source">PropuestaController.java</span></div><h1>PropuestaController.java</h1><pre class="source lang-java linenums">package culturarte.logica.controladores;
+
+import culturarte.logica.manejadores.PropuestaManejador;
+import culturarte.logica.manejadores.UsuarioManejador;
+import culturarte.logica.modelos.*;
+import culturarte.servicios.DTs.*;
+import culturarte.servicios.interfaces.IPropuestaController;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+public class PropuestaController implements IPropuestaController {
+
+<span class="fc" id="L15">    public PropuestaController() {</span>
+<span class="fc" id="L16">    }</span>
+
+    @Override
+    public void crearPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista, Double precioEntrada, Double montoNecesario, String imagen, String proponente, String categoria, List&lt;String&gt; listaTipos) throws Exception {
+<span class="fc" id="L20">        PropuestaManejador mp = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L21">        Propuesta p = mp.obtenerPropuestaPorTitulo(titulo);</span>
+<span class="fc bfc" id="L22" title="All 2 branches covered.">        if (p != null)</span>
+<span class="fc" id="L23">            throw new Exception(&quot;La propuesta con el titulo &quot; + titulo + &quot; ya esta registrada&quot;);</span>
+<span class="fc" id="L24">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L25">        Proponente prop = (Proponente) mu.obtenerUsuarioPorNickname(proponente);</span>
+
+<span class="fc" id="L27">        Categoria Cat = mp.obtenerCategoriaPorNombre(categoria);</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">        if (Cat == null) {</span>
+<span class="fc" id="L29">            throw new Exception(&quot;La categoría &quot; + categoria + &quot; no existe&quot;);</span>
+        }
+
+<span class="fc" id="L32">        List&lt;TipoRetorno&gt; tipos = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        for (String t : listaTipos) {</span>
+            try {
+<span class="fc" id="L35">                tipos.add(TipoRetorno.valueOf(t));</span>
+<span class="fc" id="L36">            } catch (IllegalArgumentException e) {</span>
+<span class="fc" id="L37">                throw new Exception(&quot;Tipo de retorno inválido: &quot; + t);</span>
+<span class="fc" id="L38">            }</span>
+<span class="fc" id="L39">        }</span>
+
+<span class="fc" id="L41">        p = new Propuesta(titulo, descripcion, lugar, fechaPrevista, precioEntrada, montoNecesario, imagen, prop, Cat, tipos);</span>
+<span class="fc" id="L42">        mp.persistirPropuesta(p);</span>
+<span class="fc" id="L43">    }</span>
+
+    @Override
+    public List&lt;DTPropuesta&gt; devolverTodasLasPropuestas() {
+<span class="fc" id="L47">        PropuestaManejador mp = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L48">        return mp.obtenerTodasLasPropuestas();</span>
+    }
+
+    @Override
+    public List&lt;DTPropuesta&gt; devolverPropuestasPorEstado(DTEstadoPropuesta estado) {
+<span class="fc" id="L53">        EstadoPropuesta estadoModelo = EstadoPropuesta.valueOf(estado.toString());</span>
+<span class="fc" id="L54">        PropuestaManejador mp = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L55">        return mp.obtenerPropuestasPorEstado(estadoModelo);</span>
+    }
+
+    @Override
+    public void modificarPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista,
+                                   Double precioEntrada, Double montoNecesario,
+                                   String imagen, List&lt;String&gt; listaTipos, String categoria) throws Exception {
+<span class="fc" id="L62">        PropuestaManejador mp = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L63">        Propuesta p = mp.obtenerPropuestaPorTitulo(titulo);</span>
+
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        if (p == null) {</span>
+<span class="fc" id="L66">            throw new Exception(&quot;La propuesta con el título &quot; + titulo + &quot; no existe.&quot;);</span>
+        }
+
+<span class="fc" id="L69">        Categoria Cat = mp.obtenerCategoriaPorNombre(categoria);</span>
+<span class="fc bfc" id="L70" title="All 2 branches covered.">        if (Cat == null) {</span>
+<span class="fc" id="L71">            throw new Exception(&quot;La categoría &quot; + categoria + &quot; no existe&quot;);</span>
+        }
+
+<span class="fc" id="L74">        List&lt;TipoRetorno&gt; tipos = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        for (String t : listaTipos) {</span>
+            try {
+<span class="fc" id="L77">                tipos.add(TipoRetorno.valueOf(t));</span>
+<span class="fc" id="L78">            } catch (IllegalArgumentException e) {</span>
+<span class="fc" id="L79">                throw new Exception(&quot;Tipo de retorno inválido: &quot; + t);</span>
+<span class="fc" id="L80">            }</span>
+<span class="fc" id="L81">        }</span>
+
+<span class="fc" id="L83">        p.setDescripcion(descripcion);</span>
+<span class="fc" id="L84">        p.setLugar(lugar);</span>
+<span class="fc" id="L85">        p.setFechaPrevista(fechaPrevista);</span>
+<span class="fc" id="L86">        p.setPrecioEntrada(precioEntrada);</span>
+<span class="fc" id="L87">        p.setMontoNecesario(montoNecesario);</span>
+<span class="fc" id="L88">        p.setCategoria(Cat);</span>
+<span class="fc" id="L89">        p.setImagen(imagen);</span>
+<span class="fc" id="L90">        p.setTiposRetorno(tipos);</span>
+
+<span class="fc" id="L92">        mp.actualizarPropuesta(p);</span>
+<span class="fc" id="L93">    }</span>
+
+    @Override
+    public void crearCategoria(String nombre, String padre) throws Exception {
+<span class="fc" id="L97">        PropuestaManejador mc = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L98">        Categoria catPadre = mc.obtenerCategoriaPorNombre(padre);</span>
+<span class="fc bfc" id="L99" title="All 2 branches covered.">        if (mc.obtenerCategoriaPorNombre(nombre) != null) {</span>
+<span class="fc" id="L100">            throw new Exception(&quot;La categoría ya existe.&quot;);</span>
+        }
+<span class="fc bfc" id="L102" title="All 2 branches covered.">        if (catPadre == null) {</span>
+<span class="fc" id="L103">            catPadre = mc.obtenerCategoriaPorNombre(&quot;Categoría&quot;);</span>
+        }
+<span class="fc" id="L105">        Categoria nueva = new Categoria(nombre, catPadre);</span>
+<span class="fc" id="L106">        mc.persistirCategoria(nueva);</span>
+<span class="fc" id="L107">    }</span>
+
+    @Override
+    public List&lt;DTCategoria&gt; devolverTodasLasCategorias() {
+<span class="fc" id="L111">        PropuestaManejador mc = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L112">        return mc.obtenerTodasLasCategorias();</span>
+    }
+
+    @Override
+    public void registrarColaboracion(String tituloPropuesta, String nicknameColaborador, Double monto, String tipoRetorno) throws Exception {
+<span class="fc" id="L117">        PropuestaManejador pm = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L118">        UsuarioManejador um = UsuarioManejador.getInstance();</span>
+
+<span class="fc" id="L120">        Propuesta propuesta = pm.obtenerPropuestaPorTitulo(tituloPropuesta);</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">        if (propuesta == null) {</span>
+<span class="fc" id="L122">            throw new Exception(&quot;La propuesta con título &quot; + tituloPropuesta + &quot; no existe.&quot;);</span>
+        }
+
+<span class="fc" id="L125">        Usuario usu = um.obtenerUsuarioPorNickname(nicknameColaborador);</span>
+<span class="fc bfc" id="L126" title="All 2 branches covered.">        if (!(usu instanceof Colaborador colaborador)) {</span>
+<span class="fc" id="L127">            throw new Exception(&quot;El usuario &quot; + nicknameColaborador + &quot; no es un colaborador válido.&quot;);</span>
+        }
+
+        TipoRetorno retorno;
+        try {
+<span class="fc" id="L132">            retorno = TipoRetorno.valueOf(tipoRetorno);</span>
+<span class="fc" id="L133">        } catch (IllegalArgumentException e) {</span>
+<span class="fc" id="L134">            throw new Exception(&quot;El tipo de retorno ingresado no es válido.&quot;);</span>
+<span class="fc" id="L135">        }</span>
+
+<span class="fc" id="L137">        Colaboracion colaboracion = new Colaboracion(propuesta, colaborador, monto, retorno, java.time.LocalDateTime.now());</span>
+
+<span class="fc" id="L139">        pm.persistirColaboracion(colaboracion);</span>
+<span class="fc" id="L140">    }</span>
+
+    @Override
+    public List&lt;DTColaboracion&gt; obtenerTodasLasColaboraciones() {
+<span class="fc" id="L144">        PropuestaManejador pm = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L145">        return pm.obtenerTodasLasColaboraciones();</span>
+    }
+
+    @Override
+    public void cancelarColaboracion(Long idColaboracion) throws Exception {
+<span class="fc" id="L150">        PropuestaManejador pm = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L151">        pm.cancelarColaboracion(idColaboracion);</span>
+<span class="fc" id="L152">    }</span>
+
+    @Override
+    public void publicarPropuesta(String titulo) throws Exception {
+<span class="fc" id="L156">        PropuestaManejador pm = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L157">        Propuesta propuesta = pm.obtenerPropuestaPorTitulo(titulo);</span>
+
+<span class="fc bfc" id="L159" title="All 2 branches covered.">        if (propuesta == null) {</span>
+<span class="fc" id="L160">            throw new Exception(&quot;La propuesta con titulo &quot; + titulo + &quot; no existe.&quot;);</span>
+        }
+<span class="fc" id="L162">        propuesta.setEstadoActual(EstadoPropuesta.PUBLICADA);</span>
+<span class="fc" id="L163">        propuesta.getHistorial().add(new PropuestaEstado(propuesta, EstadoPropuesta.PUBLICADA, LocalDate.now()));</span>
+
+<span class="fc" id="L165">        pm.actualizarPropuesta(propuesta);</span>
+<span class="fc" id="L166">    }</span>
+
+    public void cancelarPropuesta(String titulo) throws Exception {
+<span class="fc" id="L169">        PropuestaManejador pm = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L170">        Propuesta propuesta = pm.obtenerPropuestaPorTitulo(titulo);</span>
+
+<span class="fc bfc" id="L172" title="All 2 branches covered.">        if (propuesta == null) {</span>
+<span class="fc" id="L173">            throw new Exception(&quot;La propuesta con titulo &quot; + titulo + &quot; no existe.&quot;);</span>
+        }
+
+<span class="fc" id="L176">        propuesta.setEstadoActual(EstadoPropuesta.CANCELADA);</span>
+<span class="fc" id="L177">        propuesta.getHistorial().add(new PropuestaEstado(propuesta, EstadoPropuesta.CANCELADA, LocalDate.now()));</span>
+
+<span class="fc" id="L179">        pm.actualizarPropuesta(propuesta);</span>
+<span class="fc" id="L180">    }</span>
+
+    public DTPropuesta getDTPropuesta(String titulo) {
+<span class="fc" id="L183">        PropuestaManejador pm = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L184">        Propuesta p = pm.obtenerPropuestaPorTitulo(titulo);</span>
+<span class="fc bfc" id="L185" title="All 2 branches covered.">        return (p != null) ? p.getDataType() : null;</span>
+    }
+
+    @Override
+    public List&lt;DTPropuesta&gt; getPropuestasIngresadas() {
+<span class="fc" id="L190">        PropuestaManejador pm = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L191">        List&lt;DTPropuesta&gt; propuestas = pm.obtenerPropuestasPorEstado(EstadoPropuesta.INGRESADA);</span>
+<span class="fc" id="L192">        return propuestas;</span>
+    }
+
+    public void evaluarPropuesta(String titulo, boolean publicar) throws Exception{
+
+<span class="fc" id="L197">        PropuestaManejador pm = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L198">        Propuesta p = pm.obtenerPropuestaPorTitulo(titulo);</span>
+
+<span class="fc bfc" id="L200" title="All 2 branches covered.">        if (p == null) {</span>
+<span class="fc" id="L201">            throw new Exception(&quot;La propuesta no existe&quot;);</span>
+        }
+
+<span class="fc bfc" id="L204" title="All 2 branches covered.">        EstadoPropuesta nuevoEstado = publicar ? EstadoPropuesta.PUBLICADA : EstadoPropuesta.CANCELADA;</span>
+
+<span class="fc" id="L206">        p.setEstadoActual(nuevoEstado);</span>
+
+<span class="fc" id="L208">        PropuestaEstado nuevo = new PropuestaEstado(p, nuevoEstado, LocalDate.now());</span>
+<span class="fc" id="L209">        p.agregarPropuestaEstado(nuevo);</span>
+<span class="fc" id="L210">        pm.actualizarPropuesta(p);</span>
+<span class="fc" id="L211">    }</span>
+
+    @Override
+    public void agregarComentario(String tituloPropuesta, String nicknameUsuario, String contenido) throws Exception {
+<span class="fc" id="L215">        PropuestaManejador pm = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L216">        UsuarioManejador um = UsuarioManejador.getInstance();</span>
+
+<span class="fc" id="L218">        Propuesta propuesta = pm.obtenerPropuestaPorTitulo(tituloPropuesta);</span>
+<span class="fc bfc" id="L219" title="All 2 branches covered.">        if (propuesta == null) {</span>
+<span class="fc" id="L220">            throw new Exception(&quot;La propuesta con título &quot; + tituloPropuesta + &quot; no existe.&quot;);</span>
+        }
+
+<span class="fc" id="L223">        Usuario usuario = um.obtenerUsuarioPorNickname(nicknameUsuario);</span>
+<span class="fc bfc" id="L224" title="All 2 branches covered.">        if (usuario == null) {</span>
+<span class="fc" id="L225">            throw new Exception(&quot;El usuario &quot; + nicknameUsuario + &quot; no existe.&quot;);</span>
+        }
+
+<span class="pc bpc" id="L228" title="1 of 4 branches missed.">        if (contenido == null || contenido.trim().isEmpty()) {</span>
+<span class="fc" id="L229">            throw new Exception(&quot;El contenido del comentario no puede estar vacío.&quot;);</span>
+        }
+
+<span class="fc" id="L232">        Comentario comentario = new Comentario(contenido.trim(), propuesta, usuario);</span>
+<span class="fc" id="L233">        propuesta.agregarComentario(comentario);</span>
+<span class="fc" id="L234">        pm.persistirComentario(comentario);</span>
+<span class="fc" id="L235">        pm.actualizarPropuesta(propuesta);</span>
+<span class="fc" id="L236">    }</span>
+
+    @Override
+    public List&lt;DTComentario&gt; obtenerComentariosPropuesta(String tituloPropuesta) {
+<span class="fc" id="L240">        PropuestaManejador pm = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L241">        Propuesta propuesta = pm.obtenerPropuestaPorTitulo(tituloPropuesta);</span>
+
+<span class="fc bfc" id="L243" title="All 4 branches covered.">        if (propuesta == null || propuesta.getComentarios() == null) {</span>
+<span class="fc" id="L244">            return new ArrayList&lt;&gt;();</span>
+        }
+
+<span class="fc" id="L247">        List&lt;DTComentario&gt; comentariosDT = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L248" title="All 2 branches covered.">        for (Comentario comentario : propuesta.getComentarios()) {</span>
+<span class="fc" id="L249">            comentariosDT.add(comentario.getDataType());</span>
+<span class="fc" id="L250">        }</span>
+
+<span class="fc" id="L252">        return comentariosDT;</span>
+    }
+
+    @Override
+    public void extenderFinanciacion(DTUsuario usuario, String tituloPropuesta){
+<span class="nc" id="L257">        PropuestaManejador pm = PropuestaManejador.getInstance();</span>
+<span class="nc" id="L258">        Propuesta propuesta = pm.obtenerPropuestaPorTitulo(tituloPropuesta);</span>
+<span class="nc" id="L259">        propuesta.setFechaPublicacion(propuesta.getFechaPublicacion().plusMonths(1));//Le agrego 1 mes a la fecha actual</span>
+<span class="nc" id="L260">        pm.actualizarPropuesta(propuesta); //debo persistirla para que se efectúe el cambio en la base de datos</span>
+<span class="nc" id="L261">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

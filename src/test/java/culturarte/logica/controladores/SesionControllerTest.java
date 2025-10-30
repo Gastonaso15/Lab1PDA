@@ -1,5 +1,5 @@
 package culturarte.logica.controladores;
-
+/*
 import culturarte.servicios.DTs.DTUsuario;
 import culturarte.logica.manejadores.UsuarioManejador;
 import culturarte.logica.modelos.Usuario;
@@ -182,3 +182,4 @@ public class SesionControllerTest {
         assertFalse(result);
     }
 }
+ */

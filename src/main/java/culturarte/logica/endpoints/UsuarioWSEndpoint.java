@@ -1,14 +1,15 @@
 package culturarte.logica.endpoints;
 
+import culturarte.logica.endpoints.envoltorios.ListaStrings;
 import culturarte.servicios.Fabrica;
 import culturarte.servicios.interfaces.IUsuarioController;
+import culturarte.servicios.interfaces.web.IUsuarioControllerWS;
 import culturarte.servicios.DTs.*;
-import java.util.List;
 
 import jakarta.jws.WebService;
 
-@WebService(endpointInterface = "culturarte.servicios.interfaces.IUsuarioController")
-public class UsuarioWSEndpoint implements IUsuarioController {
+@WebService(endpointInterface = "culturarte.servicios.interfaces.web.IUsuarioControllerWS")
+public class UsuarioWSEndpoint implements IUsuarioControllerWS {
 
     private IUsuarioController controlador;
 
@@ -22,18 +23,18 @@ public class UsuarioWSEndpoint implements IUsuarioController {
     }
 
     @Override
-    public List<String> devolverNicknamesUsuarios() {
-        return this.controlador.devolverNicknamesUsuarios();
+    public ListaStrings devolverNicknamesUsuarios() {
+        return new ListaStrings(this.controlador.devolverNicknamesUsuarios());
     }
 
     @Override
-    public List<String> devolverNicknamesProponentes(){
-        return this.controlador.devolverNicknamesProponentes();
+    public ListaStrings devolverNicknamesProponentes() {
+        return new ListaStrings(this.controlador.devolverNicknamesProponentes());
     }
 
     @Override
-    public List<String> devolverNicknamesColaboradores() {
-        return this.controlador.devolverNicknamesColaboradores();
+    public ListaStrings devolverNicknamesColaboradores() {
+        return new ListaStrings(this.controlador.devolverNicknamesColaboradores());
     }
 
     @Override
@@ -52,8 +53,8 @@ public class UsuarioWSEndpoint implements IUsuarioController {
     }
 
     @Override
-    public List<String> devolverUsuariosSeguidos(String nicknameSeguidor) {
-        return this.controlador.devolverUsuariosSeguidos(nicknameSeguidor);
+    public ListaStrings devolverUsuariosSeguidos(String nicknameSeguidor) {
+        return new ListaStrings(this.controlador.devolverUsuariosSeguidos(nicknameSeguidor));
     }
 
     @Override
@@ -62,22 +63,27 @@ public class UsuarioWSEndpoint implements IUsuarioController {
     }
 
     @Override
-    public boolean UsuarioUnoYaSigueUsuarioDos(String nickSeguidor, String nickSeguido){
+    public boolean UsuarioUnoYaSigueUsuarioDos(String nickSeguidor, String nickSeguido) {
         return this.controlador.UsuarioUnoYaSigueUsuarioDos(nickSeguidor, nickSeguido);
     }
 
     @Override
-    public void marcarPropuestaFavorita(String nickname,String titulo) {
+    public void marcarPropuestaFavorita(String nickname, String titulo) {
         this.controlador.marcarPropuestaFavorita(nickname, titulo);
     }
 
     @Override
-    public void quitarPropuestaFavorita(String nickname,String titulo) {
+    public void quitarPropuestaFavorita(String nickname, String titulo) {
         this.controlador.quitarPropuestaFavorita(nickname, titulo);
     }
 
     @Override
-    public boolean UsuarioYaTienePropuestaFavorita(String nickSeguidor, String nickSeguido){
+    public boolean UsuarioYaTienePropuestaFavorita(String nickSeguidor, String nickSeguido) {
         return this.controlador.UsuarioYaTienePropuestaFavorita(nickSeguidor, nickSeguido);
+    }
+
+    @Override
+    public DTUsuario login(String nick, String password) {
+        return controlador.login(nick, password);
     }
 }

@@ -1,3 +1,5 @@
 culturarte\logica\controladores\SesionControllerTest.class
 culturarte\logica\controladores\PropuestaControllerTest.class
 culturarte\logica\controladores\UsuarioControllerTest.class
+culturarte\logica\manejadores\UsuarioManejadorTest.class
+culturarte\logica\manejadores\PropuestaManejadorTest.class
