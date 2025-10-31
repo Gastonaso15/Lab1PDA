@@ -64,7 +64,7 @@ public class UsuarioWSEndpoint implements IUsuarioControllerWS {
 
     @Override
     public boolean usuarioUnoYaSigueUsuarioDos(String nickSeguidor, String nickSeguido) {
-        return this.controlador.UsuarioUnoYaSigueUsuarioDos(nickSeguidor, nickSeguido);
+        return this.controlador.usuarioUnoYaSigueUsuarioDos(nickSeguidor, nickSeguido);
     }
 
     @Override
@@ -78,8 +78,8 @@ public class UsuarioWSEndpoint implements IUsuarioControllerWS {
     }
 
     @Override
-    public boolean UsuarioYaTienePropuestaFavorita(String nickSeguidor, String nickSeguido) {
-        return this.controlador.UsuarioYaTienePropuestaFavorita(nickSeguidor, nickSeguido);
+    public boolean usuarioYaTienePropuestaFavorita(String nickSeguidor, String nickSeguido) {
+        return this.controlador.usuarioYaTienePropuestaFavorita(nickSeguidor, nickSeguido);
     }
 
     @Override

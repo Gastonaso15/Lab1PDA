@@ -30,7 +30,7 @@ public interface IUsuarioControllerWS {
     @WebMethod
     void dejarDeSeguirUsuario(String nickSeguidor, String nickSeguido);
     @WebMethod
-    boolean UsuarioUnoYaSigueUsuarioDos(String nickSeguidor, String nickSeguido);
+    boolean usuarioUnoYaSigueUsuarioDos(String nickSeguidor, String nickSeguido);
     @WebMethod
     void marcarPropuestaFavorita(String nickname,String titulo);
     @WebMethod

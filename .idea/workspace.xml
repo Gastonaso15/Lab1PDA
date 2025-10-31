@@ -9,17 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="Jacoco implementado y avances en los web services">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/SesionController.java" beforeDir="false" />
+    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="Sesion Controller eliminado">
       <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/UsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/endpoints/SesionWSEndpoint.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/endpoints/UsuarioWSEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/endpoints/UsuarioWSEndpoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/ISesionController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/IUsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/IUsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/web/ISesionControllerWS.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/web/IUsuarioControllerWS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/web/IUsuarioControllerWS.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/culturarte/logica/controladores/SesionControllerTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -398,7 +392,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761811667005</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Sesion Controller eliminado">
+      <option name="closed" value="true" />
+      <created>1761876008722</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1761876008722</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -437,7 +439,8 @@
     <MESSAGE value=".jar actualizado" />
     <MESSAGE value="Reorganizacion del proyecto y primeras pruebas de servicios web" />
     <MESSAGE value="Jacoco implementado y avances en los web services" />
-    <option name="LAST_COMMIT_MESSAGE" value="Jacoco implementado y avances en los web services" />
+    <MESSAGE value="Sesion Controller eliminado" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sesion Controller eliminado" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

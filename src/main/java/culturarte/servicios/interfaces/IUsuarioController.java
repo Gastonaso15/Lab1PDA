@@ -16,7 +16,7 @@ public interface IUsuarioController {
     void seguirUsuario(String nickSeguidor, String nickSeguido) throws Exception;
     List<String> devolverUsuariosSeguidos(String nicknameSeguidor);
     void dejarDeSeguirUsuario(String nickSeguidor, String nickSeguido);
-    boolean UsuarioUnoYaSigueUsuarioDos(String nickSeguidor, String nickSeguido);
+    boolean usuarioUnoYaSigueUsuarioDos(String nickSeguidor, String nickSeguido);
     void marcarPropuestaFavorita(String nickname,String titulo);
     void quitarPropuestaFavorita(String nickname,String titulo);
     boolean usuarioYaTienePropuestaFavorita(String nickSeguidor, String nickSeguido);

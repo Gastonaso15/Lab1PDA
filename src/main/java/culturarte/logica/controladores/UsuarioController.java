@@ -291,7 +291,7 @@ public class UsuarioController implements IUsuarioController {
     }
 
     @Override
-    public boolean UsuarioUnoYaSigueUsuarioDos(String nickSeguidor, String nickSeguido){
+    public boolean usuarioUnoYaSigueUsuarioDos(String nickSeguidor, String nickSeguido){
         UsuarioManejador mu = UsuarioManejador.getInstance();
         return mu.comprobarUsuarioUnoYaSigueUsuarioDos(nickSeguidor, nickSeguido);
     }
