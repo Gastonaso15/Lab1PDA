@@ -63,7 +63,7 @@ public class UsuarioWSEndpoint implements IUsuarioControllerWS {
     }
 
     @Override
-    public boolean UsuarioUnoYaSigueUsuarioDos(String nickSeguidor, String nickSeguido) {
+    public boolean usuarioUnoYaSigueUsuarioDos(String nickSeguidor, String nickSeguido) {
         return this.controlador.UsuarioUnoYaSigueUsuarioDos(nickSeguidor, nickSeguido);
     }
 

@@ -36,7 +36,7 @@ public interface IUsuarioControllerWS {
     @WebMethod
     void quitarPropuestaFavorita(String nickname,String titulo);
     @WebMethod
-    boolean UsuarioYaTienePropuestaFavorita(String nickSeguidor, String nickSeguido);
+    boolean usuarioYaTienePropuestaFavorita(String nickSeguidor, String nickSeguido);
     @WebMethod
     DTUsuario login(String nick, String password);
 }

@@ -334,7 +334,7 @@ public class UsuarioController implements IUsuarioController {
     }
 
     @Override
-    public boolean UsuarioYaTienePropuestaFavorita(String nickSeguidor, String nickSeguido){
+    public boolean usuarioYaTienePropuestaFavorita(String nickSeguidor, String nickSeguido){
         UsuarioManejador mu = UsuarioManejador.getInstance();
         return mu.comprobarUsuarioYaTienePropuestaFavorita(nickSeguidor, nickSeguido);
     }

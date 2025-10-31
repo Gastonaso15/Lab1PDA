@@ -19,6 +19,6 @@ public interface IUsuarioController {
     boolean UsuarioUnoYaSigueUsuarioDos(String nickSeguidor, String nickSeguido);
     void marcarPropuestaFavorita(String nickname,String titulo);
     void quitarPropuestaFavorita(String nickname,String titulo);
-    boolean UsuarioYaTienePropuestaFavorita(String nickSeguidor, String nickSeguido);
+    boolean usuarioYaTienePropuestaFavorita(String nickSeguidor, String nickSeguido);
     DTUsuario login(String nick, String password);
 }
