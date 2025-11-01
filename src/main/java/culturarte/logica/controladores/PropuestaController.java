@@ -259,4 +259,10 @@ public class PropuestaController implements IPropuestaController {
         propuesta.setFechaPublicacion(propuesta.getFechaPublicacion().plusMonths(1));//Le agrego 1 mes a la fecha actual
         pm.actualizarPropuesta(propuesta); //debo persistirla para que se efectúe el cambio en la base de datos
     }
+
+    @Override
+    public PropuestaManejador getPropuestaManejador() {
+        PropuestaManejador pm = PropuestaManejador.getInstance();
+        return pm;
+    }
 }

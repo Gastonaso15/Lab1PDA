@@ -1,6 +1,7 @@
 package culturarte.servicios.interfaces.web;
 
 import culturarte.logica.endpoints.envoltorios.*;
+import culturarte.logica.manejadores.PropuestaManejador;
 import culturarte.servicios.DTs.*;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
@@ -65,4 +66,7 @@ public interface IPropuestaControllerWS {
 
     @WebMethod
     void extenderFinanciacion(DTUsuario usuario, String tituloPropuesta);
+
+    @WebMethod
+    public PropuestaManejador getPropuestaManejador();
 }
