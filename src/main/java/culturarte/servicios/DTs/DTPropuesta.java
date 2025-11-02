@@ -1,5 +1,8 @@
 package culturarte.servicios.DTs;
 
+import culturarte.logica.endpoints.adaptadores.LocalDateAdaptor;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -156,22 +159,21 @@ public class DTPropuesta {
 
     public String getDescripcion() { return descripcion; }
     public void setDescripcion(String descripcion) { this.descripcion = descripcion; }
-
     public String getLugar() { return lugar; }
     public void setLugar(String lugar) { this.lugar = lugar; }
-
-    public LocalDate getFechaPrevista() { return fechaPrevista; }
     public void setFechaPrevista(LocalDate fechaPrevista) { this.fechaPrevista = fechaPrevista; }
-
     public Double getPrecioEntrada() { return precioEntrada; }
     public void setPrecioEntrada(Double precioEntrada) { this.precioEntrada = precioEntrada; }
-
     public Double getMontoNecesario() { return montoNecesario; }
     public void setMontoNecesario(Double montoNecesario) { this.montoNecesario = montoNecesario; }
 
+    @XmlJavaTypeAdapter(LocalDateAdaptor.class)
+    public LocalDate getFechaPrevista() { return fechaPrevista; }
+    @XmlJavaTypeAdapter(LocalDateAdaptor.class)
     public LocalDate getFechaPublicacion() { return fechaPublicacion; }
-    public void setFechaPublicacion(LocalDate fechaPublicacion) { this.fechaPublicacion = fechaPublicacion; }
 
+
+    public void setFechaPublicacion(LocalDate fechaPublicacion) { this.fechaPublicacion = fechaPublicacion; }
     public String getImagen() { return imagen; }
     public void setImagen(String imagen) { this.imagen = imagen; }
 
