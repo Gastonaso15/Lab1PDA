@@ -8,6 +8,8 @@ import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
 
+import java.util.List;
+
 @WebService
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 public interface IUsuarioControllerWS {
@@ -39,4 +41,8 @@ public interface IUsuarioControllerWS {
     boolean usuarioYaTienePropuestaFavorita(String nickSeguidor, String nickSeguido);
     @WebMethod
     DTUsuario login(String nick, String password);
+    @WebMethod
+    ListaStrings devolverUsuariosSeguidores(String nicknameSeguido);
+    @WebMethod
+    DTUsuario getDTUsuario(String nickname);
 }

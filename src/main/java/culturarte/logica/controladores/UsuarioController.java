@@ -358,4 +358,17 @@ public class UsuarioController implements IUsuarioController {
         }
     }
 
+    @Override
+    public List<String> devolverUsuariosSeguidores(String nicknameSeguido) {
+        UsuarioManejador mu = UsuarioManejador.getInstance();
+        return mu.obtenerFollowers(nicknameSeguido);
+    }
+
+    @Override
+    public DTUsuario getDTUsuario(String nickname) {
+        UsuarioManejador mu = UsuarioManejador.getInstance();
+        Usuario u = mu.obtenerUsuarioPorNickname(nickname);
+        return (u != null) ? u.getDataType() : null;
+    }
+
 }

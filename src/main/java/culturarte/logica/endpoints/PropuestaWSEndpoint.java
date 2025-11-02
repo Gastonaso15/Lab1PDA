@@ -1,7 +1,6 @@
 package culturarte.logica.endpoints;
 
 import culturarte.logica.endpoints.envoltorios.*;
-import culturarte.logica.manejadores.PropuestaManejador;
 import culturarte.servicios.Fabrica;
 import culturarte.servicios.interfaces.IPropuestaController;
 import culturarte.servicios.interfaces.web.IPropuestaControllerWS;
@@ -106,7 +105,8 @@ public class PropuestaWSEndpoint implements IPropuestaControllerWS {
         controlador.extenderFinanciacion(usuario, tituloPropuesta);
     }
 
-    public PropuestaManejador getPropuestaManejador() {
-        return controlador.getPropuestaManejador();
+    @Override
+    public void modificarHistorialYEstadoPropuesta(DTPropuesta propuesta){
+        controlador.modificarHistorialYEstadoPropuesta(propuesta);
     }
 }

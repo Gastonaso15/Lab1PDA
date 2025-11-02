@@ -6,6 +6,7 @@ import culturarte.servicios.interfaces.IUsuarioController;
 import culturarte.servicios.interfaces.web.IUsuarioControllerWS;
 import culturarte.servicios.DTs.*;
 
+import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 
 @WebService(endpointInterface = "culturarte.servicios.interfaces.web.IUsuarioControllerWS")
@@ -85,5 +86,15 @@ public class UsuarioWSEndpoint implements IUsuarioControllerWS {
     @Override
     public DTUsuario login(String nick, String password) {
         return controlador.login(nick, password);
+    }
+
+    @Override
+    public ListaStrings devolverUsuariosSeguidores(String nicknameSeguido){
+        return new ListaStrings(this.controlador.devolverUsuariosSeguidores(nicknameSeguido));
+    }
+
+    @Override
+    public DTUsuario getDTUsuario(String nickname){
+        return controlador.getDTUsuario(nickname);
     }
 }

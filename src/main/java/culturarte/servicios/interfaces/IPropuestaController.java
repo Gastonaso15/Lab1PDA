@@ -1,6 +1,5 @@
 package culturarte.servicios.interfaces;
 
-import culturarte.logica.manejadores.PropuestaManejador;
 import culturarte.servicios.DTs.DTCategoria;
 import culturarte.servicios.DTs.DTColaboracion;
 import culturarte.servicios.DTs.DTComentario;
@@ -35,5 +34,5 @@ public interface IPropuestaController {
     void agregarComentario(String tituloPropuesta, String nicknameUsuario, String contenido) throws Exception;
     List<DTComentario> obtenerComentariosPropuesta(String tituloPropuesta);
     void extenderFinanciacion(DTUsuario usuario, String tituloPropuesta);
-    PropuestaManejador getPropuestaManejador();
+    void modificarHistorialYEstadoPropuesta(DTPropuesta propuesta);
 }

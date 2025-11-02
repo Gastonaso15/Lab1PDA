@@ -1,5 +1,6 @@
 package culturarte.logica.modelos;
 
+import culturarte.servicios.DTs.DTUsuario;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -76,4 +77,16 @@ public class Usuario {
 
     public List<Propuesta> getPropuestasFavoritas() { return propuestasFavoritas; }
     public void setPropuestasFavoritas(List<Propuesta> propuestasFavoritas) {  this.propuestasFavoritas = propuestasFavoritas; }
+
+
+    public DTUsuario getDataType() {
+        DTUsuario dt = new DTUsuario();
+        dt.setNickname(this.nickname);
+        dt.setNombre(this.nombre);
+        dt.setApellido(this.apellido);
+        dt.setCorreo(this.correo);
+        dt.setImagen(this.imagen);
+        dt.setFechaNacimiento(this.fechaNacimiento);
+        return dt;
+    }
 }

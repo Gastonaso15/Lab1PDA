@@ -261,8 +261,22 @@ public class PropuestaController implements IPropuestaController {
     }
 
     @Override
-    public PropuestaManejador getPropuestaManejador() {
+    public void modificarHistorialYEstadoPropuesta(DTPropuesta propuesta){
         PropuestaManejador pm = PropuestaManejador.getInstance();
-        return pm;
+        Propuesta prop = pm.obtenerPropuestaPorTitulo(propuesta.getTitulo());
+
+        EstadoPropuesta estado = EstadoPropuesta.valueOf(propuesta.getEstadoActual().name());
+        prop.setEstadoActual(estado);
+
+        List<PropuestaEstado> historial = new ArrayList<>();
+        for (DTPropuestaEstado dtEstado : propuesta.getHistorial()) {
+            EstadoPropuesta estadoEnum = EstadoPropuesta.valueOf(dtEstado.getEstado().name());
+            PropuestaEstado nuevoEstado = new PropuestaEstado(prop, estadoEnum, dtEstado.getFechaCambio());
+            historial.add(nuevoEstado);
+        }
+        prop.setHistorial(historial);
+        pm.actualizarPropuesta(prop);
     }
+
+
 }
