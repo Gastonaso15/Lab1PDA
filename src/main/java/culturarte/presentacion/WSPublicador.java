@@ -45,7 +45,7 @@ public class WSPublicador {
             return;
         }
 
-
+        //Aca publico los endpoint
         String urlUsuario = urlBase + "/usuarios";
         Endpoint.publish(urlUsuario, new UsuarioWSEndpoint());
         System.out.println("Web Service de usuarios: " + urlUsuario + "?wsdl");

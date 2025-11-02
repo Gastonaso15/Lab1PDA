@@ -35,5 +35,6 @@ public interface IPropuestaController {
     void agregarComentario(String tituloPropuesta, String nicknameUsuario, String contenido) throws Exception;
     List<DTComentario> obtenerComentariosPropuesta(String tituloPropuesta);
     void extenderFinanciacion(DTUsuario usuario, String tituloPropuesta);
-    PropuestaManejador getPropuestaManejador();
+
+    DTPropuesta obtenerPropuestaPorTitulo(String titulo);
 }

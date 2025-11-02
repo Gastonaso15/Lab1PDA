@@ -1,12 +1,12 @@
 package culturarte.logica.endpoints;
 
 import culturarte.logica.endpoints.envoltorios.*;
-import culturarte.logica.manejadores.PropuestaManejador;
 import culturarte.servicios.Fabrica;
 import culturarte.servicios.interfaces.IPropuestaController;
 import culturarte.servicios.interfaces.web.IPropuestaControllerWS;
 import culturarte.servicios.DTs.*;
 
+import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 
 @WebService(endpointInterface = "culturarte.servicios.interfaces.web.IPropuestaControllerWS")
@@ -105,8 +105,9 @@ public class PropuestaWSEndpoint implements IPropuestaControllerWS {
     public void extenderFinanciacion(DTUsuario usuario, String tituloPropuesta) {
         controlador.extenderFinanciacion(usuario, tituloPropuesta);
     }
-
-    public PropuestaManejador getPropuestaManejador() {
-        return controlador.getPropuestaManejador();
+    @Override
+    public DTPropuesta obtenerPropuestaPorTitulo(String titulo){
+        DTPropuesta prop = controlador.obtenerPropuestaPorTitulo(titulo);
+        return prop;
     }
 }

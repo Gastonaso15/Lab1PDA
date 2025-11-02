@@ -358,4 +358,24 @@ public class UsuarioController implements IUsuarioController {
         }
     }
 
+    @Override
+    public DTUsuario obtenerUsuarioPorNickname(String nickname) throws Exception {
+        Usuario u = UsuarioManejador.getInstance().obtenerUsuarioPorNickname(nickname);
+        if(u != null){
+            return new DTUsuario(
+                    u.getNickname(),
+                    u.getNombre(),
+                    u.getApellido(),
+                    u.getCorreo(),
+                    u.getImagen()
+            );
+        } else {
+            throw new Exception("El usuario " + nickname + " no existe");
+        }
+    }
+    @Override
+    public List<String> obtenerFollowers(String nicknameSeguido){
+        UsuarioManejador um = UsuarioManejador.getInstance();
+        return um.obtenerFollowers(nicknameSeguido);
+    }
 }

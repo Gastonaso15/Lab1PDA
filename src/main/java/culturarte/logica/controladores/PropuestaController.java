@@ -261,8 +261,10 @@ public class PropuestaController implements IPropuestaController {
     }
 
     @Override
-    public PropuestaManejador getPropuestaManejador() {
+    public DTPropuesta obtenerPropuestaPorTitulo(String titulo){
         PropuestaManejador pm = PropuestaManejador.getInstance();
-        return pm;
+        Propuesta propAux = pm.obtenerPropuestaPorTitulo(titulo);
+        DTPropuesta prop = propAux.getDataType();
+        return prop;
     }
 }

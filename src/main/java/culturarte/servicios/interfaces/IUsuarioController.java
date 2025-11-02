@@ -21,4 +21,6 @@ public interface IUsuarioController {
     void quitarPropuestaFavorita(String nickname,String titulo);
     boolean usuarioYaTienePropuestaFavorita(String nickSeguidor, String nickSeguido);
     DTUsuario login(String nick, String password);
+    public DTUsuario obtenerUsuarioPorNickname(String nickname) throws Exception;
+    List<String> obtenerFollowers(String nicknameSeguido);
 }

@@ -68,5 +68,5 @@ public interface IPropuestaControllerWS {
     void extenderFinanciacion(DTUsuario usuario, String tituloPropuesta);
 
     @WebMethod
-    public PropuestaManejador getPropuestaManejador();
+    DTPropuesta obtenerPropuestaPorTitulo(String titulo);
 }

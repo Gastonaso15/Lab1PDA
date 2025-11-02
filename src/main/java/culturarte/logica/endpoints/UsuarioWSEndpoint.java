@@ -8,6 +8,8 @@ import culturarte.servicios.DTs.*;
 
 import jakarta.jws.WebService;
 
+import java.util.List;
+
 @WebService(endpointInterface = "culturarte.servicios.interfaces.web.IUsuarioControllerWS")
 public class UsuarioWSEndpoint implements IUsuarioControllerWS {
 
@@ -85,5 +87,15 @@ public class UsuarioWSEndpoint implements IUsuarioControllerWS {
     @Override
     public DTUsuario login(String nick, String password) {
         return controlador.login(nick, password);
+    }
+
+    @Override
+    public DTUsuario obtenerUsuarioPorNickname(String nickname) throws Exception {
+        return this.controlador.obtenerUsuarioPorNickname(nickname);
+    }
+
+    @Override
+    public ListaStrings obtenerFollowers(String nicknameSeguido){
+        return new ListaStrings(this.controlador.obtenerFollowers(nicknameSeguido));
     }
 }
