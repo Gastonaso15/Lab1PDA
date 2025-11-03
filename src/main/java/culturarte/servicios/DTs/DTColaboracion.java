@@ -1,7 +1,11 @@
 package culturarte.servicios.DTs;
 
 import java.time.LocalDateTime;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 
+@XmlAccessorType(XmlAccessType.PROPERTY)
 public class DTColaboracion{
     private Long id;
     private DTPropuesta propuesta;
@@ -49,6 +53,7 @@ public class DTColaboracion{
     public DTTipoRetorno getTipoRetorno() { return tipoRetorno; }
     public void setTipoRetorno(DTTipoRetorno tipoRetorno) { this.tipoRetorno = tipoRetorno; }
 
+    @XmlJavaTypeAdapter(AdaptadorLocalDateTime.class)
     public LocalDateTime getFechaHora() { return fechaHora; }
     public void setFechaHora(LocalDateTime fechaHora) { this.fechaHora = fechaHora; }
 

@@ -2,7 +2,11 @@ package culturarte.servicios.DTs;
 
 import java.time.LocalDate;
 import java.util.List;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 
+@XmlAccessorType(XmlAccessType.PROPERTY)
 public class DTUsuario {
     private Long id;
     private String nickname;
@@ -74,6 +78,7 @@ public class DTUsuario {
     public String getImagen() { return imagen; }
     public void setImagen(String imagen) { this.imagen = imagen; }
 
+    @XmlJavaTypeAdapter(AdaptadorLocalDate.class)
     public LocalDate getFechaNacimiento() { return fechaNacimiento; }
     public void setFechaNacimiento(LocalDate fechaNacimiento) { this.fechaNacimiento= fechaNacimiento;}
 

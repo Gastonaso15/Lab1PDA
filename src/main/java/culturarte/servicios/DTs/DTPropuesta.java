@@ -3,7 +3,11 @@ package culturarte.servicios.DTs;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 
+@XmlAccessorType(XmlAccessType.PROPERTY)
 public class DTPropuesta {
     private Long id;
     private String titulo;
@@ -160,6 +164,7 @@ public class DTPropuesta {
     public String getLugar() { return lugar; }
     public void setLugar(String lugar) { this.lugar = lugar; }
 
+    @XmlJavaTypeAdapter(AdaptadorLocalDate.class)
     public LocalDate getFechaPrevista() { return fechaPrevista; }
     public void setFechaPrevista(LocalDate fechaPrevista) { this.fechaPrevista = fechaPrevista; }
 
@@ -169,6 +174,7 @@ public class DTPropuesta {
     public Double getMontoNecesario() { return montoNecesario; }
     public void setMontoNecesario(Double montoNecesario) { this.montoNecesario = montoNecesario; }
 
+    @XmlJavaTypeAdapter(AdaptadorLocalDate.class)
     public LocalDate getFechaPublicacion() { return fechaPublicacion; }
     public void setFechaPublicacion(LocalDate fechaPublicacion) { this.fechaPublicacion = fechaPublicacion; }
 
