@@ -1,6 +1,7 @@
 package culturarte.logica.endpoints;
 
 import culturarte.logica.endpoints.envoltorios.ListaStrings;
+import culturarte.logica.endpoints.envoltorios.ListaDTProponente;
 import culturarte.servicios.Fabrica;
 import culturarte.servicios.interfaces.IUsuarioController;
 import culturarte.servicios.interfaces.web.IUsuarioControllerWS;
@@ -96,5 +97,10 @@ public class UsuarioWSEndpoint implements IUsuarioControllerWS {
     @Override
     public DTUsuario getDTUsuario(String nickname){
         return controlador.getDTUsuario(nickname);
+    }
+
+    @Override
+    public ListaDTProponente devolverProponentesEliminados() {
+        return new ListaDTProponente(this.controlador.devolverProponentesEliminados());
     }
 }

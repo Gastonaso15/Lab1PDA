@@ -334,6 +334,42 @@ public class UsuarioManejador{
         return followers;
     }
 
-
+    public List<Proponente> obtenerProponentesEliminados() {
+        EntityManager em = JPAUtil.getEntityManager();
+        List<Proponente> proponentesEliminados;
+        try {
+            // Primero cargar proponentes con sus propuestas (solo un fetch para evitar MultipleBagFetchException)
+            TypedQuery<Proponente> query = em.createQuery(
+                    "SELECT DISTINCT p FROM Proponente p " +
+                            "LEFT JOIN FETCH p.propuestas pr " +
+                            "WHERE (p.eliminado = true) " +
+                            "ORDER BY p.fechaEliminacion DESC", Proponente.class
+            );
+            proponentesEliminados = query.getResultList();
+            
+            // Ahora cargar las colaboraciones de forma separada para evitar el MultipleBagFetchException
+            for (Proponente prop : proponentesEliminados) {
+                for (Propuesta p : prop.getPropuestas()) {
+                    // Cargar colaboraciones de esta propuesta (se hace lazy pero con el EntityManager abierto)
+                    p.getColaboraciones().size(); // Esto activa el lazy loading
+                    // Cargar otros datos necesarios
+                    p.getTiposRetorno().size();
+                    p.getHistorial().size();
+                    if (p.getCategoria() != null) {
+                        p.getCategoria().getNombre();
+                    }
+                    // Cargar colaboradores de las colaboraciones
+                    for (Colaboracion c : p.getColaboraciones()) {
+                        if (c.getColaborador() != null) {
+                            c.getColaborador().getNickname(); // Forzar carga del colaborador
+                        }
+                    }
+                }
+            }
+        } finally {
+            em.close();
+        }
+        return proponentesEliminados;
+    }
 
 }

@@ -23,4 +23,5 @@ public interface IUsuarioController {
     DTUsuario login(String nick, String password);
     List<String> devolverUsuariosSeguidores(String nicknameSeguido);
     DTUsuario getDTUsuario(String nickname);
+    List<DTProponente> devolverProponentesEliminados();
 }

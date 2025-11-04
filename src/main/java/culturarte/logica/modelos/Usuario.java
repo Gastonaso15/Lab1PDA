@@ -4,6 +4,7 @@ import culturarte.servicios.DTs.DTUsuario;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -24,6 +25,8 @@ public class Usuario {
     private String password;
     private String imagen;
     private LocalDate fechaNacimiento;
+    private Boolean eliminado = false;
+    private LocalDateTime fechaEliminacion;
     @OneToMany(mappedBy = "seguido", cascade = CascadeType.ALL)
     private List<Seguimiento> seguidores;
     @OneToMany(mappedBy = "seguidor", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -78,6 +81,11 @@ public class Usuario {
     public List<Propuesta> getPropuestasFavoritas() { return propuestasFavoritas; }
     public void setPropuestasFavoritas(List<Propuesta> propuestasFavoritas) {  this.propuestasFavoritas = propuestasFavoritas; }
 
+    public Boolean getEliminado() { return eliminado; }
+    public void setEliminado(Boolean eliminado) { this.eliminado = eliminado; }
+
+    public LocalDateTime getFechaEliminacion() { return fechaEliminacion; }
+    public void setFechaEliminacion(LocalDateTime fechaEliminacion) { this.fechaEliminacion = fechaEliminacion; }
 
     public DTUsuario getDataType() {
         DTUsuario dt = new DTUsuario();

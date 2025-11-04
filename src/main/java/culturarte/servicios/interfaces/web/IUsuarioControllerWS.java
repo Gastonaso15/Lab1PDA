@@ -1,6 +1,7 @@
 package culturarte.servicios.interfaces.web;
 
 import culturarte.logica.endpoints.envoltorios.ListaStrings;
+import culturarte.logica.endpoints.envoltorios.ListaDTProponente;
 import culturarte.servicios.DTs.DTColaborador;
 import culturarte.servicios.DTs.DTProponente;
 import culturarte.servicios.DTs.DTUsuario;
@@ -45,4 +46,6 @@ public interface IUsuarioControllerWS {
     ListaStrings devolverUsuariosSeguidores(String nicknameSeguido);
     @WebMethod
     DTUsuario getDTUsuario(String nickname);
+    @WebMethod
+    ListaDTProponente devolverProponentesEliminados();
 }

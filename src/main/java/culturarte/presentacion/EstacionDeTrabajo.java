@@ -62,18 +62,22 @@ public class EstacionDeTrabajo extends JFrame {
         JMenuItem consultaColaborador = new JMenuItem("Consultar Perfil de Colaborador");
         JMenuItem seguirUsuario = new JMenuItem("Seguir Usuario");
         JMenuItem dejarSeguirUsuario = new JMenuItem("Dejar de Seguir Usuario");
+        JMenuItem verProponentesEliminados = new JMenuItem("Ver Proponentes Eliminados");
 
         usuarios.add(altaUsuario);
         usuarios.add(consultaProponente);
         usuarios.add(consultaColaborador);
         usuarios.add(seguirUsuario);
         usuarios.add(dejarSeguirUsuario);
+        usuarios.addSeparator();
+        usuarios.add(verProponentesEliminados);
 
         altaUsuario.addActionListener(e -> abrirAltaUsuario());
         consultaProponente.addActionListener(e -> abrirConsultaProponente());
         consultaColaborador.addActionListener(e -> abrirConsultaColaborador());
         seguirUsuario.addActionListener(e -> abrirSeguirUsuario());
         dejarSeguirUsuario.addActionListener(e -> abrirDejarSeguirUsuario());
+        verProponentesEliminados.addActionListener(e -> abrirVerProponentesEliminados());
 
         JMenu propuestas = new JMenu("Propuestas");
 
@@ -204,6 +208,11 @@ public class EstacionDeTrabajo extends JFrame {
 
     private void abrirGestionarComentarios() {
         GestionarComentariosInternalFrame frame = new GestionarComentariosInternalFrame(ICP);
+        abrir(frame);
+    }
+
+    private void abrirVerProponentesEliminados() {
+        VerProponentesEliminadosInternalFrame frame = new VerProponentesEliminadosInternalFrame(ICU);
         abrir(frame);
     }
 }

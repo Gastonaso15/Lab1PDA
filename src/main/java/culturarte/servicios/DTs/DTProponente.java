@@ -1,6 +1,7 @@
 package culturarte.servicios.DTs;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,7 @@ public class DTProponente extends DTUsuario {
     private String bio;
     private String sitioWeb;
     private List<DTPropuesta> propuestas = new ArrayList<>();
+    private LocalDateTime fechaEliminacion;
 
     // Constructores
     public DTProponente() {
@@ -30,6 +32,14 @@ public class DTProponente extends DTUsuario {
         this.setSitioWeb(sitioWeb);
         this.setPropuestas(propuestas);
     }
+    public DTProponente(String nickname, String nombre, String apellido, String password, String correo, LocalDate fechaNacimiento, String imagen,String direccion, String bio, String sitioWeb,List<DTPropuesta> propuestas, LocalDateTime fechaEliminacion) {
+        super(nickname, nombre, apellido, password, correo,fechaNacimiento,imagen);
+        this.setDireccion(direccion);
+        this.setBio(bio);
+        this.setSitioWeb(sitioWeb);
+        this.setPropuestas(propuestas);
+        this.setFechaEliminacion(fechaEliminacion);
+    }
 
     public DTProponente(String nickname, String nombre, String apellido) {
         super(nickname, nombre, apellido);
@@ -47,5 +57,8 @@ public class DTProponente extends DTUsuario {
 
     public List<DTPropuesta> getPropuestas() { return propuestas; }
     public void setPropuestas(List<DTPropuesta> propuestas) { this.propuestas = propuestas; }
+
+    public LocalDateTime getFechaEliminacion() { return fechaEliminacion; }
+    public void setFechaEliminacion(LocalDateTime fechaEliminacion) { this.fechaEliminacion = fechaEliminacion; }
 
 }

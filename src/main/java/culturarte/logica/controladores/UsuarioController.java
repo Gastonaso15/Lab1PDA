@@ -371,4 +371,101 @@ public class UsuarioController implements IUsuarioController {
         return (u != null) ? u.getDataType() : null;
     }
 
+    @Override
+    public List<DTProponente> devolverProponentesEliminados() {
+        UsuarioManejador um = UsuarioManejador.getInstance();
+        List<Proponente> proponentesEliminados = um.obtenerProponentesEliminados();
+        
+        List<DTProponente> dtProponentesEliminados = new ArrayList<>();
+        
+        for (Proponente prop : proponentesEliminados) {
+            String nickname = prop.getNickname();
+            String nombre = prop.getNombre();
+            String apellido = prop.getApellido();
+            String correo = prop.getCorreo();
+            String password = prop.getPassword();
+            LocalDate fechaNacimiento = prop.getFechaNacimiento();
+            String direccion = prop.getDireccion();
+            String biografia = prop.getBio();
+            String sitioWeb = prop.getSitioWeb();
+            String imagen = prop.getImagen();
+            java.time.LocalDateTime fechaEliminacion = prop.getFechaEliminacion();
+
+            List<DTPropuesta> dtPropuestas = new ArrayList<>();
+            for (Propuesta p : prop.getPropuestas()) {
+                DTCategoria dtCategoria = null;
+                if (p.getCategoria() != null) {
+                    DTCategoria dtCategoriaPadre = null;
+                    if (p.getCategoria().getCategoriaPadre() != null) {
+                        dtCategoriaPadre = new DTCategoria(
+                                p.getCategoria().getCategoriaPadre().getNombre(),
+                                new ArrayList<>(),
+                                null
+                        );
+                    }
+                    dtCategoria = new DTCategoria(
+                            p.getCategoria().getNombre(),
+                            new ArrayList<>(),
+                            dtCategoriaPadre
+                    );
+                }
+
+                List<DTTipoRetorno> dtTiposRetorno = new ArrayList<>();
+                if (p.getTiposRetorno() != null) {
+                    for (TipoRetorno tr : p.getTiposRetorno()) {
+                        dtTiposRetorno.add(DTTipoRetorno.valueOf(tr.name()));
+                    }
+                }
+
+                DTEstadoPropuesta dtEstadoActual = null;
+                if (p.getEstadoActual() != null) {
+                    dtEstadoActual = DTEstadoPropuesta.valueOf(p.getEstadoActual().name());
+                }
+
+                List<DTColaboracion> dtColaboraciones = new ArrayList<>();
+                for (Colaboracion c : p.getColaboraciones()) {
+                    DTColaborador dtColaborador = new DTColaborador(
+                            c.getColaborador().getNickname()
+                    );
+                    DTTipoRetorno dtTipoRetorno = null;
+                    if (c.getTipoRetorno() != null) {
+                        dtTipoRetorno = DTTipoRetorno.valueOf(c.getTipoRetorno().name());
+                    }
+                    DTColaboracion dtc = new DTColaboracion(
+                            null,
+                            dtColaborador,
+                            c.getMonto(),
+                            dtTipoRetorno,
+                            c.getFechaHora()
+                    );
+                    dtColaboraciones.add(dtc);
+                }
+
+                DTPropuesta dtp = new DTPropuesta(
+                        p.getTitulo(),
+                        p.getDescripcion(),
+                        p.getLugar(),
+                        p.getFechaPrevista(),
+                        p.getPrecioEntrada(),
+                        p.getMontoNecesario(),
+                        p.getImagen(),
+                        dtCategoria,
+                        dtTiposRetorno,
+                        dtEstadoActual,
+                        dtColaboraciones
+                );
+                dtPropuestas.add(dtp);
+            }
+
+            DTProponente dtProponente = new DTProponente(
+                    nickname, nombre, apellido, password, correo, 
+                    fechaNacimiento, imagen, direccion, biografia, sitioWeb, 
+                    dtPropuestas, fechaEliminacion
+            );
+            dtProponentesEliminados.add(dtProponente);
+        }
+        
+        return dtProponentesEliminados;
+    }
+
 }
