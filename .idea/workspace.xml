@@ -9,54 +9,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="error arreglado">
+    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="ver proponentes eliminados corriendo, falta probarlo con proponentes eliminados">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTColaboracion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTColaboracion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTPropuesta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTPropuesta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTPropuestaEstado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTPropuestaEstado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTUsuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTUsuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/PropuestaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/PropuestaController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/UsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/UsuarioController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/endpoints/PropuestaWSEndpoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/endpoints/PropuestaWSEndpoint.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/endpoints/UsuarioWSEndpoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/endpoints/UsuarioWSEndpoint.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/endpoints/envoltorios/ListaDTColaboracion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/endpoints/envoltorios/ListaDTColaboracion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/endpoints/envoltorios/ListaDTPropuesta.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/endpoints/envoltorios/ListaDTPropuesta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/manejadores/PropuestaManejador.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/manejadores/PropuestaManejador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/modelos/Propuesta.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/modelos/Propuesta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/modelos/Usuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/modelos/Usuario.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/persistencia/JPAUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/persistencia/JPAUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaColaboracionInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaColaboracionInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaPropuestasPorEstadoInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaPropuestasPorEstadoInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultarPropuestaInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultarPropuestaInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/GestionarComentariosInternalFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/GestionarComentariosInternalFrame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/GestionarComentariosInternalFrame$ComentarioListCellRenderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/GestionarComentariosInternalFrame$ComentarioListCellRenderer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/GestionarComentariosInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/GestionarComentariosInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ModificarDatosPropuestaInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ModificarDatosPropuestaInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTColaboracion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTColaboracion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTColaborador.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTColaborador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTComentario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTComentario.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTProponente.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTProponente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/endpoints/UsuarioWSEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/endpoints/UsuarioWSEndpoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/endpoints/envoltorios/ListaDTProponente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/endpoints/envoltorios/ListaDTProponente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/manejadores/UsuarioManejador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/manejadores/UsuarioManejador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/modelos/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/modelos/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/EstacionDeTrabajo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/EstacionDeTrabajo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/VerProponentesEliminadosInternalFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/VerProponentesEliminadosInternalFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTProponente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTProponente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/IUsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/IUsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/web/IUsuarioControllerWS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/web/IUsuarioControllerWS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/VerProponentesEliminadosInternalFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/VerProponentesEliminadosInternalFrame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/VerProponentesEliminadosInternalFrame$ProponenteListCellRenderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/VerProponentesEliminadosInternalFrame$ProponenteListCellRenderer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/VerProponentesEliminadosInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/VerProponentesEliminadosInternalFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/AdaptadorLocalDate$LocalDateWS.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/AdaptadorLocalDate$LocalDateWS.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/AdaptadorLocalDate.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/AdaptadorLocalDate.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/AdaptadorLocalDateTime$LocalDateTimeWS.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/AdaptadorLocalDateTime$LocalDateTimeWS.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/AdaptadorLocalDateTime.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/AdaptadorLocalDateTime.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTPropuesta.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTPropuesta.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTPropuestaEstado.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTPropuestaEstado.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTSeguimiento.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTSeguimiento.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTUsuario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTUsuario.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/culturarte/logica/controladores/PropuestaControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/culturarte/logica/controladores/PropuestaControllerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/culturarte/logica/controladores/SesionControllerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/culturarte/logica/controladores/UsuarioControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/culturarte/logica/controladores/UsuarioControllerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/culturarte/logica/manejadores/PropuestaManejadorTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/culturarte/logica/manejadores/PropuestaManejadorTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,12 +56,12 @@
     &quot;assignee&quot;: &quot;Gastonaso15&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Gastonaso15/Lab1PDA.git&quot;,
-    &quot;accountId&quot;: &quot;a983c076-8ffc-405b-b9ec-d1b18379d78c&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Gastonaso15/Lab1PDA.git",
+    "accountId": "3cbcace6-2bc9-4a96-a47e-08ba4254da15"
   }
-}</component>
+}]]></component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -226,6 +200,13 @@
         <item itemvalue="JUnit.All in culturarte-app" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -444,7 +425,23 @@
       <option name="project" value="LOCAL" />
       <updated>1761876308212</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="ver proponentes eliminados corriendo, falta probarlo con proponentes eliminados">
+      <option name="closed" value="true" />
+      <created>1762290860957</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1762290860957</updated>
+    </task>
+    <task id="LOCAL-00028" summary="ver proponentes eliminados corriendo, falta probarlo con proponentes eliminados">
+      <option name="closed" value="true" />
+      <created>1762290876570</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1762290876570</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -485,7 +482,8 @@
     <MESSAGE value="Jacoco implementado y avances en los web services" />
     <MESSAGE value="Sesion Controller eliminado" />
     <MESSAGE value="error arreglado" />
-    <option name="LAST_COMMIT_MESSAGE" value="error arreglado" />
+    <MESSAGE value="ver proponentes eliminados corriendo, falta probarlo con proponentes eliminados" />
+    <option name="LAST_COMMIT_MESSAGE" value="ver proponentes eliminados corriendo, falta probarlo con proponentes eliminados" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
