@@ -5,6 +5,7 @@ import culturarte.servicios.DTs.*;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebService;
 import jakarta.jws.soap.SOAPBinding;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import java.time.LocalDate;
 
@@ -16,7 +17,7 @@ public interface IPropuestaControllerWS {
     DTPropuesta getDTPropuesta(String titulo);
 
     @WebMethod
-    void crearPropuesta(String titulo, String descripcion, String lugar, LocalDate fechaPrevista,
+    void crearPropuesta(String titulo, String descripcion, String lugar, @XmlJavaTypeAdapter(AdaptadorLocalDate.class) LocalDate fechaPrevista,
                         Double precioEntrada, Double montoNecesario, String imagen,
                         String proponente, String categoria, ListaStrings listaTipos) throws Exception;
 
@@ -31,7 +32,7 @@ public interface IPropuestaControllerWS {
 
     @WebMethod
     void modificarPropuesta(String titulo, String nuevaDescripcion, String nuevoLugar,
-                            LocalDate nuevaFechaPrevista, Double nuevoPrecioEntrada,
+                            @XmlJavaTypeAdapter(AdaptadorLocalDate.class) LocalDate nuevaFechaPrevista, Double nuevoPrecioEntrada,
                             Double nuevoMontoNecesario, String imagen,
                             ListaStrings listaTipos, String categoria) throws Exception;
 
