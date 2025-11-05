@@ -7,6 +7,7 @@ import culturarte.servicios.interfaces.web.IPropuestaControllerWS;
 import culturarte.servicios.DTs.*;
 
 import jakarta.jws.WebService;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 @WebService(endpointInterface = "culturarte.servicios.interfaces.web.IPropuestaControllerWS")
 public class PropuestaWSEndpoint implements IPropuestaControllerWS {
@@ -23,7 +24,7 @@ public class PropuestaWSEndpoint implements IPropuestaControllerWS {
     }
 
     @Override
-    public void crearPropuesta(String titulo, String descripcion, String lugar, java.time.LocalDate fechaPrevista,
+    public void crearPropuesta(String titulo, String descripcion, String lugar, @XmlJavaTypeAdapter(AdaptadorLocalDate.class) java.time.LocalDate fechaPrevista,
                                Double precioEntrada, Double montoNecesario, String imagen,
                                String proponente, String categoria, ListaStrings listaTipos) throws Exception {
         controlador.crearPropuesta(titulo, descripcion, lugar, fechaPrevista, precioEntrada,
@@ -47,7 +48,7 @@ public class PropuestaWSEndpoint implements IPropuestaControllerWS {
 
     @Override
     public void modificarPropuesta(String titulo, String nuevaDescripcion, String nuevoLugar,
-                                   java.time.LocalDate nuevaFechaPrevista, Double nuevoPrecioEntrada,
+                                   @XmlJavaTypeAdapter(AdaptadorLocalDate.class) java.time.LocalDate nuevaFechaPrevista, Double nuevoPrecioEntrada,
                                    Double nuevoMontoNecesario, String imagen,
                                    ListaStrings listaTipos, String categoria) throws Exception {
         controlador.modificarPropuesta(titulo, nuevaDescripcion, nuevoLugar, nuevaFechaPrevista,
