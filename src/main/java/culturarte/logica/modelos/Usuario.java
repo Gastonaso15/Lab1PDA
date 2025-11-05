@@ -89,6 +89,7 @@ public class Usuario {
 
     public DTUsuario getDataType() {
         DTUsuario dt = new DTUsuario();
+        dt.setId(this.id);
         dt.setNickname(this.nickname);
         dt.setNombre(this.nombre);
         dt.setApellido(this.apellido);
