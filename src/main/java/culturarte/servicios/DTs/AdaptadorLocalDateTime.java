@@ -40,3 +40,4 @@ public class AdaptadorLocalDateTime extends XmlAdapter<AdaptadorLocalDateTime.Lo
     }
 }
 
+
