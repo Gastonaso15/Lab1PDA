@@ -14,6 +14,9 @@ public class DTPropuestaEstado {
 
     // Constructores
 
+    public DTPropuestaEstado() {
+    }
+
     public DTPropuestaEstado(DTEstadoPropuesta estado, LocalDate fechaCambio) {
         this.estado = estado;
         this.fechaCambio = fechaCambio;

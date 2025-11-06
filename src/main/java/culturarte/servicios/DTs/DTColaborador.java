@@ -7,6 +7,9 @@ public class DTColaborador extends DTUsuario{
     private List<DTColaboracion> colaboraciones;
 
     // Constructores
+    public DTColaborador() {
+    }
+
     public DTColaborador(String nickname) {
         super(nickname);
     }

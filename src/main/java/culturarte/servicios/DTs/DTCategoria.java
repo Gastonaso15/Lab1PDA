@@ -10,6 +10,8 @@ public class DTCategoria {
     private DTCategoria categoriaPadre;
 
     // Constructores
+    public DTCategoria() {
+    }
     public DTCategoria(String nombre, DTCategoria categoriaPadre) {
         this.setNombre(nombre);
         this.setCategoriaPadre(categoriaPadre);
