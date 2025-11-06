@@ -1,0 +1,229 @@
+<changelist name="Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]" date="1762390863300" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 05/11/2025 21:59 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/intellij/uiDesigner/core/GridConstraints.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/ConsultaPerfilColaboradorInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/intellij/uiDesigner/core/Util.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/ConsultaPropuestasPorEstadoInternalFrame.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/presentacion/internalFrames/ConsultaPropuestasPorEstadoInternalFrame.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/ConsultaPropuestasPorEstadoInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame$2.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame$2.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/CancelarColaboracionInternalFrame$2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTPropuestaEstado.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/servicios/DTs/DTPropuestaEstado.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/DTPropuestaEstado.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/intellij/uiDesigner/core/AbstractLayout.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/ModificarDatosPropuestaInternalFrame.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/presentacion/internalFrames/ModificarDatosPropuestaInternalFrame.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/ModificarDatosPropuestaInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/intellij/uiDesigner/core/HorizontalInfo.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTPropuesta.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/servicios/DTs/DTPropuesta.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/DTPropuesta.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/intellij/uiDesigner/core/LayoutState.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTProponente.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/servicios/DTs/DTProponente.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/DTProponente.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/manejadores/PropuestaManejador.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/logica/manejadores/PropuestaManejador.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/PropuestaManejador.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/AdaptadorLocalDate.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/servicios/DTs/AdaptadorLocalDate.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/AdaptadorLocalDate.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/intellij/uiDesigner/core/VerticalInfo.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/endpoints/UsuarioWSEndpoint.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/logica/endpoints/UsuarioWSEndpoint.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/UsuarioWSEndpoint.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/CancelarColaboracionInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/culturarte/logica/controladores/UsuarioControllerTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTComentario.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/servicios/DTs/DTComentario.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/DTComentario.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/endpoints/PropuestaWSEndpoint.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/logica/endpoints/PropuestaWSEndpoint.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/PropuestaWSEndpoint.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/AdaptadorLocalDateTime.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/servicios/DTs/AdaptadorLocalDateTime.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/AdaptadorLocalDateTime.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/controladores/PropuestaController.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/logica/controladores/PropuestaController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/PropuestaController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/endpoints/envoltorios/ListaDTColaboracion.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/logica/endpoints/envoltorios/ListaDTColaboracion.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/ListaDTColaboracion.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/culturarte/logica/manejadores/UsuarioManejadorTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/RegistrarColaboracionInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/intellij/uiDesigner/core/GridLayoutManager.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/GestionarComentariosInternalFrame$1.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/presentacion/internalFrames/GestionarComentariosInternalFrame$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/GestionarComentariosInternalFrame$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame$1.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/RegistrarColaboracionInternalFrame$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/GestionarComentariosInternalFrame.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/presentacion/internalFrames/GestionarComentariosInternalFrame.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/GestionarComentariosInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/GestionarComentariosInternalFrame$ComentarioListCellRenderer.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/presentacion/internalFrames/GestionarComentariosInternalFrame$ComentarioListCellRenderer.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/GestionarComentariosInternalFrame$ComentarioListCellRenderer.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/intellij/uiDesigner/core/DimensionInfo.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/intellij/uiDesigner/core/Spacer.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame$1.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame$1.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/CancelarColaboracionInternalFrame$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/ConsultaPerfilProponenteInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTUsuario.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/servicios/DTs/DTUsuario.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/DTUsuario.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/ConsultarPropuestaInternalFrame.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/presentacion/internalFrames/ConsultarPropuestaInternalFrame.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/ConsultarPropuestaInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/culturarte/logica/controladores/PropuestaControllerTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/modelos/Propuesta.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/logica/modelos/Propuesta.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/Propuesta.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/modelos/Usuario.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/logica/modelos/Usuario.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/Usuario.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/AdaptadorLocalDate$LocalDateWS.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/servicios/DTs/AdaptadorLocalDate$LocalDateWS.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/AdaptadorLocalDate$LocalDateWS.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/AltaUsuarioInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/EvaluarPropuestaInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/AdaptadorLocalDateTime$LocalDateTimeWS.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/servicios/DTs/AdaptadorLocalDateTime$LocalDateTimeWS.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/AdaptadorLocalDateTime$LocalDateTimeWS.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/controladores/UsuarioController.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/logica/controladores/UsuarioController.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/UsuarioController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/ConsultaColaboracionInternalFrame.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/presentacion/internalFrames/ConsultaColaboracionInternalFrame.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/ConsultaColaboracionInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/endpoints/envoltorios/ListaDTPropuesta.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/logica/endpoints/envoltorios/ListaDTPropuesta.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/ListaDTPropuesta.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/com/intellij/uiDesigner/core/SupportCode.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTSeguimiento.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/servicios/DTs/DTSeguimiento.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/DTSeguimiento.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTColaborador.class" />
+    <option name="AFTER_PATH" value="target/classes/culturarte/servicios/DTs/DTColaborador.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_05_11_2025_21_59_[Changes]/DTColaborador.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/culturarte/logica/manejadores/PropuestaManejadorTest.class" />
+  </binary>
+</changelist>

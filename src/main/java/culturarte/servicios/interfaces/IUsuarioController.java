@@ -24,4 +24,5 @@ public interface IUsuarioController {
     List<String> devolverUsuariosSeguidores(String nicknameSeguido);
     DTUsuario getDTUsuario(String nickname);
     List<DTProponente> devolverProponentesEliminados();
+    void bajaProponente(String nickname) throws Exception;
 }

@@ -331,7 +331,7 @@ public class UsuarioControllerTest {
     void usuarioUnoYaSigueUsuarioDos_DatosValidos_RetornaBoolCorresponde() {
         when(usuarioManejadorMock.comprobarUsuarioUnoYaSigueUsuarioDos("seguidor1", "seguido1")).thenReturn(true);
 
-        boolean result = controller.UsuarioUnoYaSigueUsuarioDos("seguidor1", "seguido1");
+        boolean result = controller.usuarioUnoYaSigueUsuarioDos("seguidor1", "seguido1");
 
         assertTrue(result);
     }
@@ -428,7 +428,7 @@ public class UsuarioControllerTest {
     void usuarioYaTienePropuestaFavorita_DatosValidos_RetornaTrueCuandoCorresponde() {
         when(usuarioManejadorMock.comprobarUsuarioYaTienePropuestaFavorita("usuario1", "Propuesta Test")).thenReturn(true);
 
-        boolean result = controller.UsuarioYaTienePropuestaFavorita("usuario1", "Propuesta Test");
+        boolean result = controller.usuarioYaTienePropuestaFavorita("usuario1", "Propuesta Test");
 
         assertTrue(result);
     }

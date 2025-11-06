@@ -103,4 +103,9 @@ public class UsuarioWSEndpoint implements IUsuarioControllerWS {
     public ListaDTProponente devolverProponentesEliminados() {
         return new ListaDTProponente(this.controlador.devolverProponentesEliminados());
     }
+
+    @Override
+    public void bajaProponente(String nickname) throws Exception {
+        this.controlador.bajaProponente(nickname);
+    }
 }
