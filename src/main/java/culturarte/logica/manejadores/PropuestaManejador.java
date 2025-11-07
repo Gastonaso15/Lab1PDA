@@ -39,7 +39,9 @@ public class PropuestaManejador {
         EntityManager em = JPAUtil.getEntityManager();
         Propuesta pro;
         try {
-            TypedQuery<Propuesta> query = em.createQuery("SELECT p FROM Propuesta p WHERE p.titulo = :titulo", Propuesta.class).setParameter("titulo", titulo);
+            TypedQuery<Propuesta> query = em.createQuery("SELECT p FROM Propuesta p WHERE p.titulo = :titulo AND " +
+                    "(p.proponente.eliminado = false OR p.proponente.eliminado IS NULL)",
+                    Propuesta.class).setParameter("titulo", titulo);
             pro = query.getSingleResult();
             
             // Cargar las colecciones lazy antes de cerrar la sesión
@@ -59,8 +61,10 @@ public class PropuestaManejador {
 
     public List<DTPropuesta> obtenerTodasLasPropuestas() {
         EntityManager em = JPAUtil.getEntityManager();
-        List<Propuesta> propuestas = em.createQuery("SELECT p FROM Propuesta p", Propuesta.class)
+        List<Propuesta> propuestas = em.createQuery("SELECT p FROM Propuesta p WHERE p.proponente.eliminado = false " +
+                        "OR p.proponente.eliminado IS NULL", Propuesta.class)
                 .getResultList();
+
         for (Propuesta p : propuestas) {
             p.getHistorial().size();
             p.getColaboraciones().size();
@@ -147,7 +151,8 @@ public class PropuestaManejador {
         EntityManager em = JPAUtil.getEntityManager();
         List<DTPropuesta> dtPropuestas = new ArrayList<>();
         try {
-            TypedQuery<Propuesta> query = em.createQuery("SELECT p FROM Propuesta p WHERE p.estadoActual = :estado", Propuesta.class);
+            TypedQuery<Propuesta> query = em.createQuery("SELECT p FROM Propuesta p WHERE p.estadoActual = :estado" +
+                    " AND (p.proponente.eliminado = false OR p.proponente.eliminado IS NULL)", Propuesta.class);
             query.setParameter("estado", estado);
             List<Propuesta> propuestas = query.getResultList();
 

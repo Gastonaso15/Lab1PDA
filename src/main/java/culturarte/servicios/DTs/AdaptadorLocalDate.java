@@ -32,3 +32,5 @@ public class AdaptadorLocalDate extends XmlAdapter<AdaptadorLocalDate.LocalDateW
     }
 }
 
+
+

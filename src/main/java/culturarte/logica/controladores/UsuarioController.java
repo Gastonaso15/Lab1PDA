@@ -7,6 +7,7 @@ import culturarte.servicios.DTs.*;
 import culturarte.servicios.interfaces.IUsuarioController;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -466,6 +467,22 @@ public class UsuarioController implements IUsuarioController {
         }
         
         return dtProponentesEliminados;
+    }
+
+    @Override
+    public void bajaProponente(String nickname) throws Exception {
+        UsuarioManejador mu = UsuarioManejador.getInstance();
+
+        Proponente proponente = mu.obtenerProponentePorNickname(nickname);
+
+        if (proponente == null) {
+            throw new Exception("El proponente " + nickname + " no existe");
+        }
+
+        proponente.setEliminado(true);
+        proponente.setFechaEliminacion(LocalDateTime.now());
+
+        mu.darDeBajaProponente(proponente);
     }
 
 }

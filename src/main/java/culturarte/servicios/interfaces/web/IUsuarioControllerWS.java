@@ -48,4 +48,6 @@ public interface IUsuarioControllerWS {
     DTUsuario getDTUsuario(String nickname);
     @WebMethod
     ListaDTProponente devolverProponentesEliminados();
+    @WebMethod
+    void bajaProponente(String nickname) throws Exception;
 }

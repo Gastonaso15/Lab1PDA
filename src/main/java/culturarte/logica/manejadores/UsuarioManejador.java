@@ -5,6 +5,7 @@ import culturarte.persistencia.JPAUtil;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class UsuarioManejador{
@@ -36,7 +37,8 @@ public class UsuarioManejador{
         EntityManager em = JPAUtil.getEntityManager();
         List<String> nicknames;
         try {
-            TypedQuery<String> query = em.createQuery("SELECT u.nickname FROM Usuario u", String.class);
+            TypedQuery<String> query = em.createQuery("SELECT u.nickname FROM Usuario u WHERE" +
+                    "(u.eliminado = false OR u.eliminado IS NULL)", String.class);
             nicknames = query.getResultList();
         } finally {
             em.close();
@@ -46,7 +48,8 @@ public class UsuarioManejador{
 
     public List<String> obtenerNicknamesProponentes() {
         EntityManager em = JPAUtil.getEntityManager();
-        TypedQuery<String> query = em.createQuery("SELECT nickname FROM Proponente p", String.class);
+        TypedQuery<String> query = em.createQuery("SELECT nickname FROM Proponente p WHERE " +
+                "(p.eliminado = false OR p.eliminado IS NULL)", String.class);
         List<String> proponentes = query.getResultList();
         em.close();
         return proponentes;
@@ -64,7 +67,8 @@ public class UsuarioManejador{
         EntityManager em = JPAUtil.getEntityManager();
         Usuario usu;
         try {
-            TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.correo = :correo", Usuario.class).setParameter("correo", correo);
+            TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.correo = :correo AND " +
+                    "(u.eliminado = false OR u.eliminado IS NULL)", Usuario.class).setParameter("correo", correo);
             usu = query.getSingleResult();
         } catch (NoResultException e) {
             usu = null;
@@ -78,7 +82,8 @@ public class UsuarioManejador{
         EntityManager em = JPAUtil.getEntityManager();
         Usuario usu;
         try {
-            TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nick", Usuario.class).setParameter("nick", nickname);
+            TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.nickname = :nick AND " +
+                    "(u.eliminado = false OR u.eliminado IS NULL)", Usuario.class).setParameter("nick", nickname);
             usu = query.getSingleResult();
         } catch (NoResultException e) {
             usu = null;
@@ -95,7 +100,8 @@ public class UsuarioManejador{
             TypedQuery<Proponente> query = em.createQuery(
                     "SELECT DISTINCT p FROM Proponente p " +
                             "LEFT JOIN FETCH p.propuestas pr " +
-                            "WHERE p.nickname = :nick", Proponente.class
+                            "WHERE p.nickname = :nick AND (p.eliminado = false OR p.eliminado IS NULL)",
+                    Proponente.class
             );
             query.setParameter("nick", nickname);
             prop = query.getSingleResult();
@@ -370,6 +376,51 @@ public class UsuarioManejador{
             em.close();
         }
         return proponentesEliminados;
+    }
+
+    public void darDeBajaProponente(Proponente proponente) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction t = em.getTransaction();
+
+        try {
+            t.begin();
+            Proponente prop = em.find(Proponente.class, proponente.getId());
+
+            if (prop == null) {
+                throw new IllegalArgumentException("El proponente no existe");
+            }
+
+            em.createNativeQuery(
+                            "DELETE FROM usuarios_propuestas " +
+                                    "WHERE propuestasFavoritas_id  IN " +
+                                    "(SELECT id FROM propuestas WHERE proponente_id = :propId)")
+                    .setParameter("propId", prop.getId())
+                    .executeUpdate();
+
+            em.createQuery(
+                            "DELETE FROM Seguimiento s WHERE s.seguidor.id = :uid")
+                    .setParameter("uid", prop.getId())
+                    .executeUpdate();
+
+            em.createQuery(
+                            "DELETE FROM Seguimiento s WHERE s.seguido.id = :uid")
+                    .setParameter("uid", prop.getId())
+                    .executeUpdate();
+
+            prop.setEliminado(true);
+            prop.setFechaEliminacion(java.time.LocalDateTime.now());
+
+            em.merge(prop);
+
+            t.commit();
+
+        } catch(Exception e) {
+            if (t.isActive()) t.rollback();
+            e.printStackTrace();
+            throw new PersistenceException("Error al dar de baja proponente", e);
+        } finally {
+            em.close();
+        }
     }
 
 }
