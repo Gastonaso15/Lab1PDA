@@ -3,9 +3,11 @@ package culturarte.logica.manejadores;
 import culturarte.logica.modelos.*;
 import culturarte.persistencia.JPAUtil;
 
+import culturarte.servicios.DTs.DTAccesoSitio;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioManejador{
@@ -381,7 +383,6 @@ public class UsuarioManejador{
     public void darDeBajaProponente(Proponente proponente) {
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction t = em.getTransaction();
-
         try {
             t.begin();
             Proponente prop = em.find(Proponente.class, proponente.getId());
@@ -390,30 +391,21 @@ public class UsuarioManejador{
                 throw new IllegalArgumentException("El proponente no existe");
             }
 
-            em.createNativeQuery(
-                            "DELETE FROM usuarios_propuestas " +
-                                    "WHERE propuestasFavoritas_id  IN " +
-                                    "(SELECT id FROM propuestas WHERE proponente_id = :propId)")
-                    .setParameter("propId", prop.getId())
+            em.createNativeQuery("DELETE FROM usuarios_propuestas WHERE propuestasFavoritas_id  IN (SELECT id FROM " +
+                            "propuestas WHERE proponente_id = :propId)").setParameter("propId", prop.getId())
                     .executeUpdate();
 
-            em.createQuery(
-                            "DELETE FROM Seguimiento s WHERE s.seguidor.id = :uid")
-                    .setParameter("uid", prop.getId())
-                    .executeUpdate();
+            em.createQuery("DELETE FROM Seguimiento s WHERE s.seguidor.id = :uid").setParameter
+                            ("uid", prop.getId()).executeUpdate();
 
-            em.createQuery(
-                            "DELETE FROM Seguimiento s WHERE s.seguido.id = :uid")
-                    .setParameter("uid", prop.getId())
-                    .executeUpdate();
+            em.createQuery("DELETE FROM Seguimiento s WHERE s.seguido.id = :uid").setParameter
+                            ("uid", prop.getId()).executeUpdate();
 
             prop.setEliminado(true);
             prop.setFechaEliminacion(java.time.LocalDateTime.now());
 
             em.merge(prop);
-
             t.commit();
-
         } catch(Exception e) {
             if (t.isActive()) t.rollback();
             e.printStackTrace();
@@ -421,6 +413,57 @@ public class UsuarioManejador{
         } finally {
             em.close();
         }
+    }
+
+    public void persistirAcceso(String ip, String url, String browser, String sistemaOperativo) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction t = em.getTransaction();
+        try {
+            t.begin();
+            AccesoSitio acceso = new AccesoSitio(ip, url, browser, sistemaOperativo);
+            em.persist(acceso);
+
+            LocalDateTime fechaLimite = LocalDateTime.now().minusDays(30);
+            em.createQuery("DELETE FROM AccesoSitio a WHERE a.fechaHora < :fechaLimite").setParameter
+                            ("fechaLimite", fechaLimite).executeUpdate();
+
+            Long count = em.createQuery("SELECT COUNT(a) FROM AccesoSitio a", Long.class).getSingleResult();
+
+            if (count > 10000) {
+                int exceso = (int)(count - 10000);
+                List<Long> idsAEliminar = em.createQuery("SELECT a.id FROM AccesoSitio a ORDER BY a.fechaHora ASC",
+                        Long.class).setMaxResults(exceso).getResultList();
+
+                if (!idsAEliminar.isEmpty()) {
+                    em.createQuery("DELETE FROM AccesoSitio a WHERE a.id IN :ids").setParameter
+                                    ("ids", idsAEliminar).executeUpdate();
+                }
+            }
+            t.commit();
+        } catch(Exception e) {
+            if (t.isActive()) t.rollback();
+            e.printStackTrace();
+            throw new PersistenceException("Error al registrar acceso: " + e);
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<DTAccesoSitio> obtenerRegistroAccesos() {
+        EntityManager em = JPAUtil.getEntityManager();
+        List<DTAccesoSitio> resultado = new ArrayList<>();
+        try {
+            List<AccesoSitio> accesos = em.createQuery("SELECT a FROM AccesoSitio a ORDER BY a.fechaHora DESC",
+                            AccesoSitio.class).getResultList();
+
+            for (AccesoSitio acceso : accesos) {
+                resultado.add(new DTAccesoSitio(acceso.getId(), acceso.getIp(), acceso.getUrl(), acceso.getBrowser(),
+                        acceso.getSistemaOperativo(), acceso.getFechaHora()));
+            }
+        } finally {
+            em.close();
+        }
+        return resultado;
     }
 
 }

@@ -2,6 +2,7 @@ package culturarte.servicios.interfaces.web;
 
 import culturarte.logica.endpoints.envoltorios.ListaStrings;
 import culturarte.logica.endpoints.envoltorios.ListaDTProponente;
+import culturarte.servicios.DTs.DTAccesoSitio;
 import culturarte.servicios.DTs.DTColaborador;
 import culturarte.servicios.DTs.DTProponente;
 import culturarte.servicios.DTs.DTUsuario;
@@ -50,4 +51,6 @@ public interface IUsuarioControllerWS {
     ListaDTProponente devolverProponentesEliminados();
     @WebMethod
     void bajaProponente(String nickname) throws Exception;
+    @WebMethod
+    void registrarAcceso(String ip, String url, String browser, String sistemaOperativo);
 }

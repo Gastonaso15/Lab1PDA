@@ -9,15 +9,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="Baja proponente hecho">
+    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/modelos/AccesoSitio.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/VerRegistroAccesoInternalFrame.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTAccesoSitio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_10_2025_00_31_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_31_10_2025_00_31__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTCategoria.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTCategoria.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTColaborador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTColaborador.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTPropuestaEstado.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTPropuestaEstado.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTSeguimiento.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTSeguimiento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTColaborador.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTColaborador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTPropuestaEstado.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTPropuestaEstado.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTSeguimiento.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTSeguimiento.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/endpoints/UsuarioWSEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/endpoints/UsuarioWSEndpoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/manejadores/UsuarioManejador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/manejadores/UsuarioManejador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/EstacionDeTrabajo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/EstacionDeTrabajo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/IUsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/IUsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/web/IUsuarioControllerWS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/web/IUsuarioControllerWS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/UsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/UsuarioController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/endpoints/UsuarioWSEndpoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/endpoints/UsuarioWSEndpoint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/manejadores/UsuarioManejador.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/manejadores/UsuarioManejador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/EstacionDeTrabajo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/EstacionDeTrabajo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/interfaces/IUsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/interfaces/IUsuarioController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/interfaces/web/IUsuarioControllerWS.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/interfaces/web/IUsuarioControllerWS.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,7 +131,7 @@
       <recent name="culturarte.servicios.interfaces" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.WSPublicador">
+  <component name="RunManager" selected="Application.EstacionDeTrabajo">
     <configuration name="EstacionDeTrabajo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="culturarte.presentacion.EstacionDeTrabajo" />
       <module name="culturarte-app" />
@@ -180,8 +190,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.WSPublicador" />
         <item itemvalue="Application.EstacionDeTrabajo" />
+        <item itemvalue="Application.WSPublicador" />
         <item itemvalue="JUnit.logica in culturarte-app" />
         <item itemvalue="JUnit.controladores in culturarte-app" />
         <item itemvalue="JUnit.All in culturarte-app" />
@@ -420,7 +430,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762419082785</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Error al registrar usuario arreglado">
+      <option name="closed" value="true" />
+      <created>1762419993410</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1762419993412</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -462,7 +480,8 @@
     <MESSAGE value="Sesion Controller eliminado" />
     <MESSAGE value="error arreglado" />
     <MESSAGE value="Baja proponente hecho" />
-    <option name="LAST_COMMIT_MESSAGE" value="Baja proponente hecho" />
+    <MESSAGE value="Error al registrar usuario arreglado" />
+    <option name="LAST_COMMIT_MESSAGE" value="Error al registrar usuario arreglado" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
