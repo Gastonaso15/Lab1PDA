@@ -489,4 +489,17 @@ public class UsuarioController implements IUsuarioController {
         mu.darDeBajaProponente(proponente);
     }
 
+    @Override
+    public void registrarAcceso(String ip, String url, String browser, String sistemaOperativo){
+        UsuarioManejador mu = UsuarioManejador.getInstance();
+        mu.persistirAcceso(ip, url, browser, sistemaOperativo);
+    }
+
+
+    @Override
+    public List<DTAccesoSitio> devolverRegistroAccesos() {
+        UsuarioManejador mu = UsuarioManejador.getInstance();
+        return mu.obtenerRegistroAccesos();
+    }
+
 }

@@ -63,14 +63,15 @@ public class EstacionDeTrabajo extends JFrame {
         JMenuItem seguirUsuario = new JMenuItem("Seguir Usuario");
         JMenuItem dejarSeguirUsuario = new JMenuItem("Dejar de Seguir Usuario");
         JMenuItem verProponentesEliminados = new JMenuItem("Ver Proponentes Eliminados");
+        JMenuItem verRegistroAccesos = new JMenuItem("Ver Registro de Acceso al Sitio");
 
         usuarios.add(altaUsuario);
         usuarios.add(consultaProponente);
         usuarios.add(consultaColaborador);
         usuarios.add(seguirUsuario);
         usuarios.add(dejarSeguirUsuario);
-        usuarios.addSeparator();
         usuarios.add(verProponentesEliminados);
+        usuarios.add(verRegistroAccesos);
 
         altaUsuario.addActionListener(e -> abrirAltaUsuario());
         consultaProponente.addActionListener(e -> abrirConsultaProponente());
@@ -78,6 +79,7 @@ public class EstacionDeTrabajo extends JFrame {
         seguirUsuario.addActionListener(e -> abrirSeguirUsuario());
         dejarSeguirUsuario.addActionListener(e -> abrirDejarSeguirUsuario());
         verProponentesEliminados.addActionListener(e -> abrirVerProponentesEliminados());
+        verRegistroAccesos.addActionListener(e -> abrirVerRegistroAccesos());
 
         JMenu propuestas = new JMenu("Propuestas");
 
@@ -213,6 +215,11 @@ public class EstacionDeTrabajo extends JFrame {
 
     private void abrirVerProponentesEliminados() {
         VerProponentesEliminadosInternalFrame frame = new VerProponentesEliminadosInternalFrame(ICU);
+        abrir(frame);
+    }
+
+    private void abrirVerRegistroAccesos() {
+        VerRegistroAccesoInternalFrame frame = new VerRegistroAccesoInternalFrame(ICU);
         abrir(frame);
     }
 }

@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import culturarte.servicios.DTs.DTPropuesta;
+import culturarte.servicios.DTs.DTEstadoPropuesta;
+
 
 @Entity
 @Table(name = "propuestas")
@@ -129,6 +131,7 @@ public class Propuesta {
             dt.setMontoNecesario(this.montoNecesario);
             dt.setFechaPublicacion(this.fechaPublicacion);
             dt.setImagen(this.imagen);
+            dt.setEstadoActual(DTEstadoPropuesta.valueOf(this.estadoActual.name()));
             return dt;
         }
         public void agregarPropuestaEstado(PropuestaEstado nuevoEstado) {

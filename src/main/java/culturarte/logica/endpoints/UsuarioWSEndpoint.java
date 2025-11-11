@@ -108,4 +108,9 @@ public class UsuarioWSEndpoint implements IUsuarioControllerWS {
     public void bajaProponente(String nickname) throws Exception {
         this.controlador.bajaProponente(nickname);
     }
+
+    @Override
+    public void registrarAcceso(String ip, String url, String browser, String sistemaOperativo){
+        this.controlador.registrarAcceso(ip, url, browser, sistemaOperativo);
+    }
 }
