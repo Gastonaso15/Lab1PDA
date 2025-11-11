@@ -13,6 +13,7 @@ public class DTColaboracion{
     private Double monto;
     private DTTipoRetorno tipoRetorno;
     private LocalDateTime fechaHora;
+    private Boolean constanciaEmitida;
 
     // Constructores
     public DTColaboracion(){}
@@ -22,10 +23,12 @@ public class DTColaboracion{
         this.monto = monto;
         this.tipoRetorno = tipoRetorno;
         this.fechaHora = fechaHora;
+        this.constanciaEmitida = false;
     }
     public DTColaboracion(DTColaborador colaborador, Double monto) {
         this.colaborador = colaborador;
         this.monto = monto;
+        this.constanciaEmitida = false;
     }
     public DTColaboracion(Long id,DTPropuesta propuesta, DTColaborador colaborador, Double monto, DTTipoRetorno tipoRetorno, LocalDateTime fechaHora) {
         this.id=id;
@@ -34,6 +37,16 @@ public class DTColaboracion{
         this.monto = monto;
         this.tipoRetorno = tipoRetorno;
         this.fechaHora = fechaHora;
+        this.constanciaEmitida = false;
+    }
+    public DTColaboracion(Long id,DTPropuesta propuesta, DTColaborador colaborador, Double monto, DTTipoRetorno tipoRetorno, LocalDateTime fechaHora, Boolean constanciaEmitida) {
+        this.id=id;
+        this.propuesta = propuesta;
+        this.colaborador = colaborador;
+        this.monto = monto;
+        this.tipoRetorno = tipoRetorno;
+        this.fechaHora = fechaHora;
+        this.constanciaEmitida = constanciaEmitida != null ? constanciaEmitida : false;
     }
 
 
@@ -56,5 +69,12 @@ public class DTColaboracion{
     @XmlJavaTypeAdapter(AdaptadorLocalDateTime.class)
     public LocalDateTime getFechaHora() { return fechaHora; }
     public void setFechaHora(LocalDateTime fechaHora) { this.fechaHora = fechaHora; }
+
+    public Boolean getConstanciaEmitida() { 
+        return constanciaEmitida != null ? constanciaEmitida : false; 
+    }
+    public void setConstanciaEmitida(Boolean constanciaEmitida) { 
+        this.constanciaEmitida = constanciaEmitida != null ? constanciaEmitida : false; 
+    }
 
 }

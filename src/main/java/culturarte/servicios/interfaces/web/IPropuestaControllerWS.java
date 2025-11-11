@@ -50,6 +50,9 @@ public interface IPropuestaControllerWS {
     void cancelarColaboracion(Long idColaboracion) throws Exception;
 
     @WebMethod
+    void marcarConstanciaEmitida(Long idColaboracion) throws Exception;
+
+    @WebMethod
     ListaDTColaboracion obtenerTodasLasColaboraciones();
 
     @WebMethod

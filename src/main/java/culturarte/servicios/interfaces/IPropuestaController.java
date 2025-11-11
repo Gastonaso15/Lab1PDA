@@ -28,6 +28,7 @@ public interface IPropuestaController {
     void registrarColaboracion(String tituloPropuesta, String nicknameColaborador, Double monto,
                                                String tipoRetorno) throws Exception;
     void cancelarColaboracion(Long idColaboracion) throws Exception;
+    void marcarConstanciaEmitida(Long idColaboracion) throws Exception;
     List<DTColaboracion> obtenerTodasLasColaboraciones();
     void evaluarPropuesta(String titulo, boolean publicar) throws Exception;
     void publicarPropuesta(String titulo) throws Exception;

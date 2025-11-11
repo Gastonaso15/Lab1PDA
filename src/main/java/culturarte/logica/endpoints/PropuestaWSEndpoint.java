@@ -77,6 +77,11 @@ public class PropuestaWSEndpoint implements IPropuestaControllerWS {
     }
 
     @Override
+    public void marcarConstanciaEmitida(Long idColaboracion) throws Exception {
+        controlador.marcarConstanciaEmitida(idColaboracion);
+    }
+
+    @Override
     public ListaDTColaboracion obtenerTodasLasColaboraciones() {
         return new ListaDTColaboracion(controlador.obtenerTodasLasColaboraciones());
     }

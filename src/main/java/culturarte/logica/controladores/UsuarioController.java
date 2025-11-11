@@ -124,11 +124,13 @@ public class UsuarioController implements IUsuarioController {
                         : null;
 
                 DTColaboracion dtColabProp = new DTColaboracion(
+                        colabProp.getId(),
                         null,
                         new DTColaborador(colabProp.getColaborador().getNickname()),
                         colabProp.getMonto(),
                         tipo,
-                        colabProp.getFechaHora()
+                        colabProp.getFechaHora(),
+                        colabProp.getConstanciaEmitida()
                 );
                 dtColabsPropuesta.add(dtColabProp);
             }
@@ -154,11 +156,13 @@ public class UsuarioController implements IUsuarioController {
             }
 
             DTColaboracion dtColaboracion = new DTColaboracion(
+                    c.getId(),
                     dtPropuesta,
                     new DTColaborador(nickname),
                     c.getMonto(),
                     dtTipoRetorno,
-                    c.getFechaHora()
+                    c.getFechaHora(),
+                    c.getConstanciaEmitida()
             );
             dtColaboraciones.add(dtColaboracion);
         }

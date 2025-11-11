@@ -152,6 +152,12 @@ public class PropuestaController implements IPropuestaController {
     }
 
     @Override
+    public void marcarConstanciaEmitida(Long idColaboracion) throws Exception {
+        PropuestaManejador pm = PropuestaManejador.getInstance();
+        pm.marcarConstanciaEmitida(idColaboracion);
+    }
+
+    @Override
     public void publicarPropuesta(String titulo) throws Exception {
         PropuestaManejador pm = PropuestaManejador.getInstance();
         Propuesta propuesta = pm.obtenerPropuestaPorTitulo(titulo);

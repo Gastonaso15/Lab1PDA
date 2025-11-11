@@ -322,6 +322,27 @@ public class PropuestaManejador {
         }
     }
 
+    public void marcarConstanciaEmitida(Long idColaboracion) throws Exception {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction t = em.getTransaction();
+
+        try {
+            t.begin();
+            Colaboracion colaboracion = em.find(Colaboracion.class, idColaboracion);
+            if (colaboracion == null) {
+                throw new Exception("No existe la colaboración con id " + idColaboracion);
+            }
+            colaboracion.setConstanciaEmitida(true);
+            em.merge(colaboracion);
+            t.commit();
+        } catch (Exception e) {
+            if (t.isActive()) t.rollback();
+            throw new PersistenceException("Error al marcar constancia como emitida", e);
+        } finally {
+            em.close();
+        }
+    }
+
     public void cancelarColaboracion(Long idColaboracion) throws Exception {
         EntityManager em = JPAUtil.getEntityManager();
 
@@ -391,7 +412,8 @@ public class PropuestaManejador {
                     dtColaborador,
                     c.getMonto(),
                     dtTipoRetorno,
-                    c.getFechaHora()
+                    c.getFechaHora(),
+                    c.getConstanciaEmitida()
             ));
 
         };
