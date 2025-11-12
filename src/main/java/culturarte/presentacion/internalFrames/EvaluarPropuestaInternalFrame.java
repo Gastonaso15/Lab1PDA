@@ -89,7 +89,6 @@ public class EvaluarPropuestaInternalFrame extends JInternalFrame {
         btnConfirmar.addActionListener(e -> evaluarSeleccion());
         btnCerrar.addActionListener(e -> dispose());
 
-        // Cargar lista inicial
         cargarPropuestas();
     }
 

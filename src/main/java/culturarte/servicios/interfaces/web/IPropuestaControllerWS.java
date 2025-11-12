@@ -72,4 +72,10 @@ public interface IPropuestaControllerWS {
 
     @WebMethod
     void modificarHistorialYEstadoPropuesta(DTPropuesta propuesta);
+
+    @WebMethod
+    ListaDTColaboracion devolverColaboracionesSinPago(String nicknameColaborador);
+
+    @WebMethod
+    void registrarPago(Long idColaboracion, DTPago dtPago) throws Exception;
 }

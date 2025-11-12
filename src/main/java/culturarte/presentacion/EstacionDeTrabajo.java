@@ -34,7 +34,6 @@ public class EstacionDeTrabajo extends JFrame {
         desktop.setOpaque(true);
         desktop.setBackground(new java.awt.Color(100, 140, 212));
 
-        // --- fondo desde resources: src/main/resources/SwingImages/fondo.png ---
         java.net.URL url = EstacionDeTrabajo.class.getResource("/uploads/Swing/fondo.png");
         if (url != null) {
             ImageIcon icon = new ImageIcon(url);

@@ -9,7 +9,46 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="Ver Registro de Acceso hecho" />
+    <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/modelos/Pago.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/modelos/TipoFormaPago.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/modelos/TipoTarjeta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTPago.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTTipoFormaPago.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/DTs/DTTipoTarjeta.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_11_2025_18_12_[Changes]/DTProponente.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_11_2025_18_12_[Changes]/EstacionDeTrabajo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_11_2025_18_12_[Changes]/IUsuarioController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_11_2025_18_12_[Changes]/IUsuarioControllerWS.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_11_2025_18_12_[Changes]/Usuario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_11_2025_18_12_[Changes]/UsuarioController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_11_2025_18_12_[Changes]/UsuarioManejador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_11_2025_18_12_[Changes]/UsuarioWSEndpoint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_11_2025_18_12_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_11_2025_18_12__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/PropuestaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/PropuestaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/endpoints/PropuestaWSEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/endpoints/PropuestaWSEndpoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/manejadores/PropuestaManejador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/manejadores/PropuestaManejador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/manejadores/UsuarioManejador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/manejadores/UsuarioManejador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/modelos/Colaboracion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/modelos/Colaboracion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/EstacionDeTrabajo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/EstacionDeTrabajo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/Fabrica.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/Fabrica.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/IPropuestaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/IPropuestaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/web/IPropuestaControllerWS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/web/IPropuestaControllerWS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/PropuestaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/PropuestaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/UsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/UsuarioController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/endpoints/PropuestaWSEndpoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/endpoints/PropuestaWSEndpoint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/manejadores/PropuestaManejador.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/manejadores/PropuestaManejador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/manejadores/UsuarioManejador.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/manejadores/UsuarioManejador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/modelos/Colaboracion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/modelos/Colaboracion.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/EstacionDeTrabajo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/EstacionDeTrabajo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/Fabrica.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/Fabrica.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/interfaces/IPropuestaController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/interfaces/IPropuestaController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/interfaces/web/IPropuestaControllerWS.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/interfaces/web/IPropuestaControllerWS.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

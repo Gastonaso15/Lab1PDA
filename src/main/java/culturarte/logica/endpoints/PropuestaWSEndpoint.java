@@ -115,4 +115,14 @@ public class PropuestaWSEndpoint implements IPropuestaControllerWS {
     public void modificarHistorialYEstadoPropuesta(DTPropuesta propuesta){
         controlador.modificarHistorialYEstadoPropuesta(propuesta);
     }
+
+    @Override
+    public ListaDTColaboracion devolverColaboracionesSinPago(String nicknameColaborador) {
+        return new ListaDTColaboracion(controlador.devolverColaboracionesSinPago(nicknameColaborador));
+    }
+
+    @Override
+    public void registrarPago(Long idColaboracion, DTPago dtPago) throws Exception {
+        controlador.registrarPago(idColaboracion, dtPago);
+    }
 }

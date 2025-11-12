@@ -19,6 +19,8 @@ public class Colaboracion {
     private TipoRetorno tipoRetorno;
     private LocalDateTime fechaHora;
     private Boolean constanciaEmitida;
+    @OneToOne(mappedBy = "colaboracion", cascade = CascadeType.ALL)
+    private Pago pago;
 
     // Constructores
     public Colaboracion(){}
@@ -56,4 +58,7 @@ public class Colaboracion {
     public void setConstanciaEmitida(Boolean constanciaEmitida) { 
         this.constanciaEmitida = constanciaEmitida != null ? constanciaEmitida : false; 
     }
+    
+    public Pago getPago() { return pago; }
+    public void setPago(Pago pago) { this.pago = pago; }
 }

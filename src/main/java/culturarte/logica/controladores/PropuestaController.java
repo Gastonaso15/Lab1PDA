@@ -284,5 +284,62 @@ public class PropuestaController implements IPropuestaController {
         pm.actualizarPropuesta(prop);
     }
 
+    @Override
+    public List<DTColaboracion> devolverColaboracionesSinPago(String nicknameColaborador) {
+        PropuestaManejador pm = PropuestaManejador.getInstance();
+        return pm.obtenerColaboracionesSinPago(nicknameColaborador);
+    }
+
+    @Override
+    public void registrarPago(Long idColaboracion, DTPago dtPago) throws Exception {
+        PropuestaManejador pm = PropuestaManejador.getInstance();
+        
+        Colaboracion colaboracion = pm.obtenerColaboracionPorId(idColaboracion);
+        if (colaboracion == null) {
+            throw new Exception("No existe la colaboración con id " + idColaboracion);
+        }
+        
+        if (colaboracion.getPago() != null) {
+            throw new Exception("La colaboración ya tiene un pago asociado");
+        }
+
+        Pago pago = new Pago();
+        pago.setColaboracion(colaboracion);
+        pago.setMonto(dtPago.getMonto());
+        pago.setFechaPago(dtPago.getFechaPago());
+
+        TipoFormaPago formaPago;
+        try {
+            formaPago = TipoFormaPago.valueOf(dtPago.getFormaPago().name());
+        } catch (IllegalArgumentException e) {
+            throw new Exception("Forma de pago inválida: " + dtPago.getFormaPago());
+        }
+        pago.setFormaPago(formaPago);
+
+        if (formaPago == TipoFormaPago.TARJETA) {
+            TipoTarjeta tipoTarjeta;
+            try {
+                tipoTarjeta = TipoTarjeta.valueOf(dtPago.getTipoTarjeta().name());
+            } catch (IllegalArgumentException e) {
+                throw new Exception("Tipo de tarjeta inválido: " + dtPago.getTipoTarjeta());
+            }
+            pago.setTipoTarjeta(tipoTarjeta);
+            pago.setNumeroTarjeta(dtPago.getNumeroTarjeta());
+            pago.setFechaVencimiento(dtPago.getFechaVencimiento());
+            pago.setCvc(dtPago.getCvc());
+            pago.setNombreTitularTarjeta(dtPago.getNombreTitularTarjeta());
+        } else if (formaPago == TipoFormaPago.TRANSFERENCIA_BANCARIA) {
+            pago.setNombreBanco(dtPago.getNombreBanco());
+            pago.setNumeroCuenta(dtPago.getNumeroCuenta());
+            pago.setNombreTitularTransferencia(dtPago.getNombreTitularTransferencia());
+        } else if (formaPago == TipoFormaPago.PAYPAL) {
+            pago.setNumeroCuentaPayPal(dtPago.getNumeroCuentaPayPal());
+            pago.setNombreTitularPayPal(dtPago.getNombreTitularPayPal());
+        }
+        
+        colaboracion.setPago(pago);
+        pm.persistirPago(pago);
+    }
+
 
 }
