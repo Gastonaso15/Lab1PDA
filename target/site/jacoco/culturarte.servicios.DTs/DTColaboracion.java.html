@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DTColaboracion.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Culturarte App</a> &gt; <a href="index.source.html" class="el_package">culturarte.servicios.DTs</a> &gt; <span class="el_source">DTColaboracion.java</span></div><h1>DTColaboracion.java</h1><pre class="source lang-java linenums">package culturarte.servicios.DTs;
 
 import java.time.LocalDateTime;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import jakarta.xml.bind.annotation.XmlAccessType;
+import jakarta.xml.bind.annotation.XmlAccessorType;
 
+@XmlAccessorType(XmlAccessType.PROPERTY)
 public class DTColaboracion{
     private Long id;
     private DTPropuesta propuesta;
@@ -11,46 +15,47 @@ public class DTColaboracion{
     private LocalDateTime fechaHora;
 
     // Constructores
-<span class="nc" id="L14">    public DTColaboracion(){}</span>
-<span class="nc" id="L15">    public DTColaboracion(DTPropuesta propuesta, DTColaborador colaborador, Double monto, DTTipoRetorno tipoRetorno, LocalDateTime fechaHora) {</span>
-<span class="nc" id="L16">        this.propuesta = propuesta;</span>
-<span class="nc" id="L17">        this.colaborador = colaborador;</span>
-<span class="nc" id="L18">        this.monto = monto;</span>
-<span class="nc" id="L19">        this.tipoRetorno = tipoRetorno;</span>
-<span class="nc" id="L20">        this.fechaHora = fechaHora;</span>
-<span class="nc" id="L21">    }</span>
-<span class="nc" id="L22">    public DTColaboracion(DTColaborador colaborador, Double monto) {</span>
-<span class="nc" id="L23">        this.colaborador = colaborador;</span>
-<span class="nc" id="L24">        this.monto = monto;</span>
+<span class="nc" id="L18">    public DTColaboracion(){}</span>
+<span class="nc" id="L19">    public DTColaboracion(DTPropuesta propuesta, DTColaborador colaborador, Double monto, DTTipoRetorno tipoRetorno, LocalDateTime fechaHora) {</span>
+<span class="nc" id="L20">        this.propuesta = propuesta;</span>
+<span class="nc" id="L21">        this.colaborador = colaborador;</span>
+<span class="nc" id="L22">        this.monto = monto;</span>
+<span class="nc" id="L23">        this.tipoRetorno = tipoRetorno;</span>
+<span class="nc" id="L24">        this.fechaHora = fechaHora;</span>
 <span class="nc" id="L25">    }</span>
-<span class="fc" id="L26">    public DTColaboracion(Long id,DTPropuesta propuesta, DTColaborador colaborador, Double monto, DTTipoRetorno tipoRetorno, LocalDateTime fechaHora) {</span>
-<span class="fc" id="L27">        this.id=id;</span>
-<span class="fc" id="L28">        this.propuesta = propuesta;</span>
-<span class="fc" id="L29">        this.colaborador = colaborador;</span>
-<span class="fc" id="L30">        this.monto = monto;</span>
-<span class="fc" id="L31">        this.tipoRetorno = tipoRetorno;</span>
-<span class="fc" id="L32">        this.fechaHora = fechaHora;</span>
-<span class="fc" id="L33">    }</span>
+<span class="nc" id="L26">    public DTColaboracion(DTColaborador colaborador, Double monto) {</span>
+<span class="nc" id="L27">        this.colaborador = colaborador;</span>
+<span class="nc" id="L28">        this.monto = monto;</span>
+<span class="nc" id="L29">    }</span>
+<span class="fc" id="L30">    public DTColaboracion(Long id,DTPropuesta propuesta, DTColaborador colaborador, Double monto, DTTipoRetorno tipoRetorno, LocalDateTime fechaHora) {</span>
+<span class="fc" id="L31">        this.id=id;</span>
+<span class="fc" id="L32">        this.propuesta = propuesta;</span>
+<span class="fc" id="L33">        this.colaborador = colaborador;</span>
+<span class="fc" id="L34">        this.monto = monto;</span>
+<span class="fc" id="L35">        this.tipoRetorno = tipoRetorno;</span>
+<span class="fc" id="L36">        this.fechaHora = fechaHora;</span>
+<span class="fc" id="L37">    }</span>
 
 
     // Getters y Setters
-<span class="nc" id="L37">    public Long getId() { return id; }</span>
-<span class="nc" id="L38">    public void setId(Long id) { this.id = id; }</span>
+<span class="nc" id="L41">    public Long getId() { return id; }</span>
+<span class="nc" id="L42">    public void setId(Long id) { this.id = id; }</span>
 
-<span class="nc" id="L40">    public DTPropuesta getPropuesta() { return propuesta; }</span>
-<span class="nc" id="L41">    public void setPropuesta(DTPropuesta propuesta) { this.propuesta = propuesta; }</span>
+<span class="nc" id="L44">    public DTPropuesta getPropuesta() { return propuesta; }</span>
+<span class="nc" id="L45">    public void setPropuesta(DTPropuesta propuesta) { this.propuesta = propuesta; }</span>
 
-<span class="nc" id="L43">    public DTColaborador getColaborador() { return colaborador; }</span>
-<span class="nc" id="L44">    public void setColaborador(DTColaborador colaborador) { this.colaborador = colaborador; }</span>
+<span class="nc" id="L47">    public DTColaborador getColaborador() { return colaborador; }</span>
+<span class="nc" id="L48">    public void setColaborador(DTColaborador colaborador) { this.colaborador = colaborador; }</span>
 
-<span class="nc" id="L46">    public Double getMonto() { return monto; }</span>
-<span class="nc" id="L47">    public void setMonto(Double monto) { this.monto = monto; }</span>
+<span class="nc" id="L50">    public Double getMonto() { return monto; }</span>
+<span class="nc" id="L51">    public void setMonto(Double monto) { this.monto = monto; }</span>
 
-<span class="nc" id="L49">    public DTTipoRetorno getTipoRetorno() { return tipoRetorno; }</span>
-<span class="nc" id="L50">    public void setTipoRetorno(DTTipoRetorno tipoRetorno) { this.tipoRetorno = tipoRetorno; }</span>
+<span class="nc" id="L53">    public DTTipoRetorno getTipoRetorno() { return tipoRetorno; }</span>
+<span class="nc" id="L54">    public void setTipoRetorno(DTTipoRetorno tipoRetorno) { this.tipoRetorno = tipoRetorno; }</span>
 
-<span class="nc" id="L52">    public LocalDateTime getFechaHora() { return fechaHora; }</span>
-<span class="nc" id="L53">    public void setFechaHora(LocalDateTime fechaHora) { this.fechaHora = fechaHora; }</span>
+    @XmlJavaTypeAdapter(AdaptadorLocalDateTime.class)
+<span class="nc" id="L57">    public LocalDateTime getFechaHora() { return fechaHora; }</span>
+<span class="nc" id="L58">    public void setFechaHora(LocalDateTime fechaHora) { this.fechaHora = fechaHora; }</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

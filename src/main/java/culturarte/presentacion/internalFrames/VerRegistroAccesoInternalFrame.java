@@ -4,6 +4,7 @@ import culturarte.servicios.DTs.DTAccesoSitio;
 import culturarte.servicios.interfaces.IUsuarioController;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.time.format.DateTimeFormatter;
@@ -32,7 +33,7 @@ public class VerRegistroAccesoInternalFrame extends JInternalFrame {
         panelSuperior.add(titulo, BorderLayout.WEST);
 
         JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        btnActualizar = new JButton("Actualizar");
+        btnActualizar = crearBoton("Actualizar", new Color(40, 50, 70), Color.WHITE);
         btnActualizar.addActionListener(e -> cargarAccesos());
         panelBotones.add(btnActualizar);
         panelSuperior.add(panelBotones, BorderLayout.EAST);
@@ -95,5 +96,28 @@ public class VerRegistroAccesoInternalFrame extends JInternalFrame {
         } finally {
             btnActualizar.setEnabled(true);
         }
+    }
+
+    private JButton crearBoton(String texto, Color colorFondo, Color colorTexto) {
+        JButton boton = new JButton(texto);
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        boton.setBackground(colorFondo);
+        boton.setForeground(colorTexto);
+        boton.setFocusPainted(false);
+        boton.setBorderPainted(true);
+        boton.setContentAreaFilled(true);
+        boton.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createRaisedBevelBorder(),
+            new EmptyBorder(8, 20, 8, 20)
+        ));
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                boton.setBackground(colorFondo.darker());
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                boton.setBackground(colorFondo);
+            }
+        });
+        return boton;
     }
 }

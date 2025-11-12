@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.NoResultException;
+import jakarta.persistence.Query;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,8 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
 
 class UsuarioManejadorTest {
@@ -426,6 +426,125 @@ class UsuarioManejadorTest {
         List<String> resultado = manejador.obtenerFollowers("user1");
 
         assertEquals(followers, resultado);
+        verify(emMock).close();
+    }
+
+    @Test
+    void obtenerProponentesEliminados_ConProponentes_RetornaLista() {
+        TypedQuery<Proponente> queryMock = mock(TypedQuery.class);
+        Proponente proponente = mock(Proponente.class);
+        List<Proponente> proponentes = List.of(proponente);
+
+        when(emMock.createQuery(anyString(), eq(Proponente.class))).thenReturn(queryMock);
+        when(queryMock.getResultList()).thenReturn(proponentes);
+        when(proponente.getPropuestas()).thenReturn(new ArrayList<>());
+
+        List<Proponente> resultado = manejador.obtenerProponentesEliminados();
+
+        assertEquals(proponentes, resultado);
+        verify(emMock).close();
+    }
+
+    @Test
+    void darDeBajaProponente_DatosValidos_DaDeBajaCorrectamente() {
+        Proponente proponente = mock(Proponente.class);
+        when(proponente.getId()).thenReturn(1L);
+        when(emMock.find(Proponente.class, 1L)).thenReturn(proponente);
+
+        TypedQuery queryMock = mock(TypedQuery.class);
+        when(emMock.createNativeQuery(anyString())).thenReturn(queryMock);
+        when(emMock.createQuery(anyString())).thenReturn(queryMock);
+        when(queryMock.setParameter(anyString(), any())).thenReturn(queryMock);
+        when(queryMock.executeUpdate()).thenReturn(1);
+
+        manejador.darDeBajaProponente(proponente);
+
+        verify(transactionMock).begin();
+        verify(proponente).setEliminado(true);
+        verify(proponente).setFechaEliminacion(any(java.time.LocalDateTime.class));
+        verify(emMock).merge(proponente);
+        verify(transactionMock).commit();
+        verify(emMock).close();
+    }
+
+    @Test
+    void darDeBajaProponente_ProponenteNoExiste_LanzaExcepcion() {
+        Proponente proponente = mock(Proponente.class);
+        when(proponente.getId()).thenReturn(1L);
+        when(emMock.find(Proponente.class, 1L)).thenReturn(null);
+        when(transactionMock.isActive()).thenReturn(true);
+
+        assertThrows(jakarta.persistence.PersistenceException.class, () -> manejador.darDeBajaProponente(proponente));
+
+        verify(transactionMock).rollback();
+        verify(emMock).close();
+    }
+
+    @Test
+    void persistirAcceso_DatosValidos_PersistCorrectamente() {
+        Query deleteQueryMock1 = mock(Query.class);
+        Query deleteQueryMock2 = mock(Query.class);
+        TypedQuery<Long> countQueryMock = mock(TypedQuery.class);
+        TypedQuery<Long> idsQueryMock = mock(TypedQuery.class);
+
+        when(emMock.createQuery(contains("DELETE FROM AccesoSitio a WHERE a.fechaHora"))).thenReturn(deleteQueryMock1);
+        when(deleteQueryMock1.setParameter(anyString(), any())).thenReturn(deleteQueryMock1);
+        when(deleteQueryMock1.executeUpdate()).thenReturn(1);
+        when(emMock.createQuery(contains("SELECT COUNT(a) FROM AccesoSitio a"), eq(Long.class))).thenReturn(countQueryMock);
+        when(countQueryMock.getSingleResult()).thenReturn(5000L);
+        when(emMock.createQuery(contains("SELECT a.id FROM AccesoSitio a"), eq(Long.class))).thenReturn(idsQueryMock);
+        when(idsQueryMock.setMaxResults(anyInt())).thenReturn(idsQueryMock);
+        when(idsQueryMock.getResultList()).thenReturn(new ArrayList<>());
+        when(emMock.createQuery(contains("DELETE FROM AccesoSitio a WHERE a.id IN"))).thenReturn(deleteQueryMock2);
+        when(deleteQueryMock2.setParameter(anyString(), any())).thenReturn(deleteQueryMock2);
+        when(deleteQueryMock2.executeUpdate()).thenReturn(1);
+
+        manejador.persistirAcceso("192.168.1.1", "/home", "Chrome", "Windows");
+
+        verify(transactionMock).begin();
+        verify(emMock).persist(any(AccesoSitio.class));
+        verify(transactionMock).commit();
+        verify(emMock).close();
+    }
+
+    @Test
+    void persistirAcceso_ErrorAlPersistir_HaceRollback() {
+        doThrow(new RuntimeException("Error")).when(emMock).persist(any());
+        when(transactionMock.isActive()).thenReturn(true);
+
+        assertThrows(Exception.class, () ->
+                manejador.persistirAcceso("192.168.1.1", "/home", "Chrome", "Windows"));
+
+        verify(transactionMock).rollback();
+        verify(emMock).close();
+    }
+
+    @Test
+    void obtenerRegistroAccesos_ConAccesos_RetornaListaDT() {
+        TypedQuery<AccesoSitio> queryMock = mock(TypedQuery.class);
+        AccesoSitio acceso1 = mock(AccesoSitio.class);
+        AccesoSitio acceso2 = mock(AccesoSitio.class);
+        List<AccesoSitio> accesos = List.of(acceso1, acceso2);
+
+        when(emMock.createQuery(anyString(), eq(AccesoSitio.class))).thenReturn(queryMock);
+        when(queryMock.getResultList()).thenReturn(accesos);
+        when(acceso1.getId()).thenReturn(1L);
+        when(acceso1.getIp()).thenReturn("192.168.1.1");
+        when(acceso1.getUrl()).thenReturn("/home");
+        when(acceso1.getBrowser()).thenReturn("Chrome");
+        when(acceso1.getSistemaOperativo()).thenReturn("Windows");
+        when(acceso1.getFechaHora()).thenReturn(java.time.LocalDateTime.now());
+        when(acceso2.getId()).thenReturn(2L);
+        when(acceso2.getIp()).thenReturn("192.168.1.2");
+        when(acceso2.getUrl()).thenReturn("/about");
+        when(acceso2.getBrowser()).thenReturn("Firefox");
+        when(acceso2.getSistemaOperativo()).thenReturn("Linux");
+        when(acceso2.getFechaHora()).thenReturn(java.time.LocalDateTime.now());
+
+        List<culturarte.servicios.DTs.DTAccesoSitio> resultado = manejador.obtenerRegistroAccesos();
+
+        assertNotNull(resultado);
+        assertEquals(2, resultado.size());
         verify(emMock).close();
     }
 }

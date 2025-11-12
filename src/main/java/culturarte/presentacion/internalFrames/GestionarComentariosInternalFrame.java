@@ -1,6 +1,7 @@
 package culturarte.presentacion.internalFrames;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -62,7 +63,7 @@ public class GestionarComentariosInternalFrame extends JInternalFrame {
         JScrollPane scrollList = new JScrollPane(jListPropuestas);
         panel.add(scrollList, BorderLayout.CENTER);
 
-        btnActualizarComentarios = new JButton("Actualizar Lista");
+        btnActualizarComentarios = crearBoton("Actualizar Lista", new Color(40, 50, 70), Color.WHITE);
         btnActualizarComentarios.addActionListener(e -> cargarPropuestas());
         panel.add(btnActualizarComentarios, BorderLayout.SOUTH);
 
@@ -127,7 +128,7 @@ public class GestionarComentariosInternalFrame extends JInternalFrame {
         panelComentario.add(scrollComentario, BorderLayout.CENTER);
         panelFormulario.add(panelComentario);
 
-        btnAgregarComentario = new JButton("Agregar Comentario");
+        btnAgregarComentario = crearBoton("Agregar Comentario", new Color(40, 50, 70), Color.WHITE);
         btnAgregarComentario.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -260,5 +261,28 @@ public class GestionarComentariosInternalFrame extends JInternalFrame {
             
             return this;
         }
+    }
+
+    private JButton crearBoton(String texto, Color colorFondo, Color colorTexto) {
+        JButton boton = new JButton(texto);
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        boton.setBackground(colorFondo);
+        boton.setForeground(colorTexto);
+        boton.setFocusPainted(false);
+        boton.setBorderPainted(true);
+        boton.setContentAreaFilled(true);
+        boton.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createRaisedBevelBorder(),
+            new EmptyBorder(8, 20, 8, 20)
+        ));
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                boton.setBackground(colorFondo.darker());
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                boton.setBackground(colorFondo);
+            }
+        });
+        return boton;
     }
 }

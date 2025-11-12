@@ -6,6 +6,8 @@ import culturarte.servicios.DTs.DTTipoRetorno;
 import culturarte.servicios.interfaces.IPropuestaController;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.util.List;
 
@@ -30,82 +32,175 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
 
     public RegistrarColaboracionInternalFrame(IPropuestaController icp) {
         super("Registrar Colaboración a Propuesta", true, true, true, true);
-        setSize(1000, 500);
-        setLayout(new BorderLayout());
+        setSize(1100, 650);
+        setLayout(new BorderLayout(10, 10));
+        ((JComponent) getContentPane()).setBorder(new EmptyBorder(10, 10, 10, 10));
 
         PropuestaContr = icp;
 
-        JPanel panelIzquierdo = new JPanel(new BorderLayout());
+        JPanel panelIzquierdo = new JPanel(new BorderLayout(5, 5));
+        panelIzquierdo.setBackground(new Color(250, 250, 250));
         List<DTPropuesta> propuestas = PropuestaContr.devolverTodasLasPropuestas();
         jListPropuestas = new JList<>(propuestas.toArray(new DTPropuesta[0]));
+        jListPropuestas.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        jListPropuestas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrollPropuestas = new JScrollPane(jListPropuestas);
-        panelIzquierdo.add(new JLabel("Propuestas:"), BorderLayout.NORTH);
+        scrollPropuestas.setBorder(BorderFactory.createTitledBorder(
+            BorderFactory.createEtchedBorder(),
+            "Propuestas Disponibles",
+            TitledBorder.LEFT,
+            TitledBorder.TOP,
+            new Font("Segoe UI", Font.BOLD, 13),
+            new Color(70, 70, 70)
+        ));
         panelIzquierdo.add(scrollPropuestas, BorderLayout.CENTER);
 
-        JPanel panelDerecho = new JPanel(new BorderLayout());
+        JPanel panelDerecho = new JPanel(new BorderLayout(10, 10));
+        panelDerecho.setBackground(new Color(250, 250, 250));
 
-        JPanel panelInfo = new JPanel(new GridLayout(1, 2, 10, 0));
+        JPanel panelInfo = new JPanel();
+        panelInfo.setLayout(new BoxLayout(panelInfo, BoxLayout.Y_AXIS));
+        panelInfo.setBorder(BorderFactory.createTitledBorder(
+            BorderFactory.createEtchedBorder(),
+            "Información de la Propuesta",
+            TitledBorder.LEFT,
+            TitledBorder.TOP,
+            new Font("Segoe UI", Font.BOLD, 13),
+            new Color(70, 70, 70)
+        ));
+        panelInfo.setBackground(Color.WHITE);
 
-        JPanel col1 = new JPanel();
-        col1.setLayout(new BoxLayout(col1, BoxLayout.Y_AXIS));
-        lblTitulo = new JLabel("Título: ");
-        lblDescripcion = new JLabel("Descripción: ");
-        lblLugar = new JLabel("Lugar: ");
-        lblFechaPrevista = new JLabel("Fecha Prevista: ");
-        lblCategoria = new JLabel("Categoria: ");
-        col1.add(lblTitulo);
-        col1.add(lblDescripcion);
-        col1.add(lblLugar);
-        col1.add(lblFechaPrevista);
-        col1.add(lblCategoria);
+        JPanel gridInfo = new JPanel(new GridBagLayout());
+        gridInfo.setBackground(Color.WHITE);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(8, 12, 8, 12);
+        gbc.anchor = GridBagConstraints.WEST;
 
-        JPanel col2 = new JPanel();
-        col2.setLayout(new BoxLayout(col2, BoxLayout.Y_AXIS));
-        lblPrecioEntrada = new JLabel("Precio Entrada: ");
-        lblMontoNecesario = new JLabel("Monto Necesario: ");
-        lblMontoTotal = new JLabel("Monto Recaudado: ");
-        lblProponente = new JLabel("Proponente: ");
-        lblEstado = new JLabel("Estado: ");
-        col2.add(lblPrecioEntrada);
-        col2.add(lblMontoNecesario);
-        col2.add(lblMontoTotal);
-        col2.add(lblProponente);
-        col2.add(lblEstado);
+        lblTitulo = createDetailLabel("Título: ");
+        gbc.gridx = 0; gbc.gridy = 0;
+        gridInfo.add(createInfoLabel("Título:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblTitulo, gbc);
 
-        Font fontInfo = new Font("Times New Roman", Font.PLAIN, 16);
-        setFontToLabels(fontInfo, lblTitulo, lblDescripcion, lblLugar, lblFechaPrevista,
-                lblPrecioEntrada, lblMontoNecesario, lblProponente, lblEstado,lblCategoria,lblMontoTotal);
+        lblDescripcion = createDetailLabel("Descripción: ");
+        gbc.gridx = 0; gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gridInfo.add(createInfoLabel("Descripción:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblDescripcion, gbc);
+        gbc.fill = GridBagConstraints.NONE;
 
-        panelInfo.add(col1);
-        panelInfo.add(col2);
+        lblLugar = createDetailLabel("Lugar: ");
+        gbc.gridx = 0; gbc.gridy = 2;
+        gridInfo.add(createInfoLabel("Lugar:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblLugar, gbc);
 
-        JPanel panelFormulario = new JPanel(new GridLayout(4, 2, 5, 5));
+        lblFechaPrevista = createDetailLabel("Fecha Prevista: ");
+        gbc.gridx = 0; gbc.gridy = 3;
+        gridInfo.add(createInfoLabel("Fecha Prevista:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblFechaPrevista, gbc);
 
-        panelFormulario.add(new JLabel("Colaborador (nickname):"));
-        txtColaborador = new JTextField();
-        panelFormulario.add(txtColaborador);
+        lblCategoria = createDetailLabel("Categoría: ");
+        gbc.gridx = 0; gbc.gridy = 4;
+        gridInfo.add(createInfoLabel("Categoría:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblCategoria, gbc);
 
-        panelFormulario.add(new JLabel("Monto:"));
-        txtMonto = new JTextField();
-        panelFormulario.add(txtMonto);
+        lblPrecioEntrada = createDetailLabel("Precio Entrada: ");
+        gbc.gridx = 0; gbc.gridy = 5;
+        gridInfo.add(createInfoLabel("Precio Entrada:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblPrecioEntrada, gbc);
 
-        panelFormulario.add(new JLabel("Tipo Retorno:"));
+        lblMontoNecesario = createDetailLabel("Monto Necesario: ");
+        gbc.gridx = 0; gbc.gridy = 6;
+        gridInfo.add(createInfoLabel("Monto Necesario:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblMontoNecesario, gbc);
+
+        lblMontoTotal = createDetailLabel("Monto Recaudado: ");
+        lblMontoTotal.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        lblMontoTotal.setForeground(new Color(0, 100, 0));
+        gbc.gridx = 0; gbc.gridy = 7;
+        gridInfo.add(createInfoLabel("Monto Recaudado:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblMontoTotal, gbc);
+
+        lblProponente = createDetailLabel("Proponente: ");
+        gbc.gridx = 0; gbc.gridy = 8;
+        gridInfo.add(createInfoLabel("Proponente:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblProponente, gbc);
+
+        lblEstado = createDetailLabel("Estado: ");
+        gbc.gridx = 0; gbc.gridy = 9;
+        gridInfo.add(createInfoLabel("Estado:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblEstado, gbc);
+
+        panelInfo.add(gridInfo);
+
+        JPanel panelFormulario = new JPanel();
+        panelFormulario.setLayout(new BoxLayout(panelFormulario, BoxLayout.Y_AXIS));
+        panelFormulario.setBorder(BorderFactory.createTitledBorder(
+            BorderFactory.createEtchedBorder(),
+            "Datos de la Colaboración",
+            TitledBorder.LEFT,
+            TitledBorder.TOP,
+            new Font("Segoe UI", Font.BOLD, 13),
+            new Color(70, 70, 70)
+        ));
+        panelFormulario.setBackground(Color.WHITE);
+
+        JPanel gridForm = new JPanel(new GridBagLayout());
+        gridForm.setBackground(Color.WHITE);
+        GridBagConstraints gbcForm = new GridBagConstraints();
+        gbcForm.insets = new Insets(10, 15, 10, 15);
+        gbcForm.anchor = GridBagConstraints.WEST;
+
+        gbcForm.gridx = 0; gbcForm.gridy = 0;
+        gridForm.add(createInfoLabel("Colaborador (nickname):"), gbcForm);
+        gbcForm.gridx = 1;
+        txtColaborador = new JTextField(20);
+        estilizarTextField(txtColaborador);
+        gridForm.add(txtColaborador, gbcForm);
+
+        gbcForm.gridx = 0; gbcForm.gridy = 1;
+        gridForm.add(createInfoLabel("Monto:"), gbcForm);
+        gbcForm.gridx = 1;
+        txtMonto = new JTextField(20);
+        estilizarTextField(txtMonto);
+        gridForm.add(txtMonto, gbcForm);
+
+        gbcForm.gridx = 0; gbcForm.gridy = 2;
+        gridForm.add(createInfoLabel("Tipo Retorno:"), gbcForm);
+        gbcForm.gridx = 1;
         comboRetorno = new JComboBox<>();
-        panelFormulario.add(comboRetorno);
+        comboRetorno.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        comboRetorno.setBackground(Color.WHITE);
+        gridForm.add(comboRetorno, gbcForm);
 
-        panelDerecho.add(panelInfo, BorderLayout.NORTH);
-        panelDerecho.add(panelFormulario, BorderLayout.CENTER);
+        panelFormulario.add(gridForm);
 
-        JPanel panelBotones = new JPanel();
-        JButton btnRegistrar = new JButton("Registrar");
-        JButton btnCancelar = new JButton("Cancelar");
-        panelBotones.add(btnRegistrar);
-        panelBotones.add(btnCancelar);
-        panelDerecho.add(panelBotones, BorderLayout.SOUTH);
+        panelDerecho.add(panelInfo, BorderLayout.CENTER);
+        panelDerecho.add(panelFormulario, BorderLayout.SOUTH);
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelIzquierdo, panelDerecho);
-        splitPane.setDividerLocation(300);
+        splitPane.setDividerLocation(320);
+        splitPane.setDividerSize(8);
+        splitPane.setBorder(null);
         add(splitPane, BorderLayout.CENTER);
+
+        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 10));
+        panelBotones.setBackground(new Color(245, 248, 250));
+        panelBotones.setBorder(new EmptyBorder(10, 0, 0, 0));
+        JButton btnRegistrar = crearBoton("Registrar", new Color(40, 50, 70), Color.WHITE);
+        JButton btnCancelar = crearBoton("Cancelar", new Color(60, 60, 60), Color.WHITE);
+        panelBotones.add(btnRegistrar);
+        panelBotones.add(btnCancelar);
+        add(panelBotones, BorderLayout.SOUTH);
 
         jListPropuestas.setCellRenderer(new DefaultListCellRenderer() {
             @Override
@@ -133,13 +228,13 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
             try {
                 DTPropuesta propuestaSeleccionada = jListPropuestas.getSelectedValue();
                 if (propuestaSeleccionada == null) {
-                    JOptionPane.showMessageDialog(this, "Debe seleccionar una propuesta.");
+                    JOptionPane.showMessageDialog(this, "Debe seleccionar una propuesta.", "Atención", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
 
                 String nickname = txtColaborador.getText().trim();
                 if (nickname.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Debe ingresar el nickname del colaborador.");
+                    JOptionPane.showMessageDialog(this, "Debe ingresar el nickname del colaborador.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
@@ -147,7 +242,9 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
                     for (DTColaboracion c : propuestaSeleccionada.getColaboraciones()) {
                         if (c.getColaborador() != null && nickname.equalsIgnoreCase(c.getColaborador().getNickname())) {
                             JOptionPane.showMessageDialog(this,
-                                    "El colaborador '" + nickname + "' ya ha colaborado con esta propuesta.");
+                                    "El colaborador '" + nickname + "' ya ha colaborado con esta propuesta.",
+                                    "Error",
+                                    JOptionPane.ERROR_MESSAGE);
                             return;
                         }
                     }
@@ -155,7 +252,7 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
 
                 String montoTexto = txtMonto.getText().trim();
                 if (montoTexto.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Debe ingresar el monto.");
+                    JOptionPane.showMessageDialog(this, "Debe ingresar el monto.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
@@ -163,24 +260,28 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
                 try {
                     monto = Double.parseDouble(montoTexto);
                     if (monto <= 0) {
-                        JOptionPane.showMessageDialog(this, "El monto debe ser mayor a cero.");
+                        JOptionPane.showMessageDialog(this, "El monto debe ser mayor a cero.", "Error", JOptionPane.ERROR_MESSAGE);
                         return;
                     }
                 } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(this, "El monto debe ser un número válido.");
+                    JOptionPane.showMessageDialog(this, "El monto debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
                 DTTipoRetorno tipoRetorno = (DTTipoRetorno) comboRetorno.getSelectedItem();
+                if (tipoRetorno == null) {
+                    JOptionPane.showMessageDialog(this, "Debe seleccionar un tipo de retorno.", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
 
                 PropuestaContr.registrarColaboracion(
                         propuestaSeleccionada.getTitulo(),
                         nickname,
                         monto,
-                        tipoRetorno != null ? tipoRetorno.toString() : null
+                        tipoRetorno.toString()
                 );
 
-                JOptionPane.showMessageDialog(this, "Colaboración registrada con éxito");
+                JOptionPane.showMessageDialog(this, "Colaboración registrada con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
 
                 txtColaborador.setText("");
                 txtMonto.setText("");
@@ -192,23 +293,76 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
                 jListPropuestas.setListData(propuestasActualizadas.toArray(new DTPropuesta[0]));
 
             } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage());
+                JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         });
 
         btnCancelar.addActionListener(e -> dispose());
     }
 
+    private JLabel createInfoLabel(String text) {
+        JLabel label = new JLabel(text);
+        label.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        label.setForeground(new Color(60, 60, 60));
+        return label;
+    }
+
+    private JLabel createDetailLabel(String text) {
+        JLabel label = new JLabel(text);
+        label.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        label.setOpaque(true);
+        label.setBackground(new Color(240, 248, 255));
+        label.setForeground(new Color(30, 30, 30));
+        label.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLoweredBevelBorder(),
+            new EmptyBorder(5, 10, 5, 10)
+        ));
+        return label;
+    }
+
+    private void estilizarTextField(JTextField field) {
+        field.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        field.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLoweredBevelBorder(),
+            new EmptyBorder(5, 8, 5, 8)
+        ));
+        field.setBackground(Color.WHITE);
+    }
+
+    private JButton crearBoton(String texto, Color colorFondo, Color colorTexto) {
+        JButton boton = new JButton(texto);
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        boton.setBackground(colorFondo);
+        boton.setForeground(colorTexto);
+        boton.setFocusPainted(false);
+        boton.setBorderPainted(true);
+        boton.setContentAreaFilled(true);
+        boton.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createRaisedBevelBorder(),
+            new EmptyBorder(8, 20, 8, 20)
+        ));
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                boton.setBackground(colorFondo.darker());
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                boton.setBackground(colorFondo);
+            }
+        });
+        return boton;
+    }
+
     private void mostrarDetallesPropuesta(DTPropuesta propuesta) {
-        lblTitulo.setText("Título: " + propuesta.getTitulo());
-        lblDescripcion.setText("Descripción: " +
-                (propuesta.getDescripcion().length() > 50 ?
-                        propuesta.getDescripcion().substring(0, 50) + "..." :
-                        propuesta.getDescripcion()));
-        lblLugar.setText("Lugar: " + propuesta.getLugar());
-        lblFechaPrevista.setText("Fecha Prevista: " + propuesta.getFechaPrevista());
-        lblPrecioEntrada.setText("Precio Entrada: $" + propuesta.getPrecioEntrada());
-        lblMontoNecesario.setText("Monto Necesario: $" + propuesta.getMontoNecesario());
+        lblTitulo.setText(propuesta.getTitulo() != null ? propuesta.getTitulo() : "");
+        String desc = propuesta.getDescripcion() != null ? propuesta.getDescripcion() : "";
+        if (desc.length() > 60) {
+            desc = desc.substring(0, 60) + "...";
+        }
+        lblDescripcion.setText(desc);
+        lblLugar.setText(propuesta.getLugar() != null ? propuesta.getLugar() : "");
+        lblFechaPrevista.setText(propuesta.getFechaPrevista() != null ? propuesta.getFechaPrevista().toString() : "");
+        lblPrecioEntrada.setText(propuesta.getPrecioEntrada() != null ? "$" + propuesta.getPrecioEntrada().toString() : "");
+        lblMontoNecesario.setText(propuesta.getMontoNecesario() != null ? "$" + propuesta.getMontoNecesario().toString() : "");
 
         double montoTotal = 0;
         if (propuesta.getColaboraciones() != null) {
@@ -218,17 +372,17 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
                 }
             }
         }
-        lblMontoTotal.setText("Monto Recaudado: $" + montoTotal);
+        lblMontoTotal.setText("$" + String.format("%.2f", montoTotal));
 
-        lblCategoria.setText("Categoria: " + propuesta.getCategoria().getNombre());
+        lblCategoria.setText(propuesta.getCategoria() != null ? propuesta.getCategoria().getNombre() : "");
 
         String proponenteInfo = (propuesta.getDTProponente() != null) ?
                 propuesta.getDTProponente().getNickname() : "N/A";
-        lblProponente.setText("Proponente: " + proponenteInfo);
+        lblProponente.setText(proponenteInfo);
 
         String estadoInfo = (propuesta.getEstadoActual() != null) ?
                 propuesta.getEstadoActual().toString() : "N/A";
-        lblEstado.setText("Estado: " + estadoInfo);
+        lblEstado.setText(estadoInfo);
 
         comboRetorno.removeAllItems();
         if (propuesta.getTiposRetorno() != null) {
@@ -239,22 +393,16 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
     }
 
     private void limpiarDetalles() {
-        lblTitulo.setText("Título: ");
-        lblDescripcion.setText("Descripción: ");
-        lblLugar.setText("Lugar: ");
-        lblFechaPrevista.setText("Fecha Prevista: ");
-        lblPrecioEntrada.setText("Precio Entrada: ");
-        lblMontoNecesario.setText("Monto Necesario: ");
-        lblProponente.setText("Proponente: ");
-        lblEstado.setText("Estado: ");
-        lblCategoria.setText("Categoria: ");
-        lblMontoTotal.setText("Monto Recaudado: ");
+        lblTitulo.setText("");
+        lblDescripcion.setText("");
+        lblLugar.setText("");
+        lblFechaPrevista.setText("");
+        lblPrecioEntrada.setText("");
+        lblMontoNecesario.setText("");
+        lblProponente.setText("");
+        lblEstado.setText("");
+        lblCategoria.setText("");
+        lblMontoTotal.setText("");
         comboRetorno.removeAllItems();
-    }
-
-    private void setFontToLabels(Font font, JLabel... labels) {
-        for (JLabel lbl : labels) {
-            lbl.setFont(font);
-        }
     }
 }

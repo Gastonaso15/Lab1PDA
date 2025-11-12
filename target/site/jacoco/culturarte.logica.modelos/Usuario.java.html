@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Usuario.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Culturarte App</a> &gt; <a href="index.source.html" class="el_package">culturarte.logica.modelos</a> &gt; <span class="el_source">Usuario.java</span></div><h1>Usuario.java</h1><pre class="source lang-java linenums">package culturarte.logica.modelos;
 
+import culturarte.servicios.DTs.DTUsuario;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -23,6 +25,8 @@ public class Usuario {
     private String password;
     private String imagen;
     private LocalDate fechaNacimiento;
+<span class="fc" id="L28">    private Boolean eliminado = false;</span>
+    private LocalDateTime fechaEliminacion;
     @OneToMany(mappedBy = &quot;seguido&quot;, cascade = CascadeType.ALL)
     private List&lt;Seguimiento&gt; seguidores;
     @OneToMany(mappedBy = &quot;seguidor&quot;, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -32,49 +36,67 @@ public class Usuario {
     private List&lt;Propuesta&gt; propuestasFavoritas;
 
     // Constructores
-<span class="fc" id="L35">    public Usuario() {}</span>
-<span class="fc" id="L36">    public Usuario(String nickname, String nombre, String apellido, String password, String correo,String imagen,LocalDate fechaNacimiento) {</span>
-<span class="fc" id="L37">        this.nickname = nickname;</span>
-<span class="fc" id="L38">        this.nombre = nombre;</span>
-<span class="fc" id="L39">        this.apellido = apellido;</span>
-<span class="fc" id="L40">        this.password = password;</span>
-<span class="fc" id="L41">        this.correo = correo;</span>
-<span class="fc" id="L42">        this.imagen = imagen;</span>
-<span class="fc" id="L43">        this.fechaNacimiento = fechaNacimiento;</span>
-<span class="fc" id="L44">    }</span>
+<span class="fc" id="L39">    public Usuario() {}</span>
+<span class="fc" id="L40">    public Usuario(String nickname, String nombre, String apellido, String password, String correo,String imagen,LocalDate fechaNacimiento) {</span>
+<span class="fc" id="L41">        this.nickname = nickname;</span>
+<span class="fc" id="L42">        this.nombre = nombre;</span>
+<span class="fc" id="L43">        this.apellido = apellido;</span>
+<span class="fc" id="L44">        this.password = password;</span>
+<span class="fc" id="L45">        this.correo = correo;</span>
+<span class="fc" id="L46">        this.imagen = imagen;</span>
+<span class="fc" id="L47">        this.fechaNacimiento = fechaNacimiento;</span>
+<span class="fc" id="L48">    }</span>
 
     // Getters y setters
-<span class="nc" id="L47">    public Long getId() { return id; }</span>
-<span class="nc" id="L48">    public void setId(Long id) { this.id = id; }</span>
+<span class="nc" id="L51">    public Long getId() { return id; }</span>
+<span class="nc" id="L52">    public void setId(Long id) { this.id = id; }</span>
 
-<span class="nc" id="L50">    public String getNickname() { return nickname; }</span>
-<span class="nc" id="L51">    public void setNickname(String nickname) { this.nickname = nickname; }</span>
+<span class="nc" id="L54">    public String getNickname() { return nickname; }</span>
+<span class="nc" id="L55">    public void setNickname(String nickname) { this.nickname = nickname; }</span>
 
-<span class="nc" id="L53">    public String getNombre() { return nombre; }</span>
-<span class="nc" id="L54">    public void setNombre(String nombre) { this.nombre = nombre; }</span>
+<span class="nc" id="L57">    public String getNombre() { return nombre; }</span>
+<span class="nc" id="L58">    public void setNombre(String nombre) { this.nombre = nombre; }</span>
 
-<span class="nc" id="L56">    public String getApellido() { return apellido; }</span>
-<span class="nc" id="L57">    public void setApellido(String apellido) { this.apellido = apellido; }</span>
+<span class="nc" id="L60">    public String getApellido() { return apellido; }</span>
+<span class="nc" id="L61">    public void setApellido(String apellido) { this.apellido = apellido; }</span>
 
-<span class="nc" id="L59">    public String getCorreo() { return correo; }</span>
-<span class="nc" id="L60">    public void setCorreo(String correo) { this.correo = correo; }</span>
+<span class="nc" id="L63">    public String getCorreo() { return correo; }</span>
+<span class="nc" id="L64">    public void setCorreo(String correo) { this.correo = correo; }</span>
 
-<span class="nc" id="L62">    public String getPassword() { return password; }</span>
-<span class="nc" id="L63">    public void setPassword(String password) { this.password = password; }</span>
+<span class="nc" id="L66">    public String getPassword() { return password; }</span>
+<span class="nc" id="L67">    public void setPassword(String password) { this.password = password; }</span>
 
-<span class="nc" id="L65">    public String getImagen() { return imagen; }</span>
-<span class="nc" id="L66">    public void setImagen(String imagen) { this.imagen = imagen; }</span>
+<span class="nc" id="L69">    public String getImagen() { return imagen; }</span>
+<span class="nc" id="L70">    public void setImagen(String imagen) { this.imagen = imagen; }</span>
 
-<span class="nc" id="L68">    public LocalDate getFechaNacimiento() { return fechaNacimiento; }</span>
-<span class="nc" id="L69">    public void setFechaNacimiento(LocalDate fechaNacimiento) { this.fechaNacimiento= fechaNacimiento;}</span>
+<span class="nc" id="L72">    public LocalDate getFechaNacimiento() { return fechaNacimiento; }</span>
+<span class="nc" id="L73">    public void setFechaNacimiento(LocalDate fechaNacimiento) { this.fechaNacimiento= fechaNacimiento;}</span>
 
-<span class="nc" id="L71">    public List&lt;Seguimiento&gt; getSeguidores() { return seguidores; }</span>
-<span class="nc" id="L72">    public void setSeguidores(List&lt;Seguimiento&gt; seguidores) { this.seguidores = seguidores; }</span>
+<span class="nc" id="L75">    public List&lt;Seguimiento&gt; getSeguidores() { return seguidores; }</span>
+<span class="nc" id="L76">    public void setSeguidores(List&lt;Seguimiento&gt; seguidores) { this.seguidores = seguidores; }</span>
 
-<span class="nc" id="L74">    public List&lt;Seguimiento&gt; getSeguidos() { return seguidos; }</span>
-<span class="nc" id="L75">    public void setSeguidos(List&lt;Seguimiento&gt; seguidos) { this.seguidos = seguidos; }</span>
+<span class="nc" id="L78">    public List&lt;Seguimiento&gt; getSeguidos() { return seguidos; }</span>
+<span class="nc" id="L79">    public void setSeguidos(List&lt;Seguimiento&gt; seguidos) { this.seguidos = seguidos; }</span>
 
-<span class="nc" id="L77">    public List&lt;Propuesta&gt; getPropuestasFavoritas() { return propuestasFavoritas; }</span>
-<span class="nc" id="L78">    public void setPropuestasFavoritas(List&lt;Propuesta&gt; propuestasFavoritas) {  this.propuestasFavoritas = propuestasFavoritas; }</span>
+<span class="nc" id="L81">    public List&lt;Propuesta&gt; getPropuestasFavoritas() { return propuestasFavoritas; }</span>
+<span class="nc" id="L82">    public void setPropuestasFavoritas(List&lt;Propuesta&gt; propuestasFavoritas) {  this.propuestasFavoritas = propuestasFavoritas; }</span>
+
+<span class="nc" id="L84">    public Boolean getEliminado() { return eliminado; }</span>
+<span class="nc" id="L85">    public void setEliminado(Boolean eliminado) { this.eliminado = eliminado; }</span>
+
+<span class="nc" id="L87">    public LocalDateTime getFechaEliminacion() { return fechaEliminacion; }</span>
+<span class="nc" id="L88">    public void setFechaEliminacion(LocalDateTime fechaEliminacion) { this.fechaEliminacion = fechaEliminacion; }</span>
+
+    public DTUsuario getDataType() {
+<span class="nc" id="L91">        DTUsuario dt = new DTUsuario();</span>
+<span class="nc" id="L92">        dt.setId(this.id);</span>
+<span class="nc" id="L93">        dt.setNickname(this.nickname);</span>
+<span class="nc" id="L94">        dt.setNombre(this.nombre);</span>
+<span class="nc" id="L95">        dt.setApellido(this.apellido);</span>
+<span class="nc" id="L96">        dt.setCorreo(this.correo);</span>
+<span class="nc" id="L97">        dt.setImagen(this.imagen);</span>
+<span class="nc" id="L98">        dt.setFechaNacimiento(this.fechaNacimiento);</span>
+<span class="nc" id="L99">        return dt;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

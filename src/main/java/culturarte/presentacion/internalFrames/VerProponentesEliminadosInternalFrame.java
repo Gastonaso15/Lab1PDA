@@ -8,6 +8,7 @@ import culturarte.servicios.interfaces.IUsuarioController;
 import culturarte.presentacion.helpers.ImagenUIHelper;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.time.format.DateTimeFormatter;
@@ -31,12 +32,14 @@ public class VerProponentesEliminadosInternalFrame extends JInternalFrame {
 
     public VerProponentesEliminadosInternalFrame(IUsuarioController icu) {
         super("Ver Proponentes Eliminados", true, true, true, true);
-        setSize(1200, 600);
-        setLayout(new BorderLayout());
+        setSize(1200, 700);
+        setLayout(new BorderLayout(10, 10));
+        ((JComponent) getContentPane()).setBorder(new EmptyBorder(10, 10, 10, 10));
 
         UsuarioContr = icu;
 
-        JPanel panelIzquierdo = new JPanel(new BorderLayout());
+        JPanel panelIzquierdo = new JPanel(new BorderLayout(5, 5));
+        panelIzquierdo.setBackground(new Color(250, 250, 250));
         
         DefaultListModel<DTProponente> model = new DefaultListModel<>();
         try {
@@ -52,107 +55,197 @@ public class VerProponentesEliminadosInternalFrame extends JInternalFrame {
         }
         
         listProponentes = new JList<>(model);
+        listProponentes.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        listProponentes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listProponentes.setCellRenderer(new ProponenteListCellRenderer());
         JScrollPane scrollProponentes = new JScrollPane(listProponentes);
-        panelIzquierdo.add(new JLabel("Proponentes Eliminados:"), BorderLayout.NORTH);
+        scrollProponentes.setBorder(BorderFactory.createTitledBorder(
+            BorderFactory.createEtchedBorder(),
+            "Proponentes Eliminados",
+            TitledBorder.LEFT,
+            TitledBorder.TOP,
+            new Font("Segoe UI", Font.BOLD, 13),
+            new Color(70, 70, 70)
+        ));
         panelIzquierdo.add(scrollProponentes, BorderLayout.CENTER);
 
-        JPanel panelDerecho = new JPanel(new BorderLayout());
+        JPanel panelDerecho = new JPanel(new BorderLayout(10, 10));
+        panelDerecho.setBackground(new Color(250, 250, 250));
 
-        JPanel panelInfo = new JPanel(new GridLayout(1, 3, 10, 0));
+        JPanel panelInfo = new JPanel();
+        panelInfo.setLayout(new BoxLayout(panelInfo, BoxLayout.Y_AXIS));
+        panelInfo.setBorder(BorderFactory.createTitledBorder(
+            BorderFactory.createEtchedBorder(),
+            "Información del Proponente Eliminado",
+            TitledBorder.LEFT,
+            TitledBorder.TOP,
+            new Font("Segoe UI", Font.BOLD, 14),
+            new Color(70, 70, 70)
+        ));
+        panelInfo.setBackground(Color.WHITE);
 
-        JPanel col1 = new JPanel();
-        col1.setLayout(new BoxLayout(col1, BoxLayout.Y_AXIS));
-        lblNickname = new JLabel("Nickname: ");
-        lblNombre = new JLabel("Nombre: ");
-        lblApellido = new JLabel("Apellido: ");
-        lblFechaNacimiento = new JLabel("Fecha de nacimiento: ");
-        lblFechaEliminacion = new JLabel("Fecha de eliminación: ");
-        lblFechaEliminacion.setForeground(Color.RED);
-        lblFechaEliminacion.setFont(lblFechaEliminacion.getFont().deriveFont(Font.BOLD));
-        col1.add(lblNickname);
-        col1.add(lblNombre);
-        col1.add(lblApellido);
-        col1.add(lblFechaNacimiento);
-        col1.add(lblFechaEliminacion);
+        JPanel gridInfo = new JPanel(new GridBagLayout());
+        gridInfo.setBackground(Color.WHITE);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(8, 15, 8, 15);
+        gbc.anchor = GridBagConstraints.WEST;
 
-        JPanel col2 = new JPanel();
-        col2.setLayout(new BoxLayout(col2, BoxLayout.Y_AXIS));
-        lblCorreo = new JLabel("Correo: ");
-        lblDireccion = new JLabel("Dirección: ");
-        lblWeb = new JLabel("Sitio Web: ");
-        txtBiografia = new JTextArea();
+        lblNickname = createDetailLabel("Nickname: ");
+        gbc.gridx = 0; gbc.gridy = 0;
+        gridInfo.add(createInfoLabel("Nickname:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblNickname, gbc);
+
+        lblNombre = createDetailLabel("Nombre: ");
+        gbc.gridx = 0; gbc.gridy = 1;
+        gridInfo.add(createInfoLabel("Nombre:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblNombre, gbc);
+
+        lblApellido = createDetailLabel("Apellido: ");
+        gbc.gridx = 0; gbc.gridy = 2;
+        gridInfo.add(createInfoLabel("Apellido:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblApellido, gbc);
+
+        lblCorreo = createDetailLabel("Correo: ");
+        gbc.gridx = 0; gbc.gridy = 3;
+        gridInfo.add(createInfoLabel("Correo:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblCorreo, gbc);
+
+        lblFechaNacimiento = createDetailLabel("Fecha de Nacimiento: ");
+        gbc.gridx = 0; gbc.gridy = 4;
+        gridInfo.add(createInfoLabel("Fecha de Nacimiento:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblFechaNacimiento, gbc);
+
+        lblFechaEliminacion = new JLabel("Fecha de Eliminación: ");
+        lblFechaEliminacion.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        lblFechaEliminacion.setForeground(new Color(200, 0, 0));
+        gbc.gridx = 0; gbc.gridy = 5;
+        gridInfo.add(createInfoLabel("Fecha de Eliminación:"), gbc);
+        gbc.gridx = 1;
+        JLabel lblFechaElimValor = new JLabel();
+        lblFechaElimValor.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        lblFechaElimValor.setForeground(new Color(200, 0, 0));
+        lblFechaElimValor.setOpaque(true);
+        lblFechaElimValor.setBackground(new Color(255, 240, 240));
+        lblFechaElimValor.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLoweredBevelBorder(),
+            new EmptyBorder(5, 10, 5, 10)
+        ));
+        gridInfo.add(lblFechaElimValor, gbc);
+
+        lblDireccion = createDetailLabel("Dirección: ");
+        gbc.gridx = 0; gbc.gridy = 6;
+        gridInfo.add(createInfoLabel("Dirección:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblDireccion, gbc);
+
+        lblWeb = createDetailLabel("Sitio Web: ");
+        gbc.gridx = 0; gbc.gridy = 7;
+        gridInfo.add(createInfoLabel("Sitio Web:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblWeb, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 8;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gridInfo.add(createInfoLabel("Biografía:"), gbc);
+        gbc.gridx = 1;
+        txtBiografia = new JTextArea(3, 30);
         txtBiografia.setLineWrap(true);
         txtBiografia.setWrapStyleWord(true);
         txtBiografia.setEditable(false);
-        txtBiografia.setFont(new Font("Times New Roman", Font.PLAIN, 20));
-        txtBiografia.setBackground(col2.getBackground());
-        txtBiografia.setRows(5);
+        txtBiografia.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        txtBiografia.setBackground(new Color(240, 248, 255));
+        txtBiografia.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLoweredBevelBorder(),
+            new EmptyBorder(8, 10, 8, 10)
+        ));
         JScrollPane scrollBio = new JScrollPane(txtBiografia);
-        scrollBio.setBorder(BorderFactory.createEmptyBorder());
-        scrollBio.setAlignmentX(Component.LEFT_ALIGNMENT);
-        col2.add(lblCorreo);
-        col2.add(lblDireccion);
-        col2.add(lblWeb);
-        col2.add(scrollBio);
+        scrollBio.setBorder(null);
+        gridInfo.add(scrollBio, gbc);
+        gbc.fill = GridBagConstraints.NONE;
 
-        JPanel col3 = new JPanel();
-        col3.setLayout(new BoxLayout(col3, BoxLayout.Y_AXIS));
+        gbc.gridx = 0; gbc.gridy = 9;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
         lblImagen = new ImagenUIHelper.ImagenPanel();
-        lblImagen.setPreferredSize(new Dimension(150, 150));
-        lblImagen.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        col3.add(lblImagen);
+        lblImagen.setPreferredSize(new Dimension(200, 200));
+        lblImagen.setBorder(BorderFactory.createLoweredBevelBorder());
+        gridInfo.add(lblImagen, gbc);
 
-        Font fontInfo = new Font("Times New Roman", Font.PLAIN, 20);
-        setFontToLabels(fontInfo, lblNickname, lblNombre, lblApellido, lblFechaNacimiento,
-                lblCorreo, lblDireccion, lblWeb);
-
-        panelInfo.add(col3);
-        panelInfo.add(col1);
-        panelInfo.add(col2);
+        panelInfo.add(gridInfo);
 
         panelPropuestas = new JPanel();
         panelPropuestas.setLayout(new BoxLayout(panelPropuestas, BoxLayout.Y_AXIS));
+        panelPropuestas.setBorder(BorderFactory.createTitledBorder(
+            BorderFactory.createEtchedBorder(),
+            "Propuestas del Proponente",
+            TitledBorder.LEFT,
+            TitledBorder.TOP,
+            new Font("Segoe UI", Font.BOLD, 13),
+            new Color(70, 70, 70)
+        ));
+        panelPropuestas.setBackground(new Color(250, 250, 250));
         JScrollPane scrollPropuestas = new JScrollPane(panelPropuestas);
-        scrollPropuestas.setPreferredSize(new Dimension(700, 300));
+        scrollPropuestas.setBorder(null);
 
         panelDerecho.add(panelInfo, BorderLayout.NORTH);
         panelDerecho.add(scrollPropuestas, BorderLayout.CENTER);
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelIzquierdo, panelDerecho);
-        splitPane.setDividerLocation(250);
+        splitPane.setDividerLocation(280);
+        splitPane.setDividerSize(8);
+        splitPane.setBorder(null);
         add(splitPane, BorderLayout.CENTER);
 
         listProponentes.addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting()) {
                 DTProponente proponente = listProponentes.getSelectedValue();
                 if (proponente != null) {
-                    mostrarProponente(proponente);
+                    mostrarProponente(proponente, lblFechaElimValor);
                 }
             }
         });
     }
 
-    private void mostrarProponente(DTProponente proponente) {
-        lblNickname.setText("Nickname: " + proponente.getNickname());
-        lblNombre.setText("Nombre: " + proponente.getNombre());
-        lblApellido.setText("Apellido: " + proponente.getApellido());
-        lblCorreo.setText("Correo: " + proponente.getCorreo());
-        lblFechaNacimiento.setText("Fecha de Nacimiento: " + 
-            (proponente.getFechaNacimiento() != null ? proponente.getFechaNacimiento().toString() : ""));
-        lblDireccion.setText("Dirección: " + 
-            (proponente.getDireccion() != null ? proponente.getDireccion() : ""));
-        txtBiografia.setText("Biografía: " + 
-            (proponente.getBio() != null ? proponente.getBio() : ""));
-        lblWeb.setText("Sitio Web: " + 
-            (proponente.getSitioWeb() != null ? proponente.getSitioWeb() : ""));
+    private JLabel createInfoLabel(String text) {
+        JLabel label = new JLabel(text);
+        label.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        label.setForeground(new Color(60, 60, 60));
+        return label;
+    }
+
+    private JLabel createDetailLabel(String text) {
+        JLabel label = new JLabel(text);
+        label.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        label.setOpaque(true);
+        label.setBackground(new Color(240, 248, 255));
+        label.setForeground(new Color(30, 30, 30));
+        label.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLoweredBevelBorder(),
+            new EmptyBorder(5, 10, 5, 10)
+        ));
+        return label;
+    }
+
+    private void mostrarProponente(DTProponente proponente, JLabel lblFechaElimValor) {
+        lblNickname.setText(proponente.getNickname() != null ? proponente.getNickname() : "");
+        lblNombre.setText(proponente.getNombre() != null ? proponente.getNombre() : "");
+        lblApellido.setText(proponente.getApellido() != null ? proponente.getApellido() : "");
+        lblCorreo.setText(proponente.getCorreo() != null ? proponente.getCorreo() : "");
+        lblFechaNacimiento.setText(proponente.getFechaNacimiento() != null ? proponente.getFechaNacimiento().toString() : "");
+        lblDireccion.setText(proponente.getDireccion() != null ? proponente.getDireccion() : "");
+        txtBiografia.setText(proponente.getBio() != null ? proponente.getBio() : "");
+        lblWeb.setText(proponente.getSitioWeb() != null ? proponente.getSitioWeb() : "");
         
         if (proponente.getFechaEliminacion() != null) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
-            lblFechaEliminacion.setText("Fecha de Eliminación: " + 
-                proponente.getFechaEliminacion().format(formatter));
+            lblFechaElimValor.setText(proponente.getFechaEliminacion().format(formatter));
         } else {
-            lblFechaEliminacion.setText("Fecha de Eliminación: No disponible");
+            lblFechaElimValor.setText("No disponible");
         }
 
         lblImagen.setImagen(proponente.getImagen());
@@ -164,21 +257,23 @@ public class VerProponentesEliminadosInternalFrame extends JInternalFrame {
                 JPanel pPanel = new JPanel();
                 pPanel.setLayout(new BoxLayout(pPanel, BoxLayout.Y_AXIS));
                 pPanel.setBorder(BorderFactory.createTitledBorder(
-                        BorderFactory.createLineBorder(Color.BLACK),
-                        p.getTitulo() + " - " + 
-                        (p.getEstadoActual() != null ? p.getEstadoActual() : "Sin estado"),
-                        TitledBorder.LEFT,
-                        TitledBorder.TOP
+                    BorderFactory.createEtchedBorder(),
+                    p.getTitulo() + " - " + 
+                    (p.getEstadoActual() != null ? p.getEstadoActual() : "Sin estado"),
+                    TitledBorder.LEFT,
+                    TitledBorder.TOP,
+                    new Font("Segoe UI", Font.BOLD, 12),
+                    new Color(70, 70, 70)
                 ));
 
                 if (p.getEstadoActual() != null) {
                     switch(p.getEstadoActual()) {
-                        case INGRESADA -> pPanel.setBackground(new Color(238, 10, 238));
-                        case PUBLICADA -> pPanel.setBackground(new Color(144, 238, 144));
-                        case EN_FINANCIACION -> pPanel.setBackground(new Color(255, 255, 102));
-                        case CANCELADA -> pPanel.setBackground(new Color(255, 102, 102));
-                        case FINANCIADA -> pPanel.setBackground(new Color(102, 178, 255));
-                        case NO_FINANCIADA -> pPanel.setBackground(new Color(211, 211, 211));
+                        case PUBLICADA -> pPanel.setBackground(new Color(200, 255, 200));
+                        case EN_FINANCIACION -> pPanel.setBackground(new Color(255, 255, 200));
+                        case CANCELADA -> pPanel.setBackground(new Color(255, 200, 200));
+                        case FINANCIADA -> pPanel.setBackground(new Color(200, 220, 255));
+                        case NO_FINANCIADA -> pPanel.setBackground(new Color(230, 230, 230));
+                        default -> pPanel.setBackground(Color.WHITE);
                     }
                 }
 
@@ -198,40 +293,33 @@ public class VerProponentesEliminadosInternalFrame extends JInternalFrame {
                     }
                 }
 
-                pPanel.add(new JLabel("Título: " + p.getTitulo()));
+                JLabel lblTitulo = new JLabel("Título: " + p.getTitulo());
+                lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 11));
+                pPanel.add(lblTitulo);
                 if (p.getFechaPrevista() != null) {
                     pPanel.add(new JLabel("Fecha Prevista: " + p.getFechaPrevista()));
                 }
                 if (p.getMontoNecesario() != null) {
-                    pPanel.add(new JLabel("Monto Necesario: " + p.getMontoNecesario()));
+                    pPanel.add(new JLabel("Monto Necesario: $" + p.getMontoNecesario()));
                 }
-                pPanel.add(new JLabel("Dinero recaudado: " + dineroRecaudado));
-                if (!colaboradoresStr.isEmpty()) {
-                    pPanel.add(new JLabel("Colaboradores: " + colaboradoresStr));
-                } else {
-                    pPanel.add(new JLabel("Colaboradores: Ninguno"));
-                }
+                pPanel.add(new JLabel("Dinero recaudado: $" + String.format("%.2f", dineroRecaudado)));
+                pPanel.add(new JLabel("Colaboradores: " + (colaboradoresStr.length() > 0 ? colaboradoresStr.toString() : "Ninguno")));
                 if (p.getLugar() != null) {
                     pPanel.add(new JLabel("Lugar: " + p.getLugar()));
                 }
 
                 panelPropuestas.add(pPanel);
-                panelPropuestas.add(Box.createRigidArea(new Dimension(0, 5)));
+                panelPropuestas.add(Box.createRigidArea(new Dimension(0, 8)));
             }
         } else {
             JLabel noPropuestas = new JLabel("Este proponente no tiene propuestas.");
-            noPropuestas.setFont(new Font("Arial", Font.ITALIC, 14));
+            noPropuestas.setFont(new Font("Segoe UI", Font.ITALIC, 14));
+            noPropuestas.setForeground(new Color(120, 120, 120));
             panelPropuestas.add(noPropuestas);
         }
 
         panelPropuestas.revalidate();
         panelPropuestas.repaint();
-    }
-
-    private void setFontToLabels(Font font, JLabel... labels) {
-        for (JLabel lbl : labels) {
-            lbl.setFont(font);
-        }
     }
 
     private static class ProponenteListCellRenderer extends DefaultListCellRenderer {

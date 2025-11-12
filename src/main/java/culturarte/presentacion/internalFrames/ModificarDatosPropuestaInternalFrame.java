@@ -1,6 +1,7 @@
 package culturarte.presentacion.internalFrames;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 import java.time.LocalDate;
@@ -73,7 +74,7 @@ public class ModificarDatosPropuestaInternalFrame extends JInternalFrame {
         JPanel imagenPanel = new JPanel(new BorderLayout(5, 5));
         tfImagen = new JTextField();
         tfImagen.setEditable(false);
-        JButton btnSeleccionarImagen = new JButton("Seleccionar Imagen");
+        JButton btnSeleccionarImagen = crearBoton("Seleccionar Imagen", new Color(40, 50, 70), Color.WHITE);
         imagenPanel.add(tfImagen, BorderLayout.CENTER);
         imagenPanel.add(btnSeleccionarImagen, BorderLayout.EAST);
         panel.add(imagenPanel);
@@ -103,8 +104,10 @@ public class ModificarDatosPropuestaInternalFrame extends JInternalFrame {
         splitPane.setDividerLocation(750);
         add(splitPane, BorderLayout.CENTER);
 
-        JPanel botones = new JPanel();
-        JButton btnGuardar = new JButton("Guardar Cambios");
+        JPanel botones = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 10));
+        botones.setBackground(new Color(245, 248, 250));
+        botones.setBorder(new EmptyBorder(10, 0, 0, 0));
+        JButton btnGuardar = crearBoton("Guardar Cambios", new Color(40, 50, 70), Color.WHITE);
         botones.add(btnGuardar);
         add(botones, BorderLayout.SOUTH);
 
@@ -217,5 +220,28 @@ public class ModificarDatosPropuestaInternalFrame extends JInternalFrame {
             lista.add(t.name());
         }
         return lista;
+    }
+
+    private JButton crearBoton(String texto, Color colorFondo, Color colorTexto) {
+        JButton boton = new JButton(texto);
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        boton.setBackground(colorFondo);
+        boton.setForeground(colorTexto);
+        boton.setFocusPainted(false);
+        boton.setBorderPainted(true);
+        boton.setContentAreaFilled(true);
+        boton.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createRaisedBevelBorder(),
+            new EmptyBorder(8, 20, 8, 20)
+        ));
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                boton.setBackground(colorFondo.darker());
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                boton.setBackground(colorFondo);
+            }
+        });
+        return boton;
     }
 }

@@ -1,60 +1,65 @@
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/modelos/TipoRetorno.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/servicios/DTs/DTCategoria.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/modelos/Comentario.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/servicios/DTs/DTProponente.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/servicios/DTs/DTPropuesta.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/servicios/DTs/DTUsuario.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/servicios/DTs/DTComentario.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/internalFrames/ConsultaPropuestasPorEstadoInternalFrame.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/internalFrames/AltaCategoriaInternalFrame.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/helpers/CategoriaUIHelper.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/servicios/DTs/AdaptadorLocalDateTime.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/modelos/Colaborador.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/modelos/Proponente.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/EstacionDeTrabajo.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/internalFrames/ConsultarPropuestaInternalFrame.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/modelos/Seguimiento.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/modelos/EstadoPropuesta.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/servicios/DTs/AdaptadorLocalDate.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/internalFrames/ModificarDatosPropuestaInternalFrame.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/endpoints/envoltorios/ListaDTColaboracion.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/manejadores/UsuarioManejador.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/controladores/PropuestaController.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/servicios/DTs/DTSeguimiento.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/internalFrames/ConsultaColaboracionInternalFrame.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/servicios/interfaces/IUsuarioController.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/servicios/DTs/DTColaboracion.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/servicios/interfaces/web/IPropuestaControllerWS.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/endpoints/envoltorios/ListaDTPropuesta.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/servicios/Fabrica.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/endpoints/envoltorios/ListaStrings.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/persistencia/JPAUtil.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/manejadores/PropuestaManejador.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/servicios/interfaces/web/IUsuarioControllerWS.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/servicios/DTs/DTPropuestaEstado.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/WSPublicador.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/modelos/Categoria.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/modelos/PropuestaEstado.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/endpoints/PropuestaWSEndpoint.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/servicios/interfaces/IPropuestaController.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/modelos/Colaboracion.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/modelos/Propuesta.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/servicios/DTs/DTColaborador.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/endpoints/envoltorios/ListaDTComentario.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/modelos/Usuario.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/servicios/DTs/DTEstadoPropuesta.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/internalFrames/GestionarComentariosInternalFrame.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/controladores/UsuarioController.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/servicios/DTs/DTTipoRetorno.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/internalFrames/SeguirUsuarioInternalFrame.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/internalFrames/DejarSeguirUsuarioInternalFrame.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/helpers/ImagenUIHelper.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/endpoints/UsuarioWSEndpoint.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/logica/endpoints/envoltorios/ListaDTCategoria.java
-/home/gaston/IdeaProjects/Lab1PDA/src/main/java/culturarte/presentacion/internalFrames/AltaPropuestaInternalFrame.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\persistencia\JPAUtil.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\internalFrames\ModificarDatosPropuestaInternalFrame.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\manejadores\UsuarioManejador.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\internalFrames\SeguirUsuarioInternalFrame.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\DTs\DTCategoria.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\modelos\Proponente.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\internalFrames\RegistrarColaboracionInternalFrame.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\endpoints\envoltorios\ListaDTProponente.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\interfaces\IUsuarioController.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\endpoints\PropuestaWSEndpoint.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\DTs\DTEstadoPropuesta.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\interfaces\IPropuestaController.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\internalFrames\AltaCategoriaInternalFrame.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\DTs\AdaptadorLocalDateTime.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\DTs\DTColaborador.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\endpoints\envoltorios\ListaDTCategoria.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\endpoints\envoltorios\ListaDTColaboracion.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\modelos\TipoRetorno.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\internalFrames\GestionarComentariosInternalFrame.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\internalFrames\ConsultaPerfilProponenteInternalFrame.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\DTs\DTAccesoSitio.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\modelos\PropuestaEstado.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\internalFrames\DejarSeguirUsuarioInternalFrame.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\DTs\DTPropuestaEstado.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\controladores\UsuarioController.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\internalFrames\ConsultaPropuestasPorEstadoInternalFrame.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\internalFrames\ConsultaPerfilColaboradorInternalFrame.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\helpers\ImagenUIHelper.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\internalFrames\CancelarColaboracionInternalFrame.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\internalFrames\VerProponentesEliminadosInternalFrame.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\DTs\DTPropuesta.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\modelos\Colaborador.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\internalFrames\EvaluarPropuestaInternalFrame.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\internalFrames\ConsultaColaboracionInternalFrame.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\DTs\DTComentario.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\Fabrica.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\interfaces\web\IPropuestaControllerWS.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\DTs\DTTipoRetorno.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\modelos\Categoria.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\modelos\Usuario.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\DTs\DTColaboracion.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\controladores\PropuestaController.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\DTs\DTUsuario.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\DTs\DTProponente.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\modelos\Colaboracion.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\helpers\CategoriaUIHelper.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\internalFrames\VerRegistroAccesoInternalFrame.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\WSPublicador.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\DTs\AdaptadorLocalDate.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\interfaces\web\IUsuarioControllerWS.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\endpoints\envoltorios\ListaDTPropuesta.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\servicios\DTs\DTSeguimiento.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\internalFrames\AltaUsuarioInternalFrame.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\modelos\EstadoPropuesta.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\manejadores\PropuestaManejador.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\modelos\Comentario.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\EstacionDeTrabajo.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\internalFrames\AltaPropuestaInternalFrame.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\endpoints\envoltorios\ListaDTComentario.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\modelos\Seguimiento.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\modelos\AccesoSitio.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\modelos\Propuesta.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\endpoints\UsuarioWSEndpoint.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\logica\endpoints\envoltorios\ListaStrings.java
+C:\Users\marti\Documents\Facultad\4to semestre\Programacion de aplicaciones\lab\TAREA 1\src\main\java\culturarte\presentacion\internalFrames\ConsultarPropuestaInternalFrame.java

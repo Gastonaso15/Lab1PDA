@@ -62,149 +62,165 @@ public class EstacionDeTrabajo extends JFrame {
 <span class="nc" id="L62">        JMenuItem consultaColaborador = new JMenuItem(&quot;Consultar Perfil de Colaborador&quot;);</span>
 <span class="nc" id="L63">        JMenuItem seguirUsuario = new JMenuItem(&quot;Seguir Usuario&quot;);</span>
 <span class="nc" id="L64">        JMenuItem dejarSeguirUsuario = new JMenuItem(&quot;Dejar de Seguir Usuario&quot;);</span>
+<span class="nc" id="L65">        JMenuItem verProponentesEliminados = new JMenuItem(&quot;Ver Proponentes Eliminados&quot;);</span>
+<span class="nc" id="L66">        JMenuItem verRegistroAccesos = new JMenuItem(&quot;Ver Registro de Acceso al Sitio&quot;);</span>
 
-<span class="nc" id="L66">        usuarios.add(altaUsuario);</span>
-<span class="nc" id="L67">        usuarios.add(consultaProponente);</span>
-<span class="nc" id="L68">        usuarios.add(consultaColaborador);</span>
-<span class="nc" id="L69">        usuarios.add(seguirUsuario);</span>
-<span class="nc" id="L70">        usuarios.add(dejarSeguirUsuario);</span>
+<span class="nc" id="L68">        usuarios.add(altaUsuario);</span>
+<span class="nc" id="L69">        usuarios.add(consultaProponente);</span>
+<span class="nc" id="L70">        usuarios.add(consultaColaborador);</span>
+<span class="nc" id="L71">        usuarios.add(seguirUsuario);</span>
+<span class="nc" id="L72">        usuarios.add(dejarSeguirUsuario);</span>
+<span class="nc" id="L73">        usuarios.add(verProponentesEliminados);</span>
+<span class="nc" id="L74">        usuarios.add(verRegistroAccesos);</span>
 
-<span class="nc" id="L72">        altaUsuario.addActionListener(e -&gt; abrirAltaUsuario());</span>
-<span class="nc" id="L73">        consultaProponente.addActionListener(e -&gt; abrirConsultaProponente());</span>
-<span class="nc" id="L74">        consultaColaborador.addActionListener(e -&gt; abrirConsultaColaborador());</span>
-<span class="nc" id="L75">        seguirUsuario.addActionListener(e -&gt; abrirSeguirUsuario());</span>
-<span class="nc" id="L76">        dejarSeguirUsuario.addActionListener(e -&gt; abrirDejarSeguirUsuario());</span>
+<span class="nc" id="L76">        altaUsuario.addActionListener(e -&gt; abrirAltaUsuario());</span>
+<span class="nc" id="L77">        consultaProponente.addActionListener(e -&gt; abrirConsultaProponente());</span>
+<span class="nc" id="L78">        consultaColaborador.addActionListener(e -&gt; abrirConsultaColaborador());</span>
+<span class="nc" id="L79">        seguirUsuario.addActionListener(e -&gt; abrirSeguirUsuario());</span>
+<span class="nc" id="L80">        dejarSeguirUsuario.addActionListener(e -&gt; abrirDejarSeguirUsuario());</span>
+<span class="nc" id="L81">        verProponentesEliminados.addActionListener(e -&gt; abrirVerProponentesEliminados());</span>
+<span class="nc" id="L82">        verRegistroAccesos.addActionListener(e -&gt; abrirVerRegistroAccesos());</span>
 
-<span class="nc" id="L78">        JMenu propuestas = new JMenu(&quot;Propuestas&quot;);</span>
+<span class="nc" id="L84">        JMenu propuestas = new JMenu(&quot;Propuestas&quot;);</span>
 
-<span class="nc" id="L80">        JMenuItem altaPropuesta = new JMenuItem(&quot;Alta de Propuesta&quot;);</span>
-<span class="nc" id="L81">        JMenuItem consultarPropuesta = new JMenuItem(&quot;Consultar Propuesta&quot;);</span>
-<span class="nc" id="L82">        JMenuItem consultaPropEstado = new JMenuItem(&quot;Consulta de Propuestas por Estado&quot;);</span>
-<span class="nc" id="L83">        JMenuItem modificarPropuesta = new JMenuItem(&quot;Modificar Propuesta&quot;);</span>
-<span class="nc" id="L84">        JMenuItem altaCategoria = new JMenuItem(&quot;Alta de Categoria&quot;);</span>
-<span class="nc" id="L85">        JMenuItem registrarColaboracion = new JMenuItem(&quot;Registrar Colaboracion a Propuesta&quot;);</span>
-<span class="nc" id="L86">        JMenuItem consultarColaboracion = new JMenuItem(&quot;Consultar Colaboracion a Propuesta&quot;);</span>
-<span class="nc" id="L87">        JMenuItem cancelarColaboracion = new JMenuItem(&quot;Cancelar Colaboracion a Propuesta&quot;);</span>
-<span class="nc" id="L88">        JMenuItem evaluarPropuesta = new JMenuItem(&quot;Evaluar Propuesta&quot;);</span>
-<span class="nc" id="L89">        JMenuItem gestionarComentarios = new JMenuItem(&quot;Gestionar Comentarios&quot;);</span>
+<span class="nc" id="L86">        JMenuItem altaPropuesta = new JMenuItem(&quot;Alta de Propuesta&quot;);</span>
+<span class="nc" id="L87">        JMenuItem consultarPropuesta = new JMenuItem(&quot;Consultar Propuesta&quot;);</span>
+<span class="nc" id="L88">        JMenuItem consultaPropEstado = new JMenuItem(&quot;Consulta de Propuestas por Estado&quot;);</span>
+<span class="nc" id="L89">        JMenuItem modificarPropuesta = new JMenuItem(&quot;Modificar Propuesta&quot;);</span>
+<span class="nc" id="L90">        JMenuItem altaCategoria = new JMenuItem(&quot;Alta de Categoria&quot;);</span>
+<span class="nc" id="L91">        JMenuItem registrarColaboracion = new JMenuItem(&quot;Registrar Colaboracion a Propuesta&quot;);</span>
+<span class="nc" id="L92">        JMenuItem consultarColaboracion = new JMenuItem(&quot;Consultar Colaboracion a Propuesta&quot;);</span>
+<span class="nc" id="L93">        JMenuItem cancelarColaboracion = new JMenuItem(&quot;Cancelar Colaboracion a Propuesta&quot;);</span>
+<span class="nc" id="L94">        JMenuItem evaluarPropuesta = new JMenuItem(&quot;Evaluar Propuesta&quot;);</span>
+<span class="nc" id="L95">        JMenuItem gestionarComentarios = new JMenuItem(&quot;Gestionar Comentarios&quot;);</span>
 
-<span class="nc" id="L91">        propuestas.add(altaPropuesta);</span>
-<span class="nc" id="L92">        propuestas.add(consultarPropuesta);</span>
-<span class="nc" id="L93">        propuestas.add(consultaPropEstado);</span>
-<span class="nc" id="L94">        propuestas.add(modificarPropuesta);</span>
-<span class="nc" id="L95">        propuestas.add(altaCategoria);</span>
-<span class="nc" id="L96">        propuestas.add(registrarColaboracion);</span>
-<span class="nc" id="L97">        propuestas.add(consultarColaboracion);</span>
-<span class="nc" id="L98">        propuestas.add(cancelarColaboracion);</span>
-<span class="nc" id="L99">        propuestas.add(evaluarPropuesta);</span>
-<span class="nc" id="L100">        propuestas.add(gestionarComentarios);</span>
+<span class="nc" id="L97">        propuestas.add(altaPropuesta);</span>
+<span class="nc" id="L98">        propuestas.add(consultarPropuesta);</span>
+<span class="nc" id="L99">        propuestas.add(consultaPropEstado);</span>
+<span class="nc" id="L100">        propuestas.add(modificarPropuesta);</span>
+<span class="nc" id="L101">        propuestas.add(altaCategoria);</span>
+<span class="nc" id="L102">        propuestas.add(registrarColaboracion);</span>
+<span class="nc" id="L103">        propuestas.add(consultarColaboracion);</span>
+<span class="nc" id="L104">        propuestas.add(cancelarColaboracion);</span>
+<span class="nc" id="L105">        propuestas.add(evaluarPropuesta);</span>
+<span class="nc" id="L106">        propuestas.add(gestionarComentarios);</span>
 
 
-<span class="nc" id="L103">        altaPropuesta.addActionListener(e -&gt; abrirAltaPropuesta());</span>
-<span class="nc" id="L104">        consultarPropuesta.addActionListener(e -&gt; abrirConsultarPropuesta());</span>
-<span class="nc" id="L105">        consultaPropEstado.addActionListener(e -&gt;abrirConsultaPropEstado());</span>
-<span class="nc" id="L106">        modificarPropuesta.addActionListener(e -&gt; abrirModificarPropuesta());</span>
-<span class="nc" id="L107">        altaCategoria.addActionListener(e -&gt;abrirAltaCategoria());</span>
-<span class="nc" id="L108">        registrarColaboracion.addActionListener(e -&gt;abrirRegistrarColaboracion());</span>
-<span class="nc" id="L109">        consultarColaboracion.addActionListener(e -&gt;abrirConsultarColaboracion());</span>
-<span class="nc" id="L110">        cancelarColaboracion.addActionListener(e -&gt;abrirCancelarColaboracion());</span>
-<span class="nc" id="L111">        evaluarPropuesta.addActionListener(e -&gt; abrirEvaluarPropuesta());</span>
-<span class="nc" id="L112">        gestionarComentarios.addActionListener(e -&gt; abrirGestionarComentarios());</span>
+<span class="nc" id="L109">        altaPropuesta.addActionListener(e -&gt; abrirAltaPropuesta());</span>
+<span class="nc" id="L110">        consultarPropuesta.addActionListener(e -&gt; abrirConsultarPropuesta());</span>
+<span class="nc" id="L111">        consultaPropEstado.addActionListener(e -&gt;abrirConsultaPropEstado());</span>
+<span class="nc" id="L112">        modificarPropuesta.addActionListener(e -&gt; abrirModificarPropuesta());</span>
+<span class="nc" id="L113">        altaCategoria.addActionListener(e -&gt;abrirAltaCategoria());</span>
+<span class="nc" id="L114">        registrarColaboracion.addActionListener(e -&gt;abrirRegistrarColaboracion());</span>
+<span class="nc" id="L115">        consultarColaboracion.addActionListener(e -&gt;abrirConsultarColaboracion());</span>
+<span class="nc" id="L116">        cancelarColaboracion.addActionListener(e -&gt;abrirCancelarColaboracion());</span>
+<span class="nc" id="L117">        evaluarPropuesta.addActionListener(e -&gt; abrirEvaluarPropuesta());</span>
+<span class="nc" id="L118">        gestionarComentarios.addActionListener(e -&gt; abrirGestionarComentarios());</span>
 
-<span class="nc" id="L114">        menu.add(usuarios);</span>
-<span class="nc" id="L115">        menu.add(propuestas);</span>
-<span class="nc" id="L116">        setJMenuBar(menu);</span>
+<span class="nc" id="L120">        menu.add(usuarios);</span>
+<span class="nc" id="L121">        menu.add(propuestas);</span>
+<span class="nc" id="L122">        setJMenuBar(menu);</span>
 
-<span class="nc" id="L118">        return menu;</span>
+<span class="nc" id="L124">        return menu;</span>
     }
 
     private void abrir(JInternalFrame frame) {
-<span class="nc" id="L122">        desktop.add(frame);</span>
-<span class="nc" id="L123">        frame.setVisible(true);</span>
+<span class="nc" id="L128">        desktop.add(frame);</span>
+<span class="nc" id="L129">        frame.setVisible(true);</span>
         try {
-<span class="nc" id="L125">            frame.setSelected(true);</span>
-<span class="nc" id="L126">        } catch (java.beans.PropertyVetoException ignored) {}</span>
-<span class="nc" id="L127">    }</span>
+<span class="nc" id="L131">            frame.setSelected(true);</span>
+<span class="nc" id="L132">        } catch (java.beans.PropertyVetoException ignored) {}</span>
+<span class="nc" id="L133">    }</span>
 
     private void abrirAltaUsuario() {
-<span class="nc" id="L130">        AltaUsuarioInternalFrame frame = new AltaUsuarioInternalFrame(ICU);</span>
-<span class="nc" id="L131">        abrir(frame);</span>
-<span class="nc" id="L132">    }</span>
-
-
-    private void abrirConsultaProponente() {
-<span class="nc" id="L136">        ConsultaPerfilProponenteInternalFrame frame = new ConsultaPerfilProponenteInternalFrame(ICU);</span>
+<span class="nc" id="L136">        AltaUsuarioInternalFrame frame = new AltaUsuarioInternalFrame(ICU);</span>
 <span class="nc" id="L137">        abrir(frame);</span>
 <span class="nc" id="L138">    }</span>
 
 
-    private void abrirConsultaColaborador() {
-<span class="nc" id="L142">        ConsultaPerfilColaboradorInternalFrame frame = new ConsultaPerfilColaboradorInternalFrame(ICU);</span>
+    private void abrirConsultaProponente() {
+<span class="nc" id="L142">        ConsultaPerfilProponenteInternalFrame frame = new ConsultaPerfilProponenteInternalFrame(ICU);</span>
 <span class="nc" id="L143">        abrir(frame);</span>
 <span class="nc" id="L144">    }</span>
 
 
-    private void abrirSeguirUsuario() {
-<span class="nc" id="L148">        SeguirUsuarioInternalFrame frame = new SeguirUsuarioInternalFrame(ICU);</span>
+    private void abrirConsultaColaborador() {
+<span class="nc" id="L148">        ConsultaPerfilColaboradorInternalFrame frame = new ConsultaPerfilColaboradorInternalFrame(ICU);</span>
 <span class="nc" id="L149">        abrir(frame);</span>
 <span class="nc" id="L150">    }</span>
 
 
-    private void abrirDejarSeguirUsuario() {
-<span class="nc" id="L154">        DejarSeguirUsuarioInternalFrame frame = new DejarSeguirUsuarioInternalFrame(ICU);</span>
+    private void abrirSeguirUsuario() {
+<span class="nc" id="L154">        SeguirUsuarioInternalFrame frame = new SeguirUsuarioInternalFrame(ICU);</span>
 <span class="nc" id="L155">        abrir(frame);</span>
 <span class="nc" id="L156">    }</span>
 
 
-    private void abrirAltaPropuesta() {
-<span class="nc" id="L160">        AltaPropuestaInternalFrame frame = new AltaPropuestaInternalFrame(ICP, ICU);</span>
+    private void abrirDejarSeguirUsuario() {
+<span class="nc" id="L160">        DejarSeguirUsuarioInternalFrame frame = new DejarSeguirUsuarioInternalFrame(ICU);</span>
 <span class="nc" id="L161">        abrir(frame);</span>
 <span class="nc" id="L162">    }</span>
 
 
-    private void abrirConsultarPropuesta() {
-<span class="nc" id="L166">        ConsultarPropuestaInternalFrame frame = new ConsultarPropuestaInternalFrame(ICP);</span>
+    private void abrirAltaPropuesta() {
+<span class="nc" id="L166">        AltaPropuestaInternalFrame frame = new AltaPropuestaInternalFrame(ICP, ICU);</span>
 <span class="nc" id="L167">        abrir(frame);</span>
 <span class="nc" id="L168">    }</span>
 
+
+    private void abrirConsultarPropuesta() {
+<span class="nc" id="L172">        ConsultarPropuestaInternalFrame frame = new ConsultarPropuestaInternalFrame(ICP);</span>
+<span class="nc" id="L173">        abrir(frame);</span>
+<span class="nc" id="L174">    }</span>
+
     private void abrirConsultaPropEstado() {
-<span class="nc" id="L171">        ConsultaPropuestasPorEstadoInternalFrame frame = new ConsultaPropuestasPorEstadoInternalFrame(ICP);</span>
-<span class="nc" id="L172">        abrir(frame);</span>
-<span class="nc" id="L173">    }</span>
-
-
-    private void abrirModificarPropuesta() {
-<span class="nc" id="L177">        ModificarDatosPropuestaInternalFrame frame = new ModificarDatosPropuestaInternalFrame(ICP);</span>
+<span class="nc" id="L177">        ConsultaPropuestasPorEstadoInternalFrame frame = new ConsultaPropuestasPorEstadoInternalFrame(ICP);</span>
 <span class="nc" id="L178">        abrir(frame);</span>
 <span class="nc" id="L179">    }</span>
 
+
+    private void abrirModificarPropuesta() {
+<span class="nc" id="L183">        ModificarDatosPropuestaInternalFrame frame = new ModificarDatosPropuestaInternalFrame(ICP);</span>
+<span class="nc" id="L184">        abrir(frame);</span>
+<span class="nc" id="L185">    }</span>
+
     private void abrirAltaCategoria() {
-<span class="nc" id="L182">        AltaCategoriaInternalFrame frame = new AltaCategoriaInternalFrame(ICP);</span>
-<span class="nc" id="L183">        abrir(frame);</span>
-<span class="nc" id="L184">    }</span>
+<span class="nc" id="L188">        AltaCategoriaInternalFrame frame = new AltaCategoriaInternalFrame(ICP);</span>
+<span class="nc" id="L189">        abrir(frame);</span>
+<span class="nc" id="L190">    }</span>
 
     private void abrirRegistrarColaboracion() {
-<span class="nc" id="L187">        RegistrarColaboracionInternalFrame frame = new RegistrarColaboracionInternalFrame(ICP);</span>
-<span class="nc" id="L188">        abrir(frame);</span>
-<span class="nc" id="L189">    }</span>
+<span class="nc" id="L193">        RegistrarColaboracionInternalFrame frame = new RegistrarColaboracionInternalFrame(ICP);</span>
+<span class="nc" id="L194">        abrir(frame);</span>
+<span class="nc" id="L195">    }</span>
 
     private void abrirConsultarColaboracion() {
-<span class="nc" id="L192">        ConsultaColaboracionInternalFrame frame = new ConsultaColaboracionInternalFrame(ICU);</span>
-<span class="nc" id="L193">        abrir(frame);</span>
-<span class="nc" id="L194">    }</span>
+<span class="nc" id="L198">        ConsultaColaboracionInternalFrame frame = new ConsultaColaboracionInternalFrame(ICU);</span>
+<span class="nc" id="L199">        abrir(frame);</span>
+<span class="nc" id="L200">    }</span>
 
     private void abrirCancelarColaboracion() {
-<span class="nc" id="L197">        CancelarColaboracionInternalFrame frame = new CancelarColaboracionInternalFrame(ICP);</span>
-<span class="nc" id="L198">        abrir(frame);</span>
-<span class="nc" id="L199">    }</span>
+<span class="nc" id="L203">        CancelarColaboracionInternalFrame frame = new CancelarColaboracionInternalFrame(ICP);</span>
+<span class="nc" id="L204">        abrir(frame);</span>
+<span class="nc" id="L205">    }</span>
     private void abrirEvaluarPropuesta() {
-<span class="nc" id="L201">        EvaluarPropuestaInternalFrame frame = new EvaluarPropuestaInternalFrame(ICP);</span>
-<span class="nc" id="L202">        abrir(frame);</span>
-<span class="nc" id="L203">    }</span>
+<span class="nc" id="L207">        EvaluarPropuestaInternalFrame frame = new EvaluarPropuestaInternalFrame(ICP);</span>
+<span class="nc" id="L208">        abrir(frame);</span>
+<span class="nc" id="L209">    }</span>
 
     private void abrirGestionarComentarios() {
-<span class="nc" id="L206">        GestionarComentariosInternalFrame frame = new GestionarComentariosInternalFrame(ICP);</span>
-<span class="nc" id="L207">        abrir(frame);</span>
-<span class="nc" id="L208">    }</span>
+<span class="nc" id="L212">        GestionarComentariosInternalFrame frame = new GestionarComentariosInternalFrame(ICP);</span>
+<span class="nc" id="L213">        abrir(frame);</span>
+<span class="nc" id="L214">    }</span>
+
+    private void abrirVerProponentesEliminados() {
+<span class="nc" id="L217">        VerProponentesEliminadosInternalFrame frame = new VerProponentesEliminadosInternalFrame(ICU);</span>
+<span class="nc" id="L218">        abrir(frame);</span>
+<span class="nc" id="L219">    }</span>
+
+    private void abrirVerRegistroAccesos() {
+<span class="nc" id="L222">        VerRegistroAccesoInternalFrame frame = new VerRegistroAccesoInternalFrame(ICU);</span>
+<span class="nc" id="L223">        abrir(frame);</span>
+<span class="nc" id="L224">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

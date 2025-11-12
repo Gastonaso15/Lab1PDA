@@ -6,6 +6,7 @@ import culturarte.logica.modelos.Colaborador;
 import culturarte.logica.modelos.Proponente;
 import culturarte.logica.modelos.Propuesta;
 import culturarte.logica.modelos.Usuario;
+import culturarte.servicios.DTs.DTAccesoSitio;
 import culturarte.servicios.DTs.DTColaborador;
 import culturarte.servicios.DTs.DTProponente;
 import culturarte.servicios.DTs.DTUsuario;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -502,6 +504,104 @@ public class UsuarioControllerTest {
                 controller.login("testUser", "wrongPassword"));
 
         assertEquals("Datos incorrectos", exception.getMessage());
+    }
+
+    @Test
+    void devolverUsuariosSeguidores_DatosValidos_RetornaListaCorrectamente() {
+        List<String> seguidores = List.of("seguidor1", "seguidor2");
+        when(usuarioManejadorMock.obtenerFollowers("seguido1")).thenReturn(seguidores);
+
+        List<String> resultado = controller.devolverUsuariosSeguidores("seguido1");
+
+        assertEquals(seguidores, resultado);
+    }
+
+    @Test
+    void getDTUsuario_UsuarioExiste_RetornaDTCorrectamente() {
+        Usuario usuarioMock = mock(Usuario.class);
+        DTUsuario dtUsuarioMock = mock(DTUsuario.class);
+        when(usuarioManejadorMock.obtenerUsuarioPorNickname("testUser")).thenReturn(usuarioMock);
+        when(usuarioMock.getDataType()).thenReturn(dtUsuarioMock);
+
+        DTUsuario resultado = controller.getDTUsuario("testUser");
+
+        assertEquals(dtUsuarioMock, resultado);
+    }
+
+    @Test
+    void getDTUsuario_UsuarioNoExiste_RetornaNull() {
+        when(usuarioManejadorMock.obtenerUsuarioPorNickname("inexistente")).thenReturn(null);
+
+        DTUsuario resultado = controller.getDTUsuario("inexistente");
+
+        assertNull(resultado);
+    }
+
+    @Test
+    void devolverProponentesEliminados_DatosValidos_RetornaListaCorrectamente() {
+        Proponente proponenteMock = mock(Proponente.class);
+        when(proponenteMock.getNickname()).thenReturn("proponente1");
+        when(proponenteMock.getNombre()).thenReturn("Juan");
+        when(proponenteMock.getApellido()).thenReturn("Pérez");
+        when(proponenteMock.getCorreo()).thenReturn("juan@example.com");
+        when(proponenteMock.getPassword()).thenReturn("password123");
+        when(proponenteMock.getFechaNacimiento()).thenReturn(LocalDate.of(1990, 1, 1));
+        when(proponenteMock.getDireccion()).thenReturn("Calle 123");
+        when(proponenteMock.getBio()).thenReturn("Biografía");
+        when(proponenteMock.getSitioWeb()).thenReturn("www.juan.com");
+        when(proponenteMock.getImagen()).thenReturn("imagen.png");
+        when(proponenteMock.getFechaEliminacion()).thenReturn(LocalDateTime.now());
+        when(proponenteMock.getPropuestas()).thenReturn(new ArrayList<>());
+
+        when(usuarioManejadorMock.obtenerProponentesEliminados()).thenReturn(List.of(proponenteMock));
+
+        List<DTProponente> resultado = controller.devolverProponentesEliminados();
+
+        assertNotNull(resultado);
+        assertEquals(1, resultado.size());
+        assertEquals("proponente1", resultado.get(0).getNickname());
+    }
+
+    @Test
+    void bajaProponente_DatosValidos_DaDeBajaCorrectamente() throws Exception {
+        Proponente proponenteMock = mock(Proponente.class);
+        when(usuarioManejadorMock.obtenerProponentePorNickname("proponente1")).thenReturn(proponenteMock);
+
+        controller.bajaProponente("proponente1");
+
+        verify(proponenteMock).setEliminado(true);
+        verify(proponenteMock).setFechaEliminacion(any(LocalDateTime.class));
+        verify(usuarioManejadorMock).darDeBajaProponente(proponenteMock);
+    }
+
+    @Test
+    void bajaProponente_ProponenteNoExiste_LanzaExcepcion() {
+        when(usuarioManejadorMock.obtenerProponentePorNickname("inexistente")).thenReturn(null);
+
+        Exception exception = assertThrows(Exception.class, () ->
+                controller.bajaProponente("inexistente"));
+
+        assertTrue(exception.getMessage().contains("no existe"));
+    }
+
+    @Test
+    void registrarAcceso_DatosValidos_RegistraCorrectamente() {
+        controller.registrarAcceso("192.168.1.1", "/home", "Chrome", "Windows");
+
+        verify(usuarioManejadorMock).persistirAcceso("192.168.1.1", "/home", "Chrome", "Windows");
+    }
+
+    @Test
+    void devolverRegistroAccesos_DatosValidos_RetornaListaCorrectamente() {
+        DTAccesoSitio dtAcceso1 = mock(DTAccesoSitio.class);
+        DTAccesoSitio dtAcceso2 = mock(DTAccesoSitio.class);
+        List<DTAccesoSitio> accesos = List.of(dtAcceso1, dtAcceso2);
+
+        when(usuarioManejadorMock.obtenerRegistroAccesos()).thenReturn(accesos);
+
+        List<DTAccesoSitio> resultado = controller.devolverRegistroAccesos();
+
+        assertEquals(accesos, resultado);
     }
 
 }

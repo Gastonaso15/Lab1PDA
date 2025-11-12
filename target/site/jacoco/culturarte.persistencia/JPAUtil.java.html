@@ -6,16 +6,16 @@ import jakarta.persistence.EntityManager;
 
 <span class="nc" id="L7">public class JPAUtil {</span>
 
-    private static final String PERSISTENCE_UNIT;
-
+    private static final String PERSISTENCE_UNIT = &quot;culturartePU&quot;;
+/*
     static {
-<span class="pc bpc" id="L12" title="1 of 2 branches missed.">        if (System.getenv(&quot;DOCKER&quot;) != null) {</span>
-<span class="nc" id="L13">            PERSISTENCE_UNIT = &quot;culturartePU-docker&quot;;</span>
+        if (System.getenv(&quot;DOCKER&quot;) != null) {
+            PERSISTENCE_UNIT = &quot;culturartePU-docker&quot;;
         } else {
-<span class="fc" id="L15">            PERSISTENCE_UNIT = &quot;culturartePU&quot;;</span>
+            PERSISTENCE_UNIT = &quot;culturartePU&quot;;
         }
     }
-
+*/
 <span class="fc" id="L19">    public static final EntityManagerFactory emf = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT);</span>
     public static EntityManager getEntityManager()
     {

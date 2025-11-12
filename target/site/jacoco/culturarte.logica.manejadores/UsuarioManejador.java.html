@@ -3,338 +3,468 @@
 import culturarte.logica.modelos.*;
 import culturarte.persistencia.JPAUtil;
 
+import culturarte.servicios.DTs.DTAccesoSitio;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-<span class="fc" id="L10">public class UsuarioManejador{</span>
-<span class="fc" id="L11">    private static UsuarioManejador instancia = null;</span>
+<span class="fc" id="L13">public class UsuarioManejador{</span>
+<span class="fc" id="L14">    private static UsuarioManejador instancia = null;</span>
 
     public static UsuarioManejador getInstance() {
-<span class="fc bfc" id="L14" title="All 2 branches covered.">        if (instancia == null)</span>
-<span class="fc" id="L15">            instancia = new UsuarioManejador();</span>
-<span class="fc" id="L16">        return instancia;</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        if (instancia == null)</span>
+<span class="fc" id="L18">            instancia = new UsuarioManejador();</span>
+<span class="fc" id="L19">        return instancia;</span>
     }
 
     public void persistirUsuario(Usuario usu) {
-<span class="fc" id="L20">        EntityManager em = JPAUtil.getEntityManager();</span>
-<span class="fc" id="L21">        EntityTransaction t = em.getTransaction();</span>
+<span class="fc" id="L23">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L24">        EntityTransaction t = em.getTransaction();</span>
         try{
-<span class="fc" id="L23">            t.begin();</span>
-<span class="fc" id="L24">            em.persist(usu);</span>
-<span class="fc" id="L25">            t.commit();</span>
+<span class="fc" id="L26">            t.begin();</span>
+<span class="fc" id="L27">            em.persist(usu);</span>
+<span class="fc" id="L28">            t.commit();</span>
         }
-<span class="fc" id="L27">        catch(Exception e) {</span>
-<span class="pc bpc" id="L28" title="1 of 2 branches missed.">            if (t.isActive()) t.rollback();</span>
-<span class="fc" id="L29">            throw new PersistenceException(&quot;Error al persistir usuario&quot;, e);</span>
+<span class="fc" id="L30">        catch(Exception e) {</span>
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">            if (t.isActive()) t.rollback();</span>
+<span class="fc" id="L32">            throw new PersistenceException(&quot;Error al persistir usuario&quot;, e);</span>
         } finally {
-<span class="fc" id="L31">            em.close();</span>
+<span class="fc" id="L34">            em.close();</span>
         }
-<span class="fc" id="L33">    }</span>
+<span class="fc" id="L36">    }</span>
 
     public List&lt;String&gt; obtenerNicknamesUsuarios() {
-<span class="fc" id="L36">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L39">        EntityManager em = JPAUtil.getEntityManager();</span>
         List&lt;String&gt; nicknames;
         try {
-<span class="fc" id="L39">            TypedQuery&lt;String&gt; query = em.createQuery(&quot;SELECT u.nickname FROM Usuario u&quot;, String.class);</span>
-<span class="fc" id="L40">            nicknames = query.getResultList();</span>
+<span class="fc" id="L42">            TypedQuery&lt;String&gt; query = em.createQuery(&quot;SELECT u.nickname FROM Usuario u WHERE&quot; +</span>
+                    &quot;(u.eliminado = false OR u.eliminado IS NULL)&quot;, String.class);
+<span class="fc" id="L44">            nicknames = query.getResultList();</span>
         } finally {
-<span class="fc" id="L42">            em.close();</span>
+<span class="fc" id="L46">            em.close();</span>
         }
-<span class="fc" id="L44">        return nicknames;</span>
+<span class="fc" id="L48">        return nicknames;</span>
     }
 
     public List&lt;String&gt; obtenerNicknamesProponentes() {
-<span class="fc" id="L48">        EntityManager em = JPAUtil.getEntityManager();</span>
-<span class="fc" id="L49">        TypedQuery&lt;String&gt; query = em.createQuery(&quot;SELECT nickname FROM Proponente p&quot;, String.class);</span>
-<span class="fc" id="L50">        List&lt;String&gt; proponentes = query.getResultList();</span>
-<span class="fc" id="L51">        em.close();</span>
-<span class="fc" id="L52">        return proponentes;</span>
+<span class="fc" id="L52">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L53">        TypedQuery&lt;String&gt; query = em.createQuery(&quot;SELECT nickname FROM Proponente p WHERE &quot; +</span>
+                &quot;(p.eliminado = false OR p.eliminado IS NULL)&quot;, String.class);
+<span class="fc" id="L55">        List&lt;String&gt; proponentes = query.getResultList();</span>
+<span class="fc" id="L56">        em.close();</span>
+<span class="fc" id="L57">        return proponentes;</span>
     }
 
     public List&lt;String&gt; obtenerNicknamesColaboradores() {
-<span class="fc" id="L56">        EntityManager em = JPAUtil.getEntityManager();</span>
-<span class="fc" id="L57">        TypedQuery&lt;String&gt; query = em.createQuery(&quot;SELECT nickname FROM Colaborador c&quot;, String.class);</span>
-<span class="fc" id="L58">        List&lt;String&gt; colaboradores = query.getResultList();</span>
-<span class="fc" id="L59">        em.close();</span>
-<span class="fc" id="L60">        return colaboradores;</span>
+<span class="fc" id="L61">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L62">        TypedQuery&lt;String&gt; query = em.createQuery(&quot;SELECT nickname FROM Colaborador c&quot;, String.class);</span>
+<span class="fc" id="L63">        List&lt;String&gt; colaboradores = query.getResultList();</span>
+<span class="fc" id="L64">        em.close();</span>
+<span class="fc" id="L65">        return colaboradores;</span>
     }
 
     public Usuario obtenerUsuarioPorCorreo(String correo){
-<span class="fc" id="L64">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L69">        EntityManager em = JPAUtil.getEntityManager();</span>
         Usuario usu;
         try {
-<span class="fc" id="L67">            TypedQuery&lt;Usuario&gt; query = em.createQuery(&quot;SELECT u FROM Usuario u WHERE u.correo = :correo&quot;, Usuario.class).setParameter(&quot;correo&quot;, correo);</span>
-<span class="fc" id="L68">            usu = query.getSingleResult();</span>
-<span class="fc" id="L69">        } catch (NoResultException e) {</span>
-<span class="fc" id="L70">            usu = null;</span>
+<span class="fc" id="L72">            TypedQuery&lt;Usuario&gt; query = em.createQuery(&quot;SELECT u FROM Usuario u WHERE u.correo = :correo AND &quot; +</span>
+<span class="fc" id="L73">                    &quot;(u.eliminado = false OR u.eliminado IS NULL)&quot;, Usuario.class).setParameter(&quot;correo&quot;, correo);</span>
+<span class="fc" id="L74">            usu = query.getSingleResult();</span>
+<span class="fc" id="L75">        } catch (NoResultException e) {</span>
+<span class="fc" id="L76">            usu = null;</span>
         } finally {
-<span class="fc" id="L72">            em.close();</span>
+<span class="fc" id="L78">            em.close();</span>
         }
-<span class="fc" id="L74">        return usu;</span>
+<span class="fc" id="L80">        return usu;</span>
     }
 
     public Usuario obtenerUsuarioPorNickname(String nickname){
-<span class="fc" id="L78">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L84">        EntityManager em = JPAUtil.getEntityManager();</span>
         Usuario usu;
         try {
-<span class="fc" id="L81">            TypedQuery&lt;Usuario&gt; query = em.createQuery(&quot;SELECT u FROM Usuario u WHERE u.nickname = :nick&quot;, Usuario.class).setParameter(&quot;nick&quot;, nickname);</span>
-<span class="fc" id="L82">            usu = query.getSingleResult();</span>
-<span class="fc" id="L83">        } catch (NoResultException e) {</span>
-<span class="fc" id="L84">            usu = null;</span>
+<span class="fc" id="L87">            TypedQuery&lt;Usuario&gt; query = em.createQuery(&quot;SELECT u FROM Usuario u WHERE u.nickname = :nick AND &quot; +</span>
+<span class="fc" id="L88">                    &quot;(u.eliminado = false OR u.eliminado IS NULL)&quot;, Usuario.class).setParameter(&quot;nick&quot;, nickname);</span>
+<span class="fc" id="L89">            usu = query.getSingleResult();</span>
+<span class="fc" id="L90">        } catch (NoResultException e) {</span>
+<span class="fc" id="L91">            usu = null;</span>
         } finally {
-<span class="fc" id="L86">            em.close();</span>
+<span class="fc" id="L93">            em.close();</span>
         }
-<span class="fc" id="L88">        return usu;</span>
+<span class="fc" id="L95">        return usu;</span>
     }
 
     public Proponente obtenerProponentePorNickname(String nickname) {
-<span class="fc" id="L92">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L99">        EntityManager em = JPAUtil.getEntityManager();</span>
         Proponente prop;
         try {
-<span class="fc" id="L95">            TypedQuery&lt;Proponente&gt; query = em.createQuery(</span>
+<span class="fc" id="L102">            TypedQuery&lt;Proponente&gt; query = em.createQuery(</span>
                     &quot;SELECT DISTINCT p FROM Proponente p &quot; +
                             &quot;LEFT JOIN FETCH p.propuestas pr &quot; +
-                            &quot;WHERE p.nickname = :nick&quot;, Proponente.class
+                            &quot;WHERE p.nickname = :nick AND (p.eliminado = false OR p.eliminado IS NULL)&quot;,
+                    Proponente.class
             );
-<span class="fc" id="L100">            query.setParameter(&quot;nick&quot;, nickname);</span>
-<span class="fc" id="L101">            prop = query.getSingleResult();</span>
-<span class="pc bpc" id="L102" title="1 of 2 branches missed.">            for (Propuesta p : prop.getPropuestas()) {</span>
-<span class="nc" id="L103">                p.getTiposRetorno().size();</span>
-<span class="nc" id="L104">                p.getColaboraciones().size();</span>
-<span class="nc" id="L105">            }</span>
+<span class="fc" id="L108">            query.setParameter(&quot;nick&quot;, nickname);</span>
+<span class="fc" id="L109">            prop = query.getSingleResult();</span>
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">            for (Propuesta p : prop.getPropuestas()) {</span>
+<span class="nc" id="L111">                p.getTiposRetorno().size();</span>
+<span class="nc" id="L112">                p.getColaboraciones().size();</span>
+<span class="nc" id="L113">            }</span>
 
-<span class="fc" id="L107">        } catch (NoResultException e) {</span>
-<span class="fc" id="L108">            prop = null;</span>
+<span class="fc" id="L115">        } catch (NoResultException e) {</span>
+<span class="fc" id="L116">            prop = null;</span>
         } finally {
-<span class="fc" id="L110">            em.close();</span>
+<span class="fc" id="L118">            em.close();</span>
         }
-<span class="fc" id="L112">        return prop;</span>
+<span class="fc" id="L120">        return prop;</span>
     }
 
     public Colaborador obtenerColaboradorPorNickname(String nickname) {
-<span class="fc" id="L116">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L124">        EntityManager em = JPAUtil.getEntityManager();</span>
         Colaborador colab;
         try {
-<span class="fc" id="L119">            TypedQuery&lt;Colaborador&gt; query = em.createQuery(</span>
+<span class="fc" id="L127">            TypedQuery&lt;Colaborador&gt; query = em.createQuery(</span>
                     &quot;SELECT DISTINCT c FROM Colaborador c &quot; +
                             &quot;LEFT JOIN FETCH c.colaboraciones col &quot; +
                             &quot;LEFT JOIN FETCH col.propuesta pr &quot; +
                             &quot;LEFT JOIN FETCH pr.proponente &quot; +
                             &quot;WHERE c.nickname = :nick&quot;, Colaborador.class
             );
-<span class="fc" id="L126">            query.setParameter(&quot;nick&quot;, nickname);</span>
-<span class="fc" id="L127">            colab = query.getSingleResult();</span>
+<span class="fc" id="L134">            query.setParameter(&quot;nick&quot;, nickname);</span>
+<span class="fc" id="L135">            colab = query.getSingleResult();</span>
 
-<span class="pc bpc" id="L129" title="1 of 2 branches missed.">            for (Colaboracion col : colab.getColaboraciones()) {</span>
-<span class="nc" id="L130">                col.getPropuesta().getTitulo();</span>
-<span class="nc" id="L131">                col.getPropuesta().getProponente().getNickname();</span>
-<span class="nc" id="L132">                col.getPropuesta().getTiposRetorno().size();</span>
-<span class="nc" id="L133">                col.getPropuesta().getColaboraciones().size();</span>
-<span class="nc" id="L134">            }</span>
+<span class="pc bpc" id="L137" title="1 of 2 branches missed.">            for (Colaboracion col : colab.getColaboraciones()) {</span>
+<span class="nc" id="L138">                col.getPropuesta().getTitulo();</span>
+<span class="nc" id="L139">                col.getPropuesta().getProponente().getNickname();</span>
+<span class="nc" id="L140">                col.getPropuesta().getTiposRetorno().size();</span>
+<span class="nc" id="L141">                col.getPropuesta().getColaboraciones().size();</span>
+<span class="nc" id="L142">            }</span>
 
-<span class="fc" id="L136">        } catch (NoResultException e) {</span>
-<span class="fc" id="L137">            colab = null;</span>
+<span class="fc" id="L144">        } catch (NoResultException e) {</span>
+<span class="fc" id="L145">            colab = null;</span>
         } finally {
-<span class="fc" id="L139">            em.close();</span>
+<span class="fc" id="L147">            em.close();</span>
         }
-<span class="fc" id="L141">        return colab;</span>
+<span class="fc" id="L149">        return colab;</span>
     }
 
     public void persistirSeguimiento(String nicknameSeguidor, String nicknameSeguido) {
-<span class="fc" id="L145">        EntityManager em = JPAUtil.getEntityManager();</span>
-<span class="fc" id="L146">        EntityTransaction t = em.getTransaction();</span>
+<span class="fc" id="L153">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L154">        EntityTransaction t = em.getTransaction();</span>
         try {
-<span class="fc" id="L148">            t.begin();</span>
+<span class="fc" id="L156">            t.begin();</span>
 
-<span class="fc" id="L150">            Usuario seguidor = em.createQuery(</span>
+<span class="fc" id="L158">            Usuario seguidor = em.createQuery(</span>
                             &quot;SELECT u FROM Usuario u WHERE u.nickname = :nick&quot;, Usuario.class)
-<span class="fc" id="L152">                    .setParameter(&quot;nick&quot;, nicknameSeguidor)</span>
-<span class="fc" id="L153">                    .getSingleResult();</span>
+<span class="fc" id="L160">                    .setParameter(&quot;nick&quot;, nicknameSeguidor)</span>
+<span class="fc" id="L161">                    .getSingleResult();</span>
 
-<span class="fc" id="L155">            Usuario seguido = em.createQuery(</span>
+<span class="fc" id="L163">            Usuario seguido = em.createQuery(</span>
                             &quot;SELECT u FROM Usuario u WHERE u.nickname = :nick&quot;, Usuario.class)
-<span class="fc" id="L157">                    .setParameter(&quot;nick&quot;, nicknameSeguido)</span>
-<span class="fc" id="L158">                    .getSingleResult();</span>
+<span class="fc" id="L165">                    .setParameter(&quot;nick&quot;, nicknameSeguido)</span>
+<span class="fc" id="L166">                    .getSingleResult();</span>
 
-<span class="fc" id="L160">            Seguimiento s = new Seguimiento();</span>
-<span class="fc" id="L161">            s.setSeguidor(seguidor);</span>
-<span class="fc" id="L162">            s.setSeguido(seguido);</span>
+<span class="fc" id="L168">            Seguimiento s = new Seguimiento();</span>
+<span class="fc" id="L169">            s.setSeguidor(seguidor);</span>
+<span class="fc" id="L170">            s.setSeguido(seguido);</span>
 
-<span class="fc" id="L164">            seguidor.getSeguidos().add(s);</span>
-<span class="fc" id="L165">            seguido.getSeguidores().add(s);</span>
+<span class="fc" id="L172">            seguidor.getSeguidos().add(s);</span>
+<span class="fc" id="L173">            seguido.getSeguidores().add(s);</span>
 
-<span class="fc" id="L167">            em.persist(s);</span>
+<span class="fc" id="L175">            em.persist(s);</span>
 
-<span class="fc" id="L169">            t.commit();</span>
-<span class="fc" id="L170">        }  catch(Exception e) {</span>
-<span class="pc bpc" id="L171" title="1 of 2 branches missed.">            if (t.isActive()) t.rollback();</span>
-<span class="fc" id="L172">            throw new PersistenceException(&quot;Error al persistir seguimiento&quot;, e);</span>
+<span class="fc" id="L177">            t.commit();</span>
+<span class="fc" id="L178">        }  catch(Exception e) {</span>
+<span class="pc bpc" id="L179" title="1 of 2 branches missed.">            if (t.isActive()) t.rollback();</span>
+<span class="fc" id="L180">            throw new PersistenceException(&quot;Error al persistir seguimiento&quot;, e);</span>
         } finally {
-<span class="fc" id="L174">            em.close();</span>
+<span class="fc" id="L182">            em.close();</span>
         }
-<span class="fc" id="L176">    }</span>
+<span class="fc" id="L184">    }</span>
 
     public boolean comprobarUsuarioUnoYaSigueUsuarioDos(String nicknameSeguidor, String nicknameSeguido) {
-<span class="fc" id="L179">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L187">        EntityManager em = JPAUtil.getEntityManager();</span>
         try {
-<span class="fc" id="L181">            TypedQuery&lt;Long&gt; query = em.createQuery(</span>
+<span class="fc" id="L189">            TypedQuery&lt;Long&gt; query = em.createQuery(</span>
                     &quot;SELECT COUNT(s) FROM Seguimiento s &quot; +
                             &quot;WHERE s.seguidor.nickname = :seguidor AND s.seguido.nickname = :seguido&quot;, Long.class);
-<span class="fc" id="L184">            query.setParameter(&quot;seguidor&quot;, nicknameSeguidor);</span>
-<span class="fc" id="L185">            query.setParameter(&quot;seguido&quot;, nicknameSeguido);</span>
+<span class="fc" id="L192">            query.setParameter(&quot;seguidor&quot;, nicknameSeguidor);</span>
+<span class="fc" id="L193">            query.setParameter(&quot;seguido&quot;, nicknameSeguido);</span>
 
-<span class="fc" id="L187">            Long count = query.getSingleResult();</span>
-<span class="fc bfc" id="L188" title="All 2 branches covered.">            return count &gt; 0;</span>
+<span class="fc" id="L195">            Long count = query.getSingleResult();</span>
+<span class="fc bfc" id="L196" title="All 2 branches covered.">            return count &gt; 0;</span>
         } finally {
-<span class="fc" id="L190">            em.close();</span>
+<span class="fc" id="L198">            em.close();</span>
         }
     }
 
     public List&lt;String&gt; obtenerUsuariosSeguidos(String nicknameSeguidor) {
-<span class="fc" id="L195">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L203">        EntityManager em = JPAUtil.getEntityManager();</span>
         List&lt;String&gt; usuariosSeguidos;
         try {
-<span class="fc" id="L198">            TypedQuery&lt;String&gt; query = em.createQuery(&quot;SELECT s.seguido.nickname FROM Seguimiento s WHERE s.seguidor.nickname = :nick&quot;, String.class);</span>
-<span class="fc" id="L199">            query.setParameter(&quot;nick&quot;, nicknameSeguidor);</span>
-<span class="fc" id="L200">            usuariosSeguidos = query.getResultList();</span>
+<span class="fc" id="L206">            TypedQuery&lt;String&gt; query = em.createQuery(&quot;SELECT s.seguido.nickname FROM Seguimiento s WHERE s.seguidor.nickname = :nick&quot;, String.class);</span>
+<span class="fc" id="L207">            query.setParameter(&quot;nick&quot;, nicknameSeguidor);</span>
+<span class="fc" id="L208">            usuariosSeguidos = query.getResultList();</span>
         } finally {
-<span class="fc" id="L202">            em.close();</span>
+<span class="fc" id="L210">            em.close();</span>
         }
-<span class="fc" id="L204">        return usuariosSeguidos;</span>
+<span class="fc" id="L212">        return usuariosSeguidos;</span>
     }
 
 
     public void eliminarSeguimiento(String nicknameSeguidor, String nicknameSeguido) {
-<span class="fc" id="L209">        EntityManager em = JPAUtil.getEntityManager();</span>
-<span class="fc" id="L210">        EntityTransaction t = em.getTransaction();</span>
+<span class="fc" id="L217">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L218">        EntityTransaction t = em.getTransaction();</span>
 
         try {
-<span class="fc" id="L213">            t.begin();</span>
+<span class="fc" id="L221">            t.begin();</span>
 
-<span class="fc" id="L215">            Usuario seguidor = em.createQuery(</span>
+<span class="fc" id="L223">            Usuario seguidor = em.createQuery(</span>
                             &quot;SELECT u FROM Usuario u LEFT JOIN FETCH u.seguidos s LEFT JOIN FETCH s.seguido WHERE u.nickname = :nick&quot;, Usuario.class)
-<span class="fc" id="L217">                    .setParameter(&quot;nick&quot;, nicknameSeguidor)</span>
-<span class="fc" id="L218">                    .getSingleResult();</span>
+<span class="fc" id="L225">                    .setParameter(&quot;nick&quot;, nicknameSeguidor)</span>
+<span class="fc" id="L226">                    .getSingleResult();</span>
 
-<span class="fc" id="L220">            Usuario seguido = em.createQuery(</span>
+<span class="fc" id="L228">            Usuario seguido = em.createQuery(</span>
                             &quot;SELECT u FROM Usuario u LEFT JOIN FETCH u.seguidores s LEFT JOIN FETCH s.seguidor WHERE u.nickname = :nick&quot;, Usuario.class)
-<span class="fc" id="L222">                    .setParameter(&quot;nick&quot;, nicknameSeguido)</span>
-<span class="fc" id="L223">                    .getSingleResult();</span>
+<span class="fc" id="L230">                    .setParameter(&quot;nick&quot;, nicknameSeguido)</span>
+<span class="fc" id="L231">                    .getSingleResult();</span>
 
-<span class="fc" id="L225">            Seguimiento relacion = null;</span>
-<span class="pc bpc" id="L226" title="1 of 2 branches missed.">            for (Seguimiento s : seguidor.getSeguidos()) {</span>
-<span class="pc bpc" id="L227" title="1 of 2 branches missed.">                if (s.getSeguido().getId().equals(seguido.getId())) {</span>
-<span class="fc" id="L228">                    relacion = s;</span>
-<span class="fc" id="L229">                    break;</span>
+<span class="fc" id="L233">            Seguimiento relacion = null;</span>
+<span class="pc bpc" id="L234" title="1 of 2 branches missed.">            for (Seguimiento s : seguidor.getSeguidos()) {</span>
+<span class="pc bpc" id="L235" title="1 of 2 branches missed.">                if (s.getSeguido().getId().equals(seguido.getId())) {</span>
+<span class="fc" id="L236">                    relacion = s;</span>
+<span class="fc" id="L237">                    break;</span>
                 }
-<span class="nc" id="L231">            }</span>
+<span class="nc" id="L239">            }</span>
 
-<span class="pc bpc" id="L233" title="1 of 2 branches missed.">            if (relacion != null) {</span>
-<span class="fc" id="L234">                seguidor.getSeguidos().remove(relacion);</span>
-<span class="fc" id="L235">                seguido.getSeguidores().remove(relacion);</span>
-<span class="pc bpc" id="L236" title="1 of 2 branches missed.">                em.remove(em.contains(relacion) ? relacion : em.merge(relacion));</span>
+<span class="pc bpc" id="L241" title="1 of 2 branches missed.">            if (relacion != null) {</span>
+<span class="fc" id="L242">                seguidor.getSeguidos().remove(relacion);</span>
+<span class="fc" id="L243">                seguido.getSeguidores().remove(relacion);</span>
+<span class="pc bpc" id="L244" title="1 of 2 branches missed.">                em.remove(em.contains(relacion) ? relacion : em.merge(relacion));</span>
             } else {
-<span class="nc" id="L238">                throw new IllegalStateException(&quot;El usuario no sigue a este usuario.&quot;);</span>
+<span class="nc" id="L246">                throw new IllegalStateException(&quot;El usuario no sigue a este usuario.&quot;);</span>
             }
 
-<span class="fc" id="L241">            em.merge(seguidor);</span>
-<span class="fc" id="L242">            em.merge(seguido);</span>
+<span class="fc" id="L249">            em.merge(seguidor);</span>
+<span class="fc" id="L250">            em.merge(seguido);</span>
 
-<span class="fc" id="L244">            t.commit();</span>
-<span class="nc" id="L245">        } catch(Exception e) {</span>
-<span class="nc bnc" id="L246" title="All 2 branches missed.">            if (t.isActive()) t.rollback();</span>
-<span class="nc" id="L247">            throw new PersistenceException(&quot;Error al eliminar seguimiento&quot;, e);</span>
+<span class="fc" id="L252">            t.commit();</span>
+<span class="nc" id="L253">        } catch(Exception e) {</span>
+<span class="nc bnc" id="L254" title="All 2 branches missed.">            if (t.isActive()) t.rollback();</span>
+<span class="nc" id="L255">            throw new PersistenceException(&quot;Error al eliminar seguimiento&quot;, e);</span>
         } finally {
-<span class="fc" id="L249">            em.close();</span>
+<span class="fc" id="L257">            em.close();</span>
         }
-<span class="fc" id="L251">    }</span>
+<span class="fc" id="L259">    }</span>
 
     public void agregarPropuestaFavorita(String nickname,String titulo){
-<span class="fc" id="L254">        EntityManager em = JPAUtil.getEntityManager();</span>
-<span class="fc" id="L255">        EntityTransaction t = em.getTransaction();</span>
+<span class="fc" id="L262">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L263">        EntityTransaction t = em.getTransaction();</span>
         try {
-<span class="fc" id="L257">            t.begin();</span>
+<span class="fc" id="L265">            t.begin();</span>
 
-<span class="fc" id="L259">            Usuario usuario = em.createQuery(</span>
+<span class="fc" id="L267">            Usuario usuario = em.createQuery(</span>
                             &quot;SELECT u FROM Usuario u WHERE u.nickname = :nick&quot;, Usuario.class)
-<span class="fc" id="L261">                    .setParameter(&quot;nick&quot;, nickname)</span>
-<span class="fc" id="L262">                    .getSingleResult();</span>
+<span class="fc" id="L269">                    .setParameter(&quot;nick&quot;, nickname)</span>
+<span class="fc" id="L270">                    .getSingleResult();</span>
 
-<span class="fc" id="L264">            Propuesta propuesta = em.createQuery(&quot;SELECT p FROM Propuesta p WHERE p.titulo = :titulo&quot;, Propuesta.class)</span>
-<span class="fc" id="L265">                    .setParameter(&quot;titulo&quot;, titulo)</span>
-<span class="fc" id="L266">                    .getSingleResult();</span>
+<span class="fc" id="L272">            Propuesta propuesta = em.createQuery(&quot;SELECT p FROM Propuesta p WHERE p.titulo = :titulo&quot;, Propuesta.class)</span>
+<span class="fc" id="L273">                    .setParameter(&quot;titulo&quot;, titulo)</span>
+<span class="fc" id="L274">                    .getSingleResult();</span>
 
-<span class="fc" id="L268">            usuario.getPropuestasFavoritas().add(propuesta);</span>
+<span class="fc" id="L276">            usuario.getPropuestasFavoritas().add(propuesta);</span>
 
-<span class="fc" id="L270">            t.commit();</span>
-<span class="fc" id="L271">        }  catch(Exception e) {</span>
-<span class="pc bpc" id="L272" title="1 of 2 branches missed.">            if (t.isActive()) t.rollback();</span>
-<span class="fc" id="L273">            throw new PersistenceException(&quot;Error al agregar propuesta favorita&quot;, e);</span>
+<span class="fc" id="L278">            t.commit();</span>
+<span class="fc" id="L279">        }  catch(Exception e) {</span>
+<span class="pc bpc" id="L280" title="1 of 2 branches missed.">            if (t.isActive()) t.rollback();</span>
+<span class="fc" id="L281">            throw new PersistenceException(&quot;Error al agregar propuesta favorita&quot;, e);</span>
         } finally {
-<span class="fc" id="L275">            em.close();</span>
+<span class="fc" id="L283">            em.close();</span>
         }
-<span class="fc" id="L277">    }</span>
+<span class="fc" id="L285">    }</span>
 
     public boolean comprobarUsuarioYaTienePropuestaFavorita(String nickname,String titulo) {
-<span class="fc" id="L280">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L288">        EntityManager em = JPAUtil.getEntityManager();</span>
         try {
-<span class="fc" id="L282">            TypedQuery&lt;Long&gt; query = em.createQuery(</span>
+<span class="fc" id="L290">            TypedQuery&lt;Long&gt; query = em.createQuery(</span>
                     &quot;SELECT COUNT(pf) FROM Usuario u JOIN u.propuestasFavoritas pf &quot; +
                             &quot;WHERE u.nickname = :nick AND pf.titulo = :titulo&quot;, Long.class);
-<span class="fc" id="L285">            query.setParameter(&quot;nick&quot;, nickname);</span>
-<span class="fc" id="L286">            query.setParameter(&quot;titulo&quot;, titulo);</span>
+<span class="fc" id="L293">            query.setParameter(&quot;nick&quot;, nickname);</span>
+<span class="fc" id="L294">            query.setParameter(&quot;titulo&quot;, titulo);</span>
 
-<span class="fc" id="L288">            Long count = query.getSingleResult();</span>
-<span class="fc bfc" id="L289" title="All 2 branches covered.">            return count &gt; 0;</span>
+<span class="fc" id="L296">            Long count = query.getSingleResult();</span>
+<span class="fc bfc" id="L297" title="All 2 branches covered.">            return count &gt; 0;</span>
         } finally {
-<span class="fc" id="L291">            em.close();</span>
+<span class="fc" id="L299">            em.close();</span>
         }
     }
 
     public void eliminarPropuestaFavorita(String nickname,String titulo){
-<span class="fc" id="L296">        EntityManager em = JPAUtil.getEntityManager();</span>
-<span class="fc" id="L297">        EntityTransaction t = em.getTransaction();</span>
+<span class="fc" id="L304">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L305">        EntityTransaction t = em.getTransaction();</span>
         try {
-<span class="fc" id="L299">            t.begin();</span>
+<span class="fc" id="L307">            t.begin();</span>
 
-<span class="fc" id="L301">            Usuario usuario = em.createQuery(</span>
+<span class="fc" id="L309">            Usuario usuario = em.createQuery(</span>
                             &quot;SELECT u FROM Usuario u WHERE u.nickname = :nick&quot;, Usuario.class)
-<span class="fc" id="L303">                    .setParameter(&quot;nick&quot;, nickname)</span>
-<span class="fc" id="L304">                    .getSingleResult();</span>
+<span class="fc" id="L311">                    .setParameter(&quot;nick&quot;, nickname)</span>
+<span class="fc" id="L312">                    .getSingleResult();</span>
 
-<span class="fc" id="L306">            Propuesta propuesta = em.createQuery(&quot;SELECT p FROM Propuesta p WHERE p.titulo = :titulo&quot;, Propuesta.class)</span>
-<span class="fc" id="L307">                    .setParameter(&quot;titulo&quot;, titulo)</span>
-<span class="fc" id="L308">                    .getSingleResult();</span>
+<span class="fc" id="L314">            Propuesta propuesta = em.createQuery(&quot;SELECT p FROM Propuesta p WHERE p.titulo = :titulo&quot;, Propuesta.class)</span>
+<span class="fc" id="L315">                    .setParameter(&quot;titulo&quot;, titulo)</span>
+<span class="fc" id="L316">                    .getSingleResult();</span>
 
-<span class="fc" id="L310">            usuario.getPropuestasFavoritas().remove(propuesta);</span>
+<span class="fc" id="L318">            usuario.getPropuestasFavoritas().remove(propuesta);</span>
 
-<span class="fc" id="L312">            t.commit();</span>
-<span class="nc" id="L313">        }  catch(Exception e) {</span>
-<span class="nc bnc" id="L314" title="All 2 branches missed.">            if (t.isActive()) t.rollback();</span>
-<span class="nc" id="L315">            throw new PersistenceException(&quot;Error al eliminar propuesta favorita&quot;, e);</span>
+<span class="fc" id="L320">            t.commit();</span>
+<span class="nc" id="L321">        }  catch(Exception e) {</span>
+<span class="nc bnc" id="L322" title="All 2 branches missed.">            if (t.isActive()) t.rollback();</span>
+<span class="nc" id="L323">            throw new PersistenceException(&quot;Error al eliminar propuesta favorita&quot;, e);</span>
         } finally {
-<span class="fc" id="L317">            em.close();</span>
+<span class="fc" id="L325">            em.close();</span>
         }
-<span class="fc" id="L319">    }</span>
+<span class="fc" id="L327">    }</span>
     public List&lt;String&gt; obtenerFollowers(String nicknameSeguido) {
-<span class="fc" id="L321">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L329">        EntityManager em = JPAUtil.getEntityManager();</span>
         List&lt;String&gt; followers;
         try {
-<span class="fc" id="L324">            TypedQuery&lt;String&gt; query = em.createQuery(</span>
+<span class="fc" id="L332">            TypedQuery&lt;String&gt; query = em.createQuery(</span>
                     &quot;SELECT s.seguidor.nickname &quot; +
                             &quot;FROM Seguimiento s &quot; +
                             &quot;WHERE s.seguido.nickname = :nick&quot;, String.class
             );
-<span class="fc" id="L329">            query.setParameter(&quot;nick&quot;, nicknameSeguido);</span>
-<span class="fc" id="L330">            followers = query.getResultList(); // si no hay, devuelve lista vacía</span>
+<span class="fc" id="L337">            query.setParameter(&quot;nick&quot;, nicknameSeguido);</span>
+<span class="fc" id="L338">            followers = query.getResultList(); // si no hay, devuelve lista vacía</span>
         } finally {
-<span class="fc" id="L332">            em.close();</span>
+<span class="fc" id="L340">            em.close();</span>
         }
-<span class="fc" id="L334">        return followers;</span>
+<span class="fc" id="L342">        return followers;</span>
     }
 
+    public List&lt;Proponente&gt; obtenerProponentesEliminados() {
+<span class="fc" id="L346">        EntityManager em = JPAUtil.getEntityManager();</span>
+        List&lt;Proponente&gt; proponentesEliminados;
+        try {
+            // Primero cargar proponentes con sus propuestas (solo un fetch para evitar MultipleBagFetchException)
+<span class="fc" id="L350">            TypedQuery&lt;Proponente&gt; query = em.createQuery(</span>
+                    &quot;SELECT DISTINCT p FROM Proponente p &quot; +
+                            &quot;LEFT JOIN FETCH p.propuestas pr &quot; +
+                            &quot;WHERE (p.eliminado = true) &quot; +
+                            &quot;ORDER BY p.fechaEliminacion DESC&quot;, Proponente.class
+            );
+<span class="fc" id="L356">            proponentesEliminados = query.getResultList();</span>
+            
+            // Ahora cargar las colaboraciones de forma separada para evitar el MultipleBagFetchException
+<span class="fc bfc" id="L359" title="All 2 branches covered.">            for (Proponente prop : proponentesEliminados) {</span>
+<span class="pc bpc" id="L360" title="1 of 2 branches missed.">                for (Propuesta p : prop.getPropuestas()) {</span>
+                    // Cargar colaboraciones de esta propuesta (se hace lazy pero con el EntityManager abierto)
+<span class="nc" id="L362">                    p.getColaboraciones().size(); // Esto activa el lazy loading</span>
+                    // Cargar otros datos necesarios
+<span class="nc" id="L364">                    p.getTiposRetorno().size();</span>
+<span class="nc" id="L365">                    p.getHistorial().size();</span>
+<span class="nc bnc" id="L366" title="All 2 branches missed.">                    if (p.getCategoria() != null) {</span>
+<span class="nc" id="L367">                        p.getCategoria().getNombre();</span>
+                    }
+                    // Cargar colaboradores de las colaboraciones
+<span class="nc bnc" id="L370" title="All 2 branches missed.">                    for (Colaboracion c : p.getColaboraciones()) {</span>
+<span class="nc bnc" id="L371" title="All 2 branches missed.">                        if (c.getColaborador() != null) {</span>
+<span class="nc" id="L372">                            c.getColaborador().getNickname(); // Forzar carga del colaborador</span>
+                        }
+<span class="nc" id="L374">                    }</span>
+<span class="nc" id="L375">                }</span>
+<span class="fc" id="L376">            }</span>
+        } finally {
+<span class="fc" id="L378">            em.close();</span>
+        }
+<span class="fc" id="L380">        return proponentesEliminados;</span>
+    }
 
+    public void darDeBajaProponente(Proponente proponente) {
+<span class="fc" id="L384">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L385">        EntityTransaction t = em.getTransaction();</span>
+        try {
+<span class="fc" id="L387">            t.begin();</span>
+<span class="fc" id="L388">            Proponente prop = em.find(Proponente.class, proponente.getId());</span>
+
+<span class="fc bfc" id="L390" title="All 2 branches covered.">            if (prop == null) {</span>
+<span class="fc" id="L391">                throw new IllegalArgumentException(&quot;El proponente no existe&quot;);</span>
+            }
+
+<span class="fc" id="L394">            em.createNativeQuery(&quot;DELETE FROM usuarios_propuestas WHERE propuestasFavoritas_id  IN (SELECT id FROM &quot; +</span>
+<span class="fc" id="L395">                            &quot;propuestas WHERE proponente_id = :propId)&quot;).setParameter(&quot;propId&quot;, prop.getId())</span>
+<span class="fc" id="L396">                    .executeUpdate();</span>
+
+<span class="fc" id="L398">            em.createQuery(&quot;DELETE FROM Seguimiento s WHERE s.seguidor.id = :uid&quot;).setParameter</span>
+<span class="fc" id="L399">                            (&quot;uid&quot;, prop.getId()).executeUpdate();</span>
+
+<span class="fc" id="L401">            em.createQuery(&quot;DELETE FROM Seguimiento s WHERE s.seguido.id = :uid&quot;).setParameter</span>
+<span class="fc" id="L402">                            (&quot;uid&quot;, prop.getId()).executeUpdate();</span>
+
+<span class="fc" id="L404">            prop.setEliminado(true);</span>
+<span class="fc" id="L405">            prop.setFechaEliminacion(java.time.LocalDateTime.now());</span>
+
+<span class="fc" id="L407">            em.merge(prop);</span>
+<span class="fc" id="L408">            t.commit();</span>
+<span class="fc" id="L409">        } catch(Exception e) {</span>
+<span class="fc bfc" id="L410" title="All 2 branches covered.">            if (t.isActive()) t.rollback();</span>
+<span class="fc" id="L411">            e.printStackTrace();</span>
+<span class="fc" id="L412">            throw new PersistenceException(&quot;Error al dar de baja proponente&quot;, e);</span>
+        } finally {
+<span class="fc" id="L414">            em.close();</span>
+        }
+<span class="fc" id="L416">    }</span>
+
+    public void persistirAcceso(String ip, String url, String browser, String sistemaOperativo) {
+<span class="fc" id="L419">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L420">        EntityTransaction t = em.getTransaction();</span>
+        try {
+<span class="fc" id="L422">            t.begin();</span>
+<span class="fc" id="L423">            AccesoSitio acceso = new AccesoSitio(ip, url, browser, sistemaOperativo);</span>
+<span class="fc" id="L424">            em.persist(acceso);</span>
+
+<span class="fc" id="L426">            LocalDateTime fechaLimite = LocalDateTime.now().minusDays(30);</span>
+<span class="fc" id="L427">            em.createQuery(&quot;DELETE FROM AccesoSitio a WHERE a.fechaHora &lt; :fechaLimite&quot;).setParameter</span>
+<span class="fc" id="L428">                            (&quot;fechaLimite&quot;, fechaLimite).executeUpdate();</span>
+
+<span class="fc" id="L430">            Long count = em.createQuery(&quot;SELECT COUNT(a) FROM AccesoSitio a&quot;, Long.class).getSingleResult();</span>
+
+<span class="pc bpc" id="L432" title="1 of 2 branches missed.">            if (count &gt; 10000) {</span>
+<span class="nc" id="L433">                int exceso = (int)(count - 10000);</span>
+<span class="nc" id="L434">                List&lt;Long&gt; idsAEliminar = em.createQuery(&quot;SELECT a.id FROM AccesoSitio a ORDER BY a.fechaHora ASC&quot;,</span>
+<span class="nc" id="L435">                        Long.class).setMaxResults(exceso).getResultList();</span>
+
+<span class="nc bnc" id="L437" title="All 2 branches missed.">                if (!idsAEliminar.isEmpty()) {</span>
+<span class="nc" id="L438">                    em.createQuery(&quot;DELETE FROM AccesoSitio a WHERE a.id IN :ids&quot;).setParameter</span>
+<span class="nc" id="L439">                                    (&quot;ids&quot;, idsAEliminar).executeUpdate();</span>
+                }
+            }
+<span class="fc" id="L442">            t.commit();</span>
+<span class="fc" id="L443">        } catch(Exception e) {</span>
+<span class="fc bfc" id="L444" title="All 2 branches covered.">            if (t.isActive()) t.rollback();</span>
+<span class="fc" id="L445">            e.printStackTrace();</span>
+<span class="fc" id="L446">            throw new PersistenceException(&quot;Error al registrar acceso: &quot; + e);</span>
+        } finally {
+<span class="fc" id="L448">            em.close();</span>
+        }
+<span class="fc" id="L450">    }</span>
+
+    public List&lt;DTAccesoSitio&gt; obtenerRegistroAccesos() {
+<span class="fc" id="L453">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L454">        List&lt;DTAccesoSitio&gt; resultado = new ArrayList&lt;&gt;();</span>
+        try {
+<span class="fc" id="L456">            List&lt;AccesoSitio&gt; accesos = em.createQuery(&quot;SELECT a FROM AccesoSitio a ORDER BY a.fechaHora DESC&quot;,</span>
+<span class="fc" id="L457">                            AccesoSitio.class).getResultList();</span>
+
+<span class="fc bfc" id="L459" title="All 2 branches covered.">            for (AccesoSitio acceso : accesos) {</span>
+<span class="fc" id="L460">                resultado.add(new DTAccesoSitio(acceso.getId(), acceso.getIp(), acceso.getUrl(), acceso.getBrowser(),</span>
+<span class="fc" id="L461">                        acceso.getSistemaOperativo(), acceso.getFechaHora()));</span>
+<span class="fc" id="L462">            }</span>
+        } finally {
+<span class="fc" id="L464">            em.close();</span>
+        }
+<span class="fc" id="L466">        return resultado;</span>
+    }
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

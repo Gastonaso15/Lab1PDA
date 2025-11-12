@@ -254,10 +254,30 @@ public class PropuestaController implements IPropuestaController {
 
     @Override
     public void extenderFinanciacion(DTUsuario usuario, String tituloPropuesta){
-<span class="nc" id="L257">        PropuestaManejador pm = PropuestaManejador.getInstance();</span>
-<span class="nc" id="L258">        Propuesta propuesta = pm.obtenerPropuestaPorTitulo(tituloPropuesta);</span>
-<span class="nc" id="L259">        propuesta.setFechaPublicacion(propuesta.getFechaPublicacion().plusMonths(1));//Le agrego 1 mes a la fecha actual</span>
-<span class="nc" id="L260">        pm.actualizarPropuesta(propuesta); //debo persistirla para que se efectúe el cambio en la base de datos</span>
-<span class="nc" id="L261">    }</span>
+<span class="fc" id="L257">        PropuestaManejador pm = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L258">        Propuesta propuesta = pm.obtenerPropuestaPorTitulo(tituloPropuesta);</span>
+<span class="fc" id="L259">        propuesta.setFechaPublicacion(propuesta.getFechaPublicacion().plusMonths(1));//Le agrego 1 mes a la fecha actual</span>
+<span class="fc" id="L260">        pm.actualizarPropuesta(propuesta); //debo persistirla para que se efectúe el cambio en la base de datos</span>
+<span class="fc" id="L261">    }</span>
+
+    @Override
+    public void modificarHistorialYEstadoPropuesta(DTPropuesta propuesta){
+<span class="fc" id="L265">        PropuestaManejador pm = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L266">        Propuesta prop = pm.obtenerPropuestaPorTitulo(propuesta.getTitulo());</span>
+
+<span class="fc" id="L268">        EstadoPropuesta estado = EstadoPropuesta.valueOf(propuesta.getEstadoActual().name());</span>
+<span class="fc" id="L269">        prop.setEstadoActual(estado);</span>
+
+<span class="fc" id="L271">        List&lt;PropuestaEstado&gt; historial = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L272" title="All 2 branches covered.">        for (DTPropuestaEstado dtEstado : propuesta.getHistorial()) {</span>
+<span class="fc" id="L273">            EstadoPropuesta estadoEnum = EstadoPropuesta.valueOf(dtEstado.getEstado().name());</span>
+<span class="fc" id="L274">            PropuestaEstado nuevoEstado = new PropuestaEstado(prop, estadoEnum, dtEstado.getFechaCambio());</span>
+<span class="fc" id="L275">            historial.add(nuevoEstado);</span>
+<span class="fc" id="L276">        }</span>
+<span class="fc" id="L277">        prop.setHistorial(historial);</span>
+<span class="fc" id="L278">        pm.actualizarPropuesta(prop);</span>
+<span class="fc" id="L279">    }</span>
+
+
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

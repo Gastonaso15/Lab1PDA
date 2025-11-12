@@ -1,6 +1,8 @@
 package culturarte.presentacion.internalFrames;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.tree.DefaultMutableTreeNode;
 import java.awt.*;
 import java.io.File;
@@ -35,53 +37,151 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
 
     public AltaPropuestaInternalFrame(IPropuestaController icp,IUsuarioController icu) {
         super("Alta de Propuesta", true, true, true, true);
-        setSize(1000, 500);
-        setLayout(new BorderLayout());
+        setSize(1100, 700);
+        setLayout(new BorderLayout(15, 15));
+        ((JComponent) getContentPane()).setBorder(new EmptyBorder(15, 15, 15, 15));
 
         PropuestaContr = icp;
-
-        JPanel panel = new JPanel(new GridLayout(10, 2, 5, 5));
 
         DefaultMutableTreeNode rootCategorias = new DefaultMutableTreeNode("Categorías");
         treeCategorias = new JTree(rootCategorias);
         treeCategorias.setShowsRootHandles(true);
+        treeCategorias.setFont(new Font("Segoe UI", Font.PLAIN, 12));
         JScrollPane scrollTree = new JScrollPane(treeCategorias);
+        scrollTree.setBorder(BorderFactory.createTitledBorder(
+            BorderFactory.createEtchedBorder(),
+            "Seleccionar Categoría",
+            TitledBorder.LEFT,
+            TitledBorder.TOP,
+            new Font("Segoe UI", Font.BOLD, 13),
+            new Color(70, 70, 70)
+        ));
+        scrollTree.setPreferredSize(new Dimension(280, 0));
 
         List<DTCategoria> categorias = PropuestaContr.devolverTodasLasCategorias();
         CategoriaUIHelper.cargarCategorias(treeCategorias, categorias);
 
-        panel.add(new JLabel("Título:"));
-        tfTitulo = new JTextField();
-        panel.add(tfTitulo);
+        JPanel panelDatos = new JPanel();
+        panelDatos.setLayout(new BoxLayout(panelDatos, BoxLayout.Y_AXIS));
+        panelDatos.setBorder(BorderFactory.createTitledBorder(
+            BorderFactory.createEtchedBorder(),
+            "Datos de la Propuesta",
+            TitledBorder.LEFT,
+            TitledBorder.TOP,
+            new Font("Segoe UI", Font.BOLD, 13),
+            new Color(70, 70, 70)
+        ));
+        panelDatos.setBackground(Color.WHITE);
 
-        panel.add(new JLabel("Descripción:"));
-        tfDescripcion = new JTextField();
-        panel.add(tfDescripcion);
+        JPanel gridPanel = new JPanel(new GridBagLayout());
+        gridPanel.setBackground(Color.WHITE);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(8, 10, 8, 10);
+        gbc.anchor = GridBagConstraints.WEST;
 
-        panel.add(new JLabel("Lugar:"));
-        tfLugar = new JTextField();
-        panel.add(tfLugar);
+        gbc.gridx = 0; gbc.gridy = 0;
+        gridPanel.add(createLabel("Título:"), gbc);
+        gbc.gridx = 1;
+        tfTitulo = new JTextField(25);
+        estilizarTextField(tfTitulo);
+        gridPanel.add(tfTitulo, gbc);
 
-        panel.add(new JLabel("Fecha Prevista (yyyy-mm-dd):"));
-        tfFechaPrevista = new JTextField();
-        panel.add(tfFechaPrevista);
+        gbc.gridx = 0; gbc.gridy = 1;
+        gridPanel.add(createLabel("Descripción:"), gbc);
+        gbc.gridx = 1;
+        tfDescripcion = new JTextField(25);
+        estilizarTextField(tfDescripcion);
+        gridPanel.add(tfDescripcion, gbc);
 
-        panel.add(new JLabel("Precio Entrada:"));
-        tfPrecioEntrada = new JTextField();
-        panel.add(tfPrecioEntrada);
+        gbc.gridx = 0; gbc.gridy = 2;
+        gridPanel.add(createLabel("Lugar:"), gbc);
+        gbc.gridx = 1;
+        tfLugar = new JTextField(25);
+        estilizarTextField(tfLugar);
+        gridPanel.add(tfLugar, gbc);
 
-        panel.add(new JLabel("Monto Necesario:"));
-        tfMontoNecesario = new JTextField();
-        panel.add(tfMontoNecesario);
+        gbc.gridx = 0; gbc.gridy = 3;
+        gridPanel.add(createLabel("Fecha Prevista:"), gbc);
+        gbc.gridx = 1;
+        JPanel fechaPanel = new JPanel(new BorderLayout(5, 0));
+        fechaPanel.setBackground(Color.WHITE);
+        tfFechaPrevista = new JTextField(15);
+        estilizarTextField(tfFechaPrevista);
+        fechaPanel.add(tfFechaPrevista, BorderLayout.CENTER);
+        JLabel hintLabel = new JLabel("(yyyy-mm-dd)");
+        hintLabel.setFont(new Font("Segoe UI", Font.ITALIC, 10));
+        hintLabel.setForeground(new Color(120, 120, 120));
+        fechaPanel.add(hintLabel, BorderLayout.EAST);
+        gridPanel.add(fechaPanel, gbc);
 
-        panel.add(new JLabel("Imagen (Opcional):"));
+        gbc.gridx = 0; gbc.gridy = 4;
+        gridPanel.add(createLabel("Precio Entrada:"), gbc);
+        gbc.gridx = 1;
+        tfPrecioEntrada = new JTextField(25);
+        estilizarTextField(tfPrecioEntrada);
+        gridPanel.add(tfPrecioEntrada, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 5;
+        gridPanel.add(createLabel("Monto Necesario:"), gbc);
+        gbc.gridx = 1;
+        tfMontoNecesario = new JTextField(25);
+        estilizarTextField(tfMontoNecesario);
+        gridPanel.add(tfMontoNecesario, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 6;
+        gridPanel.add(createLabel("Imagen (Opcional):"), gbc);
+        gbc.gridx = 1;
         JPanel imagenPanel = new JPanel(new BorderLayout(5, 5));
+        imagenPanel.setBackground(Color.WHITE);
         tfImagenPath = new JTextField();
         tfImagenPath.setEditable(false);
-        JButton btnSeleccionarImagen = new JButton("Seleccionar Imagen");
+        estilizarTextField(tfImagenPath);
+        JButton btnSeleccionarImagen = crearBoton("Seleccionar", new Color(40, 50, 70), Color.WHITE);
         imagenPanel.add(tfImagenPath, BorderLayout.CENTER);
         imagenPanel.add(btnSeleccionarImagen, BorderLayout.EAST);
-        panel.add(imagenPanel);
+        gridPanel.add(imagenPanel, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 7;
+        gridPanel.add(createLabel("Proponente:"), gbc);
+        gbc.gridx = 1;
+        cbProponente = new JComboBox<>();
+        cbProponente.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        cbProponente.setBackground(Color.WHITE);
+        List<String> proponentes = icu.devolverNicknamesProponentes();
+        for (String p : proponentes) {
+            cbProponente.addItem(p);
+        }
+        gridPanel.add(cbProponente, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 8;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gridPanel.add(createLabel("Tipo(s) de Retorno:"), gbc);
+        gbc.gridx = 1;
+        JPanel panelCheckBoxes = new JPanel();
+        panelCheckBoxes.setLayout(new BoxLayout(panelCheckBoxes, BoxLayout.Y_AXIS));
+        panelCheckBoxes.setBackground(Color.WHITE);
+        checkBoxesTiposRetorno = new ArrayList<>();
+        List<String> tiposRetorno = listarTiposRetorno();
+        for (String tipo : tiposRetorno) {
+            JCheckBox checkBox = new JCheckBox(tipo);
+            checkBox.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+            checkBox.setBackground(Color.WHITE);
+            checkBoxesTiposRetorno.add(checkBox);
+            panelCheckBoxes.add(checkBox);
+        }
+        JScrollPane scrollTiposRetorno = new JScrollPane(panelCheckBoxes);
+        scrollTiposRetorno.setBorder(BorderFactory.createLoweredBevelBorder());
+        scrollTiposRetorno.setPreferredSize(new Dimension(200, 100));
+        gridPanel.add(scrollTiposRetorno, gbc);
+
+        panelDatos.add(gridPanel);
+
+        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scrollTree, panelDatos);
+        splitPane.setDividerLocation(300);
+        splitPane.setDividerSize(8);
+        splitPane.setBorder(null);
+
+        add(splitPane, BorderLayout.CENTER);
 
         btnSeleccionarImagen.addActionListener(e -> {
             JFileChooser fileChooser = new JFileChooser();
@@ -92,41 +192,14 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
             }
         });
 
-        panel.add(new JLabel("Proponente:"));
-        cbProponente = new JComboBox<>();
-
-        List<String> proponentes = icu.devolverNicknamesProponentes();
-        for (String p : proponentes) {
-            cbProponente.addItem(p);
-        }
-
-        panel.add(cbProponente);
-
-        panel.add(new JLabel("Tipo(s) de Retorno:"));
-        JPanel panelCheckBoxes = new JPanel();
-        panelCheckBoxes.setLayout(new BoxLayout(panelCheckBoxes, BoxLayout.Y_AXIS));
-        checkBoxesTiposRetorno = new ArrayList<>();
-        List<String> tiposRetorno = listarTiposRetorno();
-        for (String tipo : tiposRetorno) {
-            JCheckBox checkBox = new JCheckBox(tipo);
-            checkBoxesTiposRetorno.add(checkBox);
-            panelCheckBoxes.add(checkBox);
-        }
-        JScrollPane scrollTiposRetorno = new JScrollPane(panelCheckBoxes);
-        panel.add(scrollTiposRetorno);
-
-        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, scrollTree, panel);
-        splitPane.setDividerLocation(250);
-        add(splitPane, BorderLayout.CENTER);
-
-
-        JPanel botones = new JPanel();
-        JButton aceptar = new JButton("Aceptar");
-        JButton cancelar = new JButton("Cancelar");
+        JPanel botones = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 10));
+        botones.setBackground(new Color(245, 248, 250));
+        botones.setBorder(new EmptyBorder(10, 0, 0, 0));
+        JButton aceptar = crearBoton("Aceptar", new Color(40, 50, 70), Color.WHITE);
+        JButton cancelar = crearBoton("Cancelar", new Color(60, 60, 60), Color.WHITE);
         botones.add(aceptar);
         botones.add(cancelar);
         add(botones, BorderLayout.SOUTH);
-
 
         cancelar.addActionListener(e -> dispose());
 
@@ -196,7 +269,6 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                         "Alta de Propuesta",
                         JOptionPane.INFORMATION_MESSAGE);
 
-
                 tfTitulo.setText("");
                 tfDescripcion.setText("");
                 tfLugar.setText("");
@@ -204,7 +276,12 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                 tfPrecioEntrada.setText("");
                 tfMontoNecesario.setText("");
                 tfImagenPath.setText("");
-                cbProponente.setSelectedIndex(0);
+                if (cbProponente.getItemCount() > 0) {
+                    cbProponente.setSelectedIndex(0);
+                }
+                for (JCheckBox cb : checkBoxesTiposRetorno) {
+                    cb.setSelected(false);
+                }
 
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this,
@@ -213,6 +290,47 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
                         JOptionPane.ERROR_MESSAGE);
             }
         });
+    }
+
+    private JLabel createLabel(String text) {
+        JLabel label = new JLabel(text);
+        label.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        label.setForeground(new Color(60, 60, 60));
+        return label;
+    }
+
+    private void estilizarTextField(JComponent field) {
+        field.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        field.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLoweredBevelBorder(),
+            new EmptyBorder(5, 8, 5, 8)
+        ));
+        if (field instanceof JTextField) {
+            ((JTextField) field).setBackground(Color.WHITE);
+        }
+    }
+
+    private JButton crearBoton(String texto, Color colorFondo, Color colorTexto) {
+        JButton boton = new JButton(texto);
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        boton.setBackground(colorFondo);
+        boton.setForeground(colorTexto);
+        boton.setFocusPainted(false);
+        boton.setBorderPainted(true);
+        boton.setContentAreaFilled(true);
+        boton.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createRaisedBevelBorder(),
+            new EmptyBorder(8, 20, 8, 20)
+        ));
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                boton.setBackground(colorFondo.darker());
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                boton.setBackground(colorFondo);
+            }
+        });
+        return boton;
     }
 
     public List<String> listarTiposRetorno() {

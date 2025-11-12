@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: culturarte.logica.controladores.PropuestaControllerTest
 -------------------------------------------------------------------------------
-Tests run: 37, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.893 s -- in culturarte.logica.controladores.PropuestaControllerTest
+Tests run: 39, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.882 s -- in culturarte.logica.controladores.PropuestaControllerTest

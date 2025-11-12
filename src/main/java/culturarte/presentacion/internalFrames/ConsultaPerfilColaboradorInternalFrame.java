@@ -8,6 +8,7 @@ import culturarte.servicios.interfaces.IUsuarioController;
 import culturarte.presentacion.helpers.ImagenUIHelper;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.util.List;
@@ -26,62 +27,111 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
 
     public ConsultaPerfilColaboradorInternalFrame(IUsuarioController icu) {
         super("Consultar Perfil de Colaborador", true, true, true, true);
-        setSize(1000, 500);
-        setLayout(new BorderLayout());
+        setSize(1200, 700);
+        setLayout(new BorderLayout(10, 10));
+        ((JComponent) getContentPane()).setBorder(new EmptyBorder(10, 10, 10, 10));
 
         UsuarioContr = icu;
 
-        JPanel panelIzquierdo = new JPanel(new BorderLayout());
+        JPanel panelIzquierdo = new JPanel(new BorderLayout(5, 5));
+        panelIzquierdo.setBackground(new Color(250, 250, 250));
         List<String> nicknames = icu.devolverNicknamesColaboradores();
         listColaboradores = new JList<>(nicknames.toArray(new String[0]));
+        listColaboradores.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        listColaboradores.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrollColaboradores = new JScrollPane(listColaboradores);
-        panelIzquierdo.add(new JLabel("Colaboradores:"), BorderLayout.NORTH);
+        scrollColaboradores.setBorder(BorderFactory.createTitledBorder(
+            BorderFactory.createEtchedBorder(),
+            "Colaboradores",
+            TitledBorder.LEFT,
+            TitledBorder.TOP,
+            new Font("Segoe UI", Font.BOLD, 13),
+            new Color(70, 70, 70)
+        ));
         panelIzquierdo.add(scrollColaboradores, BorderLayout.CENTER);
 
-        JPanel panelDerecho = new JPanel(new BorderLayout());
+        JPanel panelDerecho = new JPanel(new BorderLayout(10, 10));
+        panelDerecho.setBackground(new Color(250, 250, 250));
 
-        JPanel panelInfo = new JPanel(new GridLayout(1, 3, 10, 0));
+        JPanel panelInfo = new JPanel();
+        panelInfo.setLayout(new BoxLayout(panelInfo, BoxLayout.Y_AXIS));
+        panelInfo.setBorder(BorderFactory.createTitledBorder(
+            BorderFactory.createEtchedBorder(),
+            "Información del Colaborador",
+            TitledBorder.LEFT,
+            TitledBorder.TOP,
+            new Font("Segoe UI", Font.BOLD, 14),
+            new Color(70, 70, 70)
+        ));
+        panelInfo.setBackground(Color.WHITE);
 
-        JPanel col1 = new JPanel();
-        col1.setLayout(new BoxLayout(col1, BoxLayout.Y_AXIS));
-        lblNickname = new JLabel("Nickname: ");
-        lblNombre = new JLabel("Nombre: ");
-        lblApellido = new JLabel("Apellido: ");
-        lblFechaNacimiento = new JLabel("Fecha de nacimiento: ");
-        col1.add(lblNickname);
-        col1.add(lblNombre);
-        col1.add(lblApellido);
-        col1.add(lblFechaNacimiento);
+        JPanel gridInfo = new JPanel(new GridBagLayout());
+        gridInfo.setBackground(Color.WHITE);
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(8, 15, 8, 15);
+        gbc.anchor = GridBagConstraints.WEST;
 
-        JPanel col2 = new JPanel();
-        col2.setLayout(new BoxLayout(col2, BoxLayout.Y_AXIS));
-        lblCorreo = new JLabel("Correo: ");
-        col2.add(lblCorreo);
+        lblNickname = createDetailLabel("Nickname: ");
+        gbc.gridx = 0; gbc.gridy = 0;
+        gridInfo.add(createInfoLabel("Nickname:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblNickname, gbc);
 
-        JPanel col3 = new JPanel();
-        col3.setLayout(new BoxLayout(col3, BoxLayout.Y_AXIS));
+        lblNombre = createDetailLabel("Nombre: ");
+        gbc.gridx = 0; gbc.gridy = 1;
+        gridInfo.add(createInfoLabel("Nombre:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblNombre, gbc);
+
+        lblApellido = createDetailLabel("Apellido: ");
+        gbc.gridx = 0; gbc.gridy = 2;
+        gridInfo.add(createInfoLabel("Apellido:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblApellido, gbc);
+
+        lblCorreo = createDetailLabel("Correo: ");
+        gbc.gridx = 0; gbc.gridy = 3;
+        gridInfo.add(createInfoLabel("Correo:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblCorreo, gbc);
+
+        lblFechaNacimiento = createDetailLabel("Fecha de Nacimiento: ");
+        gbc.gridx = 0; gbc.gridy = 4;
+        gridInfo.add(createInfoLabel("Fecha de Nacimiento:"), gbc);
+        gbc.gridx = 1;
+        gridInfo.add(lblFechaNacimiento, gbc);
+
+        gbc.gridx = 0; gbc.gridy = 5;
+        gbc.gridwidth = 2;
+        gbc.anchor = GridBagConstraints.CENTER;
         lblImagen = new ImagenUIHelper.ImagenPanel();
-        lblImagen.setPreferredSize(new Dimension(150, 150));
-        lblImagen.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        col3.add(lblImagen);
+        lblImagen.setPreferredSize(new Dimension(200, 200));
+        lblImagen.setBorder(BorderFactory.createLoweredBevelBorder());
+        gridInfo.add(lblImagen, gbc);
 
-        Font fontInfo = new Font("Times New Roman", Font.PLAIN, 20);
-        setFontToLabels(fontInfo, lblNickname, lblNombre, lblApellido, lblFechaNacimiento, lblCorreo);
-
-        panelInfo.add(col3);
-        panelInfo.add(col1);
-        panelInfo.add(col2);
+        panelInfo.add(gridInfo);
 
         panelPropuestas = new JPanel();
         panelPropuestas.setLayout(new BoxLayout(panelPropuestas, BoxLayout.Y_AXIS));
+        panelPropuestas.setBorder(BorderFactory.createTitledBorder(
+            BorderFactory.createEtchedBorder(),
+            "Propuestas en las que Colabora",
+            TitledBorder.LEFT,
+            TitledBorder.TOP,
+            new Font("Segoe UI", Font.BOLD, 13),
+            new Color(70, 70, 70)
+        ));
+        panelPropuestas.setBackground(new Color(250, 250, 250));
         JScrollPane scrollPropuestas = new JScrollPane(panelPropuestas);
-        scrollPropuestas.setPreferredSize(new Dimension(600, 300));
+        scrollPropuestas.setBorder(null);
 
         panelDerecho.add(panelInfo, BorderLayout.NORTH);
         panelDerecho.add(scrollPropuestas, BorderLayout.CENTER);
 
         JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelIzquierdo, panelDerecho);
-        splitPane.setDividerLocation(200);
+        splitPane.setDividerLocation(250);
+        splitPane.setDividerSize(8);
+        splitPane.setBorder(null);
         add(splitPane, BorderLayout.CENTER);
 
         listColaboradores.addListSelectionListener(e -> {
@@ -94,15 +144,35 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
         });
     }
 
+    private JLabel createInfoLabel(String text) {
+        JLabel label = new JLabel(text);
+        label.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        label.setForeground(new Color(60, 60, 60));
+        return label;
+    }
+
+    private JLabel createDetailLabel(String text) {
+        JLabel label = new JLabel(text);
+        label.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        label.setOpaque(true);
+        label.setBackground(new Color(240, 248, 255));
+        label.setForeground(new Color(30, 30, 30));
+        label.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLoweredBevelBorder(),
+            new EmptyBorder(5, 10, 5, 10)
+        ));
+        return label;
+    }
+
     private void mostrarColaborador(String nickname) {
         try {
             DTColaborador colaborador = UsuarioContr.devolverColaboradorPorNickname(nickname);
 
-            lblNickname.setText("Nickname: " + colaborador.getNickname());
-            lblNombre.setText("Nombre: " + colaborador.getNombre());
-            lblApellido.setText("Apellido: " + colaborador.getApellido());
-            lblCorreo.setText("Correo: " + colaborador.getCorreo());
-            lblFechaNacimiento.setText("Fecha de Nacimiento: " + colaborador.getFechaNacimiento());
+            lblNickname.setText(colaborador.getNickname() != null ? colaborador.getNickname() : "");
+            lblNombre.setText(colaborador.getNombre() != null ? colaborador.getNombre() : "");
+            lblApellido.setText(colaborador.getApellido() != null ? colaborador.getApellido() : "");
+            lblCorreo.setText(colaborador.getCorreo() != null ? colaborador.getCorreo() : "");
+            lblFechaNacimiento.setText(colaborador.getFechaNacimiento() != null ? colaborador.getFechaNacimiento().toString() : "");
 
             lblImagen.setImagen(colaborador.getImagen());
 
@@ -119,43 +189,54 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
                     JPanel pPanel = new JPanel();
                     pPanel.setLayout(new BoxLayout(pPanel, BoxLayout.Y_AXIS));
                     pPanel.setBorder(BorderFactory.createTitledBorder(
-                            BorderFactory.createLineBorder(Color.BLACK),
-                            propuesta.getTitulo() + " - " + propuesta.getEstadoActual(),
-                            TitledBorder.LEFT,
-                            TitledBorder.TOP
+                        BorderFactory.createEtchedBorder(),
+                        propuesta.getTitulo() + " - " + propuesta.getEstadoActual(),
+                        TitledBorder.LEFT,
+                        TitledBorder.TOP,
+                        new Font("Segoe UI", Font.BOLD, 12),
+                        new Color(70, 70, 70)
                     ));
 
                     switch(propuesta.getEstadoActual()) {
-                        case INGRESADA -> pPanel.setBackground(new Color(238, 10, 238));
-                        case PUBLICADA -> pPanel.setBackground(new Color(144, 238, 144));
-                        case EN_FINANCIACION -> pPanel.setBackground(new Color(255, 255, 102));
-                        case CANCELADA -> pPanel.setBackground(new Color(255, 102, 102));
-                        case FINANCIADA -> pPanel.setBackground(new Color(102, 178, 255));
-                        case NO_FINANCIADA -> pPanel.setBackground(new Color(211, 211, 211));
+                        case PUBLICADA -> pPanel.setBackground(new Color(200, 255, 200));
+                        case EN_FINANCIACION -> pPanel.setBackground(new Color(255, 255, 200));
+                        case CANCELADA -> pPanel.setBackground(new Color(255, 200, 200));
+                        case FINANCIADA -> pPanel.setBackground(new Color(200, 220, 255));
+                        case NO_FINANCIADA -> pPanel.setBackground(new Color(230, 230, 230));
+                        default -> pPanel.setBackground(Color.WHITE);
                     }
 
                     double dineroRecaudado = 0;
                     if (propuesta.getColaboraciones() != null) {
                         for (DTColaboracion c : propuesta.getColaboraciones()) {
-                            dineroRecaudado += c.getMonto();
+                            if (c.getMonto() != null) {
+                                dineroRecaudado += c.getMonto();
+                            }
                         }
                     }
 
-                    pPanel.add(new JLabel("Título: " + propuesta.getTitulo()));
+                    JLabel lblTitulo = new JLabel("Título: " + propuesta.getTitulo());
+                    lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 11));
+                    pPanel.add(lblTitulo);
                     pPanel.add(new JLabel("Proponente: " + (propuesta.getDTProponente() != null ?
                             propuesta.getDTProponente().getNickname() : "N/A")));
-                    pPanel.add(new JLabel("Fecha Prevista: " + propuesta.getFechaPrevista()));
-                    pPanel.add(new JLabel("Monto Necesario: $" + propuesta.getMontoNecesario()));
-                    pPanel.add(new JLabel("Dinero Recaudado: $" + dineroRecaudado));
-                    pPanel.add(new JLabel("Mi Colaboración: $" + colaboracion.getMonto()));
+                    if (propuesta.getFechaPrevista() != null) {
+                        pPanel.add(new JLabel("Fecha Prevista: " + propuesta.getFechaPrevista()));
+                    }
+                    if (propuesta.getMontoNecesario() != null) {
+                        pPanel.add(new JLabel("Monto Necesario: $" + propuesta.getMontoNecesario()));
+                    }
+                    pPanel.add(new JLabel("Dinero Recaudado: $" + String.format("%.2f", dineroRecaudado)));
+                    pPanel.add(new JLabel("Mi Colaboración: $" + (colaboracion.getMonto() != null ? String.format("%.2f", colaboracion.getMonto()) : "0")));
                     pPanel.add(new JLabel("Estado Actual: " + propuesta.getEstadoActual()));
 
                     panelPropuestas.add(pPanel);
-                    panelPropuestas.add(Box.createRigidArea(new Dimension(0, 5)));
+                    panelPropuestas.add(Box.createRigidArea(new Dimension(0, 8)));
                 }
             } else {
                 JLabel lblSinColaboraciones = new JLabel("Este colaborador no ha participado en ninguna propuesta.");
-                lblSinColaboraciones.setFont(new Font("Times New Roman", Font.ITALIC, 16));
+                lblSinColaboraciones.setFont(new Font("Segoe UI", Font.ITALIC, 14));
+                lblSinColaboraciones.setForeground(new Color(120, 120, 120));
                 panelPropuestas.add(lblSinColaboraciones);
             }
 
@@ -167,11 +248,4 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
-    private void setFontToLabels(Font font, JLabel... labels) {
-        for (JLabel lbl : labels) {
-            lbl.setFont(font);
-        }
-    }
-
 }

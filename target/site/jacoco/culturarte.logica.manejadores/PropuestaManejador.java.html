@@ -39,375 +39,380 @@ import culturarte.persistencia.JPAUtil;
 <span class="fc" id="L39">        EntityManager em = JPAUtil.getEntityManager();</span>
         Propuesta pro;
         try {
-<span class="fc" id="L42">            TypedQuery&lt;Propuesta&gt; query = em.createQuery(&quot;SELECT p FROM Propuesta p WHERE p.titulo = :titulo&quot;, Propuesta.class).setParameter(&quot;titulo&quot;, titulo);</span>
-<span class="fc" id="L43">            pro = query.getSingleResult();</span>
+<span class="fc" id="L42">            TypedQuery&lt;Propuesta&gt; query = em.createQuery(&quot;SELECT p FROM Propuesta p WHERE p.titulo = :titulo AND &quot; +</span>
+                    &quot;(p.proponente.eliminado = false OR p.proponente.eliminado IS NULL)&quot;,
+<span class="fc" id="L44">                    Propuesta.class).setParameter(&quot;titulo&quot;, titulo);</span>
+<span class="fc" id="L45">            pro = query.getSingleResult();</span>
             
             // Cargar las colecciones lazy antes de cerrar la sesión
-<span class="pc bpc" id="L46" title="1 of 2 branches missed.">            if (pro != null) {</span>
-<span class="fc" id="L47">                pro.getHistorial().size();</span>
-<span class="fc" id="L48">                pro.getColaboraciones().size();</span>
-<span class="fc" id="L49">                pro.getComentarios().size();</span>
-<span class="fc" id="L50">                pro.getTiposRetorno().size();</span>
+<span class="pc bpc" id="L48" title="1 of 2 branches missed.">            if (pro != null) {</span>
+<span class="fc" id="L49">                pro.getHistorial().size();</span>
+<span class="fc" id="L50">                pro.getColaboraciones().size();</span>
+<span class="fc" id="L51">                pro.getComentarios().size();</span>
+<span class="fc" id="L52">                pro.getTiposRetorno().size();</span>
             }
-<span class="fc" id="L52">        } catch (NoResultException e) {</span>
-<span class="fc" id="L53">            pro = null;</span>
+<span class="fc" id="L54">        } catch (NoResultException e) {</span>
+<span class="fc" id="L55">            pro = null;</span>
         } finally {
-<span class="fc" id="L55">            em.close();</span>
+<span class="fc" id="L57">            em.close();</span>
         }
-<span class="fc" id="L57">        return pro;</span>
+<span class="fc" id="L59">        return pro;</span>
     }
 
     public List&lt;DTPropuesta&gt; obtenerTodasLasPropuestas() {
-<span class="fc" id="L61">        EntityManager em = JPAUtil.getEntityManager();</span>
-<span class="fc" id="L62">        List&lt;Propuesta&gt; propuestas = em.createQuery(&quot;SELECT p FROM Propuesta p&quot;, Propuesta.class)</span>
-<span class="fc" id="L63">                .getResultList();</span>
-<span class="fc bfc" id="L64" title="All 2 branches covered.">        for (Propuesta p : propuestas) {</span>
-<span class="fc" id="L65">            p.getHistorial().size();</span>
-<span class="fc" id="L66">            p.getColaboraciones().size();</span>
-<span class="fc" id="L67">            p.getComentarios().size();</span>
-<span class="fc" id="L68">            p.getTiposRetorno().size();</span>
-<span class="fc" id="L69">        }</span>
-<span class="fc" id="L70">        em.close();</span>
-<span class="fc" id="L71">        List&lt;DTPropuesta&gt; dtPropuestas = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L72" title="All 2 branches covered.">        for (Propuesta p : propuestas) {</span>
+<span class="fc" id="L63">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L64">        List&lt;Propuesta&gt; propuestas = em.createQuery(&quot;SELECT p FROM Propuesta p WHERE p.proponente.eliminado = false &quot; +</span>
+                        &quot;OR p.proponente.eliminado IS NULL&quot;, Propuesta.class)
+<span class="fc" id="L66">                .getResultList();</span>
 
-<span class="fc" id="L74">            DTCategoria dtCategoria = null;</span>
-<span class="pc bpc" id="L75" title="1 of 2 branches missed.">            if (p.getCategoria() != null) {</span>
-<span class="fc" id="L76">                dtCategoria = new DTCategoria(p.getCategoria().getNombre());</span>
+<span class="fc bfc" id="L68" title="All 2 branches covered.">        for (Propuesta p : propuestas) {</span>
+<span class="fc" id="L69">            p.getHistorial().size();</span>
+<span class="fc" id="L70">            p.getColaboraciones().size();</span>
+<span class="fc" id="L71">            p.getComentarios().size();</span>
+<span class="fc" id="L72">            p.getTiposRetorno().size();</span>
+<span class="fc" id="L73">        }</span>
+<span class="fc" id="L74">        em.close();</span>
+<span class="fc" id="L75">        List&lt;DTPropuesta&gt; dtPropuestas = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        for (Propuesta p : propuestas) {</span>
+
+<span class="fc" id="L78">            DTCategoria dtCategoria = null;</span>
+<span class="pc bpc" id="L79" title="1 of 2 branches missed.">            if (p.getCategoria() != null) {</span>
+<span class="fc" id="L80">                dtCategoria = new DTCategoria(p.getCategoria().getNombre());</span>
             }
 
-<span class="fc" id="L79">            DTEstadoPropuesta dtEstadoPropuesta = DTEstadoPropuesta.valueOf(p.getEstadoActual().name());</span>
+<span class="fc" id="L83">            DTEstadoPropuesta dtEstadoPropuesta = DTEstadoPropuesta.valueOf(p.getEstadoActual().name());</span>
 
-<span class="fc" id="L81">            List&lt;DTPropuestaEstado&gt; historial = new ArrayList&lt;&gt;();</span>
-<span class="pc bpc" id="L82" title="1 of 2 branches missed.">            if (p.getHistorial() != null) {</span>
-<span class="pc bpc" id="L83" title="1 of 2 branches missed.">                for (PropuestaEstado pe : p.getHistorial()) {</span>
-<span class="nc" id="L84">                    historial.add(new DTPropuestaEstado(</span>
-<span class="nc" id="L85">                            DTEstadoPropuesta.valueOf(pe.getEstado().name()),</span>
-<span class="nc" id="L86">                            pe.getFechaCambio()</span>
+<span class="fc" id="L85">            List&lt;DTPropuestaEstado&gt; historial = new ArrayList&lt;&gt;();</span>
+<span class="pc bpc" id="L86" title="1 of 2 branches missed.">            if (p.getHistorial() != null) {</span>
+<span class="pc bpc" id="L87" title="1 of 2 branches missed.">                for (PropuestaEstado pe : p.getHistorial()) {</span>
+<span class="nc" id="L88">                    historial.add(new DTPropuestaEstado(</span>
+<span class="nc" id="L89">                            DTEstadoPropuesta.valueOf(pe.getEstado().name()),</span>
+<span class="nc" id="L90">                            pe.getFechaCambio()</span>
                     ));
-<span class="nc" id="L88">                }</span>
+<span class="nc" id="L92">                }</span>
             }
 
-<span class="fc" id="L91">            List&lt;DTColaboracion&gt; colaboraciones = new ArrayList&lt;&gt;();</span>
-<span class="pc bpc" id="L92" title="1 of 2 branches missed.">            if (p.getColaboraciones() != null) {</span>
-<span class="pc bpc" id="L93" title="1 of 2 branches missed.">                for (Colaboracion c : p.getColaboraciones()) {</span>
-<span class="nc" id="L94">                    DTColaborador dtColab = new DTColaborador(</span>
-<span class="nc" id="L95">                            c.getColaborador().getNickname()</span>
+<span class="fc" id="L95">            List&lt;DTColaboracion&gt; colaboraciones = new ArrayList&lt;&gt;();</span>
+<span class="pc bpc" id="L96" title="1 of 2 branches missed.">            if (p.getColaboraciones() != null) {</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">                for (Colaboracion c : p.getColaboraciones()) {</span>
+<span class="nc" id="L98">                    DTColaborador dtColab = new DTColaborador(</span>
+<span class="nc" id="L99">                            c.getColaborador().getNickname()</span>
                     );
 
-<span class="nc" id="L98">                    colaboraciones.add(new DTColaboracion(</span>
+<span class="nc" id="L102">                    colaboraciones.add(new DTColaboracion(</span>
                             dtColab,
-<span class="nc" id="L100">                            c.getMonto()</span>
+<span class="nc" id="L104">                            c.getMonto()</span>
                     ));
-<span class="nc" id="L102">                }</span>
+<span class="nc" id="L106">                }</span>
             }
 
-<span class="fc" id="L105">            List&lt;DTTipoRetorno&gt; tiposRetorno = new ArrayList&lt;&gt;();</span>
-<span class="pc bpc" id="L106" title="1 of 2 branches missed.">            if (p.getTiposRetorno() != null) {</span>
-<span class="fc bfc" id="L107" title="All 2 branches covered.">                for (TipoRetorno t : p.getTiposRetorno()) {</span>
-<span class="fc" id="L108">                    tiposRetorno.add(DTTipoRetorno.valueOf(t.name()));</span>
-<span class="fc" id="L109">                }</span>
+<span class="fc" id="L109">            List&lt;DTTipoRetorno&gt; tiposRetorno = new ArrayList&lt;&gt;();</span>
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">            if (p.getTiposRetorno() != null) {</span>
+<span class="fc bfc" id="L111" title="All 2 branches covered.">                for (TipoRetorno t : p.getTiposRetorno()) {</span>
+<span class="fc" id="L112">                    tiposRetorno.add(DTTipoRetorno.valueOf(t.name()));</span>
+<span class="fc" id="L113">                }</span>
             }
 
-<span class="fc" id="L112">            List&lt;DTComentario&gt; comentarios = new ArrayList&lt;&gt;();</span>
-<span class="pc bpc" id="L113" title="1 of 2 branches missed.">            if (p.getComentarios() != null) {</span>
-<span class="pc bpc" id="L114" title="1 of 2 branches missed.">                for (Comentario c : p.getComentarios()) {</span>
-<span class="nc" id="L115">                    comentarios.add(c.getDataType());</span>
-<span class="nc" id="L116">                }</span>
+<span class="fc" id="L116">            List&lt;DTComentario&gt; comentarios = new ArrayList&lt;&gt;();</span>
+<span class="pc bpc" id="L117" title="1 of 2 branches missed.">            if (p.getComentarios() != null) {</span>
+<span class="pc bpc" id="L118" title="1 of 2 branches missed.">                for (Comentario c : p.getComentarios()) {</span>
+<span class="nc" id="L119">                    comentarios.add(c.getDataType());</span>
+<span class="nc" id="L120">                }</span>
             }
 
-<span class="fc" id="L119">            DTProponente dtProp = new DTProponente();</span>
-<span class="fc" id="L120">            dtProp.setNombre(p.getProponente().getNombre());</span>
-<span class="fc" id="L121">            dtProp.setApellido(p.getProponente().getApellido());</span>
-<span class="fc" id="L122">            dtProp.setNickname(p.getProponente().getNickname());</span>
+<span class="fc" id="L123">            DTProponente dtProp = new DTProponente();</span>
+<span class="fc" id="L124">            dtProp.setNombre(p.getProponente().getNombre());</span>
+<span class="fc" id="L125">            dtProp.setApellido(p.getProponente().getApellido());</span>
+<span class="fc" id="L126">            dtProp.setNickname(p.getProponente().getNickname());</span>
 
-<span class="fc" id="L124">            DTPropuesta dt = new DTPropuesta();</span>
-<span class="fc" id="L125">            dt.setTitulo(p.getTitulo());</span>
-<span class="fc" id="L126">            dt.setDescripcion(p.getDescripcion());</span>
-<span class="fc" id="L127">            dt.setLugar(p.getLugar());</span>
-<span class="fc" id="L128">            dt.setFechaPrevista(p.getFechaPrevista());</span>
-<span class="fc" id="L129">            dt.setPrecioEntrada(p.getPrecioEntrada());</span>
-<span class="fc" id="L130">            dt.setMontoNecesario(p.getMontoNecesario());</span>
-<span class="fc" id="L131">            dt.setFechaPublicacion(p.getFechaPublicacion());</span>
-<span class="fc" id="L132">            dt.setImagen(p.getImagen());</span>
-<span class="fc" id="L133">            dt.setCategoria(dtCategoria);</span>
-<span class="fc" id="L134">            dt.setDTProponente(dtProp);</span>
-<span class="fc" id="L135">            dt.setEstadoActual(dtEstadoPropuesta);</span>
-<span class="fc" id="L136">            dt.setHistorial(historial);</span>
-<span class="fc" id="L137">            dt.setColaboraciones(colaboraciones);</span>
-<span class="fc" id="L138">            dt.setComentarios(comentarios);</span>
-<span class="fc" id="L139">            dt.setTiposRetorno(tiposRetorno);</span>
+<span class="fc" id="L128">            DTPropuesta dt = new DTPropuesta();</span>
+<span class="fc" id="L129">            dt.setTitulo(p.getTitulo());</span>
+<span class="fc" id="L130">            dt.setDescripcion(p.getDescripcion());</span>
+<span class="fc" id="L131">            dt.setLugar(p.getLugar());</span>
+<span class="fc" id="L132">            dt.setFechaPrevista(p.getFechaPrevista());</span>
+<span class="fc" id="L133">            dt.setPrecioEntrada(p.getPrecioEntrada());</span>
+<span class="fc" id="L134">            dt.setMontoNecesario(p.getMontoNecesario());</span>
+<span class="fc" id="L135">            dt.setFechaPublicacion(p.getFechaPublicacion());</span>
+<span class="fc" id="L136">            dt.setImagen(p.getImagen());</span>
+<span class="fc" id="L137">            dt.setCategoria(dtCategoria);</span>
+<span class="fc" id="L138">            dt.setDTProponente(dtProp);</span>
+<span class="fc" id="L139">            dt.setEstadoActual(dtEstadoPropuesta);</span>
+<span class="fc" id="L140">            dt.setHistorial(historial);</span>
+<span class="fc" id="L141">            dt.setColaboraciones(colaboraciones);</span>
+<span class="fc" id="L142">            dt.setComentarios(comentarios);</span>
+<span class="fc" id="L143">            dt.setTiposRetorno(tiposRetorno);</span>
 
-<span class="fc" id="L141">            dtPropuestas.add(dt);</span>
-<span class="fc" id="L142">        }</span>
-<span class="fc" id="L143">        return dtPropuestas;</span>
+<span class="fc" id="L145">            dtPropuestas.add(dt);</span>
+<span class="fc" id="L146">        }</span>
+<span class="fc" id="L147">        return dtPropuestas;</span>
     }
 
     public List&lt;DTPropuesta&gt; obtenerPropuestasPorEstado(EstadoPropuesta estado) {
-<span class="fc" id="L147">        EntityManager em = JPAUtil.getEntityManager();</span>
-<span class="fc" id="L148">        List&lt;DTPropuesta&gt; dtPropuestas = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L151">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L152">        List&lt;DTPropuesta&gt; dtPropuestas = new ArrayList&lt;&gt;();</span>
         try {
-<span class="fc" id="L150">            TypedQuery&lt;Propuesta&gt; query = em.createQuery(&quot;SELECT p FROM Propuesta p WHERE p.estadoActual = :estado&quot;, Propuesta.class);</span>
-<span class="fc" id="L151">            query.setParameter(&quot;estado&quot;, estado);</span>
-<span class="fc" id="L152">            List&lt;Propuesta&gt; propuestas = query.getResultList();</span>
+<span class="fc" id="L154">            TypedQuery&lt;Propuesta&gt; query = em.createQuery(&quot;SELECT p FROM Propuesta p WHERE p.estadoActual = :estado&quot; +</span>
+                    &quot; AND (p.proponente.eliminado = false OR p.proponente.eliminado IS NULL)&quot;, Propuesta.class);
+<span class="fc" id="L156">            query.setParameter(&quot;estado&quot;, estado);</span>
+<span class="fc" id="L157">            List&lt;Propuesta&gt; propuestas = query.getResultList();</span>
 
             // Cargar las colecciones lazy antes de procesarlas
-<span class="fc bfc" id="L155" title="All 2 branches covered.">            for (Propuesta p : propuestas) {</span>
-<span class="fc" id="L156">                p.getHistorial().size();</span>
-<span class="fc" id="L157">                p.getColaboraciones().size();</span>
-<span class="fc" id="L158">                p.getComentarios().size();</span>
-<span class="fc" id="L159">                p.getTiposRetorno().size();</span>
-<span class="fc" id="L160">            }</span>
+<span class="fc bfc" id="L160" title="All 2 branches covered.">            for (Propuesta p : propuestas) {</span>
+<span class="fc" id="L161">                p.getHistorial().size();</span>
+<span class="fc" id="L162">                p.getColaboraciones().size();</span>
+<span class="fc" id="L163">                p.getComentarios().size();</span>
+<span class="fc" id="L164">                p.getTiposRetorno().size();</span>
+<span class="fc" id="L165">            }</span>
 
-<span class="fc bfc" id="L162" title="All 2 branches covered.">            for (Propuesta p : propuestas) {</span>
-<span class="fc" id="L163">                DTCategoria dtCategoria = null;</span>
-<span class="pc bpc" id="L164" title="1 of 2 branches missed.">                if (p.getCategoria() != null) {</span>
-<span class="fc" id="L165">                    dtCategoria = new DTCategoria(p.getCategoria().getNombre());</span>
+<span class="fc bfc" id="L167" title="All 2 branches covered.">            for (Propuesta p : propuestas) {</span>
+<span class="fc" id="L168">                DTCategoria dtCategoria = null;</span>
+<span class="pc bpc" id="L169" title="1 of 2 branches missed.">                if (p.getCategoria() != null) {</span>
+<span class="fc" id="L170">                    dtCategoria = new DTCategoria(p.getCategoria().getNombre());</span>
                 }
 
-<span class="fc" id="L168">                DTEstadoPropuesta dtEstadoPropuesta = DTEstadoPropuesta.valueOf(p.getEstadoActual().name());</span>
+<span class="fc" id="L173">                DTEstadoPropuesta dtEstadoPropuesta = DTEstadoPropuesta.valueOf(p.getEstadoActual().name());</span>
 
-<span class="fc" id="L170">                List&lt;DTPropuestaEstado&gt; historial = new ArrayList&lt;&gt;();</span>
-<span class="pc bpc" id="L171" title="1 of 2 branches missed.">                if (p.getHistorial() != null) {</span>
-<span class="pc bpc" id="L172" title="1 of 2 branches missed.">                    for (PropuestaEstado pe : p.getHistorial()) {</span>
-<span class="nc" id="L173">                        historial.add(new DTPropuestaEstado(</span>
-<span class="nc" id="L174">                                DTEstadoPropuesta.valueOf(pe.getEstado().name()),</span>
-<span class="nc" id="L175">                                pe.getFechaCambio()</span>
+<span class="fc" id="L175">                List&lt;DTPropuestaEstado&gt; historial = new ArrayList&lt;&gt;();</span>
+<span class="pc bpc" id="L176" title="1 of 2 branches missed.">                if (p.getHistorial() != null) {</span>
+<span class="pc bpc" id="L177" title="1 of 2 branches missed.">                    for (PropuestaEstado pe : p.getHistorial()) {</span>
+<span class="nc" id="L178">                        historial.add(new DTPropuestaEstado(</span>
+<span class="nc" id="L179">                                DTEstadoPropuesta.valueOf(pe.getEstado().name()),</span>
+<span class="nc" id="L180">                                pe.getFechaCambio()</span>
                         ));
-<span class="nc" id="L177">                    }</span>
+<span class="nc" id="L182">                    }</span>
                 }
 
-<span class="fc" id="L180">                List&lt;DTColaboracion&gt; colaboraciones = new ArrayList&lt;&gt;();</span>
-<span class="pc bpc" id="L181" title="1 of 2 branches missed.">                if (p.getColaboraciones() != null) {</span>
-<span class="pc bpc" id="L182" title="1 of 2 branches missed.">                    for (Colaboracion c : p.getColaboraciones()) {</span>
-<span class="nc" id="L183">                        DTColaborador dtColab = new DTColaborador(</span>
-<span class="nc" id="L184">                                c.getColaborador().getNickname()</span>
+<span class="fc" id="L185">                List&lt;DTColaboracion&gt; colaboraciones = new ArrayList&lt;&gt;();</span>
+<span class="pc bpc" id="L186" title="1 of 2 branches missed.">                if (p.getColaboraciones() != null) {</span>
+<span class="pc bpc" id="L187" title="1 of 2 branches missed.">                    for (Colaboracion c : p.getColaboraciones()) {</span>
+<span class="nc" id="L188">                        DTColaborador dtColab = new DTColaborador(</span>
+<span class="nc" id="L189">                                c.getColaborador().getNickname()</span>
                         );
 
-<span class="nc" id="L187">                        colaboraciones.add(new DTColaboracion(</span>
+<span class="nc" id="L192">                        colaboraciones.add(new DTColaboracion(</span>
                                 dtColab,
-<span class="nc" id="L189">                                c.getMonto()</span>
+<span class="nc" id="L194">                                c.getMonto()</span>
                         ));
-<span class="nc" id="L191">                    }</span>
+<span class="nc" id="L196">                    }</span>
                 }
 
-<span class="fc" id="L194">                List&lt;DTTipoRetorno&gt; tiposRetorno = new ArrayList&lt;&gt;();</span>
-<span class="pc bpc" id="L195" title="1 of 2 branches missed.">                if (p.getTiposRetorno() != null) {</span>
-<span class="fc bfc" id="L196" title="All 2 branches covered.">                    for (TipoRetorno t : p.getTiposRetorno()) {</span>
-<span class="fc" id="L197">                        tiposRetorno.add(DTTipoRetorno.valueOf(t.name()));</span>
-<span class="fc" id="L198">                    }</span>
+<span class="fc" id="L199">                List&lt;DTTipoRetorno&gt; tiposRetorno = new ArrayList&lt;&gt;();</span>
+<span class="pc bpc" id="L200" title="1 of 2 branches missed.">                if (p.getTiposRetorno() != null) {</span>
+<span class="fc bfc" id="L201" title="All 2 branches covered.">                    for (TipoRetorno t : p.getTiposRetorno()) {</span>
+<span class="fc" id="L202">                        tiposRetorno.add(DTTipoRetorno.valueOf(t.name()));</span>
+<span class="fc" id="L203">                    }</span>
                 }
 
-<span class="fc" id="L201">                List&lt;DTComentario&gt; comentarios = new ArrayList&lt;&gt;();</span>
-<span class="pc bpc" id="L202" title="1 of 2 branches missed.">                if (p.getComentarios() != null) {</span>
-<span class="pc bpc" id="L203" title="1 of 2 branches missed.">                    for (Comentario c : p.getComentarios()) {</span>
-<span class="nc" id="L204">                        comentarios.add(c.getDataType());</span>
-<span class="nc" id="L205">                    }</span>
+<span class="fc" id="L206">                List&lt;DTComentario&gt; comentarios = new ArrayList&lt;&gt;();</span>
+<span class="pc bpc" id="L207" title="1 of 2 branches missed.">                if (p.getComentarios() != null) {</span>
+<span class="pc bpc" id="L208" title="1 of 2 branches missed.">                    for (Comentario c : p.getComentarios()) {</span>
+<span class="nc" id="L209">                        comentarios.add(c.getDataType());</span>
+<span class="nc" id="L210">                    }</span>
                 }
 
-<span class="fc" id="L208">                DTProponente dtProp = new DTProponente();</span>
-<span class="fc" id="L209">                dtProp.setNombre(p.getProponente().getNombre());</span>
-<span class="fc" id="L210">                dtProp.setApellido(p.getProponente().getApellido());</span>
-<span class="fc" id="L211">                dtProp.setNickname(p.getProponente().getNickname());</span>
+<span class="fc" id="L213">                DTProponente dtProp = new DTProponente();</span>
+<span class="fc" id="L214">                dtProp.setNombre(p.getProponente().getNombre());</span>
+<span class="fc" id="L215">                dtProp.setApellido(p.getProponente().getApellido());</span>
+<span class="fc" id="L216">                dtProp.setNickname(p.getProponente().getNickname());</span>
 
-<span class="fc" id="L213">                DTPropuesta dt = new DTPropuesta();</span>
-<span class="fc" id="L214">                dt.setTitulo(p.getTitulo());</span>
-<span class="fc" id="L215">                dt.setDescripcion(p.getDescripcion());</span>
-<span class="fc" id="L216">                dt.setLugar(p.getLugar());</span>
-<span class="fc" id="L217">                dt.setFechaPrevista(p.getFechaPrevista());</span>
-<span class="fc" id="L218">                dt.setPrecioEntrada(p.getPrecioEntrada());</span>
-<span class="fc" id="L219">                dt.setMontoNecesario(p.getMontoNecesario());</span>
-<span class="fc" id="L220">                dt.setFechaPublicacion(p.getFechaPublicacion());</span>
-<span class="fc" id="L221">                dt.setImagen(p.getImagen());</span>
-<span class="fc" id="L222">                dt.setCategoria(dtCategoria);</span>
-<span class="fc" id="L223">                dt.setDTProponente(dtProp);</span>
-<span class="fc" id="L224">                dt.setEstadoActual(dtEstadoPropuesta);</span>
-<span class="fc" id="L225">                dt.setHistorial(historial);</span>
-<span class="fc" id="L226">                dt.setColaboraciones(colaboraciones);</span>
-<span class="fc" id="L227">                dt.setComentarios(comentarios);</span>
-<span class="fc" id="L228">                dt.setTiposRetorno(tiposRetorno);</span>
+<span class="fc" id="L218">                DTPropuesta dt = new DTPropuesta();</span>
+<span class="fc" id="L219">                dt.setTitulo(p.getTitulo());</span>
+<span class="fc" id="L220">                dt.setDescripcion(p.getDescripcion());</span>
+<span class="fc" id="L221">                dt.setLugar(p.getLugar());</span>
+<span class="fc" id="L222">                dt.setFechaPrevista(p.getFechaPrevista());</span>
+<span class="fc" id="L223">                dt.setPrecioEntrada(p.getPrecioEntrada());</span>
+<span class="fc" id="L224">                dt.setMontoNecesario(p.getMontoNecesario());</span>
+<span class="fc" id="L225">                dt.setFechaPublicacion(p.getFechaPublicacion());</span>
+<span class="fc" id="L226">                dt.setImagen(p.getImagen());</span>
+<span class="fc" id="L227">                dt.setCategoria(dtCategoria);</span>
+<span class="fc" id="L228">                dt.setDTProponente(dtProp);</span>
+<span class="fc" id="L229">                dt.setEstadoActual(dtEstadoPropuesta);</span>
+<span class="fc" id="L230">                dt.setHistorial(historial);</span>
+<span class="fc" id="L231">                dt.setColaboraciones(colaboraciones);</span>
+<span class="fc" id="L232">                dt.setComentarios(comentarios);</span>
+<span class="fc" id="L233">                dt.setTiposRetorno(tiposRetorno);</span>
 
-<span class="fc" id="L230">                dtPropuestas.add(dt);</span>
-<span class="fc" id="L231">            }</span>
-<span class="nc" id="L232">        } catch (Exception e) {</span>
-<span class="nc" id="L233">            e.printStackTrace();</span>
+<span class="fc" id="L235">                dtPropuestas.add(dt);</span>
+<span class="fc" id="L236">            }</span>
+<span class="nc" id="L237">        } catch (Exception e) {</span>
+<span class="nc" id="L238">            e.printStackTrace();</span>
         } finally {
-<span class="fc" id="L235">            em.close();</span>
+<span class="fc" id="L240">            em.close();</span>
         }
-<span class="fc" id="L237">        return dtPropuestas;</span>
+<span class="fc" id="L242">        return dtPropuestas;</span>
     }
 
     public void actualizarPropuesta(Propuesta pro) {
-<span class="fc" id="L241">        EntityManager em = JPAUtil.getEntityManager();</span>
-<span class="fc" id="L242">        EntityTransaction t = em.getTransaction();</span>
+<span class="fc" id="L246">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L247">        EntityTransaction t = em.getTransaction();</span>
         try {
-<span class="fc" id="L244">            t.begin();</span>
-<span class="fc" id="L245">            em.merge(pro);</span>
-<span class="fc" id="L246">            t.commit();</span>
-<span class="fc" id="L247">        } catch(Exception e) {</span>
-<span class="pc bpc" id="L248" title="1 of 2 branches missed.">            if (t.isActive()) t.rollback();</span>
-<span class="fc" id="L249">            throw new PersistenceException(&quot;Error al actualizar propuesta&quot;, e);</span>
+<span class="fc" id="L249">            t.begin();</span>
+<span class="fc" id="L250">            em.merge(pro);</span>
+<span class="fc" id="L251">            t.commit();</span>
+<span class="fc" id="L252">        } catch(Exception e) {</span>
+<span class="pc bpc" id="L253" title="1 of 2 branches missed.">            if (t.isActive()) t.rollback();</span>
+<span class="fc" id="L254">            throw new PersistenceException(&quot;Error al actualizar propuesta&quot;, e);</span>
         } finally {
-<span class="fc" id="L251">            em.close();</span>
+<span class="fc" id="L256">            em.close();</span>
         }
-<span class="fc" id="L253">    }</span>
+<span class="fc" id="L258">    }</span>
 
     public void persistirCategoria(Categoria cat) {
-<span class="fc" id="L256">        EntityManager em = JPAUtil.getEntityManager();</span>
-<span class="fc" id="L257">        EntityTransaction t = em.getTransaction();</span>
+<span class="fc" id="L261">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L262">        EntityTransaction t = em.getTransaction();</span>
         try{
-<span class="fc" id="L259">            t.begin();</span>
-<span class="fc" id="L260">            em.persist(cat);</span>
-<span class="fc" id="L261">            t.commit();</span>
+<span class="fc" id="L264">            t.begin();</span>
+<span class="fc" id="L265">            em.persist(cat);</span>
+<span class="fc" id="L266">            t.commit();</span>
         }
-<span class="nc" id="L263">        catch(Exception e) {</span>
-<span class="nc bnc" id="L264" title="All 2 branches missed.">            if (t.isActive()) t.rollback();</span>
-<span class="nc" id="L265">            throw new PersistenceException(&quot;Error al persistir categoria&quot;, e);</span>
+<span class="nc" id="L268">        catch(Exception e) {</span>
+<span class="nc bnc" id="L269" title="All 2 branches missed.">            if (t.isActive()) t.rollback();</span>
+<span class="nc" id="L270">            throw new PersistenceException(&quot;Error al persistir categoria&quot;, e);</span>
         } finally {
-<span class="fc" id="L267">            em.close();</span>
+<span class="fc" id="L272">            em.close();</span>
         }
-<span class="fc" id="L269">    }</span>
+<span class="fc" id="L274">    }</span>
 
     public Categoria obtenerCategoriaPorNombre(String nombre) {
-<span class="fc" id="L272">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L277">        EntityManager em = JPAUtil.getEntityManager();</span>
         Categoria cat;
         try {
-<span class="fc" id="L275">            cat = em.createQuery(&quot;SELECT c FROM Categoria c WHERE c.nombre = :nombre&quot;, Categoria.class)</span>
-<span class="fc" id="L276">                    .setParameter(&quot;nombre&quot;, nombre)</span>
-<span class="fc" id="L277">                    .getSingleResult();</span>
-<span class="fc" id="L278">        } catch (NoResultException e) {</span>
-<span class="fc" id="L279">            cat = null;</span>
+<span class="fc" id="L280">            cat = em.createQuery(&quot;SELECT c FROM Categoria c WHERE c.nombre = :nombre&quot;, Categoria.class)</span>
+<span class="fc" id="L281">                    .setParameter(&quot;nombre&quot;, nombre)</span>
+<span class="fc" id="L282">                    .getSingleResult();</span>
+<span class="fc" id="L283">        } catch (NoResultException e) {</span>
+<span class="fc" id="L284">            cat = null;</span>
         } finally {
-<span class="fc" id="L281">            em.close();</span>
+<span class="fc" id="L286">            em.close();</span>
         }
-<span class="fc" id="L283">        return cat;</span>
+<span class="fc" id="L288">        return cat;</span>
     }
 
     public List&lt;DTCategoria&gt; obtenerTodasLasCategorias() {
-<span class="fc" id="L287">        EntityManager em = JPAUtil.getEntityManager();</span>
-<span class="fc" id="L288">        List&lt;Categoria&gt; lista = em.createQuery(&quot;SELECT c FROM Categoria c&quot;, Categoria.class).getResultList();</span>
-<span class="fc" id="L289">        em.close();</span>
-<span class="fc" id="L290">        List&lt;DTCategoria&gt; listaDT = new ArrayList&lt;&gt;();</span>
-<span class="fc bfc" id="L291" title="All 2 branches covered.">        for (Categoria c : lista) {</span>
-<span class="fc" id="L292">            DTCategoria padre = null;</span>
-<span class="pc bpc" id="L293" title="1 of 2 branches missed.">            if (c.getCategoriaPadre() != null) {</span>
-<span class="nc" id="L294">                padre = new DTCategoria(c.getCategoriaPadre().getNombre(), null);</span>
+<span class="fc" id="L292">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L293">        List&lt;Categoria&gt; lista = em.createQuery(&quot;SELECT c FROM Categoria c&quot;, Categoria.class).getResultList();</span>
+<span class="fc" id="L294">        em.close();</span>
+<span class="fc" id="L295">        List&lt;DTCategoria&gt; listaDT = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L296" title="All 2 branches covered.">        for (Categoria c : lista) {</span>
+<span class="fc" id="L297">            DTCategoria padre = null;</span>
+<span class="pc bpc" id="L298" title="1 of 2 branches missed.">            if (c.getCategoriaPadre() != null) {</span>
+<span class="nc" id="L299">                padre = new DTCategoria(c.getCategoriaPadre().getNombre(), null);</span>
             }
-<span class="fc" id="L296">            listaDT.add(new DTCategoria(</span>
-<span class="fc" id="L297">                    c.getNombre(),</span>
+<span class="fc" id="L301">            listaDT.add(new DTCategoria(</span>
+<span class="fc" id="L302">                    c.getNombre(),</span>
                     padre
             ));
-<span class="fc" id="L300">        }</span>
-<span class="fc" id="L301">        return listaDT;</span>
+<span class="fc" id="L305">        }</span>
+<span class="fc" id="L306">        return listaDT;</span>
     }
 
     public void persistirColaboracion(Colaboracion colaboracion) {
-<span class="fc" id="L305">        EntityManager em = JPAUtil.getEntityManager();</span>
-<span class="fc" id="L306">        EntityTransaction t = em.getTransaction();</span>
+<span class="fc" id="L310">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L311">        EntityTransaction t = em.getTransaction();</span>
 
         try {
-<span class="fc" id="L309">            t.begin();</span>
-<span class="fc" id="L310">            em.persist(colaboracion);</span>
-<span class="fc" id="L311">            t.commit();</span>
-<span class="nc" id="L312">        }  catch(Exception e) {</span>
-<span class="nc bnc" id="L313" title="All 2 branches missed.">            if (t.isActive()) t.rollback();</span>
-<span class="nc" id="L314">            throw new PersistenceException(&quot;Error al persistir colaboracion&quot;, e);</span>
+<span class="fc" id="L314">            t.begin();</span>
+<span class="fc" id="L315">            em.persist(colaboracion);</span>
+<span class="fc" id="L316">            t.commit();</span>
+<span class="nc" id="L317">        }  catch(Exception e) {</span>
+<span class="nc bnc" id="L318" title="All 2 branches missed.">            if (t.isActive()) t.rollback();</span>
+<span class="nc" id="L319">            throw new PersistenceException(&quot;Error al persistir colaboracion&quot;, e);</span>
         } finally {
-<span class="fc" id="L316">            em.close();</span>
+<span class="fc" id="L321">            em.close();</span>
         }
-<span class="fc" id="L318">    }</span>
+<span class="fc" id="L323">    }</span>
 
     public void cancelarColaboracion(Long idColaboracion) throws Exception {
-<span class="fc" id="L321">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L326">        EntityManager em = JPAUtil.getEntityManager();</span>
 
         try {
-<span class="fc" id="L324">            em.getTransaction().begin();</span>
+<span class="fc" id="L329">            em.getTransaction().begin();</span>
 
-<span class="fc" id="L326">            Colaboracion colab = em.find(Colaboracion.class, idColaboracion);</span>
-<span class="fc bfc" id="L327" title="All 2 branches covered.">            if (colab == null) {</span>
-<span class="fc" id="L328">                throw new Exception(&quot;No existe la colaboración con id &quot; + idColaboracion);</span>
+<span class="fc" id="L331">            Colaboracion colab = em.find(Colaboracion.class, idColaboracion);</span>
+<span class="fc bfc" id="L332" title="All 2 branches covered.">            if (colab == null) {</span>
+<span class="fc" id="L333">                throw new Exception(&quot;No existe la colaboración con id &quot; + idColaboracion);</span>
             }
 
-<span class="fc" id="L331">            em.remove(colab);</span>
-<span class="fc" id="L332">            em.getTransaction().commit();</span>
+<span class="fc" id="L336">            em.remove(colab);</span>
+<span class="fc" id="L337">            em.getTransaction().commit();</span>
 
-<span class="fc" id="L334">        } catch (Exception e) {</span>
-<span class="fc" id="L335">            em.getTransaction().rollback();</span>
-<span class="fc" id="L336">            throw e;</span>
+<span class="fc" id="L339">        } catch (Exception e) {</span>
+<span class="fc" id="L340">            em.getTransaction().rollback();</span>
+<span class="fc" id="L341">            throw e;</span>
         } finally {
-<span class="fc" id="L338">            em.close();</span>
+<span class="fc" id="L343">            em.close();</span>
         }
-<span class="fc" id="L340">    }</span>
+<span class="fc" id="L345">    }</span>
 
     public List&lt;DTColaboracion&gt; obtenerTodasLasColaboraciones() {
         //1
-<span class="fc" id="L344">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L349">        EntityManager em = JPAUtil.getEntityManager();</span>
         //2
-<span class="fc" id="L346">        List&lt;Colaboracion&gt; colabs = em.createQuery(&quot;SELECT c FROM Colaboracion c&quot;, Colaboracion.class).getResultList();</span>
+<span class="fc" id="L351">        List&lt;Colaboracion&gt; colabs = em.createQuery(&quot;SELECT c FROM Colaboracion c&quot;, Colaboracion.class).getResultList();</span>
 
         //3: Obtengo el tamanio que debo recorrer
-<span class="fc bfc" id="L349" title="All 2 branches covered.">        for (Colaboracion c : colabs) {</span>
-<span class="fc" id="L350">            c.getPropuesta().getColaboraciones().size();</span>
-<span class="fc" id="L351">        }</span>
+<span class="fc bfc" id="L354" title="All 2 branches covered.">        for (Colaboracion c : colabs) {</span>
+<span class="fc" id="L355">            c.getPropuesta().getColaboraciones().size();</span>
+<span class="fc" id="L356">        }</span>
 
-<span class="fc" id="L353">        em.close();</span>
+<span class="fc" id="L358">        em.close();</span>
 
         //4: creo la lista que voy a devolver de colaboraciones
-<span class="fc" id="L356">        List&lt;DTColaboracion&gt; dtColaboraciones = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L361">        List&lt;DTColaboracion&gt; dtColaboraciones = new ArrayList&lt;&gt;();</span>
 
         //5: recorro las colaboraciones de la base de datos para rellenar la lista
-<span class="fc bfc" id="L359" title="All 2 branches covered.">        for (Colaboracion c : colabs) {</span>
+<span class="fc bfc" id="L364" title="All 2 branches covered.">        for (Colaboracion c : colabs) {</span>
 
-<span class="fc" id="L361">            List&lt;DTColaboracion&gt; dtColabsPropuesta = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L366">            List&lt;DTColaboracion&gt; dtColabsPropuesta = new ArrayList&lt;&gt;();</span>
 
             //list&lt;Colaboracion&gt; col = c.getPropuesta().getColaboraciones()
             //5*.3*
-<span class="pc bpc" id="L365" title="1 of 2 branches missed.">            for (Colaboracion col : c.getPropuesta().getColaboraciones()) {</span>
-<span class="nc" id="L366">                DTColaborador dtColab = new DTColaborador(col.getColaborador().getNickname());//5*.3*.2</span>
-<span class="nc" id="L367">                dtColabsPropuesta.add(new DTColaboracion(dtColab, col.getMonto())); //5*.3*.3</span>
-<span class="nc" id="L368">            }</span>
+<span class="pc bpc" id="L370" title="1 of 2 branches missed.">            for (Colaboracion col : c.getPropuesta().getColaboraciones()) {</span>
+<span class="nc" id="L371">                DTColaborador dtColab = new DTColaborador(col.getColaborador().getNickname());//5*.3*.2</span>
+<span class="nc" id="L372">                dtColabsPropuesta.add(new DTColaboracion(dtColab, col.getMonto())); //5*.3*.3</span>
+<span class="nc" id="L373">            }</span>
 
-<span class="fc" id="L370">            DTEstadoPropuesta dtEstadoPropuesta = DTEstadoPropuesta.valueOf(c.getPropuesta().getEstadoActual().name());</span>
+<span class="fc" id="L375">            DTEstadoPropuesta dtEstadoPropuesta = DTEstadoPropuesta.valueOf(c.getPropuesta().getEstadoActual().name());</span>
 
-<span class="fc" id="L372">            DTPropuesta dtPropuesta = new DTPropuesta(</span>
-<span class="fc" id="L373">                    c.getPropuesta().getTitulo(),</span>
-<span class="fc" id="L374">                    c.getPropuesta().getMontoNecesario(),</span>
-<span class="pc bpc" id="L375" title="1 of 2 branches missed.">                    c.getPropuesta().getProponente() != null ? new DTProponente(c.getPropuesta().getProponente().getNickname(), c.getPropuesta().getProponente().getNombre(), c.getPropuesta().getProponente().getApellido()) : null,</span>
+<span class="fc" id="L377">            DTPropuesta dtPropuesta = new DTPropuesta(</span>
+<span class="fc" id="L378">                    c.getPropuesta().getTitulo(),</span>
+<span class="fc" id="L379">                    c.getPropuesta().getMontoNecesario(),</span>
+<span class="pc bpc" id="L380" title="1 of 2 branches missed.">                    c.getPropuesta().getProponente() != null ? new DTProponente(c.getPropuesta().getProponente().getNickname(), c.getPropuesta().getProponente().getNombre(), c.getPropuesta().getProponente().getApellido()) : null,</span>
                     dtEstadoPropuesta,
                     dtColabsPropuesta
             );
 
-<span class="fc" id="L380">            DTColaborador dtColaborador = new DTColaborador(c.getColaborador().getNickname());</span>
-<span class="fc" id="L381">            DTTipoRetorno dtTipoRetorno = DTTipoRetorno.valueOf(c.getTipoRetorno().name());</span>
+<span class="fc" id="L385">            DTColaborador dtColaborador = new DTColaborador(c.getColaborador().getNickname());</span>
+<span class="fc" id="L386">            DTTipoRetorno dtTipoRetorno = DTTipoRetorno.valueOf(c.getTipoRetorno().name());</span>
 
-<span class="fc" id="L383">            dtColaboraciones.add(new DTColaboracion(</span>
-<span class="fc" id="L384">                    c.getId(),</span>
+<span class="fc" id="L388">            dtColaboraciones.add(new DTColaboracion(</span>
+<span class="fc" id="L389">                    c.getId(),</span>
                     dtPropuesta,
                     dtColaborador,
-<span class="fc" id="L387">                    c.getMonto(),</span>
+<span class="fc" id="L392">                    c.getMonto(),</span>
                     dtTipoRetorno,
-<span class="fc" id="L389">                    c.getFechaHora()</span>
+<span class="fc" id="L394">                    c.getFechaHora()</span>
             ));
 
-<span class="fc" id="L392">        };</span>
+<span class="fc" id="L397">        };</span>
 
-<span class="fc" id="L394">        return dtColaboraciones;</span>
+<span class="fc" id="L399">        return dtColaboraciones;</span>
     }
 
     public void persistirComentario(Comentario comentario) {
-<span class="fc" id="L398">        EntityManager em = JPAUtil.getEntityManager();</span>
-<span class="fc" id="L399">        EntityTransaction t = em.getTransaction();</span>
+<span class="fc" id="L403">        EntityManager em = JPAUtil.getEntityManager();</span>
+<span class="fc" id="L404">        EntityTransaction t = em.getTransaction();</span>
         try {
-<span class="fc" id="L401">            t.begin();</span>
-<span class="fc" id="L402">            em.persist(comentario);</span>
-<span class="fc" id="L403">            t.commit();</span>
-<span class="fc" id="L404">        } catch(Exception e) {</span>
-<span class="pc bpc" id="L405" title="1 of 2 branches missed.">            if (t.isActive()) t.rollback();</span>
-<span class="fc" id="L406">            throw new PersistenceException(&quot;Error al persistir comentario&quot;, e);</span>
+<span class="fc" id="L406">            t.begin();</span>
+<span class="fc" id="L407">            em.persist(comentario);</span>
+<span class="fc" id="L408">            t.commit();</span>
+<span class="fc" id="L409">        } catch(Exception e) {</span>
+<span class="pc bpc" id="L410" title="1 of 2 branches missed.">            if (t.isActive()) t.rollback();</span>
+<span class="fc" id="L411">            throw new PersistenceException(&quot;Error al persistir comentario&quot;, e);</span>
         } finally {
-<span class="fc" id="L408">            em.close();</span>
+<span class="fc" id="L413">            em.close();</span>
         }
-<span class="fc" id="L410">    }</span>
+<span class="fc" id="L415">    }</span>
 
 
 }

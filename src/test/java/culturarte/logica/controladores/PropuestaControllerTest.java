@@ -4,6 +4,7 @@ import culturarte.logica.manejadores.PropuestaManejador;
 import culturarte.logica.manejadores.UsuarioManejador;
 import culturarte.logica.modelos.*;
 import culturarte.servicios.DTs.*;
+import culturarte.servicios.DTs.DTPropuestaEstado;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -469,5 +470,45 @@ public class PropuestaControllerTest {
         when(propuestaMock.getComentarios()).thenReturn(null);
 
         assertTrue(controller.obtenerComentariosPropuesta("Batman").isEmpty());
+    }
+
+    @Test
+    void extenderFinanciacion_DatosValidos_ExtiendeCorrectamente() {
+        Propuesta propuestaMock = mock(Propuesta.class);
+        when(propuestaManejadorMock.obtenerPropuestaPorTitulo("Batman")).thenReturn(propuestaMock);
+        LocalDate fechaInicial = LocalDate.of(2024, 1, 1);
+        when(propuestaMock.getFechaPublicacion()).thenReturn(fechaInicial);
+        DTUsuario usuarioMock = mock(DTUsuario.class);
+
+        controller.extenderFinanciacion(usuarioMock, "Batman");
+
+        verify(propuestaMock).setFechaPublicacion(fechaInicial.plusMonths(1));
+        verify(propuestaManejadorMock).actualizarPropuesta(propuestaMock);
+    }
+
+    @Test
+    void modificarHistorialYEstadoPropuesta_DatosValidos_ModificaCorrectamente() {
+        Propuesta propuestaMock = new Propuesta();
+        when(propuestaManejadorMock.obtenerPropuestaPorTitulo("Batman")).thenReturn(propuestaMock);
+        propuestaMock.setHistorial(new ArrayList<>());
+
+        DTPropuestaEstado dtEstado1 = mock(DTPropuestaEstado.class);
+        when(dtEstado1.getEstado()).thenReturn(DTEstadoPropuesta.INGRESADA);
+        when(dtEstado1.getFechaCambio()).thenReturn(LocalDate.of(2024, 1, 1));
+
+        DTPropuestaEstado dtEstado2 = mock(DTPropuestaEstado.class);
+        when(dtEstado2.getEstado()).thenReturn(DTEstadoPropuesta.PUBLICADA);
+        when(dtEstado2.getFechaCambio()).thenReturn(LocalDate.of(2024, 1, 15));
+
+        DTPropuesta dtPropuesta = mock(DTPropuesta.class);
+        when(dtPropuesta.getTitulo()).thenReturn("Batman");
+        when(dtPropuesta.getEstadoActual()).thenReturn(DTEstadoPropuesta.PUBLICADA);
+        when(dtPropuesta.getHistorial()).thenReturn(List.of(dtEstado1, dtEstado2));
+
+        controller.modificarHistorialYEstadoPropuesta(dtPropuesta);
+
+        assertEquals(EstadoPropuesta.PUBLICADA, propuestaMock.getEstadoActual());
+        assertEquals(2, propuestaMock.getHistorial().size());
+        verify(propuestaManejadorMock).actualizarPropuesta(propuestaMock);
     }
 }

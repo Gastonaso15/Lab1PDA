@@ -7,336 +7,495 @@ import culturarte.servicios.DTs.*;
 import culturarte.servicios.interfaces.IUsuarioController;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioController implements IUsuarioController {
 
-<span class="fc" id="L15">    public UsuarioController() {</span>
-<span class="fc" id="L16">    }</span>
+<span class="fc" id="L16">    public UsuarioController() {</span>
+<span class="fc" id="L17">    }</span>
 
     @Override
     public void crearUsuario(DTUsuario dtu) throws Exception {
-<span class="fc" id="L20">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
-<span class="fc" id="L21">        Usuario u = mu.obtenerUsuarioPorNickname(dtu.getNickname());</span>
-<span class="fc bfc" id="L22" title="All 2 branches covered.">        if (u != null)</span>
-<span class="fc" id="L23">            throw new Exception(&quot;El usuario con el nickname &quot; + dtu.getNickname() + &quot; ya esta registrado&quot;);</span>
-<span class="fc" id="L24">        u = mu.obtenerUsuarioPorCorreo(dtu.getCorreo());</span>
-<span class="fc bfc" id="L25" title="All 2 branches covered.">        if (u != null)</span>
-<span class="fc" id="L26">            throw new Exception(&quot;El usuario con el correo &quot; + dtu.getCorreo() + &quot; ya esta registrado&quot;);</span>
+<span class="fc" id="L21">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L22">        Usuario u = mu.obtenerUsuarioPorNickname(dtu.getNickname());</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">        if (u != null)</span>
+<span class="fc" id="L24">            throw new Exception(&quot;El usuario con el nickname &quot; + dtu.getNickname() + &quot; ya esta registrado&quot;);</span>
+<span class="fc" id="L25">        u = mu.obtenerUsuarioPorCorreo(dtu.getCorreo());</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">        if (u != null)</span>
+<span class="fc" id="L27">            throw new Exception(&quot;El usuario con el correo &quot; + dtu.getCorreo() + &quot; ya esta registrado&quot;);</span>
 
-<span class="fc bfc" id="L28" title="All 2 branches covered.">        if (dtu instanceof DTProponente dtp) {</span>
-<span class="fc" id="L29">            u = new Proponente(dtp.getNickname(), dtp.getNombre(), dtp.getApellido(),dtp.getPassword(), dtp.getCorreo(), dtp.getImagen(), dtp.getFechaNacimiento(), dtp.getDireccion(), dtp.getBio(), dtp.getSitioWeb());</span>
-<span class="pc bpc" id="L30" title="1 of 2 branches missed.">        } else if (dtu instanceof DTColaborador dtc) {</span>
-<span class="nc" id="L31">            u = new Colaborador(dtc.getNickname(), dtc.getNombre(), dtc.getApellido(), dtc.getPassword(), dtc.getCorreo(), dtc.getImagen(), dtc.getFechaNacimiento());</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">        if (dtu instanceof DTProponente dtp) {</span>
+<span class="fc" id="L30">            u = new Proponente(dtp.getNickname(), dtp.getNombre(), dtp.getApellido(),dtp.getPassword(), dtp.getCorreo(), dtp.getImagen(), dtp.getFechaNacimiento(), dtp.getDireccion(), dtp.getBio(), dtp.getSitioWeb());</span>
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">        } else if (dtu instanceof DTColaborador dtc) {</span>
+<span class="nc" id="L32">            u = new Colaborador(dtc.getNickname(), dtc.getNombre(), dtc.getApellido(), dtc.getPassword(), dtc.getCorreo(), dtc.getImagen(), dtc.getFechaNacimiento());</span>
         } else {
-<span class="fc" id="L33">            throw new Exception(&quot;Tipo de usuario no reconocido&quot;);</span>
+<span class="fc" id="L34">            throw new Exception(&quot;Tipo de usuario no reconocido&quot;);</span>
         }
-<span class="fc" id="L35">        mu.persistirUsuario(u);</span>
-<span class="fc" id="L36">    }</span>
+<span class="fc" id="L36">        mu.persistirUsuario(u);</span>
+<span class="fc" id="L37">    }</span>
 
     @Override
     public List&lt;String&gt; devolverNicknamesUsuarios() {
-<span class="fc" id="L40">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
-<span class="fc" id="L41">        return mu.obtenerNicknamesUsuarios();</span>
+<span class="fc" id="L41">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L42">        return mu.obtenerNicknamesUsuarios();</span>
     }
 
     @Override
     public List&lt;String&gt; devolverNicknamesProponentes(){
-<span class="fc" id="L46">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
-<span class="fc" id="L47">        return mu.obtenerNicknamesProponentes();</span>
+<span class="fc" id="L47">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L48">        return mu.obtenerNicknamesProponentes();</span>
     }
 
     @Override
     public List&lt;String&gt; devolverNicknamesColaboradores() {
-<span class="fc" id="L52">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
-<span class="fc" id="L53">        return mu.obtenerNicknamesColaboradores();</span>
+<span class="fc" id="L53">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L54">        return mu.obtenerNicknamesColaboradores();</span>
     }
 
     @Override
     public DTColaborador devolverColaboradorPorNickname(String nickname) throws Exception {
-<span class="fc" id="L58">        UsuarioManejador um = UsuarioManejador.getInstance();</span>
-<span class="fc" id="L59">        Colaborador colab = um.obtenerColaboradorPorNickname(nickname);</span>
+<span class="fc" id="L59">        UsuarioManejador um = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L60">        Colaborador colab = um.obtenerColaboradorPorNickname(nickname);</span>
 
-<span class="fc bfc" id="L61" title="All 2 branches covered.">        if (colab == null) {</span>
-<span class="fc" id="L62">            throw new Exception(&quot;El colaborador &quot; + nickname + &quot; no existe&quot;);</span>
+<span class="fc bfc" id="L62" title="All 2 branches covered.">        if (colab == null) {</span>
+<span class="fc" id="L63">            throw new Exception(&quot;El colaborador &quot; + nickname + &quot; no existe&quot;);</span>
         }
 
-<span class="fc" id="L65">        String nombre = colab.getNombre();</span>
-<span class="fc" id="L66">        String apellido = colab.getApellido();</span>
-<span class="fc" id="L67">        String password = colab.getPassword();</span>
-<span class="fc" id="L68">        String correo = colab.getCorreo();</span>
-<span class="fc" id="L69">        LocalDate fechaNacimiento = colab.getFechaNacimiento();</span>
-<span class="fc" id="L70">        String imagen = colab.getImagen();</span>
+<span class="fc" id="L66">        String nombre = colab.getNombre();</span>
+<span class="fc" id="L67">        String apellido = colab.getApellido();</span>
+<span class="fc" id="L68">        String password = colab.getPassword();</span>
+<span class="fc" id="L69">        String correo = colab.getCorreo();</span>
+<span class="fc" id="L70">        LocalDate fechaNacimiento = colab.getFechaNacimiento();</span>
+<span class="fc" id="L71">        String imagen = colab.getImagen();</span>
 
-<span class="fc" id="L72">        List&lt;DTColaboracion&gt; dtColaboraciones = new ArrayList&lt;&gt;();</span>
-<span class="pc bpc" id="L73" title="1 of 2 branches missed.">        for (Colaboracion c : colab.getColaboraciones()) {</span>
+<span class="fc" id="L73">        List&lt;DTColaboracion&gt; dtColaboraciones = new ArrayList&lt;&gt;();</span>
+<span class="pc bpc" id="L74" title="1 of 2 branches missed.">        for (Colaboracion c : colab.getColaboraciones()) {</span>
 
-<span class="nc" id="L75">            Propuesta prop = c.getPropuesta();</span>
-<span class="nc" id="L76">            DTCategoria dtCategoria = null;</span>
-<span class="nc bnc" id="L77" title="All 2 branches missed.">            if (prop.getCategoria() != null) {</span>
-<span class="nc" id="L78">                DTCategoria dtCategoriaPadre = null;</span>
-<span class="nc bnc" id="L79" title="All 2 branches missed.">                if (prop.getCategoria().getCategoriaPadre() != null) {</span>
-<span class="nc" id="L80">                    dtCategoriaPadre = new DTCategoria(</span>
-<span class="nc" id="L81">                            prop.getCategoria().getCategoriaPadre().getNombre(),</span>
+<span class="nc" id="L76">            Propuesta prop = c.getPropuesta();</span>
+<span class="nc" id="L77">            DTCategoria dtCategoria = null;</span>
+<span class="nc bnc" id="L78" title="All 2 branches missed.">            if (prop.getCategoria() != null) {</span>
+<span class="nc" id="L79">                DTCategoria dtCategoriaPadre = null;</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">                if (prop.getCategoria().getCategoriaPadre() != null) {</span>
+<span class="nc" id="L81">                    dtCategoriaPadre = new DTCategoria(</span>
+<span class="nc" id="L82">                            prop.getCategoria().getCategoriaPadre().getNombre(),</span>
                             new ArrayList&lt;&gt;(),
                             null
                     );
                 }
-<span class="nc" id="L86">                dtCategoria = new DTCategoria(</span>
-<span class="nc" id="L87">                        prop.getCategoria().getNombre(),</span>
+<span class="nc" id="L87">                dtCategoria = new DTCategoria(</span>
+<span class="nc" id="L88">                        prop.getCategoria().getNombre(),</span>
                         new ArrayList&lt;&gt;(),
                         dtCategoriaPadre
                 );
             }
 
-<span class="nc" id="L93">            List&lt;DTTipoRetorno&gt; dtTiposRetorno = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L94" title="All 2 branches missed.">            if (prop.getTiposRetorno() != null) {</span>
-<span class="nc bnc" id="L95" title="All 2 branches missed.">                for (TipoRetorno tr : prop.getTiposRetorno()) {</span>
-<span class="nc" id="L96">                    dtTiposRetorno.add(DTTipoRetorno.valueOf(tr.name()));</span>
-<span class="nc" id="L97">                }</span>
+<span class="nc" id="L94">            List&lt;DTTipoRetorno&gt; dtTiposRetorno = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L95" title="All 2 branches missed.">            if (prop.getTiposRetorno() != null) {</span>
+<span class="nc bnc" id="L96" title="All 2 branches missed.">                for (TipoRetorno tr : prop.getTiposRetorno()) {</span>
+<span class="nc" id="L97">                    dtTiposRetorno.add(DTTipoRetorno.valueOf(tr.name()));</span>
+<span class="nc" id="L98">                }</span>
             }
 
-<span class="nc" id="L100">            DTEstadoPropuesta dtEstadoActual = null;</span>
-<span class="nc bnc" id="L101" title="All 2 branches missed.">            if (prop.getEstadoActual() != null) {</span>
-<span class="nc" id="L102">                dtEstadoActual = DTEstadoPropuesta.valueOf(prop.getEstadoActual().name());</span>
+<span class="nc" id="L101">            DTEstadoPropuesta dtEstadoActual = null;</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">            if (prop.getEstadoActual() != null) {</span>
+<span class="nc" id="L103">                dtEstadoActual = DTEstadoPropuesta.valueOf(prop.getEstadoActual().name());</span>
             }
 
-<span class="nc" id="L105">            DTProponente dtProponente = new DTProponente(</span>
-<span class="nc" id="L106">                    prop.getProponente().getNickname(),</span>
-<span class="nc" id="L107">                    prop.getProponente().getNombre(),</span>
-<span class="nc" id="L108">                    prop.getProponente().getApellido(),</span>
-<span class="nc" id="L109">                    prop.getProponente().getPassword(),</span>
-<span class="nc" id="L110">                    prop.getProponente().getCorreo(),</span>
-<span class="nc" id="L111">                    prop.getProponente().getFechaNacimiento(),</span>
-<span class="nc" id="L112">                    prop.getProponente().getImagen(),</span>
-<span class="nc" id="L113">                    prop.getProponente().getDireccion(),</span>
-<span class="nc" id="L114">                    prop.getProponente().getBio(),</span>
-<span class="nc" id="L115">                    prop.getProponente().getSitioWeb(),</span>
+<span class="nc" id="L106">            DTProponente dtProponente = new DTProponente(</span>
+<span class="nc" id="L107">                    prop.getProponente().getNickname(),</span>
+<span class="nc" id="L108">                    prop.getProponente().getNombre(),</span>
+<span class="nc" id="L109">                    prop.getProponente().getApellido(),</span>
+<span class="nc" id="L110">                    prop.getProponente().getPassword(),</span>
+<span class="nc" id="L111">                    prop.getProponente().getCorreo(),</span>
+<span class="nc" id="L112">                    prop.getProponente().getFechaNacimiento(),</span>
+<span class="nc" id="L113">                    prop.getProponente().getImagen(),</span>
+<span class="nc" id="L114">                    prop.getProponente().getDireccion(),</span>
+<span class="nc" id="L115">                    prop.getProponente().getBio(),</span>
+<span class="nc" id="L116">                    prop.getProponente().getSitioWeb(),</span>
                     new ArrayList&lt;&gt;()
             );
 
-<span class="nc" id="L119">            List&lt;DTColaboracion&gt; dtColabsPropuesta = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L120" title="All 2 branches missed.">            for (Colaboracion colabProp : prop.getColaboraciones()) {</span>
-<span class="nc bnc" id="L121" title="All 2 branches missed.">                DTTipoRetorno tipo = colabProp.getTipoRetorno() != null</span>
-<span class="nc" id="L122">                        ? DTTipoRetorno.valueOf(colabProp.getTipoRetorno().name())</span>
-<span class="nc" id="L123">                        : null;</span>
+<span class="nc" id="L120">            List&lt;DTColaboracion&gt; dtColabsPropuesta = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">            for (Colaboracion colabProp : prop.getColaboraciones()) {</span>
+<span class="nc bnc" id="L122" title="All 2 branches missed.">                DTTipoRetorno tipo = colabProp.getTipoRetorno() != null</span>
+<span class="nc" id="L123">                        ? DTTipoRetorno.valueOf(colabProp.getTipoRetorno().name())</span>
+<span class="nc" id="L124">                        : null;</span>
 
-<span class="nc" id="L125">                DTColaboracion dtColabProp = new DTColaboracion(</span>
+<span class="nc" id="L126">                DTColaboracion dtColabProp = new DTColaboracion(</span>
                         null,
-<span class="nc" id="L127">                        new DTColaborador(colabProp.getColaborador().getNickname()),</span>
-<span class="nc" id="L128">                        colabProp.getMonto(),</span>
+<span class="nc" id="L128">                        new DTColaborador(colabProp.getColaborador().getNickname()),</span>
+<span class="nc" id="L129">                        colabProp.getMonto(),</span>
                         tipo,
-<span class="nc" id="L130">                        colabProp.getFechaHora()</span>
+<span class="nc" id="L131">                        colabProp.getFechaHora()</span>
                 );
-<span class="nc" id="L132">                dtColabsPropuesta.add(dtColabProp);</span>
-<span class="nc" id="L133">            }</span>
+<span class="nc" id="L133">                dtColabsPropuesta.add(dtColabProp);</span>
+<span class="nc" id="L134">            }</span>
 
-<span class="nc" id="L135">            DTPropuesta dtPropuesta = new DTPropuesta(</span>
-<span class="nc" id="L136">                    prop.getTitulo(),</span>
-<span class="nc" id="L137">                    prop.getDescripcion(),</span>
-<span class="nc" id="L138">                    prop.getLugar(),</span>
-<span class="nc" id="L139">                    prop.getFechaPrevista(),</span>
-<span class="nc" id="L140">                    prop.getPrecioEntrada(),</span>
-<span class="nc" id="L141">                    prop.getMontoNecesario(),</span>
-<span class="nc" id="L142">                    prop.getImagen(),</span>
+<span class="nc" id="L136">            DTPropuesta dtPropuesta = new DTPropuesta(</span>
+<span class="nc" id="L137">                    prop.getTitulo(),</span>
+<span class="nc" id="L138">                    prop.getDescripcion(),</span>
+<span class="nc" id="L139">                    prop.getLugar(),</span>
+<span class="nc" id="L140">                    prop.getFechaPrevista(),</span>
+<span class="nc" id="L141">                    prop.getPrecioEntrada(),</span>
+<span class="nc" id="L142">                    prop.getMontoNecesario(),</span>
+<span class="nc" id="L143">                    prop.getImagen(),</span>
                     dtCategoria,
                     dtTiposRetorno,
                     dtEstadoActual,
                     dtColabsPropuesta
             );
-<span class="nc" id="L148">            dtPropuesta.setDTProponente(dtProponente);</span>
+<span class="nc" id="L149">            dtPropuesta.setDTProponente(dtProponente);</span>
 
-<span class="nc" id="L150">            DTTipoRetorno dtTipoRetorno = null;</span>
-<span class="nc bnc" id="L151" title="All 2 branches missed.">            if (c.getTipoRetorno() != null) {</span>
-<span class="nc" id="L152">                dtTipoRetorno = DTTipoRetorno.valueOf(c.getTipoRetorno().name());</span>
+<span class="nc" id="L151">            DTTipoRetorno dtTipoRetorno = null;</span>
+<span class="nc bnc" id="L152" title="All 2 branches missed.">            if (c.getTipoRetorno() != null) {</span>
+<span class="nc" id="L153">                dtTipoRetorno = DTTipoRetorno.valueOf(c.getTipoRetorno().name());</span>
             }
 
-<span class="nc" id="L155">            DTColaboracion dtColaboracion = new DTColaboracion(</span>
+<span class="nc" id="L156">            DTColaboracion dtColaboracion = new DTColaboracion(</span>
                     dtPropuesta,
                     new DTColaborador(nickname),
-<span class="nc" id="L158">                    c.getMonto(),</span>
+<span class="nc" id="L159">                    c.getMonto(),</span>
                     dtTipoRetorno,
-<span class="nc" id="L160">                    c.getFechaHora()</span>
+<span class="nc" id="L161">                    c.getFechaHora()</span>
             );
-<span class="nc" id="L162">            dtColaboraciones.add(dtColaboracion);</span>
-<span class="nc" id="L163">        }</span>
+<span class="nc" id="L163">            dtColaboraciones.add(dtColaboracion);</span>
+<span class="nc" id="L164">        }</span>
 
-<span class="fc" id="L165">        return new DTColaborador(nickname, nombre, apellido, password,correo,fechaNacimiento, imagen, dtColaboraciones);</span>
+<span class="fc" id="L166">        return new DTColaborador(nickname, nombre, apellido, password,correo,fechaNacimiento, imagen, dtColaboraciones);</span>
     }
 
     @Override
     public DTProponente devolverProponentePorNickname(String nickname) throws Exception {
-<span class="fc" id="L170">        UsuarioManejador um = UsuarioManejador.getInstance();</span>
-<span class="fc" id="L171">        Proponente prop = um.obtenerProponentePorNickname(nickname);</span>
+<span class="fc" id="L171">        UsuarioManejador um = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L172">        Proponente prop = um.obtenerProponentePorNickname(nickname);</span>
 
-<span class="fc bfc" id="L173" title="All 2 branches covered.">        if (prop == null) {</span>
-<span class="fc" id="L174">            throw new Exception(&quot;El proponente &quot; + nickname + &quot; no existe&quot;);</span>
+<span class="fc bfc" id="L174" title="All 2 branches covered.">        if (prop == null) {</span>
+<span class="fc" id="L175">            throw new Exception(&quot;El proponente &quot; + nickname + &quot; no existe&quot;);</span>
         }
 
-<span class="fc" id="L177">        String nombre = prop.getNombre();</span>
-<span class="fc" id="L178">        String apellido = prop.getApellido();</span>
-<span class="fc" id="L179">        String correo = prop.getCorreo();</span>
-<span class="fc" id="L180">        String password = prop.getPassword();</span>
-<span class="fc" id="L181">        LocalDate fechaNacimiento = prop.getFechaNacimiento();</span>
-<span class="fc" id="L182">        String direccion = prop.getDireccion();</span>
-<span class="fc" id="L183">        String biografia = prop.getBio();</span>
-<span class="fc" id="L184">        String sitioWeb = prop.getSitioWeb();</span>
-<span class="fc" id="L185">        String imagen = prop.getImagen();</span>
+<span class="fc" id="L178">        String nombre = prop.getNombre();</span>
+<span class="fc" id="L179">        String apellido = prop.getApellido();</span>
+<span class="fc" id="L180">        String correo = prop.getCorreo();</span>
+<span class="fc" id="L181">        String password = prop.getPassword();</span>
+<span class="fc" id="L182">        LocalDate fechaNacimiento = prop.getFechaNacimiento();</span>
+<span class="fc" id="L183">        String direccion = prop.getDireccion();</span>
+<span class="fc" id="L184">        String biografia = prop.getBio();</span>
+<span class="fc" id="L185">        String sitioWeb = prop.getSitioWeb();</span>
+<span class="fc" id="L186">        String imagen = prop.getImagen();</span>
 
-<span class="fc" id="L187">        List&lt;DTPropuesta&gt; dtPropuestas = new ArrayList&lt;&gt;();</span>
-<span class="pc bpc" id="L188" title="1 of 2 branches missed.">        for (Propuesta p : prop.getPropuestas()) {</span>
+<span class="fc" id="L188">        List&lt;DTPropuesta&gt; dtPropuestas = new ArrayList&lt;&gt;();</span>
+<span class="pc bpc" id="L189" title="1 of 2 branches missed.">        for (Propuesta p : prop.getPropuestas()) {</span>
 
-<span class="nc" id="L190">            DTCategoria dtCategoria = null;</span>
-<span class="nc bnc" id="L191" title="All 2 branches missed.">            if (p.getCategoria() != null) {</span>
-<span class="nc" id="L192">                DTCategoria dtCategoriaPadre = null;</span>
-<span class="nc bnc" id="L193" title="All 2 branches missed.">                if (p.getCategoria().getCategoriaPadre() != null) {</span>
-<span class="nc" id="L194">                    dtCategoriaPadre = new DTCategoria(</span>
-<span class="nc" id="L195">                            p.getCategoria().getCategoriaPadre().getNombre(),</span>
+<span class="nc" id="L191">            DTCategoria dtCategoria = null;</span>
+<span class="nc bnc" id="L192" title="All 2 branches missed.">            if (p.getCategoria() != null) {</span>
+<span class="nc" id="L193">                DTCategoria dtCategoriaPadre = null;</span>
+<span class="nc bnc" id="L194" title="All 2 branches missed.">                if (p.getCategoria().getCategoriaPadre() != null) {</span>
+<span class="nc" id="L195">                    dtCategoriaPadre = new DTCategoria(</span>
+<span class="nc" id="L196">                            p.getCategoria().getCategoriaPadre().getNombre(),</span>
                             new ArrayList&lt;&gt;(),
                             null
                     );
                 }
-<span class="nc" id="L200">                dtCategoria = new DTCategoria(</span>
-<span class="nc" id="L201">                        p.getCategoria().getNombre(),</span>
+<span class="nc" id="L201">                dtCategoria = new DTCategoria(</span>
+<span class="nc" id="L202">                        p.getCategoria().getNombre(),</span>
                         new ArrayList&lt;&gt;(),
                         dtCategoriaPadre
                 );
             }
 
-<span class="nc" id="L207">            List&lt;DTTipoRetorno&gt; dtTiposRetorno = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L208" title="All 2 branches missed.">            if (p.getTiposRetorno() != null) {</span>
-<span class="nc bnc" id="L209" title="All 2 branches missed.">                for (TipoRetorno tr : p.getTiposRetorno()) {</span>
-<span class="nc" id="L210">                    dtTiposRetorno.add(DTTipoRetorno.valueOf(tr.name()));</span>
-<span class="nc" id="L211">                }</span>
+<span class="nc" id="L208">            List&lt;DTTipoRetorno&gt; dtTiposRetorno = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L209" title="All 2 branches missed.">            if (p.getTiposRetorno() != null) {</span>
+<span class="nc bnc" id="L210" title="All 2 branches missed.">                for (TipoRetorno tr : p.getTiposRetorno()) {</span>
+<span class="nc" id="L211">                    dtTiposRetorno.add(DTTipoRetorno.valueOf(tr.name()));</span>
+<span class="nc" id="L212">                }</span>
             }
 
-<span class="nc" id="L214">            DTEstadoPropuesta dtEstadoActual = null;</span>
-<span class="nc bnc" id="L215" title="All 2 branches missed.">            if (p.getEstadoActual() != null) {</span>
-<span class="nc" id="L216">                dtEstadoActual = DTEstadoPropuesta.valueOf(p.getEstadoActual().name());</span>
+<span class="nc" id="L215">            DTEstadoPropuesta dtEstadoActual = null;</span>
+<span class="nc bnc" id="L216" title="All 2 branches missed.">            if (p.getEstadoActual() != null) {</span>
+<span class="nc" id="L217">                dtEstadoActual = DTEstadoPropuesta.valueOf(p.getEstadoActual().name());</span>
             }
 
-<span class="nc" id="L219">            List&lt;DTColaboracion&gt; dtColaboraciones = new ArrayList&lt;&gt;();</span>
-<span class="nc bnc" id="L220" title="All 2 branches missed.">            for (Colaboracion c : p.getColaboraciones()) {</span>
-<span class="nc" id="L221">                DTColaborador dtColaborador = new DTColaborador(</span>
-<span class="nc" id="L222">                        c.getColaborador().getNickname()</span>
+<span class="nc" id="L220">            List&lt;DTColaboracion&gt; dtColaboraciones = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">            for (Colaboracion c : p.getColaboraciones()) {</span>
+<span class="nc" id="L222">                DTColaborador dtColaborador = new DTColaborador(</span>
+<span class="nc" id="L223">                        c.getColaborador().getNickname()</span>
                 );
-<span class="nc" id="L224">                DTColaboracion dtc = new DTColaboracion(</span>
+<span class="nc" id="L225">                DTColaboracion dtc = new DTColaboracion(</span>
                         dtColaborador,
-<span class="nc" id="L226">                        c.getMonto()</span>
+<span class="nc" id="L227">                        c.getMonto()</span>
                 );
-<span class="nc" id="L228">                dtColaboraciones.add(dtc);</span>
-<span class="nc" id="L229">            }</span>
+<span class="nc" id="L229">                dtColaboraciones.add(dtc);</span>
+<span class="nc" id="L230">            }</span>
 
-<span class="nc" id="L231">            DTPropuesta dtp = new DTPropuesta(</span>
-<span class="nc" id="L232">                    p.getTitulo(),</span>
-<span class="nc" id="L233">                    p.getDescripcion(),</span>
-<span class="nc" id="L234">                    p.getLugar(),</span>
-<span class="nc" id="L235">                    p.getFechaPrevista(),</span>
-<span class="nc" id="L236">                    p.getPrecioEntrada(),</span>
-<span class="nc" id="L237">                    p.getMontoNecesario(),</span>
-<span class="nc" id="L238">                    p.getImagen(),</span>
+<span class="nc" id="L232">            DTPropuesta dtp = new DTPropuesta(</span>
+<span class="nc" id="L233">                    p.getTitulo(),</span>
+<span class="nc" id="L234">                    p.getDescripcion(),</span>
+<span class="nc" id="L235">                    p.getLugar(),</span>
+<span class="nc" id="L236">                    p.getFechaPrevista(),</span>
+<span class="nc" id="L237">                    p.getPrecioEntrada(),</span>
+<span class="nc" id="L238">                    p.getMontoNecesario(),</span>
+<span class="nc" id="L239">                    p.getImagen(),</span>
                     dtCategoria,
                     dtTiposRetorno,
                     dtEstadoActual,
                     dtColaboraciones
             );
-<span class="nc" id="L244">            dtPropuestas.add(dtp);</span>
-<span class="nc" id="L245">        }</span>
+<span class="nc" id="L245">            dtPropuestas.add(dtp);</span>
+<span class="nc" id="L246">        }</span>
 
-<span class="fc" id="L247">        return new DTProponente(nickname,nombre, apellido, password,correo,fechaNacimiento, imagen, direccion, biografia, sitioWeb, dtPropuestas);</span>
+<span class="fc" id="L248">        return new DTProponente(nickname,nombre, apellido, password,correo,fechaNacimiento, imagen, direccion, biografia, sitioWeb, dtPropuestas);</span>
     }
 
     @Override
     public void seguirUsuario(String nickSeguidor, String nickSeguido) {
-<span class="fc" id="L252">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
-<span class="fc" id="L253">        Usuario seguidor = mu.obtenerUsuarioPorNickname(nickSeguidor);</span>
-<span class="fc" id="L254">        Usuario seguido = mu.obtenerUsuarioPorNickname(nickSeguido);</span>
+<span class="fc" id="L253">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L254">        Usuario seguidor = mu.obtenerUsuarioPorNickname(nickSeguidor);</span>
+<span class="fc" id="L255">        Usuario seguido = mu.obtenerUsuarioPorNickname(nickSeguido);</span>
 
-<span class="pc bpc" id="L256" title="1 of 4 branches missed.">        if (seguidor == null || seguido == null) {</span>
-<span class="fc" id="L257">            throw new IllegalArgumentException(&quot;Los usuarios no pueden ser nulos.&quot;);</span>
+<span class="pc bpc" id="L257" title="1 of 4 branches missed.">        if (seguidor == null || seguido == null) {</span>
+<span class="fc" id="L258">            throw new IllegalArgumentException(&quot;Los usuarios no pueden ser nulos.&quot;);</span>
         }
-<span class="fc bfc" id="L259" title="All 2 branches covered.">        if (seguidor.getNickname().equals(seguido.getNickname())) {</span>
-<span class="fc" id="L260">            throw new IllegalArgumentException(&quot;Un usuario no puede seguirse a sí mismo.&quot;);</span>
+<span class="fc bfc" id="L260" title="All 2 branches covered.">        if (seguidor.getNickname().equals(seguido.getNickname())) {</span>
+<span class="fc" id="L261">            throw new IllegalArgumentException(&quot;Un usuario no puede seguirse a sí mismo.&quot;);</span>
         }
-<span class="fc bfc" id="L262" title="All 2 branches covered.">        if (mu.comprobarUsuarioUnoYaSigueUsuarioDos(nickSeguidor, nickSeguido)) {</span>
-<span class="fc" id="L263">            throw new IllegalStateException(&quot;El usuario ya sigue a este usuario.&quot;);</span>
+<span class="fc bfc" id="L263" title="All 2 branches covered.">        if (mu.comprobarUsuarioUnoYaSigueUsuarioDos(nickSeguidor, nickSeguido)) {</span>
+<span class="fc" id="L264">            throw new IllegalStateException(&quot;El usuario ya sigue a este usuario.&quot;);</span>
         }
 
-<span class="fc" id="L266">        mu.persistirSeguimiento(nickSeguidor, nickSeguido);</span>
+<span class="fc" id="L267">        mu.persistirSeguimiento(nickSeguidor, nickSeguido);</span>
 
-<span class="fc" id="L268">    }</span>
+<span class="fc" id="L269">    }</span>
 
     @Override
     public List&lt;String&gt; devolverUsuariosSeguidos(String nicknameSeguidor) {
-<span class="fc" id="L272">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
-<span class="fc" id="L273">        return mu.obtenerUsuariosSeguidos(nicknameSeguidor);</span>
+<span class="fc" id="L273">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L274">        return mu.obtenerUsuariosSeguidos(nicknameSeguidor);</span>
     }
 
     @Override
     public void dejarDeSeguirUsuario(String nickSeguidor, String nickSeguido) {
-<span class="fc" id="L278">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
-<span class="fc" id="L279">        Usuario seguidor = mu.obtenerUsuarioPorNickname(nickSeguidor);</span>
-<span class="fc" id="L280">        Usuario seguido = mu.obtenerUsuarioPorNickname(nickSeguido);</span>
+<span class="fc" id="L279">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L280">        Usuario seguidor = mu.obtenerUsuarioPorNickname(nickSeguidor);</span>
+<span class="fc" id="L281">        Usuario seguido = mu.obtenerUsuarioPorNickname(nickSeguido);</span>
 
-<span class="pc bpc" id="L282" title="1 of 4 branches missed.">        if (seguidor == null || seguido == null) {</span>
-<span class="fc" id="L283">            throw new IllegalArgumentException(&quot;Los usuarios no pueden ser nulos.&quot;);</span>
+<span class="pc bpc" id="L283" title="1 of 4 branches missed.">        if (seguidor == null || seguido == null) {</span>
+<span class="fc" id="L284">            throw new IllegalArgumentException(&quot;Los usuarios no pueden ser nulos.&quot;);</span>
         }
 
-<span class="fc bfc" id="L286" title="All 2 branches covered.">        if (seguidor.getId().equals(seguido.getId())) {</span>
-<span class="fc" id="L287">            throw new IllegalArgumentException(&quot;Un usuario no puede dejar de seguirse a sí mismo.&quot;);</span>
+<span class="fc bfc" id="L287" title="All 2 branches covered.">        if (seguidor.getId().equals(seguido.getId())) {</span>
+<span class="fc" id="L288">            throw new IllegalArgumentException(&quot;Un usuario no puede dejar de seguirse a sí mismo.&quot;);</span>
         }
 
-<span class="fc" id="L290">        mu.eliminarSeguimiento(nickSeguidor, nickSeguido);</span>
-<span class="fc" id="L291">    }</span>
+<span class="fc" id="L291">        mu.eliminarSeguimiento(nickSeguidor, nickSeguido);</span>
+<span class="fc" id="L292">    }</span>
 
     @Override
-    public boolean UsuarioUnoYaSigueUsuarioDos(String nickSeguidor, String nickSeguido){
-<span class="fc" id="L295">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
-<span class="fc" id="L296">        return mu.comprobarUsuarioUnoYaSigueUsuarioDos(nickSeguidor, nickSeguido);</span>
+    public boolean usuarioUnoYaSigueUsuarioDos(String nickSeguidor, String nickSeguido){
+<span class="fc" id="L296">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L297">        return mu.comprobarUsuarioUnoYaSigueUsuarioDos(nickSeguidor, nickSeguido);</span>
     }
 
     @Override
     public void marcarPropuestaFavorita(String nickname,String titulo) {
-<span class="fc" id="L301">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
-<span class="fc" id="L302">        PropuestaManejador mp = PropuestaManejador.getInstance();</span>
-<span class="fc" id="L303">        Usuario usuario = mu.obtenerUsuarioPorNickname(nickname);</span>
-<span class="fc" id="L304">        Propuesta propuesta = mp.obtenerPropuestaPorTitulo(titulo);</span>
+<span class="fc" id="L302">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L303">        PropuestaManejador mp = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L304">        Usuario usuario = mu.obtenerUsuarioPorNickname(nickname);</span>
+<span class="fc" id="L305">        Propuesta propuesta = mp.obtenerPropuestaPorTitulo(titulo);</span>
 
-<span class="fc bfc" id="L306" title="All 2 branches covered.">        if (usuario == null) {</span>
-<span class="fc" id="L307">            throw new IllegalArgumentException(&quot;El usuario no puede ser nulo.&quot;);</span>
+<span class="fc bfc" id="L307" title="All 2 branches covered.">        if (usuario == null) {</span>
+<span class="fc" id="L308">            throw new IllegalArgumentException(&quot;El usuario no puede ser nulo.&quot;);</span>
         }
-<span class="fc bfc" id="L309" title="All 2 branches covered.">        if (propuesta == null) {</span>
-<span class="fc" id="L310">            throw new IllegalArgumentException(&quot;La propuesta no puede ser nula.&quot;);</span>
+<span class="fc bfc" id="L310" title="All 2 branches covered.">        if (propuesta == null) {</span>
+<span class="fc" id="L311">            throw new IllegalArgumentException(&quot;La propuesta no puede ser nula.&quot;);</span>
         }
-<span class="fc bfc" id="L312" title="All 2 branches covered.">        if (mu.comprobarUsuarioYaTienePropuestaFavorita(nickname, titulo)) {</span>
-<span class="fc" id="L313">            throw new IllegalStateException(&quot;El usuario ya tiene marcada como favorita esta propuesta.&quot;);</span>
+<span class="fc bfc" id="L313" title="All 2 branches covered.">        if (mu.comprobarUsuarioYaTienePropuestaFavorita(nickname, titulo)) {</span>
+<span class="fc" id="L314">            throw new IllegalStateException(&quot;El usuario ya tiene marcada como favorita esta propuesta.&quot;);</span>
         }
 
-<span class="fc" id="L316">        mu.agregarPropuestaFavorita(nickname,titulo);</span>
-<span class="fc" id="L317">    }</span>
+<span class="fc" id="L317">        mu.agregarPropuestaFavorita(nickname,titulo);</span>
+<span class="fc" id="L318">    }</span>
 
     @Override
     public void quitarPropuestaFavorita(String nickname,String titulo) {
-<span class="fc" id="L321">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
-<span class="fc" id="L322">        PropuestaManejador mp = PropuestaManejador.getInstance();</span>
-<span class="fc" id="L323">        Usuario usuario = mu.obtenerUsuarioPorNickname(nickname);</span>
-<span class="fc" id="L324">        Propuesta propuesta = mp.obtenerPropuestaPorTitulo(titulo);</span>
+<span class="fc" id="L322">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L323">        PropuestaManejador mp = PropuestaManejador.getInstance();</span>
+<span class="fc" id="L324">        Usuario usuario = mu.obtenerUsuarioPorNickname(nickname);</span>
+<span class="fc" id="L325">        Propuesta propuesta = mp.obtenerPropuestaPorTitulo(titulo);</span>
 
-<span class="fc bfc" id="L326" title="All 2 branches covered.">        if (usuario == null) {</span>
-<span class="fc" id="L327">            throw new IllegalArgumentException(&quot;El usuario no puede ser nulo.&quot;);</span>
+<span class="fc bfc" id="L327" title="All 2 branches covered.">        if (usuario == null) {</span>
+<span class="fc" id="L328">            throw new IllegalArgumentException(&quot;El usuario no puede ser nulo.&quot;);</span>
         }
-<span class="fc bfc" id="L329" title="All 2 branches covered.">        if (propuesta == null) {</span>
-<span class="fc" id="L330">            throw new IllegalArgumentException(&quot;La propuesta no puede ser nula.&quot;);</span>
+<span class="fc bfc" id="L330" title="All 2 branches covered.">        if (propuesta == null) {</span>
+<span class="fc" id="L331">            throw new IllegalArgumentException(&quot;La propuesta no puede ser nula.&quot;);</span>
         }
 
-<span class="fc" id="L333">        mu.eliminarPropuestaFavorita(nickname,titulo);</span>
-<span class="fc" id="L334">    }</span>
+<span class="fc" id="L334">        mu.eliminarPropuestaFavorita(nickname,titulo);</span>
+<span class="fc" id="L335">    }</span>
 
     @Override
-    public boolean UsuarioYaTienePropuestaFavorita(String nickSeguidor, String nickSeguido){
-<span class="fc" id="L338">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
-<span class="fc" id="L339">        return mu.comprobarUsuarioYaTienePropuestaFavorita(nickSeguidor, nickSeguido);</span>
+    public boolean usuarioYaTienePropuestaFavorita(String nickSeguidor, String nickSeguido){
+<span class="fc" id="L339">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L340">        return mu.comprobarUsuarioYaTienePropuestaFavorita(nickSeguidor, nickSeguido);</span>
+    }
+
+    @Override
+    public DTUsuario login(String usu, String password){
+<span class="fc" id="L345">        Usuario u = UsuarioManejador.getInstance().obtenerUsuarioPorNickname(usu);</span>
+<span class="fc bfc" id="L346" title="All 2 branches covered.">        if(u == null){</span>
+<span class="fc" id="L347">            u = UsuarioManejador.getInstance().obtenerUsuarioPorCorreo(usu);</span>
+        }
+<span class="fc bfc" id="L349" title="All 4 branches covered.">        if(u != null &amp;&amp; u.getPassword().equals(password)){</span>
+<span class="fc" id="L350">            return new DTUsuario(</span>
+<span class="fc" id="L351">                    u.getNickname(),</span>
+<span class="fc" id="L352">                    u.getNombre(),</span>
+<span class="fc" id="L353">                    u.getApellido(),</span>
+<span class="fc" id="L354">                    u.getCorreo(),</span>
+<span class="fc" id="L355">                    u.getImagen()</span>
+            );
+        } else {
+<span class="fc" id="L358">            throw new RuntimeException(&quot;Datos incorrectos&quot;);</span>
+        }
+    }
+
+    @Override
+    public List&lt;String&gt; devolverUsuariosSeguidores(String nicknameSeguido) {
+<span class="fc" id="L364">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L365">        return mu.obtenerFollowers(nicknameSeguido);</span>
+    }
+
+    @Override
+    public DTUsuario getDTUsuario(String nickname) {
+<span class="fc" id="L370">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L371">        Usuario u = mu.obtenerUsuarioPorNickname(nickname);</span>
+<span class="fc bfc" id="L372" title="All 2 branches covered.">        return (u != null) ? u.getDataType() : null;</span>
+    }
+
+    @Override
+    public List&lt;DTProponente&gt; devolverProponentesEliminados() {
+<span class="fc" id="L377">        UsuarioManejador um = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L378">        List&lt;Proponente&gt; proponentesEliminados = um.obtenerProponentesEliminados();</span>
+        
+<span class="fc" id="L380">        List&lt;DTProponente&gt; dtProponentesEliminados = new ArrayList&lt;&gt;();</span>
+        
+<span class="fc bfc" id="L382" title="All 2 branches covered.">        for (Proponente prop : proponentesEliminados) {</span>
+<span class="fc" id="L383">            String nickname = prop.getNickname();</span>
+<span class="fc" id="L384">            String nombre = prop.getNombre();</span>
+<span class="fc" id="L385">            String apellido = prop.getApellido();</span>
+<span class="fc" id="L386">            String correo = prop.getCorreo();</span>
+<span class="fc" id="L387">            String password = prop.getPassword();</span>
+<span class="fc" id="L388">            LocalDate fechaNacimiento = prop.getFechaNacimiento();</span>
+<span class="fc" id="L389">            String direccion = prop.getDireccion();</span>
+<span class="fc" id="L390">            String biografia = prop.getBio();</span>
+<span class="fc" id="L391">            String sitioWeb = prop.getSitioWeb();</span>
+<span class="fc" id="L392">            String imagen = prop.getImagen();</span>
+<span class="fc" id="L393">            java.time.LocalDateTime fechaEliminacion = prop.getFechaEliminacion();</span>
+
+<span class="fc" id="L395">            List&lt;DTPropuesta&gt; dtPropuestas = new ArrayList&lt;&gt;();</span>
+<span class="pc bpc" id="L396" title="1 of 2 branches missed.">            for (Propuesta p : prop.getPropuestas()) {</span>
+<span class="nc" id="L397">                DTCategoria dtCategoria = null;</span>
+<span class="nc bnc" id="L398" title="All 2 branches missed.">                if (p.getCategoria() != null) {</span>
+<span class="nc" id="L399">                    DTCategoria dtCategoriaPadre = null;</span>
+<span class="nc bnc" id="L400" title="All 2 branches missed.">                    if (p.getCategoria().getCategoriaPadre() != null) {</span>
+<span class="nc" id="L401">                        dtCategoriaPadre = new DTCategoria(</span>
+<span class="nc" id="L402">                                p.getCategoria().getCategoriaPadre().getNombre(),</span>
+                                new ArrayList&lt;&gt;(),
+                                null
+                        );
+                    }
+<span class="nc" id="L407">                    dtCategoria = new DTCategoria(</span>
+<span class="nc" id="L408">                            p.getCategoria().getNombre(),</span>
+                            new ArrayList&lt;&gt;(),
+                            dtCategoriaPadre
+                    );
+                }
+
+<span class="nc" id="L414">                List&lt;DTTipoRetorno&gt; dtTiposRetorno = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L415" title="All 2 branches missed.">                if (p.getTiposRetorno() != null) {</span>
+<span class="nc bnc" id="L416" title="All 2 branches missed.">                    for (TipoRetorno tr : p.getTiposRetorno()) {</span>
+<span class="nc" id="L417">                        dtTiposRetorno.add(DTTipoRetorno.valueOf(tr.name()));</span>
+<span class="nc" id="L418">                    }</span>
+                }
+
+<span class="nc" id="L421">                DTEstadoPropuesta dtEstadoActual = null;</span>
+<span class="nc bnc" id="L422" title="All 2 branches missed.">                if (p.getEstadoActual() != null) {</span>
+<span class="nc" id="L423">                    dtEstadoActual = DTEstadoPropuesta.valueOf(p.getEstadoActual().name());</span>
+                }
+
+<span class="nc" id="L426">                List&lt;DTColaboracion&gt; dtColaboraciones = new ArrayList&lt;&gt;();</span>
+<span class="nc bnc" id="L427" title="All 2 branches missed.">                for (Colaboracion c : p.getColaboraciones()) {</span>
+<span class="nc" id="L428">                    DTColaborador dtColaborador = new DTColaborador(</span>
+<span class="nc" id="L429">                            c.getColaborador().getNickname()</span>
+                    );
+<span class="nc" id="L431">                    DTTipoRetorno dtTipoRetorno = null;</span>
+<span class="nc bnc" id="L432" title="All 2 branches missed.">                    if (c.getTipoRetorno() != null) {</span>
+<span class="nc" id="L433">                        dtTipoRetorno = DTTipoRetorno.valueOf(c.getTipoRetorno().name());</span>
+                    }
+<span class="nc" id="L435">                    DTColaboracion dtc = new DTColaboracion(</span>
+                            null,
+                            dtColaborador,
+<span class="nc" id="L438">                            c.getMonto(),</span>
+                            dtTipoRetorno,
+<span class="nc" id="L440">                            c.getFechaHora()</span>
+                    );
+<span class="nc" id="L442">                    dtColaboraciones.add(dtc);</span>
+<span class="nc" id="L443">                }</span>
+
+<span class="nc" id="L445">                DTPropuesta dtp = new DTPropuesta(</span>
+<span class="nc" id="L446">                        p.getTitulo(),</span>
+<span class="nc" id="L447">                        p.getDescripcion(),</span>
+<span class="nc" id="L448">                        p.getLugar(),</span>
+<span class="nc" id="L449">                        p.getFechaPrevista(),</span>
+<span class="nc" id="L450">                        p.getPrecioEntrada(),</span>
+<span class="nc" id="L451">                        p.getMontoNecesario(),</span>
+<span class="nc" id="L452">                        p.getImagen(),</span>
+                        dtCategoria,
+                        dtTiposRetorno,
+                        dtEstadoActual,
+                        dtColaboraciones
+                );
+<span class="nc" id="L458">                dtPropuestas.add(dtp);</span>
+<span class="nc" id="L459">            }</span>
+
+<span class="fc" id="L461">            DTProponente dtProponente = new DTProponente(</span>
+                    nickname, nombre, apellido, password, correo, 
+                    fechaNacimiento, imagen, direccion, biografia, sitioWeb, 
+                    dtPropuestas, fechaEliminacion
+            );
+<span class="fc" id="L466">            dtProponentesEliminados.add(dtProponente);</span>
+<span class="fc" id="L467">        }</span>
+        
+<span class="fc" id="L469">        return dtProponentesEliminados;</span>
+    }
+
+    @Override
+    public void bajaProponente(String nickname) throws Exception {
+<span class="fc" id="L474">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
+
+<span class="fc" id="L476">        Proponente proponente = mu.obtenerProponentePorNickname(nickname);</span>
+
+<span class="fc bfc" id="L478" title="All 2 branches covered.">        if (proponente == null) {</span>
+<span class="fc" id="L479">            throw new Exception(&quot;El proponente &quot; + nickname + &quot; no existe&quot;);</span>
+        }
+
+<span class="fc" id="L482">        proponente.setEliminado(true);</span>
+<span class="fc" id="L483">        proponente.setFechaEliminacion(LocalDateTime.now());</span>
+
+<span class="fc" id="L485">        mu.darDeBajaProponente(proponente);</span>
+<span class="fc" id="L486">    }</span>
+
+    @Override
+    public void registrarAcceso(String ip, String url, String browser, String sistemaOperativo){
+<span class="fc" id="L490">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L491">        mu.persistirAcceso(ip, url, browser, sistemaOperativo);</span>
+<span class="fc" id="L492">    }</span>
+
+
+    @Override
+    public List&lt;DTAccesoSitio&gt; devolverRegistroAccesos() {
+<span class="fc" id="L497">        UsuarioManejador mu = UsuarioManejador.getInstance();</span>
+<span class="fc" id="L498">        return mu.obtenerRegistroAccesos();</span>
     }
 
 }

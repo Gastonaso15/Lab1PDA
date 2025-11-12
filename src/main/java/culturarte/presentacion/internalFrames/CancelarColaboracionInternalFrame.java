@@ -5,6 +5,7 @@ import culturarte.servicios.DTs.DTPropuesta;
 import culturarte.servicios.interfaces.IPropuestaController;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.util.List;
 
@@ -85,9 +86,11 @@ public class CancelarColaboracionInternalFrame extends JInternalFrame {
         panelDerecho.add(panelInfo, BorderLayout.NORTH);
         panelDerecho.add(panelColaboraciones, BorderLayout.CENTER);
 
-        JPanel panelBotones = new JPanel();
-        JButton btnCancelarColaboracion = new JButton("Cancelar Colaboración");
-        JButton btnCancelar = new JButton("Cancelar");
+        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 10));
+        panelBotones.setBackground(new Color(245, 248, 250));
+        panelBotones.setBorder(new EmptyBorder(10, 0, 0, 0));
+        JButton btnCancelarColaboracion = crearBoton("Cancelar Colaboración", new Color(150, 30, 30), Color.WHITE);
+        JButton btnCancelar = crearBoton("Cancelar", new Color(60, 60, 60), Color.WHITE);
         panelBotones.add(btnCancelarColaboracion);
         panelBotones.add(btnCancelar);
         panelDerecho.add(panelBotones, BorderLayout.SOUTH);
@@ -235,5 +238,28 @@ public class CancelarColaboracionInternalFrame extends JInternalFrame {
         for (JLabel lbl : labels) {
             lbl.setFont(font);
         }
+    }
+
+    private JButton crearBoton(String texto, Color colorFondo, Color colorTexto) {
+        JButton boton = new JButton(texto);
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        boton.setBackground(colorFondo);
+        boton.setForeground(colorTexto);
+        boton.setFocusPainted(false);
+        boton.setBorderPainted(true);
+        boton.setContentAreaFilled(true);
+        boton.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createRaisedBevelBorder(),
+            new EmptyBorder(8, 20, 8, 20)
+        ));
+        boton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                boton.setBackground(colorFondo.darker());
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                boton.setBackground(colorFondo);
+            }
+        });
+        return boton;
     }
 }
