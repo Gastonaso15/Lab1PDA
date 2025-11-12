@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdaptadorLocalDate.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Culturarte App</a> &gt; <a href="index.source.html" class="el_package">culturarte.servicios.DTs</a> &gt; <span class="el_source">AdaptadorLocalDate.java</span></div><h1>AdaptadorLocalDate.java</h1><pre class="source lang-java linenums">package culturarte.servicios.DTs;
+
+import jakarta.xml.bind.annotation.adapters.XmlAdapter;
+import java.time.LocalDate;
+
+/**
+ * Adaptador JAXB para serializar/deserializar LocalDate como objeto complejo
+ * con campos anio, mes, dia en lugar de string simple.
+ */
+<span class="nc" id="L10">public class AdaptadorLocalDate extends XmlAdapter&lt;AdaptadorLocalDate.LocalDateWS, LocalDate&gt; {</span>
+
+<span class="nc" id="L12">    public static class LocalDateWS {</span>
+        public int anio;
+        public int mes;
+        public int dia;
+    }
+
+    @Override
+    public LocalDate unmarshal(LocalDateWS v) throws Exception {
+<span class="nc bnc" id="L20" title="All 2 branches missed.">        if (v == null) return null;</span>
+<span class="nc" id="L21">        return LocalDate.of(v.anio, v.mes, v.dia);</span>
+    }
+
+    @Override
+    public LocalDateWS marshal(LocalDate v) throws Exception {
+<span class="nc bnc" id="L26" title="All 2 branches missed.">        if (v == null) return null;</span>
+<span class="nc" id="L27">        LocalDateWS ws = new LocalDateWS();</span>
+<span class="nc" id="L28">        ws.anio = v.getYear();</span>
+<span class="nc" id="L29">        ws.mes = v.getMonthValue();</span>
+<span class="nc" id="L30">        ws.dia = v.getDayOfMonth();</span>
+<span class="nc" id="L31">        return ws;</span>
+    }
+}
+
+
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

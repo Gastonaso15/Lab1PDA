@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VerProponentesEliminadosInternalFrame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Culturarte App</a> &gt; <a href="index.source.html" class="el_package">culturarte.presentacion.internalFrames</a> &gt; <span class="el_source">VerProponentesEliminadosInternalFrame.java</span></div><h1>VerProponentesEliminadosInternalFrame.java</h1><pre class="source lang-java linenums">package culturarte.presentacion.internalFrames;
+
+import culturarte.servicios.DTs.DTColaboracion;
+import culturarte.servicios.DTs.DTEstadoPropuesta;
+import culturarte.servicios.DTs.DTProponente;
+import culturarte.servicios.DTs.DTPropuesta;
+import culturarte.servicios.interfaces.IUsuarioController;
+import culturarte.presentacion.helpers.ImagenUIHelper;
+
+import javax.swing.*;
+import javax.swing.border.TitledBorder;
+import java.awt.*;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
+public class VerProponentesEliminadosInternalFrame extends JInternalFrame {
+
+    private final IUsuarioController UsuarioContr;
+    private final JList&lt;DTProponente&gt; listProponentes;
+    private final JLabel lblNickname;
+    private final JLabel lblNombre;
+    private final JLabel lblApellido;
+    private final JLabel lblCorreo;
+    private final JLabel lblFechaNacimiento;
+    private final JLabel lblDireccion;
+    private final JTextArea txtBiografia;
+    private final JLabel lblWeb;
+    private final JLabel lblFechaEliminacion;
+    private final ImagenUIHelper.ImagenPanel lblImagen;
+    private final JPanel panelPropuestas;
+
+    public VerProponentesEliminadosInternalFrame(IUsuarioController icu) {
+<span class="nc" id="L33">        super(&quot;Ver Proponentes Eliminados&quot;, true, true, true, true);</span>
+<span class="nc" id="L34">        setSize(1200, 600);</span>
+<span class="nc" id="L35">        setLayout(new BorderLayout());</span>
+
+<span class="nc" id="L37">        UsuarioContr = icu;</span>
+
+<span class="nc" id="L39">        JPanel panelIzquierdo = new JPanel(new BorderLayout());</span>
+        
+<span class="nc" id="L41">        DefaultListModel&lt;DTProponente&gt; model = new DefaultListModel&lt;&gt;();</span>
+        try {
+<span class="nc" id="L43">            List&lt;DTProponente&gt; proponentesEliminados = icu.devolverProponentesEliminados();</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">            for (DTProponente prop : proponentesEliminados) {</span>
+<span class="nc" id="L45">                model.addElement(prop);</span>
+<span class="nc" id="L46">            }</span>
+<span class="nc" id="L47">        } catch (Exception e) {</span>
+<span class="nc" id="L48">            JOptionPane.showMessageDialog(this, </span>
+<span class="nc" id="L49">                &quot;Error al cargar proponentes eliminados: &quot; + e.getMessage(),</span>
+                &quot;Error&quot;, 
+                JOptionPane.ERROR_MESSAGE);
+<span class="nc" id="L52">        }</span>
+        
+<span class="nc" id="L54">        listProponentes = new JList&lt;&gt;(model);</span>
+<span class="nc" id="L55">        listProponentes.setCellRenderer(new ProponenteListCellRenderer());</span>
+<span class="nc" id="L56">        JScrollPane scrollProponentes = new JScrollPane(listProponentes);</span>
+<span class="nc" id="L57">        panelIzquierdo.add(new JLabel(&quot;Proponentes Eliminados:&quot;), BorderLayout.NORTH);</span>
+<span class="nc" id="L58">        panelIzquierdo.add(scrollProponentes, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L60">        JPanel panelDerecho = new JPanel(new BorderLayout());</span>
+
+<span class="nc" id="L62">        JPanel panelInfo = new JPanel(new GridLayout(1, 3, 10, 0));</span>
+
+<span class="nc" id="L64">        JPanel col1 = new JPanel();</span>
+<span class="nc" id="L65">        col1.setLayout(new BoxLayout(col1, BoxLayout.Y_AXIS));</span>
+<span class="nc" id="L66">        lblNickname = new JLabel(&quot;Nickname: &quot;);</span>
+<span class="nc" id="L67">        lblNombre = new JLabel(&quot;Nombre: &quot;);</span>
+<span class="nc" id="L68">        lblApellido = new JLabel(&quot;Apellido: &quot;);</span>
+<span class="nc" id="L69">        lblFechaNacimiento = new JLabel(&quot;Fecha de nacimiento: &quot;);</span>
+<span class="nc" id="L70">        lblFechaEliminacion = new JLabel(&quot;Fecha de eliminación: &quot;);</span>
+<span class="nc" id="L71">        lblFechaEliminacion.setForeground(Color.RED);</span>
+<span class="nc" id="L72">        lblFechaEliminacion.setFont(lblFechaEliminacion.getFont().deriveFont(Font.BOLD));</span>
+<span class="nc" id="L73">        col1.add(lblNickname);</span>
+<span class="nc" id="L74">        col1.add(lblNombre);</span>
+<span class="nc" id="L75">        col1.add(lblApellido);</span>
+<span class="nc" id="L76">        col1.add(lblFechaNacimiento);</span>
+<span class="nc" id="L77">        col1.add(lblFechaEliminacion);</span>
+
+<span class="nc" id="L79">        JPanel col2 = new JPanel();</span>
+<span class="nc" id="L80">        col2.setLayout(new BoxLayout(col2, BoxLayout.Y_AXIS));</span>
+<span class="nc" id="L81">        lblCorreo = new JLabel(&quot;Correo: &quot;);</span>
+<span class="nc" id="L82">        lblDireccion = new JLabel(&quot;Dirección: &quot;);</span>
+<span class="nc" id="L83">        lblWeb = new JLabel(&quot;Sitio Web: &quot;);</span>
+<span class="nc" id="L84">        txtBiografia = new JTextArea();</span>
+<span class="nc" id="L85">        txtBiografia.setLineWrap(true);</span>
+<span class="nc" id="L86">        txtBiografia.setWrapStyleWord(true);</span>
+<span class="nc" id="L87">        txtBiografia.setEditable(false);</span>
+<span class="nc" id="L88">        txtBiografia.setFont(new Font(&quot;Times New Roman&quot;, Font.PLAIN, 20));</span>
+<span class="nc" id="L89">        txtBiografia.setBackground(col2.getBackground());</span>
+<span class="nc" id="L90">        txtBiografia.setRows(5);</span>
+<span class="nc" id="L91">        JScrollPane scrollBio = new JScrollPane(txtBiografia);</span>
+<span class="nc" id="L92">        scrollBio.setBorder(BorderFactory.createEmptyBorder());</span>
+<span class="nc" id="L93">        scrollBio.setAlignmentX(Component.LEFT_ALIGNMENT);</span>
+<span class="nc" id="L94">        col2.add(lblCorreo);</span>
+<span class="nc" id="L95">        col2.add(lblDireccion);</span>
+<span class="nc" id="L96">        col2.add(lblWeb);</span>
+<span class="nc" id="L97">        col2.add(scrollBio);</span>
+
+<span class="nc" id="L99">        JPanel col3 = new JPanel();</span>
+<span class="nc" id="L100">        col3.setLayout(new BoxLayout(col3, BoxLayout.Y_AXIS));</span>
+<span class="nc" id="L101">        lblImagen = new ImagenUIHelper.ImagenPanel();</span>
+<span class="nc" id="L102">        lblImagen.setPreferredSize(new Dimension(150, 150));</span>
+<span class="nc" id="L103">        lblImagen.setBorder(BorderFactory.createLineBorder(Color.BLACK));</span>
+<span class="nc" id="L104">        col3.add(lblImagen);</span>
+
+<span class="nc" id="L106">        Font fontInfo = new Font(&quot;Times New Roman&quot;, Font.PLAIN, 20);</span>
+<span class="nc" id="L107">        setFontToLabels(fontInfo, lblNickname, lblNombre, lblApellido, lblFechaNacimiento,</span>
+                lblCorreo, lblDireccion, lblWeb);
+
+<span class="nc" id="L110">        panelInfo.add(col3);</span>
+<span class="nc" id="L111">        panelInfo.add(col1);</span>
+<span class="nc" id="L112">        panelInfo.add(col2);</span>
+
+<span class="nc" id="L114">        panelPropuestas = new JPanel();</span>
+<span class="nc" id="L115">        panelPropuestas.setLayout(new BoxLayout(panelPropuestas, BoxLayout.Y_AXIS));</span>
+<span class="nc" id="L116">        JScrollPane scrollPropuestas = new JScrollPane(panelPropuestas);</span>
+<span class="nc" id="L117">        scrollPropuestas.setPreferredSize(new Dimension(700, 300));</span>
+
+<span class="nc" id="L119">        panelDerecho.add(panelInfo, BorderLayout.NORTH);</span>
+<span class="nc" id="L120">        panelDerecho.add(scrollPropuestas, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L122">        JSplitPane splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, panelIzquierdo, panelDerecho);</span>
+<span class="nc" id="L123">        splitPane.setDividerLocation(250);</span>
+<span class="nc" id="L124">        add(splitPane, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L126">        listProponentes.addListSelectionListener(e -&gt; {</span>
+<span class="nc bnc" id="L127" title="All 2 branches missed.">            if (!e.getValueIsAdjusting()) {</span>
+<span class="nc" id="L128">                DTProponente proponente = listProponentes.getSelectedValue();</span>
+<span class="nc bnc" id="L129" title="All 2 branches missed.">                if (proponente != null) {</span>
+<span class="nc" id="L130">                    mostrarProponente(proponente);</span>
+                }
+            }
+<span class="nc" id="L133">        });</span>
+<span class="nc" id="L134">    }</span>
+
+    private void mostrarProponente(DTProponente proponente) {
+<span class="nc" id="L137">        lblNickname.setText(&quot;Nickname: &quot; + proponente.getNickname());</span>
+<span class="nc" id="L138">        lblNombre.setText(&quot;Nombre: &quot; + proponente.getNombre());</span>
+<span class="nc" id="L139">        lblApellido.setText(&quot;Apellido: &quot; + proponente.getApellido());</span>
+<span class="nc" id="L140">        lblCorreo.setText(&quot;Correo: &quot; + proponente.getCorreo());</span>
+<span class="nc" id="L141">        lblFechaNacimiento.setText(&quot;Fecha de Nacimiento: &quot; + </span>
+<span class="nc bnc" id="L142" title="All 2 branches missed.">            (proponente.getFechaNacimiento() != null ? proponente.getFechaNacimiento().toString() : &quot;&quot;));</span>
+<span class="nc" id="L143">        lblDireccion.setText(&quot;Dirección: &quot; + </span>
+<span class="nc bnc" id="L144" title="All 2 branches missed.">            (proponente.getDireccion() != null ? proponente.getDireccion() : &quot;&quot;));</span>
+<span class="nc" id="L145">        txtBiografia.setText(&quot;Biografía: &quot; + </span>
+<span class="nc bnc" id="L146" title="All 2 branches missed.">            (proponente.getBio() != null ? proponente.getBio() : &quot;&quot;));</span>
+<span class="nc" id="L147">        lblWeb.setText(&quot;Sitio Web: &quot; + </span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            (proponente.getSitioWeb() != null ? proponente.getSitioWeb() : &quot;&quot;));</span>
+        
+<span class="nc bnc" id="L150" title="All 2 branches missed.">        if (proponente.getFechaEliminacion() != null) {</span>
+<span class="nc" id="L151">            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;dd/MM/yyyy HH:mm:ss&quot;);</span>
+<span class="nc" id="L152">            lblFechaEliminacion.setText(&quot;Fecha de Eliminación: &quot; + </span>
+<span class="nc" id="L153">                proponente.getFechaEliminacion().format(formatter));</span>
+<span class="nc" id="L154">        } else {</span>
+<span class="nc" id="L155">            lblFechaEliminacion.setText(&quot;Fecha de Eliminación: No disponible&quot;);</span>
+        }
+
+<span class="nc" id="L158">        lblImagen.setImagen(proponente.getImagen());</span>
+
+<span class="nc" id="L160">        panelPropuestas.removeAll();</span>
+        
+<span class="nc bnc" id="L162" title="All 4 branches missed.">        if (proponente.getPropuestas() != null &amp;&amp; !proponente.getPropuestas().isEmpty()) {</span>
+<span class="nc bnc" id="L163" title="All 2 branches missed.">            for (DTPropuesta p : proponente.getPropuestas()) {</span>
+<span class="nc" id="L164">                JPanel pPanel = new JPanel();</span>
+<span class="nc" id="L165">                pPanel.setLayout(new BoxLayout(pPanel, BoxLayout.Y_AXIS));</span>
+<span class="nc" id="L166">                pPanel.setBorder(BorderFactory.createTitledBorder(</span>
+<span class="nc" id="L167">                        BorderFactory.createLineBorder(Color.BLACK),</span>
+<span class="nc" id="L168">                        p.getTitulo() + &quot; - &quot; + </span>
+<span class="nc bnc" id="L169" title="All 2 branches missed.">                        (p.getEstadoActual() != null ? p.getEstadoActual() : &quot;Sin estado&quot;),</span>
+                        TitledBorder.LEFT,
+                        TitledBorder.TOP
+                ));
+
+<span class="nc bnc" id="L174" title="All 2 branches missed.">                if (p.getEstadoActual() != null) {</span>
+<span class="nc bnc" id="L175" title="All 7 branches missed.">                    switch(p.getEstadoActual()) {</span>
+<span class="nc" id="L176">                        case INGRESADA -&gt; pPanel.setBackground(new Color(238, 10, 238));</span>
+<span class="nc" id="L177">                        case PUBLICADA -&gt; pPanel.setBackground(new Color(144, 238, 144));</span>
+<span class="nc" id="L178">                        case EN_FINANCIACION -&gt; pPanel.setBackground(new Color(255, 255, 102));</span>
+<span class="nc" id="L179">                        case CANCELADA -&gt; pPanel.setBackground(new Color(255, 102, 102));</span>
+<span class="nc" id="L180">                        case FINANCIADA -&gt; pPanel.setBackground(new Color(102, 178, 255));</span>
+<span class="nc" id="L181">                        case NO_FINANCIADA -&gt; pPanel.setBackground(new Color(211, 211, 211));</span>
+                    }
+                }
+
+<span class="nc" id="L185">                double dineroRecaudado = 0;</span>
+<span class="nc" id="L186">                StringBuilder colaboradoresStr = new StringBuilder();</span>
+<span class="nc bnc" id="L187" title="All 2 branches missed.">                if (p.getColaboraciones() != null) {</span>
+<span class="nc bnc" id="L188" title="All 2 branches missed.">                    for (DTColaboracion c : p.getColaboraciones()) {</span>
+<span class="nc bnc" id="L189" title="All 2 branches missed.">                        if (c.getMonto() != null) {</span>
+<span class="nc" id="L190">                            dineroRecaudado += c.getMonto();</span>
+                        }
+<span class="nc bnc" id="L192" title="All 2 branches missed.">                        if (!colaboradoresStr.isEmpty()) {</span>
+<span class="nc" id="L193">                            colaboradoresStr.append(&quot;, &quot;);</span>
+                        }
+<span class="nc bnc" id="L195" title="All 2 branches missed.">                        if (c.getColaborador() != null) {</span>
+<span class="nc" id="L196">                            colaboradoresStr.append(c.getColaborador().getNickname());</span>
+                        }
+<span class="nc" id="L198">                    }</span>
+                }
+
+<span class="nc" id="L201">                pPanel.add(new JLabel(&quot;Título: &quot; + p.getTitulo()));</span>
+<span class="nc bnc" id="L202" title="All 2 branches missed.">                if (p.getFechaPrevista() != null) {</span>
+<span class="nc" id="L203">                    pPanel.add(new JLabel(&quot;Fecha Prevista: &quot; + p.getFechaPrevista()));</span>
+                }
+<span class="nc bnc" id="L205" title="All 2 branches missed.">                if (p.getMontoNecesario() != null) {</span>
+<span class="nc" id="L206">                    pPanel.add(new JLabel(&quot;Monto Necesario: &quot; + p.getMontoNecesario()));</span>
+                }
+<span class="nc" id="L208">                pPanel.add(new JLabel(&quot;Dinero recaudado: &quot; + dineroRecaudado));</span>
+<span class="nc bnc" id="L209" title="All 2 branches missed.">                if (!colaboradoresStr.isEmpty()) {</span>
+<span class="nc" id="L210">                    pPanel.add(new JLabel(&quot;Colaboradores: &quot; + colaboradoresStr));</span>
+                } else {
+<span class="nc" id="L212">                    pPanel.add(new JLabel(&quot;Colaboradores: Ninguno&quot;));</span>
+                }
+<span class="nc bnc" id="L214" title="All 2 branches missed.">                if (p.getLugar() != null) {</span>
+<span class="nc" id="L215">                    pPanel.add(new JLabel(&quot;Lugar: &quot; + p.getLugar()));</span>
+                }
+
+<span class="nc" id="L218">                panelPropuestas.add(pPanel);</span>
+<span class="nc" id="L219">                panelPropuestas.add(Box.createRigidArea(new Dimension(0, 5)));</span>
+<span class="nc" id="L220">            }</span>
+        } else {
+<span class="nc" id="L222">            JLabel noPropuestas = new JLabel(&quot;Este proponente no tiene propuestas.&quot;);</span>
+<span class="nc" id="L223">            noPropuestas.setFont(new Font(&quot;Arial&quot;, Font.ITALIC, 14));</span>
+<span class="nc" id="L224">            panelPropuestas.add(noPropuestas);</span>
+        }
+
+<span class="nc" id="L227">        panelPropuestas.revalidate();</span>
+<span class="nc" id="L228">        panelPropuestas.repaint();</span>
+<span class="nc" id="L229">    }</span>
+
+    private void setFontToLabels(Font font, JLabel... labels) {
+<span class="nc bnc" id="L232" title="All 2 branches missed.">        for (JLabel lbl : labels) {</span>
+<span class="nc" id="L233">            lbl.setFont(font);</span>
+        }
+<span class="nc" id="L235">    }</span>
+
+    private static class ProponenteListCellRenderer extends DefaultListCellRenderer {
+        @Override
+        public Component getListCellRendererComponent(JList&lt;?&gt; list, Object value, int index,
+                boolean isSelected, boolean cellHasFocus) {
+<span class="nc" id="L241">            super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);</span>
+<span class="nc bnc" id="L242" title="All 2 branches missed.">            if (value instanceof DTProponente prop) {</span>
+<span class="nc" id="L243">                setText(prop.getNickname() + &quot; - &quot; + prop.getNombre() + &quot; &quot; + prop.getApellido());</span>
+            }
+<span class="nc" id="L245">            return this;</span>
+        }
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

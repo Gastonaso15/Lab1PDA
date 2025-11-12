@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VerRegistroAccesoInternalFrame.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">Culturarte App</a> &gt; <a href="index.source.html" class="el_package">culturarte.presentacion.internalFrames</a> &gt; <span class="el_source">VerRegistroAccesoInternalFrame.java</span></div><h1>VerRegistroAccesoInternalFrame.java</h1><pre class="source lang-java linenums">package culturarte.presentacion.internalFrames;
+
+import culturarte.servicios.DTs.DTAccesoSitio;
+import culturarte.servicios.interfaces.IUsuarioController;
+
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import java.awt.*;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
+public class VerRegistroAccesoInternalFrame extends JInternalFrame {
+
+    private final IUsuarioController UsuarioContr;
+    private final JTable tablaAccesos;
+    private final DefaultTableModel modeloTabla;
+    private final JButton btnActualizar;
+    private final JLabel lblTotal;
+
+    public VerRegistroAccesoInternalFrame(IUsuarioController icu) {
+<span class="nc" id="L21">        super(&quot;Registro de Accesos al Sitio&quot;, true, true, true, true);</span>
+<span class="nc" id="L22">        setSize(1000, 500);</span>
+<span class="nc" id="L23">        setLayout(new BorderLayout());</span>
+
+<span class="nc" id="L25">        UsuarioContr = icu;</span>
+
+<span class="nc" id="L27">        JPanel panelSuperior = new JPanel(new BorderLayout());</span>
+<span class="nc" id="L28">        panelSuperior.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));</span>
+
+<span class="nc" id="L30">        JLabel titulo = new JLabel(&quot;Tabla de Registro de Accesos&quot;);</span>
+<span class="nc" id="L31">        titulo.setFont(new Font(&quot;Arial&quot;, Font.BOLD, 16));</span>
+<span class="nc" id="L32">        panelSuperior.add(titulo, BorderLayout.WEST);</span>
+
+<span class="nc" id="L34">        JPanel panelBotones = new JPanel(new FlowLayout(FlowLayout.RIGHT));</span>
+<span class="nc" id="L35">        btnActualizar = new JButton(&quot;Actualizar&quot;);</span>
+<span class="nc" id="L36">        btnActualizar.addActionListener(e -&gt; cargarAccesos());</span>
+<span class="nc" id="L37">        panelBotones.add(btnActualizar);</span>
+<span class="nc" id="L38">        panelSuperior.add(panelBotones, BorderLayout.EAST);</span>
+<span class="nc" id="L39">        add(panelSuperior, BorderLayout.NORTH);</span>
+
+<span class="nc" id="L41">        String[] columnas = {&quot;#&quot;, &quot;Fecha y Hora&quot;, &quot;IP&quot;, &quot;URL&quot;, &quot;Browser&quot;, &quot;Sistema Operativo&quot;};</span>
+<span class="nc" id="L42">        modeloTabla = new DefaultTableModel(columnas, 0);</span>
+<span class="nc" id="L43">        tablaAccesos = new JTable(modeloTabla);</span>
+<span class="nc" id="L44">        tablaAccesos.setDefaultEditor(Object.class, null);</span>
+
+<span class="nc" id="L46">        tablaAccesos.getColumnModel().getColumn(0).setPreferredWidth(50);</span>
+<span class="nc" id="L47">        tablaAccesos.getColumnModel().getColumn(1).setPreferredWidth(100);</span>
+<span class="nc" id="L48">        tablaAccesos.getColumnModel().getColumn(2).setPreferredWidth(100);</span>
+<span class="nc" id="L49">        tablaAccesos.getColumnModel().getColumn(3).setPreferredWidth(300);</span>
+<span class="nc" id="L50">        tablaAccesos.getColumnModel().getColumn(4).setPreferredWidth(100);</span>
+<span class="nc" id="L51">        tablaAccesos.getColumnModel().getColumn(5).setPreferredWidth(100);</span>
+
+<span class="nc" id="L53">        JScrollPane scrollPane = new JScrollPane(tablaAccesos);</span>
+<span class="nc" id="L54">        scrollPane.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));</span>
+<span class="nc" id="L55">        add(scrollPane, BorderLayout.CENTER);</span>
+
+<span class="nc" id="L57">        JPanel panelInferior = new JPanel(new FlowLayout(FlowLayout.LEFT));</span>
+<span class="nc" id="L58">        panelInferior.setBorder(BorderFactory.createEmptyBorder(0, 10, 10, 10));</span>
+<span class="nc" id="L59">        lblTotal = new JLabel(&quot;Total de accesos: 0&quot;);</span>
+<span class="nc" id="L60">        lblTotal.setFont(new Font(&quot;Arial&quot;, Font.PLAIN, 12));</span>
+<span class="nc" id="L61">        panelInferior.add(lblTotal);</span>
+
+<span class="nc" id="L63">        JLabel lblInfo = new JLabel(&quot;  |  Se mantienen hasta 10,000 accesos de los últimos 30 días&quot;);</span>
+<span class="nc" id="L64">        lblInfo.setFont(new Font(&quot;Arial&quot;, Font.ITALIC, 11));</span>
+<span class="nc" id="L65">        lblInfo.setForeground(Color.GRAY);</span>
+<span class="nc" id="L66">        panelInferior.add(lblInfo);</span>
+<span class="nc" id="L67">        add(panelInferior, BorderLayout.SOUTH);</span>
+
+<span class="nc" id="L69">        cargarAccesos();</span>
+<span class="nc" id="L70">    }</span>
+
+    private void cargarAccesos() {
+        try {
+<span class="nc" id="L74">            btnActualizar.setEnabled(false);</span>
+<span class="nc" id="L75">            modeloTabla.setRowCount(0);</span>
+<span class="nc" id="L76">            List&lt;DTAccesoSitio&gt; accesos = UsuarioContr.devolverRegistroAccesos();</span>
+<span class="nc" id="L77">            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(&quot;dd/MM/yyyy HH:mm:ss&quot;);</span>
+
+<span class="nc" id="L79">            int numero = 1;</span>
+<span class="nc bnc" id="L80" title="All 2 branches missed.">            for (DTAccesoSitio acceso : accesos) {</span>
+<span class="nc" id="L81">                Object[] fila = {</span>
+<span class="nc" id="L82">                        numero++,</span>
+<span class="nc" id="L83">                        acceso.getFechaHora().format(formatter),</span>
+<span class="nc" id="L84">                        acceso.getIp(),</span>
+<span class="nc" id="L85">                        acceso.getUrl(),</span>
+<span class="nc" id="L86">                        acceso.getBrowser(),</span>
+<span class="nc" id="L87">                        acceso.getSistemaOperativo()};</span>
+<span class="nc" id="L88">                modeloTabla.addRow(fila);</span>
+<span class="nc" id="L89">            }</span>
+
+<span class="nc" id="L91">            lblTotal.setText(&quot;Total de accesos: &quot; + accesos.size());</span>
+<span class="nc" id="L92">        } catch (Exception e) {</span>
+<span class="nc" id="L93">            JOptionPane.showMessageDialog(this, &quot;Error al cargar los accesos: &quot; +</span>
+<span class="nc" id="L94">                            e.getMessage(), &quot;Error&quot;, JOptionPane.ERROR_MESSAGE);</span>
+        } finally {
+<span class="nc" id="L96">            btnActualizar.setEnabled(true);</span>
+        }
+<span class="nc" id="L98">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
