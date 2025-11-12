@@ -50,6 +50,9 @@ public interface IPropuestaControllerWS {
     void cancelarColaboracion(Long idColaboracion) throws Exception;
 
     @WebMethod
+    void marcarConstanciaEmitida(Long idColaboracion) throws Exception;
+
+    @WebMethod
     ListaDTColaboracion obtenerTodasLasColaboraciones();
 
     @WebMethod
@@ -69,4 +72,10 @@ public interface IPropuestaControllerWS {
 
     @WebMethod
     void modificarHistorialYEstadoPropuesta(DTPropuesta propuesta);
+
+    @WebMethod
+    ListaDTColaboracion devolverColaboracionesSinPago(String nicknameColaborador);
+
+    @WebMethod
+    void registrarPago(Long idColaboracion, DTPago dtPago) throws Exception;
 }

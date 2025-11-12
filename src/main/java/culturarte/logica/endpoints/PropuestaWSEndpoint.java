@@ -77,6 +77,11 @@ public class PropuestaWSEndpoint implements IPropuestaControllerWS {
     }
 
     @Override
+    public void marcarConstanciaEmitida(Long idColaboracion) throws Exception {
+        controlador.marcarConstanciaEmitida(idColaboracion);
+    }
+
+    @Override
     public ListaDTColaboracion obtenerTodasLasColaboraciones() {
         return new ListaDTColaboracion(controlador.obtenerTodasLasColaboraciones());
     }
@@ -109,5 +114,15 @@ public class PropuestaWSEndpoint implements IPropuestaControllerWS {
     @Override
     public void modificarHistorialYEstadoPropuesta(DTPropuesta propuesta){
         controlador.modificarHistorialYEstadoPropuesta(propuesta);
+    }
+
+    @Override
+    public ListaDTColaboracion devolverColaboracionesSinPago(String nicknameColaborador) {
+        return new ListaDTColaboracion(controlador.devolverColaboracionesSinPago(nicknameColaborador));
+    }
+
+    @Override
+    public void registrarPago(Long idColaboracion, DTPago dtPago) throws Exception {
+        controlador.registrarPago(idColaboracion, dtPago);
     }
 }

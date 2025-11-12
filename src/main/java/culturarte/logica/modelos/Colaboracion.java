@@ -18,6 +18,9 @@ public class Colaboracion {
     @Enumerated(EnumType.STRING)
     private TipoRetorno tipoRetorno;
     private LocalDateTime fechaHora;
+    private Boolean constanciaEmitida;
+    @OneToOne(mappedBy = "colaboracion", cascade = CascadeType.ALL)
+    private Pago pago;
 
     // Constructores
     public Colaboracion(){}
@@ -27,6 +30,7 @@ public class Colaboracion {
         this.monto = monto;
         this.tipoRetorno = tipoRetorno;
         this.fechaHora = fechaHora;
+        this.constanciaEmitida = false; // Por defecto, no se ha emitido constancia
     }
 
     // Getters y Setters
@@ -47,4 +51,14 @@ public class Colaboracion {
 
     public LocalDateTime getFechaHora() { return fechaHora; }
     public void setFechaHora(LocalDateTime fechaHora) { this.fechaHora = fechaHora; }
+
+    public Boolean getConstanciaEmitida() { 
+        return constanciaEmitida != null ? constanciaEmitida : false; 
+    }
+    public void setConstanciaEmitida(Boolean constanciaEmitida) { 
+        this.constanciaEmitida = constanciaEmitida != null ? constanciaEmitida : false; 
+    }
+    
+    public Pago getPago() { return pago; }
+    public void setPago(Pago pago) { this.pago = pago; }
 }

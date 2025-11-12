@@ -43,8 +43,7 @@ public class PropuestaManejador {
                     "(p.proponente.eliminado = false OR p.proponente.eliminado IS NULL)",
                     Propuesta.class).setParameter("titulo", titulo);
             pro = query.getSingleResult();
-            
-            // Cargar las colecciones lazy antes de cerrar la sesión
+
             if (pro != null) {
                 pro.getHistorial().size();
                 pro.getColaboraciones().size();
@@ -156,7 +155,6 @@ public class PropuestaManejador {
             query.setParameter("estado", estado);
             List<Propuesta> propuestas = query.getResultList();
 
-            // Cargar las colecciones lazy antes de procesarlas
             for (Propuesta p : propuestas) {
                 p.getHistorial().size();
                 p.getColaboraciones().size();
@@ -322,6 +320,27 @@ public class PropuestaManejador {
         }
     }
 
+    public void marcarConstanciaEmitida(Long idColaboracion) throws Exception {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction t = em.getTransaction();
+
+        try {
+            t.begin();
+            Colaboracion colaboracion = em.find(Colaboracion.class, idColaboracion);
+            if (colaboracion == null) {
+                throw new Exception("No existe la colaboración con id " + idColaboracion);
+            }
+            colaboracion.setConstanciaEmitida(true);
+            em.merge(colaboracion);
+            t.commit();
+        } catch (Exception e) {
+            if (t.isActive()) t.rollback();
+            throw new PersistenceException("Error al marcar constancia como emitida", e);
+        } finally {
+            em.close();
+        }
+    }
+
     public void cancelarColaboracion(Long idColaboracion) throws Exception {
         EntityManager em = JPAUtil.getEntityManager();
 
@@ -345,31 +364,24 @@ public class PropuestaManejador {
     }
 
     public List<DTColaboracion> obtenerTodasLasColaboraciones() {
-        //1
         EntityManager em = JPAUtil.getEntityManager();
-        //2
         List<Colaboracion> colabs = em.createQuery("SELECT c FROM Colaboracion c", Colaboracion.class).getResultList();
 
-        //3: Obtengo el tamanio que debo recorrer
         for (Colaboracion c : colabs) {
             c.getPropuesta().getColaboraciones().size();
         }
 
         em.close();
 
-        //4: creo la lista que voy a devolver de colaboraciones
         List<DTColaboracion> dtColaboraciones = new ArrayList<>();
 
-        //5: recorro las colaboraciones de la base de datos para rellenar la lista
         for (Colaboracion c : colabs) {
 
             List<DTColaboracion> dtColabsPropuesta = new ArrayList<>();
 
-            //list<Colaboracion> col = c.getPropuesta().getColaboraciones()
-            //5*.3*
             for (Colaboracion col : c.getPropuesta().getColaboraciones()) {
-                DTColaborador dtColab = new DTColaborador(col.getColaborador().getNickname());//5*.3*.2
-                dtColabsPropuesta.add(new DTColaboracion(dtColab, col.getMonto())); //5*.3*.3
+                DTColaborador dtColab = new DTColaborador(col.getColaborador().getNickname());
+                dtColabsPropuesta.add(new DTColaboracion(dtColab, col.getMonto()));
             }
 
             DTEstadoPropuesta dtEstadoPropuesta = DTEstadoPropuesta.valueOf(c.getPropuesta().getEstadoActual().name());
@@ -391,7 +403,8 @@ public class PropuestaManejador {
                     dtColaborador,
                     c.getMonto(),
                     dtTipoRetorno,
-                    c.getFechaHora()
+                    c.getFechaHora(),
+                    c.getConstanciaEmitida()
             ));
 
         };
@@ -409,6 +422,96 @@ public class PropuestaManejador {
         } catch(Exception e) {
             if (t.isActive()) t.rollback();
             throw new PersistenceException("Error al persistir comentario", e);
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<DTColaboracion> obtenerColaboracionesSinPago(String nicknameColaborador) {
+        EntityManager em = JPAUtil.getEntityManager();
+        List<DTColaboracion> colaboracionesSinPago = new ArrayList<>();
+        
+        try {
+            TypedQuery<Colaboracion> query = em.createQuery("SELECT c FROM Colaboracion c WHERE " +
+                            "c.colaborador.nickname = :nickname AND c.pago IS NULL", Colaboracion.class).
+                    setParameter("nickname", nicknameColaborador);
+            
+            List<Colaboracion> colabs = query.getResultList();
+
+            for (Colaboracion c : colabs) {
+                if (c.getPropuesta() != null) {
+                    c.getPropuesta().getColaboraciones().size();
+                }
+            }
+            
+            em.close();
+
+            for (Colaboracion c : colabs) {
+                DTEstadoPropuesta dtEstadoPropuesta = DTEstadoPropuesta.valueOf(c.getPropuesta().getEstadoActual().name());
+                
+                List<DTColaboracion> dtColabsPropuesta = new ArrayList<>();
+                for (Colaboracion col : c.getPropuesta().getColaboraciones()) {
+                    DTColaborador dtColab = new DTColaborador(col.getColaborador().getNickname());
+                    dtColabsPropuesta.add(new DTColaboracion(dtColab, col.getMonto()));
+                }
+                
+                DTPropuesta dtPropuesta = new DTPropuesta(
+                    c.getPropuesta().getTitulo(),
+                    c.getPropuesta().getMontoNecesario(),
+                    c.getPropuesta().getProponente() != null ? new DTProponente(
+                            c.getPropuesta().getProponente().getNickname(),
+                            c.getPropuesta().getProponente().getNombre(),
+                            c.getPropuesta().getProponente().getApellido()) : null,
+                    dtEstadoPropuesta,
+                    dtColabsPropuesta);
+                dtPropuesta.setDescripcion(c.getPropuesta().getDescripcion());
+                dtPropuesta.setImagen(c.getPropuesta().getImagen());
+                
+                DTColaborador dtColaborador = new DTColaborador(c.getColaborador().getNickname());
+                DTTipoRetorno dtTipoRetorno = DTTipoRetorno.valueOf(c.getTipoRetorno().name());
+                
+                colaboracionesSinPago.add(new DTColaboracion(
+                    c.getId(),
+                    dtPropuesta,
+                    dtColaborador,
+                    c.getMonto(),
+                    dtTipoRetorno,
+                    c.getFechaHora(),
+                    c.getConstanciaEmitida()));
+            }
+        } catch (Exception e) {
+            if (em.isOpen()) em.close();
+            throw new PersistenceException("Error al obtener colaboraciones sin pago", e);
+        }
+        
+        return colaboracionesSinPago;
+    }
+
+    public void persistirPago(Pago pago) {
+        EntityManager em = JPAUtil.getEntityManager();
+        EntityTransaction t = em.getTransaction();
+        try {
+            t.begin();
+            em.persist(pago);
+            t.commit();
+        } catch(Exception e) {
+            if (t.isActive()) t.rollback();
+            throw new PersistenceException("Error al persistir pago", e);
+        } finally {
+            em.close();
+        }
+    }
+
+    public Colaboracion obtenerColaboracionPorId(Long id) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            Colaboracion colab = em.find(Colaboracion.class, id);
+            if (colab != null) {
+                if (colab.getPropuesta() != null) {
+                    colab.getPropuesta().getColaboraciones().size();
+                }
+            }
+            return colab;
         } finally {
             em.close();
         }
