@@ -129,6 +129,7 @@ public class UsuarioManejador{
                             "LEFT JOIN FETCH c.colaboraciones col " +
                             "LEFT JOIN FETCH col.propuesta pr " +
                             "LEFT JOIN FETCH pr.proponente " +
+                            "LEFT JOIN FETCH col.pago " +
                             "WHERE c.nickname = :nick", Colaborador.class
             );
             query.setParameter("nick", nickname);
