@@ -72,10 +72,6 @@ public class UsuarioController implements IUsuarioController {
 
         List<DTColaboracion> dtColaboraciones = new ArrayList<>();
         for (Colaboracion c : colab.getColaboraciones()) {
-            // Solo incluir colaboraciones que tengan un pago asociado
-            if (c.getPago() == null) {
-                continue;
-            }
 
             Propuesta prop = c.getPropuesta();
             DTCategoria dtCategoria = null;
