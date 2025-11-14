@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UsuarioManejador{
+public class    UsuarioManejador{
     private static UsuarioManejador instancia = null;
 
     public static UsuarioManejador getInstance() {
