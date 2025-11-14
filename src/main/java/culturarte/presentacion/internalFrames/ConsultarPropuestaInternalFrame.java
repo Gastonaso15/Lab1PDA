@@ -43,7 +43,7 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
         PropuestaContr = icp;
 
         jListPropuestas = new JList<>();
-        jListPropuestas.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        jListPropuestas.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         jListPropuestas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrollList = new JScrollPane(jListPropuestas);
         scrollList.setPreferredSize(new Dimension(250, 0));
@@ -93,7 +93,7 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
         txtDescripcion.setLineWrap(true);
         txtDescripcion.setWrapStyleWord(true);
         txtDescripcion.setEditable(false);
-        txtDescripcion.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        txtDescripcion.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         txtDescripcion.setBackground(new Color(240, 248, 255));
         txtDescripcion.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createLoweredBevelBorder(),
@@ -175,7 +175,7 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
         txtColaboradores.setLineWrap(true);
         txtColaboradores.setWrapStyleWord(true);
         txtColaboradores.setEditable(false);
-        txtColaboradores.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        txtColaboradores.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         txtColaboradores.setBackground(new Color(240, 248, 255));
         txtColaboradores.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createLoweredBevelBorder(),
@@ -191,7 +191,7 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
         gbc.gridx = 1;
         lblMontoTotal = new JLabel();
         estilizarLabelContenido(lblMontoTotal);
-        lblMontoTotal.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        lblMontoTotal.setFont(new Font("Segoe UI", Font.BOLD, 14));
         lblMontoTotal.setForeground(new Color(0, 100, 0));
         panelInfo.add(lblMontoTotal, gbc);
 
@@ -203,7 +203,7 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
         txtHistorial.setLineWrap(true);
         txtHistorial.setWrapStyleWord(true);
         txtHistorial.setEditable(false);
-        txtHistorial.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        txtHistorial.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         txtHistorial.setBackground(new Color(240, 248, 255));
         txtHistorial.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createLoweredBevelBorder(),
@@ -241,7 +241,7 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
 
     private JLabel createInfoLabel(String text) {
         JLabel label = new JLabel(text);
-        label.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        label.setFont(new Font("Segoe UI", Font.BOLD, 13));
         label.setForeground(new Color(60, 60, 60));
         return label;
     }
@@ -311,10 +311,10 @@ public class ConsultarPropuestaInternalFrame extends JInternalFrame {
         comp.setOpaque(true);
         comp.setBackground(new Color(240, 248, 255));
         comp.setForeground(new Color(30, 30, 30));
-        comp.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        comp.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         comp.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createLoweredBevelBorder(),
-            new EmptyBorder(5, 10, 5, 10)
+            new EmptyBorder(6, 12, 6, 12)
         ));
     }
 }

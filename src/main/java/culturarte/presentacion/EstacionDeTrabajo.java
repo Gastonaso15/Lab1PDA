@@ -15,7 +15,16 @@ public class EstacionDeTrabajo extends JFrame {
 
     public static void main(String[] args){
         try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+            UIManager.put("Button.background", new Color(40, 50, 70));
+            UIManager.put("Button.foreground", Color.WHITE);
+            UIManager.put("Button.font", new Font("Segoe UI", Font.BOLD, 13));
+            UIManager.put("ComboBox.font", new Font("Segoe UI", Font.PLAIN, 13));
+            UIManager.put("ComboBox.background", Color.WHITE);
+            UIManager.put("Label.font", new Font("Segoe UI", Font.PLAIN, 13));
+            UIManager.put("TextField.font", new Font("Segoe UI", Font.PLAIN, 13));
+            UIManager.put("TextArea.font", new Font("Segoe UI", Font.PLAIN, 13));
+            UIManager.put("List.font", new Font("Segoe UI", Font.PLAIN, 13));
         } catch (Exception e) {
             e.printStackTrace();
         }

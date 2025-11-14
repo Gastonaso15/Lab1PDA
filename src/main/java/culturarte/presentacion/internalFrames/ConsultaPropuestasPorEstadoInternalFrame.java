@@ -55,8 +55,10 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
         panelSuperior.add(lblEstadoFiltro);
 
         comboEstados = new JComboBox<>();
-        comboEstados.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        comboEstados.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         comboEstados.setBackground(Color.WHITE);
+        comboEstados.setPreferredSize(new Dimension(200, 30));
+        comboEstados.setMaximumRowCount(10);
         cargarEstados();
         panelSuperior.add(comboEstados);
 
@@ -66,7 +68,7 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
         add(panelSuperior, BorderLayout.NORTH);
 
         jListPropuestas = new JList<>();
-        jListPropuestas.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        jListPropuestas.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         jListPropuestas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrollList = new JScrollPane(jListPropuestas);
         scrollList.setPreferredSize(new Dimension(250, 0));
@@ -116,7 +118,7 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
         txtDescripcion.setLineWrap(true);
         txtDescripcion.setWrapStyleWord(true);
         txtDescripcion.setEditable(false);
-        txtDescripcion.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        txtDescripcion.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         txtDescripcion.setBackground(new Color(240, 248, 255));
         txtDescripcion.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createLoweredBevelBorder(),
@@ -198,7 +200,7 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
         txtColaboradores.setLineWrap(true);
         txtColaboradores.setWrapStyleWord(true);
         txtColaboradores.setEditable(false);
-        txtColaboradores.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        txtColaboradores.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         txtColaboradores.setBackground(new Color(240, 248, 255));
         txtColaboradores.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createLoweredBevelBorder(),
@@ -214,7 +216,7 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
         gbc.gridx = 1;
         lblMontoTotal = new JLabel();
         estilizarLabelContenido(lblMontoTotal);
-        lblMontoTotal.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        lblMontoTotal.setFont(new Font("Segoe UI", Font.BOLD, 14));
         lblMontoTotal.setForeground(new Color(0, 100, 0));
         gridDetalles.add(lblMontoTotal, gbc);
 
@@ -226,7 +228,7 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
         txtHistorial.setLineWrap(true);
         txtHistorial.setWrapStyleWord(true);
         txtHistorial.setEditable(false);
-        txtHistorial.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        txtHistorial.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         txtHistorial.setBackground(new Color(240, 248, 255));
         txtHistorial.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createLoweredBevelBorder(),
@@ -264,19 +266,21 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
 
     private JLabel createInfoLabel(String text) {
         JLabel label = new JLabel(text);
-        label.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        label.setFont(new Font("Segoe UI", Font.BOLD, 13));
         label.setForeground(new Color(60, 60, 60));
         return label;
     }
 
     private JButton crearBoton(String texto, Color colorFondo, Color colorTexto) {
         JButton boton = new JButton(texto);
-        boton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        boton.setOpaque(true);
         boton.setBackground(colorFondo);
         boton.setForeground(colorTexto);
         boton.setFocusPainted(false);
         boton.setBorderPainted(true);
         boton.setContentAreaFilled(true);
+        boton.setPreferredSize(new Dimension(120, 35));
         boton.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createRaisedBevelBorder(),
             new EmptyBorder(8, 20, 8, 20)
@@ -408,10 +412,10 @@ public class ConsultaPropuestasPorEstadoInternalFrame extends JInternalFrame {
         comp.setOpaque(true);
         comp.setBackground(new Color(240, 248, 255));
         comp.setForeground(new Color(30, 30, 30));
-        comp.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        comp.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         comp.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createLoweredBevelBorder(),
-            new EmptyBorder(5, 10, 5, 10)
+            new EmptyBorder(6, 12, 6, 12)
         ));
     }
 }

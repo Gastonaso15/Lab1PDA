@@ -145,8 +145,10 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
         gridPanel.add(createLabel("Proponente:"), gbc);
         gbc.gridx = 1;
         cbProponente = new JComboBox<>();
-        cbProponente.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        cbProponente.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         cbProponente.setBackground(Color.WHITE);
+        cbProponente.setPreferredSize(new Dimension(200, 30));
+        cbProponente.setMaximumRowCount(10);
         List<String> proponentes = icu.devolverNicknamesProponentes();
         for (String p : proponentes) {
             cbProponente.addItem(p);
@@ -294,30 +296,33 @@ public class AltaPropuestaInternalFrame extends JInternalFrame {
 
     private JLabel createLabel(String text) {
         JLabel label = new JLabel(text);
-        label.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        label.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         label.setForeground(new Color(60, 60, 60));
         return label;
     }
 
     private void estilizarTextField(JComponent field) {
-        field.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        field.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         field.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createLoweredBevelBorder(),
-            new EmptyBorder(5, 8, 5, 8)
+            new EmptyBorder(6, 10, 6, 10)
         ));
         if (field instanceof JTextField) {
             ((JTextField) field).setBackground(Color.WHITE);
+            ((JTextField) field).setPreferredSize(new Dimension(200, 30));
         }
     }
 
     private JButton crearBoton(String texto, Color colorFondo, Color colorTexto) {
         JButton boton = new JButton(texto);
-        boton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        boton.setOpaque(true);
         boton.setBackground(colorFondo);
         boton.setForeground(colorTexto);
         boton.setFocusPainted(false);
         boton.setBorderPainted(true);
         boton.setContentAreaFilled(true);
+        boton.setPreferredSize(new Dimension(120, 35));
         boton.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createRaisedBevelBorder(),
             new EmptyBorder(8, 20, 8, 20)

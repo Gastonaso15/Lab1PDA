@@ -46,8 +46,10 @@ public class SeguirUsuarioInternalFrame extends JInternalFrame {
         gridPanel.add(lblSeguidor, gbc);
         gbc.gridx = 1;
         cbSeguidor = new JComboBox<>();
-        cbSeguidor.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        cbSeguidor.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         cbSeguidor.setBackground(Color.WHITE);
+        cbSeguidor.setPreferredSize(new Dimension(200, 30));
+        cbSeguidor.setMaximumRowCount(10);
         estilizarCombo(cbSeguidor);
         cargarUsuarios(cbSeguidor);
         gridPanel.add(cbSeguidor, gbc);
@@ -57,8 +59,10 @@ public class SeguirUsuarioInternalFrame extends JInternalFrame {
         gridPanel.add(lblSeguido, gbc);
         gbc.gridx = 1;
         cbSeguido = new JComboBox<>();
-        cbSeguido.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        cbSeguido.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         cbSeguido.setBackground(Color.WHITE);
+        cbSeguido.setPreferredSize(new Dimension(200, 30));
+        cbSeguido.setMaximumRowCount(10);
         estilizarCombo(cbSeguido);
         cargarUsuarios(cbSeguido);
         gridPanel.add(cbSeguido, gbc);
@@ -125,12 +129,14 @@ public class SeguirUsuarioInternalFrame extends JInternalFrame {
 
     private JButton crearBoton(String texto, Color colorFondo, Color colorTexto) {
         JButton boton = new JButton(texto);
-        boton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        boton.setOpaque(true);
         boton.setBackground(colorFondo);
         boton.setForeground(colorTexto);
         boton.setFocusPainted(false);
         boton.setBorderPainted(true);
         boton.setContentAreaFilled(true);
+        boton.setPreferredSize(new Dimension(120, 35));
         boton.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createRaisedBevelBorder(),
             new EmptyBorder(8, 20, 8, 20)

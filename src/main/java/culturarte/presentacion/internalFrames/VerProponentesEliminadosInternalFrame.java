@@ -55,7 +55,7 @@ public class VerProponentesEliminadosInternalFrame extends JInternalFrame {
         }
         
         listProponentes = new JList<>(model);
-        listProponentes.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        listProponentes.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         listProponentes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         listProponentes.setCellRenderer(new ProponenteListCellRenderer());
         JScrollPane scrollProponentes = new JScrollPane(listProponentes);
@@ -262,9 +262,10 @@ public class VerProponentesEliminadosInternalFrame extends JInternalFrame {
                     (p.getEstadoActual() != null ? p.getEstadoActual() : "Sin estado"),
                     TitledBorder.LEFT,
                     TitledBorder.TOP,
-                    new Font("Segoe UI", Font.BOLD, 12),
+                    new Font("Segoe UI", Font.BOLD, 13),
                     new Color(70, 70, 70)
                 ));
+                pPanel.setOpaque(true);
 
                 if (p.getEstadoActual() != null) {
                     switch(p.getEstadoActual()) {
@@ -294,22 +295,48 @@ public class VerProponentesEliminadosInternalFrame extends JInternalFrame {
                 }
 
                 JLabel lblTitulo = new JLabel("Título: " + p.getTitulo());
-                lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 11));
+                lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 13));
+                lblTitulo.setBorder(new EmptyBorder(5, 5, 5, 5));
                 pPanel.add(lblTitulo);
+                
+                JLabel lblFecha = new JLabel();
                 if (p.getFechaPrevista() != null) {
-                    pPanel.add(new JLabel("Fecha Prevista: " + p.getFechaPrevista()));
+                    lblFecha.setText("Fecha Prevista: " + p.getFechaPrevista());
                 }
+                lblFecha.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+                lblFecha.setBorder(new EmptyBorder(2, 5, 2, 5));
+                pPanel.add(lblFecha);
+                
+                JLabel lblMonto = new JLabel();
                 if (p.getMontoNecesario() != null) {
-                    pPanel.add(new JLabel("Monto Necesario: $" + p.getMontoNecesario()));
+                    lblMonto.setText("Monto Necesario: $" + p.getMontoNecesario());
                 }
-                pPanel.add(new JLabel("Dinero recaudado: $" + String.format("%.2f", dineroRecaudado)));
-                pPanel.add(new JLabel("Colaboradores: " + (colaboradoresStr.length() > 0 ? colaboradoresStr.toString() : "Ninguno")));
+                lblMonto.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+                lblMonto.setBorder(new EmptyBorder(2, 5, 2, 5));
+                pPanel.add(lblMonto);
+                
+                JLabel lblRecaudado = new JLabel("Dinero recaudado: $" + String.format("%.2f", dineroRecaudado));
+                lblRecaudado.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+                lblRecaudado.setBorder(new EmptyBorder(2, 5, 2, 5));
+                pPanel.add(lblRecaudado);
+                
+                JLabel lblColab = new JLabel("Colaboradores: " + (colaboradoresStr.length() > 0 ? colaboradoresStr.toString() : "Ninguno"));
+                lblColab.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+                lblColab.setBorder(new EmptyBorder(2, 5, 2, 5));
+                pPanel.add(lblColab);
+                
+                JLabel lblLugar = new JLabel();
                 if (p.getLugar() != null) {
-                    pPanel.add(new JLabel("Lugar: " + p.getLugar()));
+                    lblLugar.setText("Lugar: " + p.getLugar());
                 }
-
+                lblLugar.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+                lblLugar.setBorder(new EmptyBorder(2, 5, 5, 5));
+                pPanel.add(lblLugar);
+                
+                pPanel.setMinimumSize(new Dimension(300, 150));
+                pPanel.setMaximumSize(new Dimension(Integer.MAX_VALUE, 200));
                 panelPropuestas.add(pPanel);
-                panelPropuestas.add(Box.createRigidArea(new Dimension(0, 8)));
+                panelPropuestas.add(Box.createRigidArea(new Dimension(0, 10)));
             }
         } else {
             JLabel noPropuestas = new JLabel("Este proponente no tiene propuestas.");

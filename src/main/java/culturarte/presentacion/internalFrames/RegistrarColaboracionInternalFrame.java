@@ -178,8 +178,10 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
         gridForm.add(createInfoLabel("Tipo Retorno:"), gbcForm);
         gbcForm.gridx = 1;
         comboRetorno = new JComboBox<>();
-        comboRetorno.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        comboRetorno.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         comboRetorno.setBackground(Color.WHITE);
+        comboRetorno.setPreferredSize(new Dimension(200, 30));
+        comboRetorno.setMaximumRowCount(10);
         gridForm.add(comboRetorno, gbcForm);
 
         panelFormulario.add(gridForm);
@@ -331,12 +333,14 @@ public class RegistrarColaboracionInternalFrame extends JInternalFrame {
 
     private JButton crearBoton(String texto, Color colorFondo, Color colorTexto) {
         JButton boton = new JButton(texto);
-        boton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        boton.setOpaque(true);
         boton.setBackground(colorFondo);
         boton.setForeground(colorTexto);
         boton.setFocusPainted(false);
         boton.setBorderPainted(true);
         boton.setContentAreaFilled(true);
+        boton.setPreferredSize(new Dimension(120, 35));
         boton.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createRaisedBevelBorder(),
             new EmptyBorder(8, 20, 8, 20)

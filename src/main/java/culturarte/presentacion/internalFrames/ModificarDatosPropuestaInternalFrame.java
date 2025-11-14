@@ -48,6 +48,10 @@ public class ModificarDatosPropuestaInternalFrame extends JInternalFrame {
 
         panel.add(new JLabel("Seleccionar Propuesta:"));
         cbPropuestas = new JComboBox<>();
+        cbPropuestas.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        cbPropuestas.setBackground(Color.WHITE);
+        cbPropuestas.setPreferredSize(new Dimension(200, 30));
+        cbPropuestas.setMaximumRowCount(10);
         panel.add(cbPropuestas);
 
         panel.add(new JLabel("Descripcion:"));
@@ -224,12 +228,14 @@ public class ModificarDatosPropuestaInternalFrame extends JInternalFrame {
 
     private JButton crearBoton(String texto, Color colorFondo, Color colorTexto) {
         JButton boton = new JButton(texto);
-        boton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        boton.setOpaque(true);
         boton.setBackground(colorFondo);
         boton.setForeground(colorTexto);
         boton.setFocusPainted(false);
         boton.setBorderPainted(true);
         boton.setContentAreaFilled(true);
+        boton.setPreferredSize(new Dimension(120, 35));
         boton.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createRaisedBevelBorder(),
             new EmptyBorder(8, 20, 8, 20)

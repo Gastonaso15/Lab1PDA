@@ -46,10 +46,14 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
     private void inicializarComponentes() {
         comboColaboradores = new JComboBox<>();
         comboColaboradores.setPreferredSize(new Dimension(200, 30));
+        comboColaboradores.setMaximumRowCount(10);
+        comboColaboradores.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        comboColaboradores.setBackground(Color.WHITE);
 
         modelColaboraciones = new DefaultListModel<>();
         listColaboraciones = new JList<>(modelColaboraciones);
         listColaboraciones.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        listColaboraciones.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 
         lblPropuestaTitulo = new JLabel("Título: ");
         lblProponenteNick = new JLabel("Proponente: ");
@@ -61,7 +65,7 @@ public class ConsultaColaboracionInternalFrame extends JInternalFrame {
         lblMontoNecesario = new JLabel("Monto Necesario: ");
         lblTotalRecaudado = new JLabel("Total Recaudado: ");
 
-        Font fontInfo = new Font("Times New Roman", Font.PLAIN, 14);
+        Font fontInfo = new Font("Segoe UI", Font.PLAIN, 13);
         setFontToLabels(fontInfo, lblPropuestaTitulo, lblProponenteNick, lblColaboradorNick,
                 lblMonto, lblTipoRetorno, lblFechaHora, lblEstadoPropuesta,
                 lblMontoNecesario, lblTotalRecaudado);

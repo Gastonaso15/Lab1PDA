@@ -136,8 +136,10 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
         gridPanel.add(createLabel("Tipo Usuario:"), gbc);
         gbc.gridx = 1;
         cbTipoUsuario = new JComboBox<>(new String[]{"Colaborador","Proponente"});
-        cbTipoUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        cbTipoUsuario.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         cbTipoUsuario.setBackground(Color.WHITE);
+        cbTipoUsuario.setPreferredSize(new Dimension(200, 30));
+        cbTipoUsuario.setMaximumRowCount(10);
         gridPanel.add(cbTipoUsuario, gbc);
 
         panelDatosBasicos.add(gridPanel);
@@ -333,19 +335,20 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
 
     private JLabel createLabel(String text) {
         JLabel label = new JLabel(text);
-        label.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        label.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         label.setForeground(new Color(60, 60, 60));
         return label;
     }
 
     private void estilizarTextField(JComponent field) {
-        field.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+        field.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         field.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createLoweredBevelBorder(),
-            new EmptyBorder(5, 8, 5, 8)
+            new EmptyBorder(6, 10, 6, 10)
         ));
         if (field instanceof JTextField || field instanceof JPasswordField) {
             ((JTextComponent) field).setBackground(Color.WHITE);
+            ((JTextComponent) field).setPreferredSize(new Dimension(200, 30));
         } else if (field instanceof JTextArea) {
             ((JTextArea) field).setBackground(Color.WHITE);
         }
@@ -353,12 +356,14 @@ public class AltaUsuarioInternalFrame extends JInternalFrame {
 
     private JButton crearBoton(String texto, Color colorFondo, Color colorTexto) {
         JButton boton = new JButton(texto);
-        boton.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        boton.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        boton.setOpaque(true);
         boton.setBackground(colorFondo);
         boton.setForeground(colorTexto);
         boton.setFocusPainted(false);
         boton.setBorderPainted(true);
         boton.setContentAreaFilled(true);
+        boton.setPreferredSize(new Dimension(120, 35));
         boton.setBorder(BorderFactory.createCompoundBorder(
             BorderFactory.createRaisedBevelBorder(),
             new EmptyBorder(8, 20, 8, 20)
