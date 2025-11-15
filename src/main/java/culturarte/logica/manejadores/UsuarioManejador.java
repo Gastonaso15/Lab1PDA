@@ -149,6 +149,37 @@ public class    UsuarioManejador{
         return colab;
     }
 
+    public List<Colaboracion> obtenerColaboracionesConPagoPorNickname(String nickname) {
+        EntityManager em = JPAUtil.getEntityManager();
+        List<Colaboracion> colaboraciones = new ArrayList<>();
+        try {
+            TypedQuery<Colaboracion> query = em.createQuery(
+                    "SELECT DISTINCT col FROM Colaborador c " +
+                            "JOIN c.colaboraciones col " +
+                            "LEFT JOIN FETCH col.propuesta pr " +
+                            "LEFT JOIN FETCH pr.proponente " +
+                            "LEFT JOIN FETCH col.pago " +
+                            "WHERE c.nickname = :nick AND col.pago IS NOT NULL", 
+                    Colaboracion.class
+            );
+            query.setParameter("nick", nickname);
+            colaboraciones = query.getResultList();
+
+            for (Colaboracion col : colaboraciones) {
+                col.getPropuesta().getTitulo();
+                col.getPropuesta().getProponente().getNickname();
+                col.getPropuesta().getTiposRetorno().size();
+                col.getPropuesta().getColaboraciones().size();
+            }
+
+        } catch (NoResultException e) {
+            colaboraciones = new ArrayList<>();
+        } finally {
+            em.close();
+        }
+        return colaboraciones;
+    }
+
     public void persistirSeguimiento(String nicknameSeguidor, String nicknameSeguido) {
         EntityManager em = JPAUtil.getEntityManager();
         EntityTransaction t = em.getTransaction();

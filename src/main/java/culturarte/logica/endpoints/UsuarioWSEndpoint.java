@@ -1,6 +1,7 @@
 package culturarte.logica.endpoints;
 
 import culturarte.logica.endpoints.envoltorios.ListaStrings;
+import culturarte.logica.endpoints.envoltorios.ListaDTColaboracion;
 import culturarte.logica.endpoints.envoltorios.ListaDTProponente;
 import culturarte.servicios.Fabrica;
 import culturarte.servicios.interfaces.IUsuarioController;
@@ -112,5 +113,10 @@ public class UsuarioWSEndpoint implements IUsuarioControllerWS {
     @Override
     public void registrarAcceso(String ip, String url, String browser, String sistemaOperativo){
         this.controlador.registrarAcceso(ip, url, browser, sistemaOperativo);
+    }
+
+    @Override
+    public ListaDTColaboracion devolverColaboracionesConPagoPorNickname(String nickname) throws Exception {
+        return new ListaDTColaboracion(this.controlador.devolverColaboracionesConPagoPorNickname(nickname));
     }
 }

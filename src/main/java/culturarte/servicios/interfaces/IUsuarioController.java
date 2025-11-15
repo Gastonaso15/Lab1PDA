@@ -1,6 +1,7 @@
 package culturarte.servicios.interfaces;
 
 import culturarte.servicios.DTs.DTAccesoSitio;
+import culturarte.servicios.DTs.DTColaboracion;
 import culturarte.servicios.DTs.DTColaborador;
 import culturarte.servicios.DTs.DTProponente;
 import culturarte.servicios.DTs.DTUsuario;
@@ -28,4 +29,5 @@ public interface IUsuarioController {
     void bajaProponente(String nickname) throws Exception;
     void registrarAcceso(String ip, String url, String browser, String sistemaOperativo);
     List<DTAccesoSitio> devolverRegistroAccesos();
+    List<DTColaboracion> devolverColaboracionesConPagoPorNickname(String nickname) throws Exception;
 }

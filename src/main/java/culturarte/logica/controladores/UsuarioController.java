@@ -171,6 +171,114 @@ public class UsuarioController implements IUsuarioController {
     }
 
     @Override
+    public List<DTColaboracion> devolverColaboracionesConPagoPorNickname(String nickname) throws Exception {
+        UsuarioManejador um = UsuarioManejador.getInstance();
+        List<Colaboracion> colaboraciones = um.obtenerColaboracionesConPagoPorNickname(nickname);
+
+        if (colaboraciones == null || colaboraciones.isEmpty()) {
+            return new ArrayList<>();
+        }
+
+        List<DTColaboracion> dtColaboraciones = new ArrayList<>();
+        for (Colaboracion c : colaboraciones) {
+            Propuesta prop = c.getPropuesta();
+            DTCategoria dtCategoria = null;
+            if (prop.getCategoria() != null) {
+                DTCategoria dtCategoriaPadre = null;
+                if (prop.getCategoria().getCategoriaPadre() != null) {
+                    dtCategoriaPadre = new DTCategoria(
+                            prop.getCategoria().getCategoriaPadre().getNombre(),
+                            new ArrayList<>(),
+                            null
+                    );
+                }
+                dtCategoria = new DTCategoria(
+                        prop.getCategoria().getNombre(),
+                        new ArrayList<>(),
+                        dtCategoriaPadre
+                );
+            }
+
+            List<DTTipoRetorno> dtTiposRetorno = new ArrayList<>();
+            if (prop.getTiposRetorno() != null) {
+                for (TipoRetorno tr : prop.getTiposRetorno()) {
+                    dtTiposRetorno.add(DTTipoRetorno.valueOf(tr.name()));
+                }
+            }
+
+            DTEstadoPropuesta dtEstadoActual = null;
+            if (prop.getEstadoActual() != null) {
+                dtEstadoActual = DTEstadoPropuesta.valueOf(prop.getEstadoActual().name());
+            }
+
+            DTProponente dtProponente = new DTProponente(
+                    prop.getProponente().getNickname(),
+                    prop.getProponente().getNombre(),
+                    prop.getProponente().getApellido(),
+                    prop.getProponente().getPassword(),
+                    prop.getProponente().getCorreo(),
+                    prop.getProponente().getFechaNacimiento(),
+                    prop.getProponente().getImagen(),
+                    prop.getProponente().getDireccion(),
+                    prop.getProponente().getBio(),
+                    prop.getProponente().getSitioWeb(),
+                    new ArrayList<>()
+            );
+
+            List<DTColaboracion> dtColabsPropuesta = new ArrayList<>();
+            for (Colaboracion colabProp : prop.getColaboraciones()) {
+                DTTipoRetorno tipo = colabProp.getTipoRetorno() != null
+                        ? DTTipoRetorno.valueOf(colabProp.getTipoRetorno().name())
+                        : null;
+
+                DTColaboracion dtColabProp = new DTColaboracion(
+                        colabProp.getId(),
+                        null,
+                        new DTColaborador(colabProp.getColaborador().getNickname()),
+                        colabProp.getMonto(),
+                        tipo,
+                        colabProp.getFechaHora(),
+                        colabProp.getConstanciaEmitida()
+                );
+                dtColabsPropuesta.add(dtColabProp);
+            }
+
+            DTPropuesta dtPropuesta = new DTPropuesta(
+                    prop.getTitulo(),
+                    prop.getDescripcion(),
+                    prop.getLugar(),
+                    prop.getFechaPrevista(),
+                    prop.getPrecioEntrada(),
+                    prop.getMontoNecesario(),
+                    prop.getImagen(),
+                    dtCategoria,
+                    dtTiposRetorno,
+                    dtEstadoActual,
+                    dtColabsPropuesta
+            );
+            dtPropuesta.setDTProponente(dtProponente);
+
+            DTTipoRetorno dtTipoRetorno = null;
+            if (c.getTipoRetorno() != null) {
+                dtTipoRetorno = DTTipoRetorno.valueOf(c.getTipoRetorno().name());
+            }
+
+            DTColaboracion dtColaboracion = new DTColaboracion(
+                    c.getId(),
+                    dtPropuesta,
+                    new DTColaborador(nickname),
+                    c.getMonto(),
+                    dtTipoRetorno,
+                    c.getFechaHora(),
+                    c.getConstanciaEmitida()
+            );
+            dtColaboraciones.add(dtColaboracion);
+        }
+
+        return dtColaboraciones;
+    }
+
+    @Override
     public DTProponente devolverProponentePorNickname(String nickname) throws Exception {
         UsuarioManejador um = UsuarioManejador.getInstance();
         Proponente prop = um.obtenerProponentePorNickname(nickname);
