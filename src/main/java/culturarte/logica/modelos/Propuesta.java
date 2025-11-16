@@ -132,6 +132,7 @@ public class Propuesta {
             dt.setFechaPublicacion(this.fechaPublicacion);
             dt.setImagen(this.imagen);
             dt.setEstadoActual(DTEstadoPropuesta.valueOf(this.estadoActual.name()));
+            dt.setDTProponente(this.proponente.getDataType());
             return dt;
         }
         public void agregarPropuestaEstado(PropuestaEstado nuevoEstado) {

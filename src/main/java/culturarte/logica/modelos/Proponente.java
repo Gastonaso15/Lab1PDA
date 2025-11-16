@@ -1,5 +1,8 @@
 package culturarte.logica.modelos;
 
+import culturarte.servicios.DTs.DTEstadoPropuesta;
+import culturarte.servicios.DTs.DTProponente;
+import culturarte.servicios.DTs.DTPropuesta;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -47,4 +50,10 @@ public class Proponente extends Usuario {
 
     public List<Propuesta> getPropuestas() { return propuestas; }
     public void setPropuestas(List<Propuesta> propuestas) { this.propuestas = propuestas; }
+
+    public DTProponente getDataType() {
+        DTProponente dt = new DTProponente();
+        dt.setNickname(this.getNickname());
+        return dt;
+    }
 }
