@@ -2,6 +2,7 @@ package culturarte.presentacion;
 
 import culturarte.logica.endpoints.PropuestaWSEndpoint;
 import culturarte.logica.endpoints.UsuarioWSEndpoint;
+import culturarte.logica.endpoints.ImagenWSEndpoint;
 
 import jakarta.xml.ws.Endpoint;
 import java.io.FileInputStream;
@@ -53,6 +54,10 @@ public class WSPublicador {
         String urlPropuesta = urlBase + "/propuestas";
         Endpoint.publish(urlPropuesta, new PropuestaWSEndpoint());
         System.out.println("Web Service de propuestas: " + urlPropuesta + "?wsdl");
+
+        String urlImagen = urlBase + "/imagenes";
+        Endpoint.publish(urlImagen, new ImagenWSEndpoint());
+        System.out.println("Web Service de imágenes: " + urlImagen + "?wsdl");
 
     }
 }
