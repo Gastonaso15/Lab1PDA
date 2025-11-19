@@ -2,10 +2,8 @@ package culturarte.logica.controladores;
 
 import culturarte.logica.manejadores.PropuestaManejador;
 import culturarte.logica.manejadores.UsuarioManejador;
-import culturarte.logica.modelos.Colaborador;
-import culturarte.logica.modelos.Proponente;
-import culturarte.logica.modelos.Propuesta;
-import culturarte.logica.modelos.Usuario;
+import culturarte.logica.modelos.*;
+import culturarte.servicios.DTs.*;
 import culturarte.servicios.DTs.DTAccesoSitio;
 import culturarte.servicios.DTs.DTColaborador;
 import culturarte.servicios.DTs.DTProponente;
@@ -602,6 +600,117 @@ public class UsuarioControllerTest {
         List<DTAccesoSitio> resultado = controller.devolverRegistroAccesos();
 
         assertEquals(accesos, resultado);
+    }
+
+    @Test
+    void devolverColaboracionesConPagoPorNickname_DatosValidos_RetornaListaCorrectamente() throws Exception {
+        Colaboracion colaboracion1 = mock(Colaboracion.class);
+        Colaboracion colaboracion2 = mock(Colaboracion.class);
+        List<Colaboracion> colaboraciones = List.of(colaboracion1, colaboracion2);
+
+        Propuesta propuesta1 = mock(Propuesta.class);
+        Propuesta propuesta2 = mock(Propuesta.class);
+        when(colaboracion1.getPropuesta()).thenReturn(propuesta1);
+        when(colaboracion2.getPropuesta()).thenReturn(propuesta2);
+
+        Proponente proponente1 = mock(Proponente.class);
+        Proponente proponente2 = mock(Proponente.class);
+        when(propuesta1.getProponente()).thenReturn(proponente1);
+        when(propuesta2.getProponente()).thenReturn(proponente2);
+        when(proponente1.getEliminado()).thenReturn(false);
+        when(proponente2.getEliminado()).thenReturn(false);
+
+        Categoria categoria1 = mock(Categoria.class);
+        Categoria categoria2 = mock(Categoria.class);
+        when(propuesta1.getCategoria()).thenReturn(categoria1);
+        when(propuesta2.getCategoria()).thenReturn(categoria2);
+        when(categoria1.getCategoriaPadre()).thenReturn(null);
+        when(categoria2.getCategoriaPadre()).thenReturn(null);
+
+        when(propuesta1.getTiposRetorno()).thenReturn(new ArrayList<>());
+        when(propuesta2.getTiposRetorno()).thenReturn(new ArrayList<>());
+        when(propuesta1.getEstadoActual()).thenReturn(EstadoPropuesta.PUBLICADA);
+        when(propuesta2.getEstadoActual()).thenReturn(EstadoPropuesta.PUBLICADA);
+
+        when(propuesta1.getColaboraciones()).thenReturn(new ArrayList<>());
+        when(propuesta2.getColaboraciones()).thenReturn(new ArrayList<>());
+
+        when(colaboracion1.getTipoRetorno()).thenReturn(TipoRetorno.ENTRADAS_GRATIS);
+        when(colaboracion2.getTipoRetorno()).thenReturn(TipoRetorno.ENTRADAS_GRATIS);
+        when(colaboracion1.getMonto()).thenReturn(500.0);
+        when(colaboracion2.getMonto()).thenReturn(300.0);
+        when(colaboracion1.getFechaHora()).thenReturn(LocalDateTime.now());
+        when(colaboracion2.getFechaHora()).thenReturn(LocalDateTime.now());
+        when(colaboracion1.getConstanciaEmitida()).thenReturn(false);
+        when(colaboracion2.getConstanciaEmitida()).thenReturn(true);
+        when(colaboracion1.getId()).thenReturn(1L);
+        when(colaboracion2.getId()).thenReturn(2L);
+
+        when(usuarioManejadorMock.obtenerColaboracionesConPagoPorNickname("Pepe")).thenReturn(colaboraciones);
+
+        List<DTColaboracion> resultado = controller.devolverColaboracionesConPagoPorNickname("Pepe");
+
+        assertNotNull(resultado);
+        assertEquals(2, resultado.size());
+        verify(usuarioManejadorMock).obtenerColaboracionesConPagoPorNickname("Pepe");
+    }
+
+    @Test
+    void devolverColaboracionesConPagoPorNickname_SinColaboraciones_RetornaListaVacia() throws Exception {
+        when(usuarioManejadorMock.obtenerColaboracionesConPagoPorNickname("Pepe")).thenReturn(new ArrayList<>());
+
+        List<DTColaboracion> resultado = controller.devolverColaboracionesConPagoPorNickname("Pepe");
+
+        assertNotNull(resultado);
+        assertTrue(resultado.isEmpty());
+        verify(usuarioManejadorMock).obtenerColaboracionesConPagoPorNickname("Pepe");
+    }
+
+    @Test
+    void devolverColaboracionesConPagoPorNickname_ColaboracionesNull_RetornaListaVacia() throws Exception {
+        when(usuarioManejadorMock.obtenerColaboracionesConPagoPorNickname("Pepe")).thenReturn(null);
+
+        List<DTColaboracion> resultado = controller.devolverColaboracionesConPagoPorNickname("Pepe");
+
+        assertNotNull(resultado);
+        assertTrue(resultado.isEmpty());
+        verify(usuarioManejadorMock).obtenerColaboracionesConPagoPorNickname("Pepe");
+    }
+
+    @Test
+    void devolverColaboracionesConPagoPorNickname_ColaboracionConProponenteEliminado_RetornaCorrectamente() throws Exception {
+        Colaboracion colaboracion1 = mock(Colaboracion.class);
+        List<Colaboracion> colaboraciones = List.of(colaboracion1);
+
+        Propuesta propuesta1 = mock(Propuesta.class);
+        when(colaboracion1.getPropuesta()).thenReturn(propuesta1);
+
+        Proponente proponente1 = mock(Proponente.class);
+        when(propuesta1.getProponente()).thenReturn(proponente1);
+        when(proponente1.getEliminado()).thenReturn(true);
+        when(proponente1.getFechaEliminacion()).thenReturn(LocalDateTime.now());
+
+        Categoria categoria1 = mock(Categoria.class);
+        when(propuesta1.getCategoria()).thenReturn(categoria1);
+        when(categoria1.getCategoriaPadre()).thenReturn(null);
+
+        when(propuesta1.getTiposRetorno()).thenReturn(new ArrayList<>());
+        when(propuesta1.getEstadoActual()).thenReturn(EstadoPropuesta.PUBLICADA);
+        when(propuesta1.getColaboraciones()).thenReturn(new ArrayList<>());
+
+        when(colaboracion1.getTipoRetorno()).thenReturn(TipoRetorno.ENTRADAS_GRATIS);
+        when(colaboracion1.getMonto()).thenReturn(500.0);
+        when(colaboracion1.getFechaHora()).thenReturn(LocalDateTime.now());
+        when(colaboracion1.getConstanciaEmitida()).thenReturn(false);
+        when(colaboracion1.getId()).thenReturn(1L);
+
+        when(usuarioManejadorMock.obtenerColaboracionesConPagoPorNickname("Pepe")).thenReturn(colaboraciones);
+
+        List<DTColaboracion> resultado = controller.devolverColaboracionesConPagoPorNickname("Pepe");
+
+        assertNotNull(resultado);
+        assertEquals(1, resultado.size());
+        verify(usuarioManejadorMock).obtenerColaboracionesConPagoPorNickname("Pepe");
     }
 
 }

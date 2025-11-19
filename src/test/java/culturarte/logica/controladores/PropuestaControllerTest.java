@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -510,5 +511,149 @@ public class PropuestaControllerTest {
         assertEquals(EstadoPropuesta.PUBLICADA, propuestaMock.getEstadoActual());
         assertEquals(2, propuestaMock.getHistorial().size());
         verify(propuestaManejadorMock).actualizarPropuesta(propuestaMock);
+    }
+
+    @Test
+    void marcarConstanciaEmitida_DatosValidos_MarcaCorrectamente() throws Exception {
+        controller.marcarConstanciaEmitida(1L);
+        verify(propuestaManejadorMock).marcarConstanciaEmitida(1L);
+    }
+
+    @Test
+    void marcarConstanciaEmitida_ColaboracionNoExiste_LanzaExcepcion() throws Exception {
+        doThrow(new Exception("No existe la colaboración con id 777")).when(propuestaManejadorMock).marcarConstanciaEmitida(777L);
+
+        Exception e = assertThrows(Exception.class, () -> controller.marcarConstanciaEmitida(777L));
+
+        assertTrue(e.getMessage().contains("No existe la colaboración"));
+    }
+
+    @Test
+    void devolverColaboracionesSinPago_DatosValidos_RetornaListaCorrectamente() {
+        List<DTColaboracion> listaEsperada = List.of(mock(DTColaboracion.class), mock(DTColaboracion.class));
+        when(propuestaManejadorMock.obtenerColaboracionesSinPago("Pepe")).thenReturn(listaEsperada);
+
+        List<DTColaboracion> resultado = controller.devolverColaboracionesSinPago("Pepe");
+
+        assertEquals(listaEsperada, resultado);
+        verify(propuestaManejadorMock).obtenerColaboracionesSinPago("Pepe");
+    }
+
+    @Test
+    void devolverColaboracionesSinPago_SinColaboraciones_RetornaListaVacia() {
+        when(propuestaManejadorMock.obtenerColaboracionesSinPago("Pepe")).thenReturn(new ArrayList<>());
+
+        List<DTColaboracion> resultado = controller.devolverColaboracionesSinPago("Pepe");
+
+        assertTrue(resultado.isEmpty());
+        verify(propuestaManejadorMock).obtenerColaboracionesSinPago("Pepe");
+    }
+
+    @Test
+    void registrarPago_DatosValidos_RegistraCorrectamente() throws Exception {
+        Colaboracion colaboracionMock = mock(Colaboracion.class);
+        when(propuestaManejadorMock.obtenerColaboracionPorId(1L)).thenReturn(colaboracionMock);
+        when(colaboracionMock.getPago()).thenReturn(null);
+
+        DTPago dtPago = new DTPago();
+        dtPago.setMonto(500.0);
+        dtPago.setFechaPago(LocalDateTime.now());
+        dtPago.setFormaPago(DTTipoFormaPago.TRANSFERENCIA_BANCARIA);
+        dtPago.setNombreBanco("Banco Tu Confia");
+        dtPago.setNumeroCuenta("123456789");
+        dtPago.setNombreTitularTransferencia("Pepe Luis");
+
+        controller.registrarPago(1L, dtPago);
+
+        verify(propuestaManejadorMock).obtenerColaboracionPorId(1L);
+        verify(propuestaManejadorMock).persistirPago(any(Pago.class));
+    }
+
+    @Test
+    void registrarPago_ColaboracionNoExiste_LanzaExcepcion() {
+        when(propuestaManejadorMock.obtenerColaboracionPorId(777L)).thenReturn(null);
+
+        DTPago dtPago = new DTPago();
+        dtPago.setMonto(500.0);
+        dtPago.setFechaPago(LocalDateTime.now());
+        dtPago.setFormaPago(DTTipoFormaPago.TRANSFERENCIA_BANCARIA);
+
+        Exception e = assertThrows(Exception.class, () -> controller.registrarPago(777L, dtPago));
+
+        assertTrue(e.getMessage().contains("No existe la colaboración"));
+    }
+
+    @Test
+    void registrarPago_ColaboracionYaTienePago_LanzaExcepcion() {
+        Colaboracion colaboracionMock = mock(Colaboracion.class);
+        Pago pagoExistente = mock(Pago.class);
+        when(propuestaManejadorMock.obtenerColaboracionPorId(1L)).thenReturn(colaboracionMock);
+        when(colaboracionMock.getPago()).thenReturn(pagoExistente);
+
+        DTPago dtPago = new DTPago();
+        dtPago.setMonto(500.0);
+        dtPago.setFechaPago(LocalDateTime.now());
+        dtPago.setFormaPago(DTTipoFormaPago.TRANSFERENCIA_BANCARIA);
+
+        Exception e = assertThrows(Exception.class, () -> controller.registrarPago(1L, dtPago));
+
+        assertTrue(e.getMessage().contains("ya tiene un pago asociado"));
+    }
+
+    @Test
+    void registrarPago_FormaPagoInvalida_LanzaExcepcion() {
+        Colaboracion colaboracionMock = mock(Colaboracion.class);
+        when(propuestaManejadorMock.obtenerColaboracionPorId(1L)).thenReturn(colaboracionMock);
+        when(colaboracionMock.getPago()).thenReturn(null);
+
+        DTPago dtPago = new DTPago();
+        dtPago.setMonto(500.0);
+        dtPago.setFechaPago(LocalDateTime.now());
+        dtPago.setFormaPago(null);
+
+        Exception e = assertThrows(Exception.class, () -> controller.registrarPago(1L, dtPago));
+
+        assertTrue(e.getMessage().contains("Forma de pago inválida") || e.getMessage().contains("is null"));
+    }
+
+    @Test
+    void registrarPago_PagoConTarjeta_RegistraCorrectamente() throws Exception {
+        Colaboracion colaboracionMock = mock(Colaboracion.class);
+        when(propuestaManejadorMock.obtenerColaboracionPorId(1L)).thenReturn(colaboracionMock);
+        when(colaboracionMock.getPago()).thenReturn(null);
+
+        DTPago dtPago = new DTPago();
+        dtPago.setMonto(500.0);
+        dtPago.setFechaPago(LocalDateTime.now());
+        dtPago.setFormaPago(DTTipoFormaPago.TARJETA);
+        dtPago.setTipoTarjeta(DTTipoTarjeta.VISA);
+        dtPago.setNumeroTarjeta("1234567890123456");
+        dtPago.setFechaVencimiento("12/25");
+        dtPago.setCvc("123");
+        dtPago.setNombreTitularTarjeta("Pepe Luis");
+
+        controller.registrarPago(1L, dtPago);
+
+        verify(propuestaManejadorMock).obtenerColaboracionPorId(1L);
+        verify(propuestaManejadorMock).persistirPago(any(Pago.class));
+    }
+
+    @Test
+    void registrarPago_PagoConPayPal_RegistraCorrectamente() throws Exception {
+        Colaboracion colaboracionMock = mock(Colaboracion.class);
+        when(propuestaManejadorMock.obtenerColaboracionPorId(1L)).thenReturn(colaboracionMock);
+        when(colaboracionMock.getPago()).thenReturn(null);
+
+        DTPago dtPago = new DTPago();
+        dtPago.setMonto(500.0);
+        dtPago.setFechaPago(LocalDateTime.now());
+        dtPago.setFormaPago(DTTipoFormaPago.PAYPAL);
+        dtPago.setNumeroCuentaPayPal("pepe@paypal.com");
+        dtPago.setNombreTitularPayPal("Pepe Luis");
+
+        controller.registrarPago(1L, dtPago);
+
+        verify(propuestaManejadorMock).obtenerColaboracionPorId(1L);
+        verify(propuestaManejadorMock).persistirPago(any(Pago.class));
     }
 }
