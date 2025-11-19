@@ -103,19 +103,37 @@ public class UsuarioController implements IUsuarioController {
                 dtEstadoActual = DTEstadoPropuesta.valueOf(prop.getEstadoActual().name());
             }
 
-            DTProponente dtProponente = new DTProponente(
-                    prop.getProponente().getNickname(),
-                    prop.getProponente().getNombre(),
-                    prop.getProponente().getApellido(),
-                    prop.getProponente().getPassword(),
-                    prop.getProponente().getCorreo(),
-                    prop.getProponente().getFechaNacimiento(),
-                    prop.getProponente().getImagen(),
-                    prop.getProponente().getDireccion(),
-                    prop.getProponente().getBio(),
-                    prop.getProponente().getSitioWeb(),
-                    new ArrayList<>()
-            );
+            DTProponente dtProponente;
+            if (prop.getProponente().getEliminado() != null && prop.getProponente().getEliminado()) {
+                dtProponente = new DTProponente(
+                        prop.getProponente().getNickname(),
+                        prop.getProponente().getNombre(),
+                        prop.getProponente().getApellido(),
+                        prop.getProponente().getPassword(),
+                        prop.getProponente().getCorreo(),
+                        prop.getProponente().getFechaNacimiento(),
+                        prop.getProponente().getImagen(),
+                        prop.getProponente().getDireccion(),
+                        prop.getProponente().getBio(),
+                        prop.getProponente().getSitioWeb(),
+                        new ArrayList<>(),
+                        prop.getProponente().getFechaEliminacion()
+                );
+            } else {
+                dtProponente = new DTProponente(
+                        prop.getProponente().getNickname(),
+                        prop.getProponente().getNombre(),
+                        prop.getProponente().getApellido(),
+                        prop.getProponente().getPassword(),
+                        prop.getProponente().getCorreo(),
+                        prop.getProponente().getFechaNacimiento(),
+                        prop.getProponente().getImagen(),
+                        prop.getProponente().getDireccion(),
+                        prop.getProponente().getBio(),
+                        prop.getProponente().getSitioWeb(),
+                        new ArrayList<>()
+                );
+            }
 
             List<DTColaboracion> dtColabsPropuesta = new ArrayList<>();
             for (Colaboracion colabProp : prop.getColaboraciones()) {
@@ -211,19 +229,37 @@ public class UsuarioController implements IUsuarioController {
                 dtEstadoActual = DTEstadoPropuesta.valueOf(prop.getEstadoActual().name());
             }
 
-            DTProponente dtProponente = new DTProponente(
-                    prop.getProponente().getNickname(),
-                    prop.getProponente().getNombre(),
-                    prop.getProponente().getApellido(),
-                    prop.getProponente().getPassword(),
-                    prop.getProponente().getCorreo(),
-                    prop.getProponente().getFechaNacimiento(),
-                    prop.getProponente().getImagen(),
-                    prop.getProponente().getDireccion(),
-                    prop.getProponente().getBio(),
-                    prop.getProponente().getSitioWeb(),
-                    new ArrayList<>()
-            );
+            DTProponente dtProponente;
+            if (prop.getProponente().getEliminado() != null && prop.getProponente().getEliminado()) {
+                dtProponente = new DTProponente(
+                        prop.getProponente().getNickname(),
+                        prop.getProponente().getNombre(),
+                        prop.getProponente().getApellido(),
+                        prop.getProponente().getPassword(),
+                        prop.getProponente().getCorreo(),
+                        prop.getProponente().getFechaNacimiento(),
+                        prop.getProponente().getImagen(),
+                        prop.getProponente().getDireccion(),
+                        prop.getProponente().getBio(),
+                        prop.getProponente().getSitioWeb(),
+                        new ArrayList<>(),
+                        prop.getProponente().getFechaEliminacion()
+                );
+            } else {
+                dtProponente = new DTProponente(
+                        prop.getProponente().getNickname(),
+                        prop.getProponente().getNombre(),
+                        prop.getProponente().getApellido(),
+                        prop.getProponente().getPassword(),
+                        prop.getProponente().getCorreo(),
+                        prop.getProponente().getFechaNacimiento(),
+                        prop.getProponente().getImagen(),
+                        prop.getProponente().getDireccion(),
+                        prop.getProponente().getBio(),
+                        prop.getProponente().getSitioWeb(),
+                        new ArrayList<>()
+                );
+            }
 
             List<DTColaboracion> dtColabsPropuesta = new ArrayList<>();
             for (Colaboracion colabProp : prop.getColaboraciones()) {

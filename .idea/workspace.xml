@@ -10,13 +10,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="tests unitarios prontos e interfaz mejorada">
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/endpoints/envoltorios/ListaDTColaboracion.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/endpoints/envoltorios/ListaDTColaboracion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/endpoints/envoltorios/ListaDTPropuesta.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/endpoints/envoltorios/ListaDTPropuesta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaColaboracionInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaColaboracionInternalFrame.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTCategoria.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTCategoria.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTColaborador.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTColaborador.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTComentario.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTComentario.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTSeguimiento.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/servicios/DTs/DTSeguimiento.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_11_2025_15_55_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_11_11_2025_15_55__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_11_2025_18_37_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_9_11_2025_18_37__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/controladores/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/endpoints/UsuarioWSEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/endpoints/UsuarioWSEndpoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/endpoints/envoltorios/ListaDTProponente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/endpoints/envoltorios/ListaDTProponente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/logica/manejadores/UsuarioManejador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/logica/manejadores/UsuarioManejador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/ConsultaColaboracionInternalFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/ConsultaColaboracionInternalFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/VerProponentesEliminadosInternalFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/VerProponentesEliminadosInternalFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/IUsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/IUsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/web/IUsuarioControllerWS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/servicios/interfaces/web/IUsuarioControllerWS.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/UsuarioController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/controladores/UsuarioController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/WSPublicador.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/WSPublicador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/VerProponentesEliminadosInternalFrame$ProponenteListCellRenderer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/VerProponentesEliminadosInternalFrame$ProponenteListCellRenderer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/VerProponentesEliminadosInternalFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/presentacion/internalFrames/VerProponentesEliminadosInternalFrame.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,7 +133,7 @@
       <recent name="culturarte.servicios.interfaces" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.WSPublicador">
+  <component name="RunManager" selected="Application.EstacionDeTrabajo">
     <configuration name="EstacionDeTrabajo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="culturarte.presentacion.EstacionDeTrabajo" />
       <module name="culturarte-app" />
@@ -179,8 +192,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.WSPublicador" />
         <item itemvalue="Application.EstacionDeTrabajo" />
+        <item itemvalue="Application.WSPublicador" />
         <item itemvalue="JUnit.All in culturarte-app" />
         <item itemvalue="JUnit.logica in culturarte-app" />
         <item itemvalue="JUnit.controladores in culturarte-app" />
@@ -456,6 +469,9 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.form" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

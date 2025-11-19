@@ -188,6 +188,9 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
 
                     JPanel pPanel = new JPanel();
                     pPanel.setLayout(new BoxLayout(pPanel, BoxLayout.Y_AXIS));
+                    boolean proponenteEliminado = propuesta.getDTProponente() != null && 
+                        propuesta.getDTProponente().getFechaEliminacion() != null;
+                    
                     pPanel.setBorder(BorderFactory.createTitledBorder(
                         BorderFactory.createEtchedBorder(),
                         propuesta.getTitulo() + " - " + propuesta.getEstadoActual(),
@@ -197,14 +200,26 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
                         new Color(70, 70, 70)
                     ));
 
+                    Color backgroundColor;
                     switch(propuesta.getEstadoActual()) {
-                        case PUBLICADA -> pPanel.setBackground(new Color(200, 255, 200));
-                        case EN_FINANCIACION -> pPanel.setBackground(new Color(255, 255, 200));
-                        case CANCELADA -> pPanel.setBackground(new Color(255, 200, 200));
-                        case FINANCIADA -> pPanel.setBackground(new Color(200, 220, 255));
-                        case NO_FINANCIADA -> pPanel.setBackground(new Color(230, 230, 230));
-                        default -> pPanel.setBackground(Color.WHITE);
+                        case PUBLICADA -> backgroundColor = new Color(200, 255, 200);
+                        case EN_FINANCIACION -> backgroundColor = new Color(255, 255, 200);
+                        case CANCELADA -> backgroundColor = new Color(255, 200, 200);
+                        case FINANCIADA -> backgroundColor = new Color(200, 220, 255);
+                        case NO_FINANCIADA -> backgroundColor = new Color(230, 230, 230);
+                        default -> backgroundColor = Color.WHITE;
                     }
+                    
+                    // Si el proponente está eliminado, hacer el fondo más opaco/deshabilitado
+                    if (proponenteEliminado) {
+                        backgroundColor = new Color(
+                            Math.max(0, backgroundColor.getRed() - 30),
+                            Math.max(0, backgroundColor.getGreen() - 30),
+                            Math.max(0, backgroundColor.getBlue() - 30)
+                        );
+                        pPanel.setToolTipText("Proponente eliminado - Esta propuesta no está disponible para consulta");
+                    }
+                    pPanel.setBackground(backgroundColor);
 
                     double dineroRecaudado = 0;
                     if (propuesta.getColaboraciones() != null) {
@@ -218,8 +233,19 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
                     JLabel lblTitulo = new JLabel("Título: " + propuesta.getTitulo());
                     lblTitulo.setFont(new Font("Segoe UI", Font.BOLD, 11));
                     pPanel.add(lblTitulo);
-                    pPanel.add(new JLabel("Proponente: " + (propuesta.getDTProponente() != null ?
-                            propuesta.getDTProponente().getNickname() : "N/A")));
+                    String proponenteInfo = "Proponente: " + (propuesta.getDTProponente() != null ?
+                            propuesta.getDTProponente().getNickname() : "N/A");
+                    if (propuesta.getDTProponente() != null && 
+                        propuesta.getDTProponente().getFechaEliminacion() != null) {
+                        proponenteInfo += " (Eliminado)";
+                    }
+                    JLabel lblProponente = new JLabel(proponenteInfo);
+                    if (propuesta.getDTProponente() != null && 
+                        propuesta.getDTProponente().getFechaEliminacion() != null) {
+                        lblProponente.setForeground(new Color(150, 0, 0));
+                        lblProponente.setFont(new Font("Segoe UI", Font.ITALIC, 11));
+                    }
+                    pPanel.add(lblProponente);
                     if (propuesta.getFechaPrevista() != null) {
                         pPanel.add(new JLabel("Fecha Prevista: " + propuesta.getFechaPrevista()));
                     }
@@ -228,6 +254,17 @@ public class ConsultaPerfilColaboradorInternalFrame extends JInternalFrame {
                     }
                     pPanel.add(new JLabel("Dinero Recaudado: $" + String.format("%.2f", dineroRecaudado)));
                     pPanel.add(new JLabel("Mi Colaboración: $" + (colaboracion.getMonto() != null ? String.format("%.2f", colaboracion.getMonto()) : "0")));
+                    // Mostrar fecha de colaboración
+                    String fechaColaboracionTexto;
+                    if (colaboracion.getFechaHora() != null) {
+                        java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+                        fechaColaboracionTexto = "Fecha de Colaboración: " + colaboracion.getFechaHora().format(formatter);
+                    } else {
+                        fechaColaboracionTexto = "Fecha de Colaboración: No disponible";
+                    }
+                    JLabel lblFechaColaboracion = new JLabel(fechaColaboracionTexto);
+                    lblFechaColaboracion.setFont(new Font("Segoe UI", Font.PLAIN, 11));
+                    pPanel.add(lblFechaColaboracion);
                     pPanel.add(new JLabel("Estado Actual: " + propuesta.getEstadoActual()));
 
                     panelPropuestas.add(pPanel);
