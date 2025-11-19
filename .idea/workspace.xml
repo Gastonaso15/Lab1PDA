@@ -11,8 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1f39fc77-1d4b-46a7-b8b2-dc6bf96ebf9d" name="Changes" comment="ver proponentes eliminados muestra las propuestas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/REGISTRO_HORAS.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/culturarte/logica/endpoints/ImagenWSEndpoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/culturarte/logica/endpoints/ImagenWSEndpoint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,7 +115,7 @@
       <recent name="culturarte.servicios.interfaces" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.WSPublicador">
+  <component name="RunManager" selected="Application.EstacionDeTrabajo">
     <configuration name="EstacionDeTrabajo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="culturarte.presentacion.EstacionDeTrabajo" />
       <module name="culturarte-app" />
@@ -175,8 +174,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.WSPublicador" />
         <item itemvalue="Application.EstacionDeTrabajo" />
+        <item itemvalue="Application.WSPublicador" />
         <item itemvalue="JUnit.All in culturarte-app" />
         <item itemvalue="JUnit.logica in culturarte-app" />
         <item itemvalue="JUnit.controladores in culturarte-app" />
@@ -455,7 +454,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763519702256</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="ver proponentes eliminados muestra las propuestas">
+      <option name="closed" value="true" />
+      <created>1763522400594</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1763522400594</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
