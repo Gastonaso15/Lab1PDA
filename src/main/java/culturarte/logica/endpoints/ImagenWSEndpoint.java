@@ -16,14 +16,14 @@ import java.util.Base64;
 @WebService(endpointInterface = "culturarte.servicios.interfaces.web.IImagenControllerWS")
 public class ImagenWSEndpoint implements IImagenControllerWS {
 
-    // Usar el directorio home del usuario para guardar imágenes
-    // Esto asegura que funcione independientemente de dónde se ejecute el JAR
+    // Usar el directorio de trabajo actual (donde está el proyecto Lab1PDA)
+    // Esto guarda las imágenes en Lab1PDA/uploads/ para que sean accesibles desde el proyecto
     private static final String BASE_UPLOAD_DIR;
 
     static {
-        String userHome = System.getProperty("user.home");
-        File culturarteDir = new File(userHome, ".Culturarte");
-        File uploadsDir = new File(culturarteDir, "uploads");
+        // Obtener el directorio de trabajo actual
+        String workingDir = System.getProperty("user.dir");
+        File uploadsDir = new File(workingDir, "uploads");
         BASE_UPLOAD_DIR = uploadsDir.getAbsolutePath();
         // Crear el directorio si no existe
         uploadsDir.mkdirs();
@@ -100,11 +100,14 @@ public class ImagenWSEndpoint implements IImagenControllerWS {
             archivo = new File(BASE_UPLOAD_DIR, rutaImagen);
         }
 
-        // Si el archivo no existe en el nuevo directorio, intentar buscar en el directorio antiguo
-        // (para compatibilidad con imágenes subidas antes de este cambio)
+        // Verificar que el archivo existe
         if (!archivo.exists() || !archivo.isFile()) {
-            // Intentar buscar en el directorio de trabajo actual (para imágenes antiguas)
-            File archivoAntiguo = new File("uploads", rutaRelativa != null ? rutaRelativa : rutaImagen);
+            // Si no existe, intentar buscar en el directorio home (para compatibilidad con imágenes antiguas)
+            String userHome = System.getProperty("user.home");
+            File culturarteDir = new File(userHome, ".Culturarte");
+            File uploadsDirAntiguo = new File(culturarteDir, "uploads");
+            File archivoAntiguo = new File(uploadsDirAntiguo, rutaRelativa != null ? rutaRelativa : rutaImagen);
+            
             if (archivoAntiguo.exists() && archivoAntiguo.isFile()) {
                 archivo = archivoAntiguo;
             } else {
