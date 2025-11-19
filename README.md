@@ -22,5 +22,16 @@ Despues, ejecutar:
 * sudo docker compose up
 ---
 
+## Ver cobertura con Jacoco
 
+Entrar a la terminal desde el IDE y ejecutar:
+
+* mvn clean test
+* mvn jacoco:report
+
+Despues, ir a la carpeta:
+
+* target/site/jacoco
+
+Abrir con navegador el archivo index.html
 

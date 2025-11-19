@@ -1,6 +1,7 @@
 package culturarte.servicios.DTs;
 
 import java.time.LocalDateTime;
+import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 public class DTComentario {
     private Long id;
@@ -58,6 +59,7 @@ public class DTComentario {
     public String getContenido() { return contenido; }
     public void setContenido(String contenido) { this.contenido = contenido; }
 
+    @XmlJavaTypeAdapter(AdaptadorLocalDateTime.class)
     public LocalDateTime getFechaHora() { return fechaHora; }
     public void setFechaHora(LocalDateTime fechaHora) { this.fechaHora = fechaHora; }
 
