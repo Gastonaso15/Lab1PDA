@@ -1,0 +1,427 @@
+<changelist name="Uncommitted_changes_before_Update_at_19_11_25,_0_21_[Changes]" date="1763522513895" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_11_25,_0_21_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 19/11/25, 0:21 [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/site/jacoco/jacoco-resources/branchpc.gif" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/site/jacoco/jacoco-resources/redbar.gif" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/site/jacoco/jacoco-resources/source.gif" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/site/jacoco/jacoco-resources/up.gif" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/uploads/usuarios/ImagenUP5.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/site/jacoco/jacoco-resources/method.gif" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame$2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/endpoints/envoltorios/ListaStrings.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/ConsultaPropuestasPorEstadoInternalFrame$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/VerProponentesEliminadosInternalFrame$ProponenteListCellRenderer.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/VerProponentesEliminadosInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/uploads/usuarios/ImagenUP2.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/culturarte/logica/endpoints/PropuestaWSEndpointTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/modelos/Colaboracion.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/culturarte/logica/controladores/PropuestaControllerTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/site/jacoco/jacoco-resources/greenbar.gif" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/persistencia/JPAUtil.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/modelos/TipoTarjeta.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/AdaptadorLocalDateTime.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/uploads/usuarios/ImagenUC3.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTComentario.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/AdaptadorLocalDateTime$LocalDateTimeWS.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/ConsultaColaboracionInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/endpoints/envoltorios/ListaDTColaboracion.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/endpoints/envoltorios/ListaDTPropuesta.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/AltaCategoriaInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/endpoints/envoltorios/ListaDTComentario.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/GestionarComentariosInternalFrame$2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/VerRegistroAccesoInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/uploads/propuestas/Imagen1.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/uploads/usuarios/ImagenUC2.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/modelos/AccesoSitio.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/DejarSeguirUsuarioInternalFrame$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/AltaPropuestaInternalFrame$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/AltaCategoriaInternalFrame$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/WSPublicador.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/interfaces/IPropuestaController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTCategoria.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/uploads/usuarios/ImagenUP4.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/SeguirUsuarioInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/EstacionDeTrabajo$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/manejadores/UsuarioManejador.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/jacoco.exec" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/uploads/propuestas/Imagen3.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/site/jacoco/jacoco-resources/class.gif" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/EstacionDeTrabajo.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/ConsultarPropuestaInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/site/jacoco/jacoco-resources/branchfc.gif" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame$2.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/site/jacoco/jacoco-resources/bundle.gif" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTPropuestaEstado.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/uploads/propuestas/Imagen5.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/VerProponentesEliminadosInternalFrame$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/SeguirUsuarioInternalFrame$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/site/jacoco/jacoco-resources/down.gif" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/endpoints/UsuarioWSEndpoint.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/endpoints/PropuestaWSEndpoint.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/endpoints/envoltorios/ListaDTProponente.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/modelos/Categoria.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTAccesoSitio.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/helpers/ImagenUIHelper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/modelos/Propuesta.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTColaboracion.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/controladores/UsuarioController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/modelos/Comentario.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTPropuesta.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTTipoTarjeta.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/ModificarDatosPropuestaInternalFrame$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/site/jacoco/jacoco-resources/session.gif" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/modelos/Pago.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/helpers/CategoriaUIHelper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/AltaPropuestaInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/uploads/usuarios/ImagenUC4.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/site/jacoco/jacoco-resources/sort.gif" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/site/jacoco/jacoco-resources/group.gif" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTProponente.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/EvaluarPropuestaInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTTipoFormaPago.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/site/jacoco/jacoco-resources/report.gif" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/modelos/Seguimiento.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/uploads/usuarios/ImagenUP1.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/RegistrarColaboracionInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/uploads/propuestas/Imagen2.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/culturarte/logica/controladores/UsuarioControllerTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/AdaptadorLocalDate$LocalDateWS.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/modelos/PropuestaEstado.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/uploads/usuarios/ImagenUP6.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/modelos/EstadoPropuesta.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/uploads/usuarios/ImagenUC1.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/ModificarDatosPropuestaInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTPago.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/interfaces/IUsuarioController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/VerRegistroAccesoInternalFrame$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/uploads/usuarios/ImagenUP7.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/endpoints/envoltorios/ListaDTCategoria.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/interfaces/web/IUsuarioControllerWS.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/modelos/TipoFormaPago.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/GestionarComentariosInternalFrame$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/culturarte/logica/manejadores/UsuarioManejadorTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/DejarSeguirUsuarioInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/interfaces/web/IPropuestaControllerWS.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilColaboradorInternalFrame$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/controladores/PropuestaController.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/uploads/Swing/fondo.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/helpers/ImagenUIHelper$ImagenPanel.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/modelos/Usuario.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/modelos/Colaborador.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/modelos/Proponente.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/site/jacoco/jacoco-resources/package.gif" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/AdaptadorLocalDate.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/AltaUsuarioInternalFrame$1.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/manejadores/PropuestaManejador.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/ConsultaPerfilProponenteInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTColaborador.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTEstadoPropuesta.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/CancelarColaboracionInternalFrame$3.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/Fabrica.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTUsuario.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/uploads/usuarios/ImagenUP3.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/logica/modelos/TipoRetorno.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTTipoRetorno.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/uploads/propuestas/Imagen4.jpg" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/culturarte/logica/endpoints/UsuarioWSEndpointTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/GestionarComentariosInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/ConsultaPropuestasPorEstadoInternalFrame.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/culturarte/logica/manejadores/PropuestaManejadorTest.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/site/jacoco/jacoco-resources/branchnc.gif" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/servicios/DTs/DTSeguimiento.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/culturarte/presentacion/internalFrames/GestionarComentariosInternalFrame$ComentarioListCellRenderer.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/uploads/usuarios/ImagenUC5.jpg" />
+  </binary>
+</changelist>
